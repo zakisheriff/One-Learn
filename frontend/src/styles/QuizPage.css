@@ -1,0 +1,198 @@
+/* Quiz Page */
+
+.quiz-page {
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.quiz-main {
+    padding: var(--spacing-3xl) 0;
+}
+
+.quiz-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.quiz-header h1 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.quiz-header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+.quiz-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.question-card {
+    background: var(--color-surface-elevated);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.question-number {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+}
+
+.question-type {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    text-transform: capitalize;
+}
+
+.question-text {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.option-label:hover {
+    border-color: var(--color-accent);
+    background: var(--color-background);
+}
+
+.option-label input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-accent);
+}
+
+.option-label span {
+    flex: 1;
+    font-size: var(--font-size-base);
+}
+
+.fill-blank-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    transition: all var(--transition-fast);
+}
+
+.fill-blank-input:focus {
+    border-color: var(--color-accent);
+    background: var(--color-background);
+}
+
+.submit-quiz-button {
+    width: 100%;
+    padding: var(--spacing-lg);
+    background: var(--color-accent);
+    color: #ffffff;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+}
+
+.submit-quiz-button:hover:not(:disabled) {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.submit-quiz-button:disabled {
+    opacity: 0.6;
+}
+
+/* Result Card */
+.result-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--color-surface-elevated);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-3xl);
+    text-align: center;
+    box-shadow: var(--shadow-xl);
+}
+
+.result-card.passed {
+    border: 2px solid var(--color-success);
+}
+
+.result-card.failed {
+    border: 2px solid var(--color-warning);
+}
+
+.result-icon {
+    font-size: 64px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.result-card h1 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.score-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.score {
+    font-size: 72px;
+    font-weight: var(--font-weight-bold);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-navy) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.score-label {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+.result-message {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-lg);
+}
+
+.redirect-message {
+    font-size: var(--font-size-base);
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+}

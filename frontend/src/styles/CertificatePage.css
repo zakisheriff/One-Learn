@@ -1,0 +1,196 @@
+/* Certificate Page */
+
+.certificate-page {
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.certificate-main {
+    padding: var(--spacing-3xl) 0;
+}
+
+.certificate-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-3xl);
+}
+
+/* Certificate Preview */
+.certificate-preview {
+    background: var(--color-surface-elevated);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+}
+
+.cert-border {
+    border: 3px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xs);
+}
+
+.cert-content {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-3xl);
+    text-align: center;
+}
+
+.cert-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.cert-divider {
+    width: 100px;
+    height: 2px;
+    background: var(--color-accent);
+    margin: 0 auto var(--spacing-xl);
+}
+
+.cert-label {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cert-name {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.cert-course {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-xl);
+}
+
+.cert-org {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.cert-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.cert-verification {
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+.cert-verification p {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.cert-verification code {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    word-break: break-all;
+}
+
+/* Actions */
+.certificate-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.certificate-actions h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.download-btn {
+    background: var(--color-accent);
+    color: #ffffff;
+}
+
+.download-btn:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.linkedin-btn {
+    background: #0077b5;
+    color: #ffffff;
+}
+
+.linkedin-btn:hover {
+    background: #006399;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.verification-info {
+    background: var(--color-surface);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+}
+
+.verification-info h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.verification-info p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.verification-link {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .certificate-container {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-content {
+        padding: var(--spacing-xl);
+    }
+
+    .cert-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .cert-name {
+        font-size: var(--font-size-2xl);
+    }
+}
