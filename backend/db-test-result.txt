@@ -1,0 +1,10 @@
+Testing Database Connection...
+NODE_ENV: development
+DATABASE_URL provided: true
+DATABASE_URL format: postgresql:****@localhost:5432/youlearn
+Successfully connected to database!
+Database Time: Fri Nov 28 2025 17:56:18 GMT+0530 (India Standard Time)
+
+Testing getAllCourses Query...
+Query successful! Retrieved 5 courses.
+First course: Java Programming

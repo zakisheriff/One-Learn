@@ -1,27 +1,30 @@
-/* Course Detail Page */
+/* Course Detail - LinkedIn Learning Style */
 
 .course-detail-page {
     min-height: 100vh;
-    background: var(--color-background);
+    background: var(--neutral-50);
 }
 
 .detail-main {
-    padding: var(--spacing-3xl) 0;
+    max-width: 1128px;
+    margin: 0 auto;
+    padding: 48px 24px;
 }
 
 /* Hero Section */
 .course-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3xl);
-    margin-bottom: var(--spacing-3xl);
+    gap: 48px;
+    margin-bottom: 48px;
     align-items: center;
 }
 
 .hero-image {
-    border-radius: var(--radius-lg);
+    width: 100%;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hero-image img {
@@ -31,123 +34,173 @@
 }
 
 .hero-content h1 {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-lg);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 16px;
+    line-height: 1.3;
 }
 
 .course-description {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
-    margin-bottom: var(--spacing-xl);
+    font-size: 16px;
+    color: var(--neutral-700);
+    line-height: 1.6;
+    margin-bottom: 24px;
 }
 
 .enroll-button {
-    padding: var(--spacing-md) var(--spacing-2xl);
-    background: var(--color-accent);
-    color: #ffffff;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
+    padding: 12px 32px;
+    background: var(--linkedin-blue);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-bottom: 12px;
 }
 
 .enroll-button:hover:not(:disabled) {
-    background: var(--color-accent-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    background: var(--linkedin-blue-dark);
 }
 
 .enroll-button:disabled {
     opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .login-hint {
-    margin-top: var(--spacing-md);
-    font-size: var(--font-size-sm);
-    color: var(--color-text-tertiary);
+    font-size: 14px;
+    color: var(--neutral-600);
+    margin: 0;
 }
 
 /* Syllabus Section */
 .course-syllabus {
-    background: var(--color-surface-elevated);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
-    box-shadow: var(--shadow-md);
+    background: white;
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px;
+    padding: 32px;
 }
 
 .course-syllabus h2 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-xl);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 24px;
 }
 
 .syllabus-text {
-    margin-bottom: var(--spacing-xl);
-    color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
+    margin-bottom: 32px;
 }
 
+.syllabus-text p {
+    font-size: 16px;
+    color: var(--neutral-700);
+    line-height: 1.6;
+}
+
+/* Modules List */
 .modules-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: 16px;
 }
 
 .module-card {
-    background: var(--color-background);
-    border: 1px solid var(--color-border-subtle);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
-    transition: all var(--transition-base);
+    background: var(--neutral-50);
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.2s ease;
 }
 
 .module-card:hover {
-    border-color: var(--color-border);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .module-header {
-    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .module-number {
-    display: inline-block;
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: var(--spacing-xs);
+    padding: 4px 12px;
+    background: var(--linkedin-blue);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 12px;
 }
 
-.module-header h3 {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
+.module-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    flex: 1;
 }
 
 .module-description {
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
+    font-size: 14px;
+    color: var(--neutral-700);
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
 .module-meta {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-tertiary);
+    font-size: 14px;
+    color: var(--neutral-600);
 }
 
-/* Responsive */
+/* Error State */
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 48px;
+}
+
+.error-state p {
+    font-size: 16px;
+    color: var(--neutral-600);
+    margin-bottom: 16px;
+}
+
+.back-link {
+    color: var(--linkedin-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
+    .detail-main {
+        padding: 24px 16px;
+    }
+
     .course-hero {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
+        gap: 24px;
     }
 
     .hero-content h1 {
-        font-size: var(--font-size-3xl);
+        font-size: 24px;
     }
 
     .course-syllabus {
-        padding: var(--spacing-lg);
+        padding: 24px 16px;
+    }
+
+    .course-syllabus h2 {
+        font-size: 20px;
     }
 }

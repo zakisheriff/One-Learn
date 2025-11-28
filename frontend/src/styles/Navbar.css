@@ -1,110 +1,523 @@
-/* Navbar Styles */
+/* Navbar - LinkedIn Learning Style */
 
 .navbar {
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    height: 52px;
+    background: white;
+    border-bottom: 1px solid var(--neutral-200);
     position: sticky;
     top: 0;
-    z-index: var(--z-sticky);
-    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .navbar-container {
+    max-width: 1128px;
+    margin: 0 auto;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: var(--spacing-md) var(--spacing-2xl);
-    max-width: 1440px;
-    margin: 0 auto;
+    padding: 0 24px;
+    gap: 16px;
+}
+
+/* Left Section */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
 }
 
 .navbar-logo {
-    font-size: 1.75rem;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: -0.5px;
-    font-family: var(--font-family-display);
-}
-
-.navbar-logo::before {
-    content: 'You';
-    color: var(--color-you);
-}
-
-.navbar-logo::after {
-    content: 'Learn';
-    color: var(--color-learn);
-    margin-left: 2px;
-}
-
-.navbar-links {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xl);
+    gap: 8px;
+    text-decoration: none;
 }
 
-.nav-link {
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    transition: color var(--transition-fast);
-    padding: var(--spacing-xs) var(--spacing-sm);
-}
-
-.nav-link:hover {
-    color: var(--color-text-primary);
-}
-
-.nav-link-button {
-    color: var(--color-text-secondary);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: color var(--transition-fast);
-    padding: var(--spacing-xs) var(--spacing-sm);
-}
-
-.nav-link-button:hover {
-    color: var(--color-text-primary);
-}
-
-.nav-button {
-    padding: 10px 24px;
-    background: var(--color-accent);
-    color: #ffffff;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: all var(--transition-base);
-    font-size: var(--font-size-sm);
-    border: none;
-}
-
-.nav-button:hover {
-    background: var(--color-accent-hover);
-    box-shadow: var(--shadow-md);
-}
-
-.user-badge {
+.navbar-logo-icon {
     width: 32px;
     height: 32px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    color: #ffffff;
+    background: var(--linkedin-blue);
+    color: white;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.navbar-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--linkedin-blue);
+    letter-spacing: -0.5px;
+}
+
+.navbar-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--neutral-300);
+}
+
+/* Browse Menu */
+.navbar-browse {
+    position: relative;
+}
+
+.browse-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--neutral-600);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.browse-button:hover {
+    color: var(--neutral-900);
+    background: var(--neutral-100);
+}
+
+.browse-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid var(--neutral-200);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    display: none;
+    grid-template-columns: repeat(3, 200px);
+    gap: 24px;
+    width: max-content;
+}
+
+.navbar-browse:hover .browse-dropdown {
+    display: grid;
+}
+
+.browse-column h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.browse-column a {
+    display: block;
+    font-size: 14px;
+    color: var(--neutral-600);
+    text-decoration: none;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+}
+
+.browse-column a:hover {
+    color: var(--linkedin-blue);
+    text-decoration: underline;
+}
+
+/* Center Section (Search) */
+.navbar-center {
+    flex: 1;
+    max-width: 380px;
+}
+
+.navbar-search-input-wrapper {
+    position: relative;
+    width: 100%;
+    background: #EEF3F8;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.navbar-search-input-wrapper:focus-within {
+    background: white;
+    box-shadow: 0 0 0 2px var(--neutral-900);
+    width: 100%;
+    /* Expand on focus */
+}
+
+.navbar-search-icon {
+    padding: 0 12px;
+    color: var(--neutral-600);
+    display: flex;
+    align-items: center;
+}
+
+.navbar-search-input {
+    width: 100%;
+    height: 34px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--neutral-900);
+}
+
+.navbar-search-input:focus {
+    outline: none;
+}
+
+.navbar-search-input::placeholder {
+    color: var(--neutral-600);
+}
+
+/* Right Section */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.navbar-language-wrapper {
+    position: relative;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 8px 0;
+    min-width: 160px;
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color: var(--neutral-600);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.language-option:hover {
+    background: var(--neutral-100);
+    color: var(--neutral-900);
+}
+
+.language-option.active {
+    color: var(--linkedin-blue);
+    font-weight: 600;
+    background: rgba(10, 102, 194, 0.05);
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--neutral-600);
+    min-width: 80px;
+    height: 52px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.navbar-link:hover {
+    color: var(--neutral-900);
+}
+
+.navbar-link.active {
+    color: var(--neutral-900);
+    border-bottom-color: var(--neutral-900);
+}
+
+.navbar-link-icon {
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-link-text {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.navbar-divider-vertical {
+    width: 1px;
+    height: 52px;
+    background: var(--neutral-200);
+    margin: 0 8px;
+}
+
+/* Profile */
+.navbar-profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 60px;
+    height: 52px;
+    color: var(--neutral-600);
+}
+
+.navbar-profile:hover {
+    color: var(--neutral-900);
+}
+
+.navbar-avatar {
+    width: 24px;
+    height: 24px;
+    background: var(--linkedin-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.navbar-avatar.large {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.navbar-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+}
+
+.navbar-profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 280px;
+    background: white;
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    padding: 8px 0;
+    z-index: 1001;
+}
+
+.navbar-profile.open .navbar-profile-dropdown {
+    display: flex;
+}
+
+.profile-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.profile-details h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin: 0 0 4px 0;
+}
+
+.profile-details p {
+    font-size: 14px;
+    color: var(--neutral-600);
+    margin: 0;
+}
+
+.navbar-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    color: var(--neutral-600);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.navbar-dropdown-item:hover {
+    background: var(--neutral-100);
+    color: var(--neutral-900);
+}
+
+.dropdown-section {
+    padding: 8px 0;
+}
+
+.dropdown-section h5 {
+    padding: 0 16px 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin: 0;
+}
+
+.navbar-dropdown-link {
+    display: block;
+    padding: 6px 16px;
+    font-size: 14px;
+    color: var(--neutral-600);
+    text-decoration: none;
+}
+
+.navbar-dropdown-link:hover {
+    color: var(--linkedin-blue);
+    text-decoration: underline;
+}
+
+.navbar-dropdown-divider {
+    height: 1px;
+    background: var(--neutral-200);
+    margin: 4px 0;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-text {
+    color: var(--neutral-600);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-text:hover {
+    background: var(--neutral-100);
+    color: var(--neutral-900);
+}
+
+.btn-primary-small {
+    padding: 6px 16px;
+    background: white;
+    color: var(--linkedin-blue);
+    border: 1px solid var(--linkedin-blue);
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary-small:hover {
+    background: rgba(10, 102, 194, 0.1);
+    box-shadow: inset 0 0 0 1px var(--linkedin-blue);
+}
+
+/* Mobile Toggle */
+.navbar-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--neutral-600);
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+    .navbar-search-input-wrapper {
+        width: 280px;
+    }
+
+    .navbar-link-text {
+        display: none;
+    }
+
+    .navbar-link {
+        min-width: 48px;
+    }
 }
 
 @media (max-width: 768px) {
-    .navbar-links {
-        gap: var(--spacing-md);
+    .navbar-mobile-toggle {
+        display: block;
+        margin-left: auto;
     }
 
-    .nav-link {
-        font-size: var(--font-size-sm);
+    .navbar-center,
+    .navbar-right,
+    .navbar-divider,
+    .navbar-browse {
+        display: none;
+    }
+
+    /* Mobile Menu */
+    .navbar-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 52px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-bottom: 1px solid var(--neutral-200);
+        padding: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-nav.open .navbar-link {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        height: 48px;
+    }
+
+    .navbar-nav.open .navbar-link-text {
+        display: block;
+        font-size: 16px;
     }
 }

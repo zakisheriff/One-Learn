@@ -20,14 +20,14 @@ exports.register = async (req, res) => {
 
         // Validation
         if (!fullName || !email || !password) {
-            return res.status(400).json({ 
-                error: 'Full name, email, and password are required' 
+            return res.status(400).json({
+                error: 'Full name, email, and password are required'
             });
         }
 
         if (password.length < 8) {
-            return res.status(400).json({ 
-                error: 'Password must be at least 8 characters long' 
+            return res.status(400).json({
+                error: 'Password must be at least 8 characters long'
             });
         }
 
@@ -38,8 +38,8 @@ exports.register = async (req, res) => {
         );
 
         if (existingUser.rows.length > 0) {
-            return res.status(409).json({ 
-                error: 'User with this email already exists' 
+            return res.status(409).json({
+                error: 'User with this email already exists'
             });
         }
 
@@ -59,7 +59,7 @@ exports.register = async (req, res) => {
         // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || 'fallback_secret_for_dev_only',
             { expiresIn: JWT_EXPIRY }
         );
 
@@ -96,8 +96,8 @@ exports.login = async (req, res) => {
 
         // Validation
         if (!email || !password) {
-            return res.status(400).json({ 
-                error: 'Email and password are required' 
+            return res.status(400).json({
+                error: 'Email and password are required'
             });
         }
 
@@ -108,8 +108,8 @@ exports.login = async (req, res) => {
         );
 
         if (result.rows.length === 0) {
-            return res.status(401).json({ 
-                error: 'Invalid email or password' 
+            return res.status(401).json({
+                error: 'Invalid email or password'
             });
         }
 
@@ -117,8 +117,8 @@ exports.login = async (req, res) => {
 
         // Check if user registered with OAuth (no password)
         if (!user.password_hash) {
-            return res.status(401).json({ 
-                error: 'This account uses Google sign-in. Please use "Sign in with Google"' 
+            return res.status(401).json({
+                error: 'This account uses Google sign-in. Please use "Sign in with Google"'
             });
         }
 
@@ -126,15 +126,15 @@ exports.login = async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, user.password_hash);
 
         if (!isPasswordValid) {
-            return res.status(401).json({ 
-                error: 'Invalid email or password' 
+            return res.status(401).json({
+                error: 'Invalid email or password'
             });
         }
 
         // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || 'fallback_secret_for_dev_only',
             { expiresIn: JWT_EXPIRY }
         );
 
@@ -157,7 +157,11 @@ exports.login = async (req, res) => {
 
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({
+            error: 'Internal server error',
+            details: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
     }
 };
 
@@ -171,8 +175,8 @@ exports.googleAuth = async (req, res) => {
         const { credential } = req.body;
 
         if (!credential) {
-            return res.status(400).json({ 
-                error: 'Google credential is required' 
+            return res.status(400).json({
+                error: 'Google credential is required'
             });
         }
 
@@ -201,8 +205,8 @@ exports.googleAuth = async (req, res) => {
             );
 
             if (emailCheck.rows.length > 0) {
-                return res.status(409).json({ 
-                    error: 'An account with this email already exists. Please use regular login.' 
+                return res.status(409).json({
+                    error: 'An account with this email already exists. Please use regular login.'
                 });
             }
 
@@ -222,7 +226,7 @@ exports.googleAuth = async (req, res) => {
         // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET || 'fallback_secret_for_dev_only',
             { expiresIn: JWT_EXPIRY }
         );
 
@@ -293,5 +297,104 @@ exports.getCurrentUser = async (req, res) => {
     } catch (error) {
         console.error('Get current user error:', error);
         res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+/**
+ * Update user profile (name, email)
+ * PUT /api/auth/profile
+ * Protected route
+ */
+exports.updateProfile = async (req, res) => {
+    try {
+        const { fullName, email } = req.body;
+        const userId = req.user.userId;
+
+        if (!fullName || !email) {
+            return res.status(400).json({ error: 'Full name and email are required' });
+        }
+
+        // Check if email is taken by another user
+        const emailCheck = await pool.query(
+            'SELECT id FROM users WHERE email = $1 AND id != $2',
+            [email.toLowerCase(), userId]
+        );
+
+        if (emailCheck.rows.length > 0) {
+            return res.status(409).json({ error: 'Email already in use' });
+        }
+
+        const result = await pool.query(
+            'UPDATE users SET full_name = $1, email = $2 WHERE id = $3 RETURNING id, full_name, email',
+            [fullName, email.toLowerCase(), userId]
+        );
+
+        const user = result.rows[0];
+
+        res.json({
+            message: 'Profile updated successfully',
+            user: {
+                id: user.id,
+                fullName: user.full_name,
+                email: user.email
+            }
+        });
+
+    } catch (error) {
+        console.error('Update profile error:', error);
+        res.status(500).json({ error: 'Failed to update profile' });
+    }
+};
+
+/**
+ * Update password
+ * PUT /api/auth/password
+ * Protected route
+ */
+exports.updatePassword = async (req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        const userId = req.user.userId;
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({ error: 'Current and new password are required' });
+        }
+
+        if (newPassword.length < 8) {
+            return res.status(400).json({ error: 'New password must be at least 8 characters' });
+        }
+
+        // Get user's current password hash
+        const userResult = await pool.query(
+            'SELECT password_hash FROM users WHERE id = $1',
+            [userId]
+        );
+
+        const user = userResult.rows[0];
+
+        if (!user.password_hash) {
+            return res.status(400).json({ error: 'This account uses Google sign-in. Cannot change password.' });
+        }
+
+        // Verify current password
+        const isValid = await bcrypt.compare(currentPassword, user.password_hash);
+
+        if (!isValid) {
+            return res.status(401).json({ error: 'Incorrect current password' });
+        }
+
+        // Hash new password
+        const newHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+
+        await pool.query(
+            'UPDATE users SET password_hash = $1 WHERE id = $2',
+            [newHash, userId]
+        );
+
+        res.json({ message: 'Password updated successfully' });
+
+    } catch (error) {
+        console.error('Update password error:', error);
+        res.status(500).json({ error: 'Failed to update password' });
     }
 };

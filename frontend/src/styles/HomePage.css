@@ -1,0 +1,417 @@
+/* LinkedIn Learning Homepage - Exact Structure + Glassmorphism */
+
+.homepage {
+    min-height: 100vh;
+    background: var(--neutral-50);
+    background-image: var(--gradient-mesh);
+}
+
+/* Hero Banner (400px height) */
+.hero-banner {
+    height: 400px;
+    background: var(--gradient-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 1128px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+    max-width: 600px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 24px;
+    max-width: 500px;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: white;
+    color: var(--glass-purple);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Category Pills (Horizontal Scroll) */
+.category-section {
+    max-width: 1128px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.category-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 8px;
+}
+
+.category-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.category-pill {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--neutral-700);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    white-space: nowrap;
+}
+
+.category-pill:hover,
+.category-pill.active {
+    background: var(--glass-white-strong);
+    border-color: var(--glass-purple);
+    color: var(--glass-purple);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Course Sections */
+.course-section {
+    max-width: 1128px;
+    margin: 0 auto;
+    padding: 0 24px;
+    margin-bottom: 48px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--neutral-900);
+}
+
+.section-see-all {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--glass-purple);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color var(--transition-base);
+}
+
+.section-see-all:hover {
+    color: var(--glass-indigo);
+}
+
+/* Horizontal Scrollable Cards */
+.course-carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--glass-border) transparent;
+    padding-bottom: 16px;
+    scroll-behavior: smooth;
+}
+
+.course-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.course-carousel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.course-carousel::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+.course-carousel::-webkit-scrollbar-thumb:hover {
+    background: var(--neutral-400);
+}
+
+/* LinkedIn-Style Course Card */
+.linkedin-course-card {
+    flex-shrink: 0;
+    width: 280px;
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.linkedin-course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--glass-border-strong);
+}
+
+.linkedin-card-thumbnail {
+    width: 100%;
+    height: 158px;
+    background: var(--gradient-soft);
+    position: relative;
+    overflow: hidden;
+}
+
+.linkedin-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.linkedin-course-card:hover .linkedin-card-thumbnail img {
+    transform: scale(1.05);
+}
+
+.linkedin-card-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.linkedin-card-content {
+    padding: 12px;
+}
+
+.linkedin-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 4px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.linkedin-card-instructor {
+    font-size: 14px;
+    color: var(--neutral-600);
+    margin-bottom: 8px;
+}
+
+.linkedin-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--neutral-600);
+}
+
+.linkedin-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.linkedin-card-rating-star {
+    color: #F5C518;
+}
+
+.linkedin-card-stats {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Progress Overlay (for Continue Learning) */
+.linkedin-card-progress {
+    padding: 0 12px 12px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background: var(--neutral-200);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    transition: width var(--transition-smooth);
+}
+
+.progress-text {
+    font-size: 12px;
+    color: var(--neutral-600);
+    margin-top: 4px;
+}
+
+/* Empty State */
+.section-empty {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+}
+
+.section-empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.section-empty h3 {
+    font-size: 18px;
+    color: var(--neutral-700);
+    margin-bottom: 8px;
+}
+
+.section-empty p {
+    font-size: 14px;
+    color: var(--neutral-500);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1023px) {
+    .hero-banner {
+        height: 320px;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .linkedin-course-card {
+        width: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 280px;
+    }
+
+    .hero-content {
+        padding: 0 16px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .category-section,
+    .course-section {
+        padding: 0 16px;
+    }
+
+    .section-header {
+        margin-bottom: 16px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .linkedin-course-card {
+        width: 220px;
+    }
+
+    .course-section {
+        margin-bottom: 32px;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-content h1 {
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .hero-cta {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .linkedin-course-card {
+        width: 200px;
+    }
+}

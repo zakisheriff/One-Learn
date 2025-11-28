@@ -68,7 +68,9 @@ const LoginPage = () => {
 
         } catch (err) {
             console.error('Authentication error:', err);
-            setError(err.response?.data?.error || err.message || 'Authentication failed');
+            const backendError = err.response?.data;
+            const errorMessage = backendError?.details || backendError?.error || err.message || 'Authentication failed';
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }

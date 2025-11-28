@@ -19,7 +19,7 @@ const authenticateToken = (req, res, next) => {
         }
 
         // Verify token
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret_for_dev_only', (err, decoded) => {
             if (err) {
                 // Token is invalid or expired
                 if (err.name === 'TokenExpiredError') {
@@ -60,7 +60,7 @@ const optionalAuth = (req, res, next) => {
             return next();
         }
 
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret_for_dev_only', (err, decoded) => {
             if (err) {
                 req.user = null;
             } else {

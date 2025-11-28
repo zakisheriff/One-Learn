@@ -22,7 +22,7 @@ const VerifyPage = () => {
 
     const verifyCertificate = async () => {
         try {
-            const response = await axios.get(`/verify?id=${verificationId}`);
+            const response = await axios.get(`/api/verify?id=${verificationId}`);
             setCertificate(response.data.certificate);
         } catch (err) {
             setError(err.response?.data?.message || 'Certificate not found');

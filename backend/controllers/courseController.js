@@ -36,7 +36,11 @@ exports.getAllCourses = async (req, res) => {
 
     } catch (error) {
         console.error('Get courses error:', error);
-        res.status(500).json({ error: 'Failed to fetch courses' });
+        res.status(500).json({
+            error: 'Failed to fetch courses',
+            details: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
     }
 };
 

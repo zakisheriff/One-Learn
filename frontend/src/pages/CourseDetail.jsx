@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { LanguageContext } from '../context/LanguageContext';
 import '../styles/CourseDetail.css';
 
 const CourseDetail = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
+    const { t } = useContext(LanguageContext);
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
     const [enrolling, setEnrolling] = useState(false);
@@ -21,7 +23,7 @@ const CourseDetail = () => {
             const response = await axios.get(`/api/courses/${slug}`);
             setCourse(response.data.course);
         } catch (err) {
-            setError('Failed to load course details');
+            setError(t('failedToLoadCourse') || 'Failed to load course details');
             console.error(err);
         } finally {
             setLoading(false);
@@ -37,7 +39,7 @@ const CourseDetail = () => {
             if (err.response?.status === 401) {
                 navigate('/login');
             } else {
-                alert(err.response?.data?.error || 'Failed to enroll');
+                alert(err.response?.data?.error || t('failedToEnroll') || 'Failed to enroll');
             }
         } finally {
             setEnrolling(false);
@@ -50,7 +52,7 @@ const CourseDetail = () => {
                 <Navbar />
                 <div className="loading-state">
                     <div className="spinner"></div>
-                    <p>Loading course...</p>
+                    <p>{t('loading') || 'Loading...'}</p>
                 </div>
             </div>
         );
@@ -61,8 +63,8 @@ const CourseDetail = () => {
             <div className="course-detail-page">
                 <Navbar />
                 <div className="error-state">
-                    <p>{error || 'Course not found'}</p>
-                    <Link to="/" className="back-link">← Back to courses</Link>
+                    <p>{error || t('courseNotFound') || 'Course not found'}</p>
+                    <Link to="/" className="back-link">← {t('backToCourses') || 'Back to courses'}</Link>
                 </div>
             </div>
         );
@@ -90,17 +92,17 @@ const CourseDetail = () => {
                                 className="enroll-button"
                                 disabled={enrolling}
                             >
-                                {enrolling ? 'Enrolling...' : 'Enroll for Free'}
+                                {enrolling ? (t('enrolling') || 'Enrolling...') : (t('enrollNow') || 'Enroll for Free')}
                             </button>
 
                             <p className="login-hint">
-                                You'll need to sign in to access course content
+                                {t('loginToAccess') || "You'll need to sign in to access course content"}
                             </p>
                         </div>
                     </div>
 
                     <div className="course-syllabus">
-                        <h2>Course Syllabus</h2>
+                        <h2>{t('courseSyllabus') || 'Course Syllabus'}</h2>
 
                         {course.syllabus && (
                             <div className="syllabus-text">
@@ -113,14 +115,14 @@ const CourseDetail = () => {
                                 {course.modules.map((module, index) => (
                                     <div key={module.id} className="module-card">
                                         <div className="module-header">
-                                            <span className="module-number">Module {index + 1}</span>
+                                            <span className="module-number">{t('module') || 'Module'} {index + 1}</span>
                                             <h3>{module.title}</h3>
                                         </div>
                                         {module.description && (
                                             <p className="module-description">{module.description}</p>
                                         )}
                                         <div className="module-meta">
-                                            <span>{module.lessonCount} {module.lessonCount === 1 ? 'lesson' : 'lessons'}</span>
+                                            <span>{module.lessonCount} {module.lessonCount === 1 ? (t('lesson') || 'lesson') : (t('lessons') || 'lessons')}</span>
                                         </div>
                                     </div>
                                 ))}

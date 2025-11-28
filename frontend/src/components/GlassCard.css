@@ -1,0 +1,33 @@
+/* GlassCard Component Styles */
+
+.glass-card-hover:hover {
+    cursor: pointer;
+}
+
+.glass-card-hover:active {
+    transform: translateY(-2px);
+}
+
+/* Card Variants */
+.glass-card-compact {
+    padding: var(--space-4);
+}
+
+.glass-card-comfortable {
+    padding: var(--space-6);
+}
+
+.glass-card-spacious {
+    padding: var(--space-8);
+}
+
+/* Clickable state */
+.glass-card-clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.glass-card-clickable:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+}

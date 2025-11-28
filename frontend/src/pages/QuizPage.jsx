@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { CheckIcon } from '../components/Icons';
 import '../styles/QuizPage.css';
 
 const QuizPage = () => {
@@ -87,7 +88,17 @@ const QuizPage = () => {
                     <div className="container">
                         <div className={`result-card ${result.passed ? 'passed' : 'failed'}`}>
                             <div className="result-icon">
-                                {result.passed ? '🎉' : '📚'}
+                                {result.passed ? (
+                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" fill="#2D9F5D" />
+                                        <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                ) : (
+                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" fill="#E67E22" />
+                                        <path d="M12 8V12M12 16H12.01" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                )}
                             </div>
                             <h1>{result.passed ? 'Congratulations!' : 'Keep Learning'}</h1>
                             <div className="score-display">

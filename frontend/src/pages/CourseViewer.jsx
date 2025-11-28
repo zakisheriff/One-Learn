@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { CheckIcon } from '../components/Icons';
 import '../styles/CourseViewer.css';
 
 const CourseViewer = () => {
@@ -139,7 +140,7 @@ const CourseViewer = () => {
                                             <span className="lesson-number">{lessonIndex + 1}</span>
                                             <span className="lesson-title">{lesson.title}</span>
                                             {lesson.completed && (
-                                                <span className="check-icon">✓</span>
+                                                <span className="check-icon"><CheckIcon size={16} color="#2D9F5D" /></span>
                                             )}
                                         </button>
                                     ))}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Pages
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import CourseCatalog from './pages/CourseCatalog';
 import CourseDetail from './pages/CourseDetail';
@@ -11,6 +13,8 @@ import Dashboard from './pages/Dashboard';
 import QuizPage from './pages/QuizPage';
 import CertificatePage from './pages/CertificatePage';
 import VerifyPage from './pages/VerifyPage';
+import HelpCenter from './pages/HelpCenter';
+import SettingsPage from './pages/SettingsPage';
 
 // Context for authentication
 export const AuthContext = React.createContext(null);
@@ -64,38 +68,43 @@ function App() {
     }
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout, checkAuth }}>
-            <BrowserRouter>
-                <Routes>
-                    {/* Public routes */}
-                    <Route path="/" element={<CourseCatalog />} />
-                    <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
-                    <Route path="/course/:slug" element={<CourseDetail />} />
-                    <Route path="/verify" element={<VerifyPage />} />
+        <LanguageProvider>
+            <AuthContext.Provider value={{ user, setUser, logout, checkAuth }}>
+                <BrowserRouter>
+                    <Routes>
+                        {/* Public routes */}
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/explore" element={<CourseCatalog />} />
+                        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
+                        <Route path="/course/:slug" element={<CourseDetail />} />
+                        <Route path="/verify" element={<VerifyPage />} />
 
-                    {/* Protected routes */}
-                    <Route
-                        path="/dashboard"
-                        element={user ? <Dashboard /> : <Navigate to="/login" />}
-                    />
-                    <Route
-                        path="/course/:slug/learn"
-                        element={user ? <CourseViewer /> : <Navigate to="/login" />}
-                    />
-                    <Route
-                        path="/course/:slug/quiz"
-                        element={user ? <QuizPage /> : <Navigate to="/login" />}
-                    />
-                    <Route
-                        path="/course/:slug/certificate"
-                        element={user ? <CertificatePage /> : <Navigate to="/login" />}
-                    />
+                        {/* Protected routes */}
+                        <Route
+                            path="/dashboard"
+                            element={user ? <Dashboard /> : <Navigate to="/login" />}
+                        />
+                        <Route
+                            path="/course/:slug/learn"
+                            element={user ? <CourseViewer /> : <Navigate to="/login" />}
+                        />
+                        <Route
+                            path="/course/:slug/quiz"
+                            element={user ? <QuizPage /> : <Navigate to="/login" />}
+                        />
+                        <Route
+                            path="/course/:slug/certificate"
+                            element={user ? <CertificatePage /> : <Navigate to="/login" />}
+                        />
+                        <Route path="/help" element={<HelpCenter />} />
+                        <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/login" />} />
 
-                    {/* 404 */}
-                    <Route path="*" element={<Navigate to="/" />} />
-                </Routes>
-            </BrowserRouter>
-        </AuthContext.Provider>
+                        {/* 404 */}
+                        <Route path="*" element={<Navigate to="/" />} />
+                    </Routes>
+                </BrowserRouter>
+            </AuthContext.Provider>
+        </LanguageProvider>
     );
 }
 

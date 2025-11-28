@@ -26,21 +26,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Rate limiting to prevent abuse
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
-    message: 'Too many requests from this IP, please try again later.'
-});
-app.use('/api/', limiter);
-
-// Stricter rate limit for auth endpoints
-const authLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 10, // 10 attempts per 15 minutes
-    message: 'Too many authentication attempts, please try again later.'
-});
-
 // ===== Body Parsing =====
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -54,17 +39,6 @@ if (process.env.NODE_ENV === 'development') {
     });
 }
 
-// ===== Routes =====
-
-// Health check
-app.get('/health', (req, res) => {
-    res.json({
-        status: 'ok',
-        timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV
-    });
-});
-
 // Import route handlers
 const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
@@ -74,7 +48,7 @@ const certificateRoutes = require('./routes/certificateRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 // Mount routes
-app.use('/api/auth', authLimiter, authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/quizzes', quizRoutes);
@@ -82,7 +56,7 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/admin', adminRoutes);
 
 // Certificate verification (public)
-app.get('/verify', async (req, res) => {
+app.get('/api/verify', async (req, res) => {
     try {
         const { id } = req.query;
 
@@ -126,6 +100,34 @@ app.get('/verify', async (req, res) => {
 });
 
 // ===== Error Handling =====
+
+// Health check with DB status
+app.get('/health', async (req, res) => {
+    try {
+        const { pool } = require('./database/connection');
+        const dbResult = await pool.query('SELECT NOW()');
+
+        res.json({
+            status: 'ok',
+            timestamp: new Date().toISOString(),
+            environment: process.env.NODE_ENV,
+            database: {
+                connected: true,
+                time: dbResult.rows[0].now
+            }
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: 'error',
+            timestamp: new Date().toISOString(),
+            environment: process.env.NODE_ENV,
+            database: {
+                connected: false,
+                error: error.message
+            }
+        });
+    }
+});
 
 // 404 handler
 app.use((req, res) => {
