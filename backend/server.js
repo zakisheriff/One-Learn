@@ -16,6 +16,9 @@ const PORT = process.env.PORT || 3000;
 // Helmet for security headers
 app.use(helmet({
     contentSecurityPolicy: false, // Disable for development, configure for production
+    crossOriginEmbedderPolicy: false, // Allow cross-origin embeds (YouTube)
+    crossOriginOpenerPolicy: false,
+    crossOriginResourcePolicy: false,
 }));
 
 // CORS configuration
