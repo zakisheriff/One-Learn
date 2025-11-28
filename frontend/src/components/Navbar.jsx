@@ -40,7 +40,6 @@ const Navbar = () => {
                 {/* Left Section: Logo + Browse */}
                 <div className="navbar-left">
                     <Link to="/" className="navbar-logo">
-                        <div className="navbar-logo-icon">YL</div>
                         <span className="navbar-logo-text">You Learn</span>
                     </Link>
 
