@@ -260,9 +260,9 @@ a:hover {
 
 /* ===== Buttons ===== */
 
-/* Primary Button (Gradient) */
+/* Primary Button (Flat Blue) */
 .btn-primary {
-    background: var(--gradient-primary);
+    background: var(--linkedin-blue);
     color: white;
     font-weight: var(--font-semibold);
     padding: var(--space-3) var(--space-6);
@@ -275,25 +275,10 @@ a:hover {
     overflow: hidden;
 }
 
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity var(--transition-base);
-}
-
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-primary:hover::before {
-    opacity: 1;
+    transform: none;
+    box-shadow: var(--shadow-md);
+    background: var(--linkedin-blue);
 }
 
 /* Glass Button */
@@ -313,8 +298,9 @@ a:hover {
 .btn-glass:hover {
     background: var(--glass-white-strong);
     border-color: var(--glass-border-strong);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    transform: none;
+    /* No lifting */
+    box-shadow: var(--shadow-sm);
 }
 
 /* Ghost Button */

@@ -11,9 +11,14 @@ const CourseCatalog = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [currentPage, setCurrentPage] = useState(1);
+    const coursesPerPage = 12;
+
     const [searchParams] = useSearchParams();
-    const categoryFilter = searchParams.get('category');
     const searchQuery = searchParams.get('search');
+
+    const categories = ['All', 'Technology', 'Business', 'Art & Design', 'Health & Wellness', 'Science'];
 
     useEffect(() => {
         if (searchQuery) {
@@ -28,7 +33,6 @@ const CourseCatalog = () => {
     const fetchCourses = async () => {
         try {
             const response = await axios.get('/api/courses');
-            // Handle both response.data and response.data.courses formats
             const coursesData = Array.isArray(response.data)
                 ? response.data
                 : (response.data.courses || []);
@@ -41,18 +45,47 @@ const CourseCatalog = () => {
         }
     };
 
+    // Filter Logic
     const filteredCourses = courses.filter(course => {
         const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             course.description?.toLowerCase().includes(searchTerm.toLowerCase());
 
-        const matchesCategory = categoryFilter
-            ? (course.category?.toLowerCase() === categoryFilter.toLowerCase() ||
-                course.tags?.some(tag => tag.toLowerCase() === categoryFilter.toLowerCase()) ||
-                course.title.toLowerCase().includes(categoryFilter.toLowerCase()))
-            : true;
+        // Simple category matching based on title keywords or explicit category if available
+        // Since we don't have a category column in DB yet, we'll infer from title/description or just show all for now
+        // Ideally, we should add a category column. For now, let's use the seed data's structure if possible, 
+        // or just filter by keywords if we can't.
+        // Wait, the seed script didn't add a category column. 
+        // Let's do a keyword match for now based on the category names.
+
+        let matchesCategory = true;
+        if (selectedCategory !== 'All') {
+            const categoryKeywords = {
+                'Technology': ['Python', 'JavaScript', 'React', 'AI', 'Machine', 'Cybersecurity', 'Cloud', 'DevOps', 'Data', 'Web', 'Mobile', 'IoT', 'Game', 'Robotics'],
+                'Business': ['Marketing', 'Finance', 'Leadership', 'Entrepreneurship', 'Sales', 'Project', 'HR', 'Accounting', 'Strategy', 'Economics', 'Negotiation', 'Public', 'Branding', 'Investing', 'E-commerce'],
+                'Art & Design': ['Design', 'Photography', 'Painting', 'Music', 'Art', 'Illustration', 'UI/UX', 'Fashion', 'Animation', 'Filmmaking', 'Typography', 'Ceramics', 'Sketching'],
+                'Health & Wellness': ['Nutrition', 'Yoga', 'Meditation', 'Fitness', 'Health', 'Anatomy', 'First Aid', 'Sleep', 'Dieting', 'Strength', 'Mindfulness', 'Running', 'Pilates', 'Cooking'],
+                'Science': ['Physics', 'Chemistry', 'Biology', 'Astronomy', 'Geology', 'Environmental', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Quantum', 'Marine', 'Meteorology', 'Ecology', 'Paleontology']
+            };
+
+            const keywords = categoryKeywords[selectedCategory] || [];
+            matchesCategory = keywords.some(keyword =>
+                course.title.includes(keyword) || course.description.includes(keyword)
+            );
+        }
 
         return matchesSearch && matchesCategory;
     });
+
+    // Pagination Logic
+    const indexOfLastCourse = currentPage * coursesPerPage;
+    const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+    const currentCourses = filteredCourses.slice(indexOfFirstCourse, indexOfLastCourse);
+    const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <div className="course-catalog-page">
@@ -63,73 +96,118 @@ const CourseCatalog = () => {
                 <div className="container catalog-hero-content">
                     <h1>{t('catalogTitle')}</h1>
                     <p>{t('catalogSubtitle')}</p>
-
                 </div>
             </div>
 
-            {/* Search Bar Removed */}
             <div className="container">
-                {/* Search functionality now handled by Navbar */}
-            </div>
+                {/* Category Tabs */}
+                <div className="category-tabs">
+                    {categories.map(category => (
+                        <button
+                            key={category}
+                            className={`category-tab ${selectedCategory === category ? 'active' : ''}`}
+                            onClick={() => {
+                                setSelectedCategory(category);
+                                setCurrentPage(1); // Reset to page 1 on filter change
+                            }}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
 
-            {/* Course Grid */}
-            <div className="catalog-content">
-                {loading ? (
-                    <div className="catalog-loading">
-                        {[1, 2, 3, 4, 5, 6].map((i) => (
-                            <div key={i} className="course-card-skeleton">
-                                <div className="skeleton-thumbnail"></div>
-                                <div className="skeleton-content">
-                                    <div className="skeleton-line title"></div>
-                                    <div className="skeleton-line"></div>
-                                    <div className="skeleton-line short"></div>
+                {/* Course Grid */}
+                <div className="catalog-content">
+                    {loading ? (
+                        <div className="catalog-loading">
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <div key={i} className="course-card-skeleton">
+                                    <div className="skeleton-thumbnail"></div>
+                                    <div className="skeleton-content">
+                                        <div className="skeleton-line title"></div>
+                                        <div className="skeleton-line"></div>
+                                        <div className="skeleton-line short"></div>
+                                    </div>
                                 </div>
+                            ))}
+                        </div>
+                    ) : currentCourses.length > 0 ? (
+                        <>
+                            <div className="course-grid fade-in">
+                                {currentCourses.map((course) => (
+                                    <Link
+                                        key={course.id}
+                                        to={`/course/${course.slug}`}
+                                        className="course-card"
+                                    >
+                                        <div className="course-thumbnail">
+                                            <img
+                                                src={course.thumbnailUrl || 'https://via.placeholder.com/400x200?text=Course'}
+                                                alt={course.title}
+                                            />
+                                            <div className="course-thumbnail-overlay">
+                                                <span className="course-duration">
+                                                    <ClockIcon size={12} /> {course.estimated_hours || course.estimatedHours || 'N/A'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="course-info">
+                                            <h3 className="course-title">{course.title}</h3>
+                                            <p className="course-description">
+                                                {course.description || 'Learn essential programming skills with this comprehensive course.'}
+                                            </p>
+                                            <div className="course-footer">
+                                                <span className="course-lessons">
+                                                    <BookIcon size={14} /> {t('multipleLessons')}
+                                                </span>
+                                                <button className="course-cta">
+                                                    {t('enrollFree')}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))}
                             </div>
-                        ))}
-                    </div>
-                ) : filteredCourses.length > 0 ? (
-                    <div className="course-grid fade-in">
-                        {filteredCourses.map((course) => (
-                            <Link
-                                key={course.id}
-                                to={`/course/${course.slug}`}
-                                className="course-card"
-                            >
-                                <div className="course-thumbnail">
-                                    <img
-                                        src={course.thumbnailUrl || 'https://via.placeholder.com/400x200?text=Course'}
-                                        alt={course.title}
-                                    />
-                                    <div className="course-thumbnail-overlay">
-                                        <span className="course-duration">
-                                            <ClockIcon size={12} /> {course.estimatedHours || '10'} {t('hours')}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="course-info">
-                                    <h3 className="course-title">{course.title}</h3>
-                                    <p className="course-description">
-                                        {course.description || 'Learn essential programming skills with this comprehensive course.'}
-                                    </p>
-                                    <div className="course-footer">
-                                        <span className="course-lessons">
-                                            <BookIcon size={14} /> {t('multipleLessons')}
-                                        </span>
-                                        <button className="course-cta">
-                                            {t('enrollFree')}
+
+                            {/* Pagination Controls */}
+                            {totalPages > 1 && (
+                                <div className="pagination">
+                                    <button
+                                        onClick={() => paginate(currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                        className="pagination-btn"
+                                    >
+                                        &laquo; Prev
+                                    </button>
+
+                                    {[...Array(totalPages)].map((_, i) => (
+                                        <button
+                                            key={i + 1}
+                                            onClick={() => paginate(i + 1)}
+                                            className={`pagination-btn ${currentPage === i + 1 ? 'active' : ''}`}
+                                        >
+                                            {i + 1}
                                         </button>
-                                    </div>
+                                    ))}
+
+                                    <button
+                                        onClick={() => paginate(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                        className="pagination-btn"
+                                    >
+                                        Next &raquo;
+                                    </button>
                                 </div>
-                            </Link>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="catalog-empty">
-                        <div className="catalog-empty-icon"><BookIcon size={48} color="#0000004d" /></div>
-                        <h3>{t('noCourses')}</h3>
-                        <p>{t('adjustSearch')}</p>
-                    </div>
-                )}
+                            )}
+                        </>
+                    ) : (
+                        <div className="catalog-empty">
+                            <div className="catalog-empty-icon"><BookIcon size={48} color="#0000004d" /></div>
+                            <h3>{t('noCourses')}</h3>
+                            <p>{t('adjustSearch')}</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

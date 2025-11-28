@@ -58,7 +58,7 @@ const HomePage = () => {
                     alt={course.title}
                 />
                 <div className="linkedin-card-duration">
-                    <ClockIcon size={12} /> {course.estimatedHours || '10'}h
+                    <ClockIcon size={12} /> {course.estimated_hours || course.estimatedHours || 'N/A'}
                 </div>
             </div>
             <div className="linkedin-card-content">
@@ -67,7 +67,9 @@ const HomePage = () => {
                 <div className="linkedin-card-meta">
                     <div className="linkedin-card-rating">
                         <span className="linkedin-card-rating-star"><StarIcon size={12} filled={true} color="#b4690e" /></span>
-                        <span>4.8</span>
+                        {course.likes && <span>{course.likes} likes</span>}
+                        {course.likes && course.views && <span style={{ margin: '0 4px', color: '#ccc' }}>•</span>}
+                        {course.views && <span>{course.views} views</span>}
                     </div>
                     <div className="linkedin-card-stats">
                         <span>•</span>

@@ -103,7 +103,7 @@
 /* Buttons */
 .btn-primary {
     padding: 10px 20px;
-    background: var(--linkedin-blue-light);
+    background: var(--linkedin-blue);
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -111,13 +111,14 @@
     border-radius: 24px;
     cursor: pointer;
     margin-top: 4px;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: #2d7ccf;
-    /* Slightly darker shade of light blue, not full dark blue */
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(55, 143, 233, 0.3);
+    transform: none;
+    box-shadow: var(--shadow-md);
+    background: var(--linkedin-blue);
 }
 
 .btn-primary:disabled {

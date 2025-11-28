@@ -13,13 +13,19 @@ const Dashboard = () => {
     const [enrollments, setEnrollments] = useState([]);
     const [certificates, setCertificates] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState('in-progress');
     const [activeCategory, setActiveCategory] = useState('All');
 
     const categories = ['All', 'Python', 'JavaScript', 'Web Design', 'Full Stack', 'Java'];
 
     const filteredEnrollments = enrollments.filter(enrollment => {
+        // 1. Filter by Tab
+        if (activeTab === 'in-progress' && enrollment.progress >= 100) return false;
+        if (activeTab === 'completed' && enrollment.progress < 100) return false;
+        if (activeTab === 'saved') return false; // Placeholder for now as we don't have 'saved' feature yet
+
+        // 2. Filter by Category
         if (activeCategory === 'All') return true;
-        // Filter by checking if the course title contains the category name
         return enrollment.course.title.toLowerCase().includes(activeCategory.toLowerCase());
     });
 
@@ -80,9 +86,24 @@ const Dashboard = () => {
 
                         {/* Tabs */}
                         <div className="dashboard-tabs">
-                            <button className="dashboard-tab active">{t('inProgress')}</button>
-                            <button className="dashboard-tab">{t('saved')}</button>
-                            <button className="dashboard-tab">{t('completed')}</button>
+                            <button
+                                className={`dashboard-tab ${activeTab === 'in-progress' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('in-progress')}
+                            >
+                                {t('inProgress')}
+                            </button>
+                            <button
+                                className={`dashboard-tab ${activeTab === 'saved' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('saved')}
+                            >
+                                {t('saved')}
+                            </button>
+                            <button
+                                className={`dashboard-tab ${activeTab === 'completed' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('completed')}
+                            >
+                                {t('completed')}
+                            </button>
                         </div>
 
                         {/* Filters */}
