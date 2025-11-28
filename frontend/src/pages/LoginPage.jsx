@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../App';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
@@ -13,6 +15,7 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { setUser, checkAuth } = useContext(AuthContext);
 
     const handleInputChange = (e) => {
         setFormData({
@@ -50,21 +53,61 @@ const LoginPage = () => {
                     password: formData.password
                 };
 
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include', // Important for HttpOnly cookies
-                body: JSON.stringify(body)
+            const response = await axios.post(endpoint, body);
+
+            if (response.data.user) {
+                // Update auth context with user data
+                setUser(response.data.user);
+                // Navigate to dashboard
+                navigate('/dashboard');
+            } else {
+                // Fallback: check auth status
+                await checkAuth();
+                navigate('/dashboard');
+            }
+
+        } catch (err) {
+            console.error('Authentication error:', err);
+            setError(err.response?.data?.error || err.message || 'Authentication failed');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleGoogleSignIn = () => {
+        // Initialize Google Sign-In
+        if (window.google) {
+            window.google.accounts.id.initialize({
+                client_id: '1063877415823-2a5ml4u8n0sg8lrgsq23b91o38huuu1s.apps.googleusercontent.com',
+                callback: handleGoogleCallback
             });
 
-            const data = await response.json();
+            window.google.accounts.id.prompt(); // Show One Tap dialog
+        } else {
+            setError('Google Sign-In not loaded. Please refresh the page.');
+        }
+    };
 
-            if (!response.ok) {
-                throw new Error(data.error || 'Authentication failed');
+    const handleGoogleCallback = async (response) => {
+        setLoading(true);
+        setError('');
+
+        try {
+            const res = await fetch('/api/auth/google', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ token: response.credential })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Google Sign-In failed');
             }
 
             // Success - redirect to dashboard
-            navigate('/dashboard');
+            window.location.href = '/dashboard';
 
         } catch (err) {
             setError(err.message);
@@ -73,25 +116,15 @@ const LoginPage = () => {
         }
     };
 
-    const handleGoogleSignIn = async () => {
-        // This would integrate with Google Sign-In button
-        // For now, placeholder for Google OAuth flow
-        try {
-            // Initialize Google Sign-In (requires Google Identity Services)
-            // The actual implementation would use google.accounts.id.initialize()
-            console.log('Google Sign-In clicked');
-            setError('Google Sign-In integration pending');
-        } catch (err) {
-            setError('Google Sign-In failed');
-        }
-    };
-
     return (
         <div className="login-page">
             <div className="login-container">
                 <div className="login-card">
                     <div className="login-header">
-                        <h1 className="logo">You Learn</h1>
+                        <h1 className="logo">
+                            <span className="logo-you">You</span>
+                            <span className="logo-learn">Learn</span>
+                        </h1>
                         <p className="tagline">
                             {isLogin ? 'Welcome back' : 'Start your learning journey'}
                         </p>

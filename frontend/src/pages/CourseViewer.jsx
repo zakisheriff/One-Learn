@@ -59,7 +59,20 @@ const CourseViewer = () => {
 
     const getYouTubeEmbedUrl = (url) => {
         const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+        if (!videoId) return null;
+
+        // Add parameters to disable related videos and improve experience
+        const params = new URLSearchParams({
+            rel: '0',              // Don't show related videos from other channels
+            modestbranding: '1',   // Minimal YouTube branding
+            autoplay: '0',         // Don't autoplay
+            fs: '1',               // Allow fullscreen
+            iv_load_policy: '3',   // Hide video annotations
+            cc_load_policy: '0',   // Don't show captions by default
+            playsinline: '1'       // Play inline on mobile
+        });
+
+        return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
     };
 
     const allLessonsCompleted = () => {
