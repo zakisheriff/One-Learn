@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
+app.set('trust proxy', 1); // Trust first proxy (Railway/Heroku) for secure cookies
 const PORT = process.env.PORT || 3000;
 
 // ===== Security Middleware =====
