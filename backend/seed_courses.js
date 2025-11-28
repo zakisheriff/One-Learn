@@ -400,6 +400,247 @@ const seedFreeCodeCampCourses = async (realStats) => {
     console.log(`Seeded ${fccCourses.length} FreeCodeCamp courses.`);
 };
 
+const ADDITIONAL_COURSES = [
+    // Bro Code Courses
+    {
+        title: 'Python Full Course for free',
+        slug: 'python-full-course-bro-code',
+        description: 'Learn Python programming with Bro Code. This course covers everything from basics to advanced topics.',
+        thumbnail: 'https://img.youtube.com/vi/IXqmoyIpZsg/maxresdefault.jpg',
+        videoId: 'IXqmoyIpZsg',
+        category: 'Technology',
+        duration: '12h',
+        likes: '300K',
+        views: '7.1M'
+    },
+    {
+        title: 'Java Full Course for free',
+        slug: 'java-full-course-bro-code',
+        description: 'A complete Java course for beginners. Learn Java programming from scratch.',
+        thumbnail: 'https://img.youtube.com/vi/xk4_1vDrzzo/maxresdefault.jpg',
+        videoId: 'xk4_1vDrzzo',
+        category: 'Technology',
+        duration: '12h',
+        likes: '150K',
+        views: '2.4M'
+    },
+    {
+        title: 'C Programming Full Course',
+        slug: 'c-programming-full-course-bro-code',
+        description: 'Master C programming with this full course. Great for understanding low-level computing concepts.',
+        thumbnail: 'https://img.youtube.com/vi/87SH2Cn0s9A/maxresdefault.jpg',
+        videoId: '87SH2Cn0s9A',
+        category: 'Technology',
+        duration: '4h',
+        likes: '50K',
+        views: '958K'
+    },
+    {
+        title: 'HTML & CSS Full Course',
+        slug: 'html-css-full-course-bro-code',
+        description: 'Learn to build websites with HTML and CSS. This course covers everything you need to know about web design.',
+        thumbnail: 'https://img.youtube.com/vi/HGTJBPNC-Gw/maxresdefault.jpg',
+        videoId: 'HGTJBPNC-Gw',
+        category: 'Technology',
+        duration: '4h',
+        likes: '200K',
+        views: '4.6M'
+    },
+    {
+        title: 'JavaScript Full Course',
+        slug: 'javascript-full-course-bro-code-2', // Suffix to avoid collision if needed
+        description: 'A comprehensive JavaScript course for beginners. Learn to make your websites interactive.',
+        thumbnail: 'https://img.youtube.com/vi/8dWL3wF_ryQ/maxresdefault.jpg',
+        videoId: '8dWL3wF_ryQ',
+        category: 'Technology',
+        duration: '8h',
+        likes: '180K',
+        views: '4.3M'
+    },
+    {
+        title: 'React Full Course',
+        slug: 'react-full-course-bro-code',
+        description: 'Learn React.js from scratch. Build modern, interactive web applications.',
+        thumbnail: 'https://img.youtube.com/vi/CgkZ7MvWUAA/maxresdefault.jpg',
+        videoId: 'CgkZ7MvWUAA',
+        category: 'Technology',
+        duration: '4h',
+        likes: '120K',
+        views: '3.2M'
+    },
+    {
+        title: 'C# Full Course',
+        slug: 'csharp-full-course-bro-code',
+        description: 'Learn C# programming for game development, desktop apps, and more.',
+        thumbnail: 'https://img.youtube.com/vi/46DWl9VozBs/maxresdefault.jpg',
+        videoId: '46DWl9VozBs',
+        category: 'Technology',
+        duration: '4h',
+        likes: '100K',
+        views: '2.2M'
+    },
+
+    // Programming with Mosh Courses
+    {
+        title: 'Python for Beginners (Mosh)',
+        slug: 'python-for-beginners-mosh',
+        description: 'Mosh Hamedani\'s famous Python course. Perfect for absolute beginners.',
+        thumbnail: 'https://img.youtube.com/vi/_uQrJ0TkZlc/maxresdefault.jpg',
+        videoId: '_uQrJ0TkZlc',
+        category: 'Technology',
+        duration: '6h',
+        likes: '800K',
+        views: '35M'
+    },
+    {
+        title: 'JavaScript for Beginners (Mosh)',
+        slug: 'javascript-for-beginners-mosh',
+        description: 'Learn JavaScript in 1 hour. A quick and effective introduction to the language.',
+        thumbnail: 'https://img.youtube.com/vi/W6NZfCO5SIk/maxresdefault.jpg',
+        videoId: 'W6NZfCO5SIk',
+        category: 'Technology',
+        duration: '1h',
+        likes: '500K',
+        views: '12M'
+    },
+    {
+        title: 'C++ Tutorial for Beginners (Mosh)',
+        slug: 'cpp-tutorial-mosh',
+        description: 'Learn C++ programming with Mosh. Great for game development and high-performance apps.',
+        thumbnail: 'https://img.youtube.com/vi/ZzaPdXTrSb8/maxresdefault.jpg',
+        videoId: 'ZzaPdXTrSb8',
+        category: 'Technology',
+        duration: '1h',
+        likes: '200K',
+        views: '5M'
+    },
+    {
+        title: 'Java Tutorial for Beginners (Mosh)',
+        slug: 'java-tutorial-mosh',
+        description: 'Learn Java with Mosh. A popular choice for enterprise applications.',
+        thumbnail: 'https://img.youtube.com/vi/eIrMbAQW348/maxresdefault.jpg',
+        videoId: 'eIrMbAQW348',
+        category: 'Technology',
+        duration: '2h',
+        likes: '300K',
+        views: '8M'
+    },
+    {
+        title: 'MySQL Tutorial for Beginners (Mosh)',
+        slug: 'mysql-tutorial-mosh',
+        description: 'Learn SQL and database management with MySQL. Essential for backend development.',
+        thumbnail: 'https://img.youtube.com/vi/7S_tz1z_5bA/maxresdefault.jpg',
+        videoId: '7S_tz1z_5bA',
+        category: 'Technology',
+        duration: '3h',
+        likes: '400K',
+        views: '10M'
+    },
+
+    // SuperSimpleDev Courses
+    {
+        title: 'HTML & CSS Full Course (SuperSimpleDev)',
+        slug: 'html-css-supersimpledev',
+        description: 'Beginner to Pro. Build real projects with HTML and CSS.',
+        thumbnail: 'https://img.youtube.com/vi/G3e-cpL7ofc/maxresdefault.jpg',
+        videoId: 'G3e-cpL7ofc',
+        category: 'Technology',
+        duration: '6h',
+        likes: '150K',
+        views: '3M'
+    },
+    {
+        title: 'JavaScript Full Course (SuperSimpleDev)',
+        slug: 'javascript-supersimpledev',
+        description: 'Learn JavaScript by building real projects. A hands-on approach to learning.',
+        thumbnail: 'https://img.youtube.com/vi/EerdGm-ehJQ/maxresdefault.jpg',
+        videoId: 'EerdGm-ehJQ',
+        category: 'Technology',
+        duration: '12h',
+        likes: '200K',
+        views: '4M'
+    },
+    {
+        title: 'React Full Course (SuperSimpleDev)',
+        slug: 'react-supersimpledev',
+        description: 'Learn React 19 from scratch. Build modern web apps with the latest features.',
+        thumbnail: 'https://img.youtube.com/vi/LDB4uaJ87e0/maxresdefault.jpg',
+        videoId: 'LDB4uaJ87e0',
+        category: 'Technology',
+        duration: '10h',
+        likes: '100K',
+        views: '2M'
+    }
+];
+
+const seedAdditionalCourses = async () => {
+    console.log('Seeding Additional Courses (Bro Code, Mosh, SuperSimpleDev)...');
+
+    for (const course of ADDITIONAL_COURSES) {
+        // Insert Course
+        const courseRes = await pool.query(
+            `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+             ON CONFLICT (slug) DO UPDATE 
+             SET title = EXCLUDED.title, 
+                 description = EXCLUDED.description,
+                 thumbnail_url = EXCLUDED.thumbnail_url
+             RETURNING id`,
+            [
+                course.slug,
+                course.title,
+                course.description,
+                course.thumbnail,
+                `Module 1: Introduction\nModule 2: Core Concepts\nModule 3: Advanced Topics\nModule 4: Final Project`,
+                true,
+                course.duration,
+                course.likes,
+                course.views
+            ]
+        );
+
+        const courseId = courseRes.rows[0].id;
+
+        // Insert Module
+        const moduleRes = await pool.query(
+            `INSERT INTO modules (course_id, title, description, order_index) 
+             VALUES ($1, $2, $3, $4) 
+             ON CONFLICT (course_id, order_index) DO NOTHING
+             RETURNING id`,
+            [courseId, 'Course Content', 'Main course modules', 0]
+        );
+
+        // If module already exists, fetch it
+        let moduleId;
+        if (moduleRes.rows.length > 0) {
+            moduleId = moduleRes.rows[0].id;
+        } else {
+            const existingModule = await pool.query(
+                `SELECT id FROM modules WHERE course_id = $1 AND order_index = 0`,
+                [courseId]
+            );
+            moduleId = existingModule.rows[0].id;
+        }
+
+        // Insert Lesson
+        await pool.query(
+            `INSERT INTO lessons (module_id, title, description, youtube_url, duration_seconds, order_index) 
+             VALUES ($1, $2, $3, $4, $5, $6)
+             ON CONFLICT (module_id, order_index) DO UPDATE
+             SET title = EXCLUDED.title, youtube_url = EXCLUDED.youtube_url`,
+            [
+                moduleId,
+                course.title,
+                'Full Course Video',
+                `https://www.youtube.com/watch?v=${course.videoId}`,
+                14400, // Default duration
+                0
+            ]
+        );
+    }
+    console.log(`Seeded ${ADDITIONAL_COURSES.length} additional courses.`);
+};
+
 const generateCourses = async () => {
     try {
         console.log('Starting seed process...');
@@ -414,111 +655,17 @@ const generateCourses = async () => {
             console.log('Schema update skipped or failed (columns might exist).');
         }
 
-        // --- FETCH REAL STATS ---
-        const allVideoIds = [
-            ...Object.values(topicVideos).map(v => v.id),
-        ];
-
-        const realStats = await fetchYouTubeStats(Object.values(topicVideos).map(v => v.id));
-
-        if (realStats) {
-            // Update topicVideos with real data
-            for (const topic in topicVideos) {
-                const id = topicVideos[topic].id;
-                if (realStats[id]) {
-                    topicVideos[topic] = {
-                        id,
-                        ...realStats[id]
-                    };
-                }
-            }
-            console.log('Updated topicVideos with real stats.');
-        }
-        // ------------------------
-
         // Clear existing courses first to avoid duplicates/mess
         await pool.query('DELETE FROM courses');
         console.log('Cleared existing courses.');
 
-        // 1. Seed FreeCodeCamp Courses FIRST
-        await seedFreeCodeCampCourses(realStats);
+        // Seed FreeCodeCamp Courses
+        await seedFreeCodeCampCourses();
 
-        // 2. Generate ~20 courses per category to get ~100
-        for (let i = 0; i < categories.length; i++) {
-            const category = categories[i];
-            const categoryThumbnail = thumbnails[i];
+        // Seed Additional Courses (Bro Code, Mosh, SuperSimpleDev)
+        await seedAdditionalCourses();
 
-            console.log(`Generating courses for ${category.name}...`);
-
-            for (const topic of category.topics) {
-                // Pick random prefix and suffix
-                const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-                const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-
-                const title = `${prefix} ${topic} ${suffix}`;
-                const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Math.floor(Math.random() * 1000);
-                const description = `This comprehensive course on ${topic} covers everything you need to know. Join us in this ${category.name} journey to master ${topic}. Perfect for students and professionals alike.`;
-
-                // Get authentic video ID or fallback
-                const videoData = topicVideos[topic] || { id: 'dQw4w9WgXcQ', duration: '10m', likes: '1K', views: '10K' };
-                const videoId = videoData.id;
-                const duration = videoData.duration;
-                const likes = videoData.likes;
-                const views = videoData.views;
-
-                const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
-                const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-                // Insert Course
-                const courseRes = await pool.query(
-                    `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views) 
-                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
-                     RETURNING id`,
-                    [
-                        slug,
-                        title,
-                        description,
-                        thumbnailUrl,
-                        `Module 1: Intro to ${topic}\nModule 2: Advanced ${topic}\nModule 3: Project`,
-                        true,
-                        duration,
-                        likes,
-                        views
-                    ]
-                );
-
-                const courseId = courseRes.rows[0].id;
-
-                // Insert Module
-                const moduleRes = await pool.query(
-                    `INSERT INTO modules (course_id, title, description, order_index) 
-                     VALUES ($1, $2, $3, $4) 
-                     RETURNING id`,
-                    [courseId, `${topic} Fundamentals`, `Core concepts of ${topic}`, 0]
-                );
-
-                const moduleId = moduleRes.rows[0].id;
-
-                // Insert Lesson (Authentic Video)
-                await pool.query(
-                    `INSERT INTO lessons (module_id, title, description, youtube_url, duration_seconds, order_index) 
-                     VALUES ($1, $2, $3, $4, $5, $6)`,
-                    [
-                        moduleId,
-                        `Welcome to ${topic}`,
-                        'Introduction video for the course.',
-                        youtubeUrl,
-                        600,
-                        0
-                    ]
-                );
-
-                // Quiz will be generated on-demand when the user visits the quiz page
-                // No need to seed it here.
-            }
-        }
-
-        console.log('Successfully seeded 100+ courses with authentic links!');
+        console.log('Successfully seeded courses!');
     } catch (err) {
         console.error('Error seeding courses:', err);
     } finally {
