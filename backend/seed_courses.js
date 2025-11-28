@@ -3,7 +3,6 @@ const { Pool } = require('pg');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
-const { generateQuiz } = require('./services/geminiService');
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -396,20 +395,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             ]
         );
 
-        // Insert Quiz for FCC Course
-        console.log(`Generating Gemini quiz for: ${course.title}...`);
-        const youtubeUrl = `https://www.youtube.com/watch?v=${course.videoId}`;
-        const quizData = await generateQuiz(youtubeUrl, course.title);
-
-        await pool.query(
-            `INSERT INTO quizzes (course_id, quiz_data, passing_score)
-             VALUES ($1, $2, $3)`,
-            [
-                courseId,
-                JSON.stringify(quizData),
-                70
-            ]
-        );
+        // Quiz will be generated on-demand
     }
     console.log(`Seeded ${fccCourses.length} FreeCodeCamp courses.`);
 };
@@ -527,19 +513,8 @@ const generateCourses = async () => {
                     ]
                 );
 
-                // Insert Quiz
-                console.log(`Generating Gemini quiz for: ${title}...`);
-                const quizData = await generateQuiz(youtubeUrl, title);
-
-                await pool.query(
-                    `INSERT INTO quizzes (course_id, quiz_data, passing_score)
-                     VALUES ($1, $2, $3)`,
-                    [
-                        courseId,
-                        JSON.stringify(quizData),
-                        70
-                    ]
-                );
+                // Quiz will be generated on-demand when the user visits the quiz page
+                // No need to seed it here.
             }
         }
 

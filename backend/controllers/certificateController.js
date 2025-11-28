@@ -52,13 +52,17 @@ exports.getCertificate = async (req, res) => {
  * Download certificate PDF
  * GET /api/certificates/:courseId/download
  */
+/**
+ * Download certificate PDF
+ * GET /api/certificates/:courseId/download
+ */
 exports.downloadCertificate = async (req, res) => {
     try {
         const { courseId } = req.params;
         const userId = req.user.userId;
 
         const result = await pool.query(
-            'SELECT pdf_path, recipient_name, course_title, verification_hash FROM certificates WHERE user_id = $1 AND course_id = $2',
+            'SELECT recipient_name, course_title, verification_hash FROM certificates WHERE user_id = $1 AND course_id = $2',
             [userId, courseId]
         );
 
@@ -67,42 +71,26 @@ exports.downloadCertificate = async (req, res) => {
         }
 
         const cert = result.rows[0];
-        const pdfPath = cert.pdf_path;
-
-        // Regenerate certificate to ensure it uses the latest design
-        try {
-            console.log(`Regenerating certificate for ${cert.recipient_name} - ${cert.course_title} at ${pdfPath}`);
-            await createCertificatePDF(
-                cert.recipient_name,
-                cert.course_title,
-                cert.verification_hash,
-                pdfPath
-            );
-            console.log('Certificate regeneration successful');
-        } catch (genError) {
-            console.error('Failed to regenerate certificate:', genError);
-            // Fallback to existing file if regeneration fails, but log it
-        }
-
-        if (!fs.existsSync(pdfPath)) {
-            return res.status(404).json({
-                error: 'Certificate file not found',
-                message: 'The certificate PDF is missing. Please contact support.'
-            });
-        }
 
         // Set headers for download
         res.setHeader('Content-Type', 'application/pdf');
         const filename = `CertificateOfCompletion_${cert.course_title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
         res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
 
-        // Stream the file
-        const fileStream = fs.createReadStream(pdfPath);
-        fileStream.pipe(res);
+        // Generate and stream PDF directly to response
+        await createCertificatePDF(
+            cert.recipient_name,
+            cert.course_title,
+            cert.verification_hash,
+            res
+        );
 
     } catch (error) {
         console.error('Download certificate error:', error);
-        res.status(500).json({ error: 'Failed to download certificate' });
+        // If headers are already sent, we can't send a JSON error
+        if (!res.headersSent) {
+            res.status(500).json({ error: 'Failed to download certificate' });
+        }
     }
 };
 

@@ -129,13 +129,25 @@ app.get('/health', async (req, res) => {
     }
 });
 
-// 404 handler
-app.use((req, res) => {
-    res.status(404).json({
-        error: 'Not found',
-        message: `Route ${req.method} ${req.path} not found`
+// ===== Static Files (Production) =====
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+    // Serve static files from frontend build
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+    // Handle client-side routing
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
     });
-});
+} else {
+    // 404 handler for API routes in dev
+    app.use((req, res) => {
+        res.status(404).json({
+            error: 'Not found',
+            message: `Route ${req.method} ${req.path} not found`
+        });
+    });
+}
 
 // Global error handler
 app.use((err, req, res, next) => {

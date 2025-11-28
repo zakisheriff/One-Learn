@@ -1,6 +1,6 @@
 // Quiz Controller - Handles quiz retrieval and submission
 const pool = require('../database/connection').pool;
-const { scoreQuiz } = require('../services/geminiService');
+const { scoreQuiz, generateQuiz } = require('../services/geminiService');
 
 /**
  * Get quiz for a course
@@ -13,7 +13,7 @@ exports.getQuiz = async (req, res) => {
 
         // Get course
         const courseResult = await pool.query(
-            'SELECT id FROM courses WHERE slug = $1 AND is_published = true',
+            'SELECT id, title FROM courses WHERE slug = $1 AND is_published = true',
             [slug]
         );
 
@@ -21,7 +21,8 @@ exports.getQuiz = async (req, res) => {
             return res.status(404).json({ error: 'Course not found' });
         }
 
-        const courseId = courseResult.rows[0].id;
+        const course = courseResult.rows[0];
+        const courseId = course.id;
 
         // Check enrollment
         const enrollmentResult = await pool.query(
@@ -36,15 +37,47 @@ exports.getQuiz = async (req, res) => {
         }
 
         // Get quiz
-        const quizResult = await pool.query(
+        let quizResult = await pool.query(
             'SELECT id, quiz_data, passing_score FROM quizzes WHERE course_id = $1',
             [courseId]
         );
 
+        // If quiz doesn't exist, generate it on-demand
         if (quizResult.rows.length === 0) {
-            return res.status(404).json({
-                error: 'Quiz not available for this course'
-            });
+            console.log(`Quiz not found for course ${course.title}. Generating on-demand...`);
+
+            // Get video URL from the first lesson
+            // We need to join lessons -> modules -> courses
+            const lessonResult = await pool.query(
+                `SELECT l.youtube_url 
+                 FROM lessons l
+                 JOIN modules m ON l.module_id = m.id
+                 WHERE m.course_id = $1
+                 ORDER BY m.order_index ASC, l.order_index ASC
+                 LIMIT 1`,
+                [courseId]
+            );
+
+            if (lessonResult.rows.length === 0) {
+                return res.status(404).json({ error: 'No content available to generate quiz' });
+            }
+
+            const videoUrl = lessonResult.rows[0].youtube_url;
+
+            try {
+                const quizData = await generateQuiz(videoUrl, course.title);
+
+                // Save to database
+                const insertResult = await pool.query(
+                    'INSERT INTO quizzes (course_id, quiz_data, passing_score) VALUES ($1, $2, $3) RETURNING id, quiz_data, passing_score',
+                    [courseId, JSON.stringify(quizData), 70]
+                );
+
+                quizResult = insertResult;
+            } catch (err) {
+                console.error('Failed to generate quiz:', err);
+                return res.status(500).json({ error: 'Failed to generate quiz. Please try again later.' });
+            }
         }
 
         const quiz = quizResult.rows[0];

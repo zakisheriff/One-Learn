@@ -70,9 +70,9 @@ async function generateCertificate(userId, courseId, quizAttemptId, client) {
             .update(`${userId}-${courseId}-${Date.now()}-${Math.random()}`)
             .digest('hex');
 
-        // Create PDF
-        const pdfPath = path.join(CERT_DIR, `${verificationHash}.pdf`);
-        await createCertificatePDF(user.full_name, course.title, verificationHash, pdfPath);
+        // Note: We do NOT generate the PDF file here anymore.
+        // It is generated on-the-fly when requested to support ephemeral hosting (Railway).
+        const pdfPath = 'generated-on-demand';
 
         // Save certificate to database
         const certResult = await db.query(
@@ -101,12 +101,9 @@ async function generateCertificate(userId, courseId, quizAttemptId, client) {
 }
 
 /**
- * Create PDF certificate
+ * Create PDF certificate and pipe to stream
  */
-/**
- * Create PDF certificate
- */
-async function createCertificatePDF(recipientName, courseTitle, verificationHash, outputPath) {
+async function createCertificatePDF(recipientName, courseTitle, verificationHash, stream) {
     return new Promise((resolve, reject) => {
         try {
             const doc = new PDFDocument({
@@ -115,7 +112,6 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
                 margins: { top: 0, bottom: 0, left: 0, right: 0 }
             });
 
-            const stream = fs.createWriteStream(outputPath);
             doc.pipe(stream);
 
             // Colors
@@ -273,13 +269,8 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
 
             doc.end();
 
-            stream.on('finish', () => {
-                resolve(outputPath);
-            });
-
-            stream.on('error', (error) => {
-                reject(error);
-            });
+            // We resolve when the doc is done, the stream handling is up to the caller
+            resolve();
 
         } catch (error) {
             reject(error);
