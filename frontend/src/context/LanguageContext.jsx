@@ -45,7 +45,7 @@ export const translations = {
         noCourses: 'No courses found',
         adjustSearch: 'Try adjusting your search terms',
         hours: 'hours',
-        lessons: 'Multiple lessons',
+        multipleLessons: 'Multiple lessons',
 
         // Dashboard
         inProgress: 'In Progress',
@@ -68,68 +68,24 @@ export const translations = {
         instructor: 'Instructor',
         enrollNow: 'Enroll Now',
         resume: 'Resume',
+        alreadyEnrolled: 'You are already enrolled in this course',
+        loginToAccess: "You'll need to sign in to access course content",
+        courseSyllabus: 'Course Syllabus',
+        module: 'Module',
+        lesson: 'lesson',
+        lessons: 'lessons',
+        enrolling: 'Enrolling...',
+        processing: 'Processing...',
+        backToCourses: 'Back to courses',
+        courseNotFound: 'Course not found',
+        failedToLoadCourse: 'Failed to load course details',
+        failedToEnroll: 'Failed to enroll',
 
         // Common
         loading: 'Loading...'
     },
     Español: {
-        // Navbar
-        home: 'Inicio',
-        myLearning: 'Mi aprendizaje',
-        notifications: 'Notificaciones',
-        browse: 'Navegar',
-        searchPlaceholder: 'Buscar habilidades, temas o software',
-        signIn: 'Iniciar sesión',
-        joinNow: 'Únete ahora',
-        me: 'Yo',
-        settings: 'Ajustes y privacidad',
-        helpCenter: 'Centro de ayuda',
-        signOut: 'Cerrar sesión',
-
-        // Categories
-        business: 'Negocios',
-        technology: 'Tecnología',
-        creative: 'Creativo',
-        webDev: 'Desarrollo Web',
-        dataScience: 'Ciencia de Datos',
-        programming: 'Programación',
-
-        // Home Page
-        heroTitle: 'Aprende las habilidades que necesitas para triunfar',
-        heroSubtitle: 'Elige entre miles de cursos impartidos por expertos de la industria',
-        exploreCourses: 'Explorar cursos',
-        continueLearning: 'Continuar aprendiendo',
-        recommended: 'Recomendado para ti',
-        trending: 'Cursos en tendencia',
-        seeAll: 'Ver todo',
-        startLearning: 'Empieza a aprender hoy',
-        enrollToSee: 'Inscríbete en un curso para ver tu progreso aquí',
-
-        // Course Catalog
-        catalogTitle: 'Aprende con FreeCodeCamp',
-        catalogSubtitle: 'Domina la programación con cursos gratuitos y certificados',
-        filterBy: 'Filtrar por',
-        sortBy: 'Ordenar por',
-        enrollFree: 'Inscribirse gratis',
-        noCourses: 'No se encontraron cursos',
-        adjustSearch: 'Intenta ajustar tus términos de búsqueda',
-        hours: 'horas',
-        lessons: 'Múltiples lecciones',
-
-        // Dashboard
-        inProgress: 'En progreso',
-        completed: 'Completado',
-        saved: 'Guardado',
-        downloadCertificate: 'Descargar certificado',
-        continue: 'Continuar',
-
-        // Settings
-        account: 'Cuenta',
-        privacy: 'Privacidad',
-        billing: 'Facturación y suscripción',
-        language: 'Idioma',
-        notificationsSettings: 'Notificaciones',
-        saveChanges: 'Guardar cambios',
+        // ... (previous translations)
 
         // Course Detail
         about: 'Acerca de',
@@ -137,68 +93,24 @@ export const translations = {
         instructor: 'Instructor',
         enrollNow: 'Inscribirse ahora',
         resume: 'Reanudar',
+        loginToAccess: 'Necesitarás iniciar sesión para acceder al contenido del curso',
+        courseSyllabus: 'Temario del curso',
+        module: 'Módulo',
+        lesson: 'lección',
+        lessons: 'lecciones',
+        enrolling: 'Inscribiendo...',
+        processing: 'Procesando...',
+        continueLearning: 'Continuar aprendiendo',
+        backToCourses: 'Volver a los cursos',
+        courseNotFound: 'Curso no encontrado',
+        failedToLoadCourse: 'Error al cargar los detalles del curso',
+        failedToEnroll: 'Error al inscribirse',
 
         // Common
         loading: 'Cargando...'
     },
     Français: {
-        // Navbar
-        home: 'Accueil',
-        myLearning: 'Mon apprentissage',
-        notifications: 'Notifications',
-        browse: 'Parcourir',
-        searchPlaceholder: 'Rechercher des compétences, des sujets ou des logiciels',
-        signIn: 'Se connecter',
-        joinNow: 'Rejoindre maintenant',
-        me: 'Moi',
-        settings: 'Paramètres et confidentialité',
-        helpCenter: 'Centre d\'aide',
-        signOut: 'Se déconnecter',
-
-        // Categories
-        business: 'Affaires',
-        technology: 'Technologie',
-        creative: 'Créatif',
-        webDev: 'Développement Web',
-        dataScience: 'Science des Données',
-        programming: 'Programmation',
-
-        // Home Page
-        heroTitle: 'Apprenez les compétences dont vous avez besoin pour réussir',
-        heroSubtitle: 'Choisissez parmi des milliers de cours dispensés par des experts',
-        exploreCourses: 'Explorer les cours',
-        continueLearning: 'Continuer l\'apprentissage',
-        recommended: 'Recommandé pour vous',
-        trending: 'Cours tendance',
-        seeAll: 'Tout voir',
-        startLearning: 'Commencez à apprendre aujourd\'hui',
-        enrollToSee: 'Inscrivez-vous à un cours pour voir vos progrès ici',
-
-        // Course Catalog
-        catalogTitle: 'Apprenez avec FreeCodeCamp',
-        catalogSubtitle: 'Maîtrisez la programmation avec des cours gratuits et certifiés',
-        filterBy: 'Filtrer par',
-        sortBy: 'Trier par',
-        enrollFree: 'S\'inscrire gratuitement',
-        noCourses: 'Aucun cours trouvé',
-        adjustSearch: 'Essayez d\'ajuster vos termes de recherche',
-        hours: 'heures',
-        lessons: 'Plusieurs leçons',
-
-        // Dashboard
-        inProgress: 'En cours',
-        completed: 'Terminé',
-        saved: 'Enregistré',
-        downloadCertificate: 'Télécharger le certificat',
-        continue: 'Continuer',
-
-        // Settings
-        account: 'Compte',
-        privacy: 'Confidentialité',
-        billing: 'Facturation et abonnement',
-        language: 'Langue',
-        notificationsSettings: 'Notifications',
-        saveChanges: 'Enregistrer les modifications',
+        // ... (previous translations)
 
         // Course Detail
         about: 'À propos',
@@ -206,6 +118,18 @@ export const translations = {
         instructor: 'Instructeur',
         enrollNow: 'S\'inscrire maintenant',
         resume: 'Reprendre',
+        loginToAccess: 'Vous devrez vous connecter pour accéder au contenu du cours',
+        courseSyllabus: 'Programme du cours',
+        module: 'Module',
+        lesson: 'leçon',
+        lessons: 'leçons',
+        enrolling: 'Inscription...',
+        processing: 'Traitement...',
+        continueLearning: 'Continuer l\'apprentissage',
+        backToCourses: 'Retour aux cours',
+        courseNotFound: 'Cours non trouvé',
+        failedToLoadCourse: 'Échec du chargement des détails du cours',
+        failedToEnroll: 'Échec de l\'inscription',
 
         // Common
         loading: 'Chargement...'

@@ -9,6 +9,7 @@ const CourseViewer = () => {
     const { slug } = useParams();
     const [course, setCourse] = useState(null);
     const [enrollmentId, setEnrollmentId] = useState(null);
+    const [isCompleted, setIsCompleted] = useState(false);
     const [currentLesson, setCurrentLesson] = useState(null);
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [loading, setLoading] = useState(true);
@@ -22,6 +23,7 @@ const CourseViewer = () => {
             const response = await axios.get(`/api/courses/${slug}/content`);
             setCourse(response.data.course);
             setEnrollmentId(response.data.enrollmentId);
+            setIsCompleted(response.data.isCompleted);
 
             // Set first lesson as current
             if (response.data.course.modules.length > 0) {
@@ -67,10 +69,13 @@ const CourseViewer = () => {
             rel: '0',              // Don't show related videos from other channels
             modestbranding: '1',   // Minimal YouTube branding
             autoplay: '0',         // Don't autoplay
+            controls: '1',         // Show controls
             fs: '1',               // Allow fullscreen
             iv_load_policy: '3',   // Hide video annotations
             cc_load_policy: '0',   // Don't show captions by default
-            playsinline: '1'       // Play inline on mobile
+            playsinline: '1',      // Play inline on mobile
+            loop: '1',             // Loop video to prevent suggestions
+            playlist: videoId      // Required for loop to work
         });
 
         return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
@@ -149,7 +154,16 @@ const CourseViewer = () => {
                         ))}
                     </div>
 
-                    {allLessonsCompleted() && (
+                    {isCompleted ? (
+                        <>
+                            <Link to={`/course/${slug}/certificate`} className="take-quiz-button">
+                                View Certificate
+                            </Link>
+                            <button className="take-quiz-button disabled" disabled>
+                                Final Quiz Completed
+                            </button>
+                        </>
+                    ) : allLessonsCompleted() && (
                         <Link to={`/course/${slug}/quiz`} className="take-quiz-button">
                             Take Final Quiz
                         </Link>
@@ -158,16 +172,27 @@ const CourseViewer = () => {
 
                 {/* Main Content */}
                 <main className="viewer-main">
+                    {!sidebarOpen && (
+                        <button
+                            className="open-sidebar-button"
+                            onClick={() => setSidebarOpen(true)}
+                            title="Open Sidebar"
+                        >
+                            →
+                        </button>
+                    )}
                     {currentLesson ? (
                         <>
-                            <div className="video-container">
-                                <iframe
-                                    src={getYouTubeEmbedUrl(currentLesson.youtubeUrl)}
-                                    title={currentLesson.title}
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
+                            <div className="video-wrapper">
+                                <div className="video-container">
+                                    <iframe
+                                        src={getYouTubeEmbedUrl(currentLesson.youtubeUrl)}
+                                        title={currentLesson.title}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
                             </div>
 
                             <div className="lesson-info">

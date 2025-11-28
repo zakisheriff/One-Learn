@@ -135,6 +135,12 @@ exports.submitQuiz = async (req, res) => {
                 attempt.id,
                 client
             );
+
+            // Mark enrollment as completed
+            await client.query(
+                'UPDATE enrollments SET is_completed = true, completed_at = CURRENT_TIMESTAMP WHERE id = $1',
+                [enrollmentId]
+            );
         }
 
         await client.query('COMMIT');
@@ -154,7 +160,7 @@ exports.submitQuiz = async (req, res) => {
     } catch (error) {
         await client.query('ROLLBACK');
         console.error('Submit quiz error:', error);
-        res.status(500).json({ error: 'Failed to submit quiz' });
+        res.status(500).json({ error: 'Failed to submit quiz', details: error.message });
     } finally {
         client.release();
     }

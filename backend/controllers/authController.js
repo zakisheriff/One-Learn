@@ -394,7 +394,33 @@ exports.updatePassword = async (req, res) => {
         res.json({ message: 'Password updated successfully' });
 
     } catch (error) {
-        console.error('Update password error:', error);
         res.status(500).json({ error: 'Failed to update password' });
+    }
+};
+
+/**
+ * Delete user account
+ * DELETE /api/auth/account
+ * Protected route
+ */
+exports.deleteAccount = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+
+        // Delete user (cascading delete will handle related data)
+        await pool.query('DELETE FROM users WHERE id = $1', [userId]);
+
+        // Clear cookie
+        res.clearCookie('auth_token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict'
+        });
+
+        res.json({ message: 'Account deleted successfully' });
+
+    } catch (error) {
+        console.error('Delete account error:', error);
+        res.status(500).json({ error: 'Failed to delete account' });
     }
 };

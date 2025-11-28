@@ -319,3 +319,33 @@ input:checked+.slider:before {
     font-weight: 600;
     border: 1px solid #C3E6CB;
 }
+
+/* Danger Zone */
+.danger-title {
+    color: #dc3545 !important;
+}
+
+.danger-card {
+    border: 1px solid #f8d7da;
+}
+
+.danger-text {
+    color: #dc3545 !important;
+}
+
+.delete-btn {
+    padding: 6px 16px;
+    background: white;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+    background: #dc3545;
+    color: white;
+}

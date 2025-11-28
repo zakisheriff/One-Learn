@@ -1,11 +1,15 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../App';
 import '../styles/LoginPage.css';
 
 const LoginPage = () => {
-    const [isLogin, setIsLogin] = useState(true);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const initialMode = searchParams.get('mode');
+
+    const [isLogin, setIsLogin] = useState(initialMode !== 'signup');
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',

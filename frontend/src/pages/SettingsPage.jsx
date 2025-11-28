@@ -53,6 +53,16 @@ const SettingsPage = () => {
         }
     };
 
+    const handleDeleteAccount = async () => {
+        try {
+            await axios.delete('/api/auth/account');
+            setUser(null);
+            window.location.href = '/';
+        } catch (err) {
+            setMessage({ type: 'error', text: err.response?.data?.error || 'Failed to delete account' });
+        }
+    };
+
     const scrollToSection = (id) => {
         setActiveSection(id);
         const element = document.getElementById(id);
@@ -264,6 +274,28 @@ const SettingsPage = () => {
                                         <p>View your past invoices and receipts.</p>
                                     </div>
                                     <button className="edit-btn">View History</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="danger-zone" className="settings-section">
+                            <h3 className="danger-title">Danger Zone</h3>
+                            <div className="settings-card danger-card">
+                                <div className="setting-row">
+                                    <div className="setting-info">
+                                        <label className="danger-text">Delete Account</label>
+                                        <p>Permanently delete your account and all of your content.</p>
+                                    </div>
+                                    <button
+                                        className="delete-btn"
+                                        onClick={() => {
+                                            if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                                                handleDeleteAccount();
+                                            }
+                                        }}
+                                    >
+                                        Delete Account
+                                    </button>
                                 </div>
                             </div>
                         </section>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
@@ -47,7 +47,8 @@ const CourseCatalog = () => {
 
         const matchesCategory = categoryFilter
             ? (course.category?.toLowerCase() === categoryFilter.toLowerCase() ||
-                course.tags?.some(tag => tag.toLowerCase() === categoryFilter.toLowerCase()))
+                course.tags?.some(tag => tag.toLowerCase() === categoryFilter.toLowerCase()) ||
+                course.title.toLowerCase().includes(categoryFilter.toLowerCase()))
             : true;
 
         return matchesSearch && matchesCategory;
@@ -63,20 +64,12 @@ const CourseCatalog = () => {
                     <h1>{t('catalogTitle')}</h1>
                     <p>{t('catalogSubtitle')}</p>
 
-                    {/* Search Bar */}
-                    <div className="catalog-search">
-                        <div className="search-glass">
-                            <span className="search-icon"><SearchIcon size={20} /></span>
-                            <input
-                                type="text"
-                                className="search-input"
-                                placeholder={t('searchPlaceholder')}
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                        </div>
-                    </div>
                 </div>
+            </div>
+
+            {/* Search Bar Removed */}
+            <div className="container">
+                {/* Search functionality now handled by Navbar */}
             </div>
 
             {/* Course Grid */}
@@ -120,7 +113,7 @@ const CourseCatalog = () => {
                                     </p>
                                     <div className="course-footer">
                                         <span className="course-lessons">
-                                            <BookIcon size={14} /> {t('lessons')}
+                                            <BookIcon size={14} /> {t('multipleLessons')}
                                         </span>
                                         <button className="course-cta">
                                             {t('enrollFree')}

@@ -2,6 +2,7 @@
 const pool = require('../database/connection').pool;
 const path = require('path');
 const fs = require('fs');
+const { createCertificatePDF } = require('../services/certificateService');
 
 /**
  * Get user's certificate for a course
@@ -57,7 +58,7 @@ exports.downloadCertificate = async (req, res) => {
         const userId = req.user.userId;
 
         const result = await pool.query(
-            'SELECT pdf_path, recipient_name, course_title FROM certificates WHERE user_id = $1 AND course_id = $2',
+            'SELECT pdf_path, recipient_name, course_title, verification_hash FROM certificates WHERE user_id = $1 AND course_id = $2',
             [userId, courseId]
         );
 
@@ -68,6 +69,21 @@ exports.downloadCertificate = async (req, res) => {
         const cert = result.rows[0];
         const pdfPath = cert.pdf_path;
 
+        // Regenerate certificate to ensure it uses the latest design
+        try {
+            console.log(`Regenerating certificate for ${cert.recipient_name} - ${cert.course_title} at ${pdfPath}`);
+            await createCertificatePDF(
+                cert.recipient_name,
+                cert.course_title,
+                cert.verification_hash,
+                pdfPath
+            );
+            console.log('Certificate regeneration successful');
+        } catch (genError) {
+            console.error('Failed to regenerate certificate:', genError);
+            // Fallback to existing file if regeneration fails, but log it
+        }
+
         if (!fs.existsSync(pdfPath)) {
             return res.status(404).json({
                 error: 'Certificate file not found',
@@ -76,10 +92,9 @@ exports.downloadCertificate = async (req, res) => {
         }
 
         // Set headers for download
-        const fileName = `${cert.recipient_name.replace(/\s+/g, '_')}_${cert.course_title.replace(/\s+/g, '_')}_Certificate.pdf`;
-
         res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+        const filename = `CertificateOfCompletion_${cert.course_title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
 
         // Stream the file
         const fileStream = fs.createReadStream(pdfPath);

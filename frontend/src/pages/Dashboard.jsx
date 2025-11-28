@@ -15,14 +15,12 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
 
-    const categories = ['All', 'Business', 'Technology', 'Creative'];
+    const categories = ['All', 'Python', 'JavaScript', 'Web Design', 'Full Stack', 'Java'];
 
     const filteredEnrollments = enrollments.filter(enrollment => {
         if (activeCategory === 'All') return true;
-        // Check if course category matches or if tags contain the category
-        const categoryMatch = enrollment.course.category?.toLowerCase() === activeCategory.toLowerCase();
-        const tagMatch = enrollment.course.tags?.some(tag => tag.toLowerCase() === activeCategory.toLowerCase());
-        return categoryMatch || tagMatch;
+        // Filter by checking if the course title contains the category name
+        return enrollment.course.title.toLowerCase().includes(activeCategory.toLowerCase());
     });
 
     useEffect(() => {
@@ -66,7 +64,7 @@ const Dashboard = () => {
                         <h1>Welcome back, {user?.fullName}!</h1>
                         <p>Continue your learning journey</p>
                     </header>
-                    <div className="container dashboard-container">
+                    <div className="dashboard-container">
                         {/* Header */}
                         <div className="dashboard-header">
                             <div className="dashboard-user-info">
@@ -105,24 +103,15 @@ const Dashboard = () => {
                             {loading ? (
                                 <div className="dashboard-loading">{t('loading')}</div>
                             ) : filteredEnrollments.length > 0 ? (
-                                <div className="dashboard-grid">
+                                <div className="enrollments-grid">
                                     {filteredEnrollments.map((enrollment) => (
-                                        <div key={enrollment.id} className="dashboard-card">
-                                            <div className="dashboard-card-image">
+                                        <div key={enrollment.id} className="enrollment-card">
+                                            <div className="enrollment-thumbnail">
                                                 <img
                                                     src={enrollment.course.thumbnailUrl || 'https://via.placeholder.com/300x169'}
                                                     alt={enrollment.course.title}
                                                 />
-                                                <div className="dashboard-card-overlay">
-                                                    <Link to={`/course/${enrollment.course.slug}/learn`} className="resume-button">
-                                                        <PlayIcon size={16} /> {t('continue')}
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                            <div className="dashboard-card-body">
-                                                <h3>{enrollment.course.title}</h3>
-                                                <p className="instructor">FreeCodeCamp</p>
-                                                <div className="progress-container">
+                                                <div className="progress-overlay">
                                                     <div className="progress-bar">
                                                         <div
                                                             className="progress-fill"
@@ -131,6 +120,13 @@ const Dashboard = () => {
                                                     </div>
                                                     <span className="progress-text">{enrollment.progress}%</span>
                                                 </div>
+                                            </div>
+                                            <div className="enrollment-content">
+                                                <h3>{enrollment.course.title}</h3>
+                                                <p className="instructor">FreeCodeCamp</p>
+                                                <Link to={`/course/${enrollment.course.slug}/learn`} className="continue-button">
+                                                    <PlayIcon size={16} /> {t('continue')}
+                                                </Link>
                                             </div>
                                         </div>
                                     ))}
@@ -153,21 +149,19 @@ const Dashboard = () => {
                             {certificates.length > 0 ? (
                                 <div className="certificates-grid">
                                     {certificates.map((cert) => (
-                                        <div key={cert.id} className="certificate-card">
+                                        <Link
+                                            key={cert.id}
+                                            to={`/course/${cert.courseSlug}/certificate`}
+                                            className="certificate-card"
+                                        >
                                             <div className="certificate-icon">
                                                 <StarIcon size={32} color="#b4690e" />
                                             </div>
                                             <div className="certificate-info">
-                                                <h3>{cert.course.title}</h3>
+                                                <h3>{cert.courseTitle}</h3>
                                                 <p>Completed on {new Date(cert.issuedAt).toLocaleDateString()}</p>
-                                                <Link
-                                                    to={`/course/${cert.course.slug}/certificate`}
-                                                    className="certificate-link"
-                                                >
-                                                    {t('downloadCertificate')}
-                                                </Link>
                                             </div>
-                                        </div>
+                                        </Link>
                                     ))}
                                 </div>
                             ) : (

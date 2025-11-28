@@ -15,7 +15,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
 
-    const categories = ['All', 'Business', 'Technology', 'Creative', 'Data Science', 'Web Development'];
+    const categories = ['All', 'Python', 'JavaScript', 'Web Design', 'Full Stack', 'Java'];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -103,110 +103,124 @@ const HomePage = () => {
                 </div>
             </div>
 
-            {/* Category Pills */}
-            <div className="category-section">
-                <div className="category-pills">
-                    {categories.map((category) => (
-                        <Link
-                            key={category}
-                            to={category === 'All' ? '/explore' : `/explore?category=${category}`}
-                            className={`category-pill ${activeCategory === category ? 'active' : ''}`}
-                            onClick={() => setActiveCategory(category)}
-                        >
-                            {category}
-                        </Link>
-                    ))}
-                </div>
-            </div>
-
-            {/* Continue Learning Section (if user is logged in) */}
-            {user && (
-                <div className="course-section">
+            {/* Continue Learning Section (Always visible if user is logged in) */}
+            {user && enrollments.length > 0 && (
+                <div className="course-section continue-learning">
                     <div className="section-header">
                         <h2 className="section-title">{t('continueLearning')}</h2>
                         <Link to="/dashboard" className="section-see-all">
                             {t('seeAll')} <ArrowRightIcon size={14} />
                         </Link>
                     </div>
-                    {loading ? (
-                        <div className="course-carousel">
-                            {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="linkedin-course-card">
-                                    <div className="linkedin-card-thumbnail shimmer"></div>
-                                    <div className="linkedin-card-content">
-                                        <div className="skeleton-line title shimmer"></div>
-                                        <div className="skeleton-line shimmer"></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : enrollments.length > 0 ? (
-                        <div className="course-carousel">
-                            {enrollments.slice(0, 5).map((enrollment) => renderCourseCard(enrollment.course, enrollment.progress))}
-                        </div>
-                    ) : (
-                        <div className="section-empty">
-                            <div className="section-empty-icon"><BookIcon size={48} color="#0000004d" /></div>
-                            <h3>{t('startLearning')}</h3>
-                            <p>{t('enrollToSee')}</p>
-                        </div>
-                    )}
+                    <div className="course-carousel">
+                        {enrollments.slice(0, 5).map((enrollment) => renderCourseCard(enrollment.course, enrollment.progress))}
+                    </div>
                 </div>
             )}
 
-            {/* Recommended for You */}
-            <div className="course-section">
-                <div className="section-header">
-                    <h2 className="section-title">{t('recommended')}</h2>
-                    <Link to="/explore" className="section-see-all">
-                        {t('seeAll')} <ArrowRightIcon size={14} />
-                    </Link>
+            {/* Category Pills */}
+            <div className="category-section">
+                <div className="category-pills">
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            className={`category-pill ${activeCategory === category ? 'active' : ''}`}
+                            onClick={() => setActiveCategory(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
                 </div>
-                {loading ? (
-                    <div className="course-carousel">
-                        {[1, 2, 3, 4].map((i) => (
-                            <div key={i} className="linkedin-course-card">
-                                <div className="linkedin-card-thumbnail shimmer"></div>
-                                <div className="linkedin-card-content">
-                                    <div className="skeleton-line title shimmer"></div>
-                                    <div className="skeleton-line shimmer"></div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="course-carousel">
-                        {courses.slice(0, 5).map((course) => renderCourseCard(course))}
-                    </div>
-                )}
             </div>
 
-            {/* Trending Courses */}
-            <div className="course-section">
-                <div className="section-header">
-                    <h2 className="section-title">{t('trending')}</h2>
-                    <Link to="/explore" className="section-see-all">
-                        {t('seeAll')} <ArrowRightIcon size={14} />
-                    </Link>
-                </div>
-                {loading ? (
+            {/* Filtered View (if category selected) */}
+            {activeCategory !== 'All' ? (
+                <div className="course-section">
+                    <div className="section-header">
+                        <h2 className="section-title">Top courses in {activeCategory}</h2>
+                    </div>
                     <div className="course-carousel">
-                        {[1, 2, 3, 4].map((i) => (
-                            <div key={i} className="linkedin-course-card">
-                                <div className="linkedin-card-thumbnail shimmer"></div>
-                                <div className="linkedin-card-content">
-                                    <div className="skeleton-line title shimmer"></div>
-                                    <div className="skeleton-line shimmer"></div>
-                                </div>
+                        {courses
+                            .filter(course =>
+                                course.title.toLowerCase().includes(activeCategory.toLowerCase()) &&
+                                !enrollments.some(e => e.course.id === course.id) // Filter out enrolled courses
+                            )
+                            .map((course) => renderCourseCard(course))}
+                    </div>
+                    {courses.filter(course =>
+                        course.title.toLowerCase().includes(activeCategory.toLowerCase()) &&
+                        !enrollments.some(e => e.course.id === course.id)
+                    ).length === 0 && (
+                            <div className="section-empty">
+                                <div className="section-empty-icon"><BookIcon size={48} color="#0000004d" /></div>
+                                <h3>No new courses found</h3>
+                                <p>You've enrolled in all courses in this category!</p>
                             </div>
-                        ))}
+                        )}
+                </div>
+            ) : (
+                <>
+                    {/* Recommended for You */}
+                    <div className="course-section">
+                        <div className="section-header">
+                            <h2 className="section-title">{t('recommended')}</h2>
+                            <Link to="/explore" className="section-see-all">
+                                {t('seeAll')} <ArrowRightIcon size={14} />
+                            </Link>
+                        </div>
+                        {loading ? (
+                            <div className="course-carousel">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div key={i} className="linkedin-course-card">
+                                        <div className="linkedin-card-thumbnail shimmer"></div>
+                                        <div className="linkedin-card-content">
+                                            <div className="skeleton-line title shimmer"></div>
+                                            <div className="skeleton-line shimmer"></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="course-carousel">
+                                {courses
+                                    .filter(course => !enrollments.some(e => e.course.id === course.id)) // Filter out enrolled
+                                    .slice(0, 5)
+                                    .map((course) => renderCourseCard(course))}
+                            </div>
+                        )}
                     </div>
-                ) : (
-                    <div className="course-carousel">
-                        {courses.slice().reverse().slice(0, 5).map((course) => renderCourseCard(course))}
+
+                    {/* Trending Courses */}
+                    <div className="course-section">
+                        <div className="section-header">
+                            <h2 className="section-title">{t('trending')}</h2>
+                            <Link to="/explore" className="section-see-all">
+                                {t('seeAll')} <ArrowRightIcon size={14} />
+                            </Link>
+                        </div>
+                        {loading ? (
+                            <div className="course-carousel">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div key={i} className="linkedin-course-card">
+                                        <div className="linkedin-card-thumbnail shimmer"></div>
+                                        <div className="linkedin-card-content">
+                                            <div className="skeleton-line title shimmer"></div>
+                                            <div className="skeleton-line shimmer"></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="course-carousel">
+                                {courses
+                                    .filter(course => !enrollments.some(e => e.course.id === course.id)) // Filter out enrolled
+                                    .slice().reverse().slice(0, 5)
+                                    .map((course) => renderCourseCard(course))}
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
+                </>
+            )}
         </div>
     );
 };

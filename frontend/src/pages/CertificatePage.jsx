@@ -16,12 +16,10 @@ const CertificatePage = () => {
 
     const fetchCertificate = async () => {
         try {
-            // Get course ID from slug
             const courseRes = await axios.get(`/api/courses/${slug}`);
             const courseId = courseRes.data.course.id;
             setCourse(courseRes.data.course);
 
-            // Get certificate
             const certRes = await axios.get(`/api/certificates/${courseId}`);
             setCertificate(certRes.data.certificate);
         } catch (err) {
@@ -33,7 +31,7 @@ const CertificatePage = () => {
 
     const handleDownload = async () => {
         try {
-            const response = await axios.get(`/api/certificates/${course.id}/download`, {
+            const response = await axios.get(`/api/certificates/${course.id}/download?t=${Date.now()}`, {
                 responseType: 'blob'
             });
 
@@ -51,7 +49,6 @@ const CertificatePage = () => {
 
     const shareToLinkedIn = () => {
         const url = encodeURIComponent(certificate.verificationUrl);
-        const title = encodeURIComponent(`I completed ${certificate.courseTitle} on You Learn!`);
         const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
         window.open(linkedInUrl, '_blank');
     };
@@ -88,29 +85,47 @@ const CertificatePage = () => {
                 <div className="container">
                     <div className="certificate-container">
                         <div className="certificate-preview">
-                            <div className="cert-border">
-                                <div className="cert-content">
-                                    <h1 className="cert-title">Certificate of Completion</h1>
-                                    <div className="cert-divider"></div>
+                            <div className="cert-frame">
+                                <div className="cert-inner-border">
+                                    <div className="cert-content">
+                                        <div className="cert-header">CERTIFICATE OF COMPLETION</div>
 
-                                    <p className="cert-label">This is to certify that</p>
-                                    <h2 className="cert-name">{certificate.recipientName}</h2>
+                                        <div className="cert-recipient">{certificate.recipientName}</div>
+                                        <div className="cert-gold-line"></div>
 
-                                    <p className="cert-label">has successfully completed</p>
-                                    <h3 className="cert-course">{certificate.courseTitle}</h3>
+                                        <div className="cert-text">HAS SUCCESSFULLY COMPLETED</div>
 
-                                    <p className="cert-org">Issued by You Learn</p>
-                                    <p className="cert-date">
-                                        Date of Completion: {new Date(certificate.completionDate).toLocaleDateString('en-US', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric'
-                                        })}
-                                    </p>
+                                        <div className="cert-course-title">{certificate.courseTitle}</div>
 
-                                    <div className="cert-verification">
-                                        <p>Verification ID:</p>
-                                        <code>{certificate.verificationHash}</code>
+                                        <div className="cert-footer">
+                                            <div className="cert-footer-item">
+                                                <div className="cert-footer-text">
+                                                    {new Date(certificate.completionDate).toLocaleDateString('en-US', {
+                                                        year: 'numeric',
+                                                        month: 'short',
+                                                        day: 'numeric'
+                                                    }).toUpperCase()}
+                                                </div>
+                                                <div className="cert-footer-line"></div>
+                                                <div className="cert-footer-label">DATE</div>
+                                            </div>
+
+                                            <div className="cert-seal">
+                                                <div className="seal-circle">
+                                                    <span>VERIFIED</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="cert-footer-item">
+                                                <div className="cert-footer-text signature">You Learn</div>
+                                                <div className="cert-footer-line"></div>
+                                                <div className="cert-footer-label">SIGNATURE</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="cert-id">
+                                            ID: {certificate.verificationHash}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,14 +136,14 @@ const CertificatePage = () => {
 
                             <div className="action-buttons">
                                 <button onClick={handleDownload} className="action-btn download-btn">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                                     </svg>
                                     Download Certificate
                                 </button>
 
                                 <button onClick={shareToLinkedIn} className="action-btn linkedin-btn">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
                                     Share on LinkedIn
@@ -137,10 +152,24 @@ const CertificatePage = () => {
 
                             <div className="verification-info">
                                 <h3>Verification</h3>
-                                <p>Anyone can verify this certificate at:</p>
+                                <p>Verify this certificate at:</p>
                                 <a href={certificate.verificationUrl} target="_blank" rel="noopener noreferrer" className="verification-link">
                                     {certificate.verificationUrl}
                                 </a>
+                            </div>
+
+                            <div className="linkedin-manual-instructions">
+                                <h3>Add to LinkedIn</h3>
+                                <p>Manual steps:</p>
+                                <ol>
+                                    <li>Go to <strong>Licenses & certifications</strong></li>
+                                    <li>Click <strong>+</strong> to add new</li>
+                                    <li><strong>Name:</strong> {certificate.courseTitle}</li>
+                                    <li><strong>Organization:</strong> You Learn</li>
+                                    <li><strong>Date:</strong> {new Date(certificate.completionDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</li>
+                                    <li><strong>ID:</strong> {certificate.verificationHash}</li>
+                                    <li><strong>URL:</strong> {certificate.verificationUrl}</li>
+                                </ol>
                             </div>
                         </div>
                     </div>

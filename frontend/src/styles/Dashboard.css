@@ -1,8 +1,9 @@
-/* Dashboard Page - LinkedIn Learning Style */
+/* Dashboard Page - LinkedIn Learning Style + Glassmorphism */
 
 .dashboard-page {
     min-height: 100vh;
     background: var(--neutral-50);
+    background-image: var(--gradient-mesh);
 }
 
 .dashboard-main {
@@ -15,15 +16,37 @@
     padding: 0 24px;
 }
 
+/* Header Section */
 .dashboard-header {
     margin-bottom: 32px;
+}
+
+.dashboard-user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dashboard-avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--gradient-primary);
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
 }
 
 .dashboard-header h1 {
     font-size: 24px;
     font-weight: 600;
     color: var(--neutral-900);
-    margin: 0 0 8px 0;
+    margin: 0 0 4px 0;
 }
 
 .dashboard-header p {
@@ -32,31 +55,61 @@
     margin: 0;
 }
 
-.dashboard-section {
-    margin-bottom: 48px;
-}
-
-.dashboard-section h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--neutral-900);
+/* Tabs */
+.dashboard-tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid var(--neutral-200);
     margin-bottom: 24px;
 }
 
-/* Dashboard Filters */
+.dashboard-tab {
+    background: none;
+    border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--neutral-600);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.dashboard-tab:hover {
+    color: var(--neutral-900);
+}
+
+.dashboard-tab.active {
+    color: var(--linkedin-blue);
+}
+
+.dashboard-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--linkedin-blue);
+}
+
+/* Filters */
 .dashboard-filters {
     display: flex;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     overflow-x: auto;
     padding-bottom: 4px;
+    scrollbar-width: none;
 }
 
 .filter-pill {
-    padding: 6px 16px;
-    border-radius: 16px;
-    border: 1px solid var(--neutral-300);
-    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     color: var(--neutral-600);
     font-size: 14px;
     font-weight: 600;
@@ -66,7 +119,7 @@
 }
 
 .filter-pill:hover {
-    background: var(--neutral-100);
+    background: var(--glass-white-strong);
     color: var(--neutral-900);
     border-color: var(--neutral-400);
 }
@@ -75,65 +128,42 @@
     background: var(--linkedin-blue);
     color: white;
     border-color: var(--linkedin-blue);
-}
-
-/* Empty State */
-.empty-state {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
-    padding: 48px;
-    text-align: center;
-}
-
-.empty-state p {
-    font-size: 16px;
-    color: var(--neutral-600);
-    margin-bottom: 16px;
-}
-
-.browse-link {
-    display: inline-block;
-    padding: 8px 16px;
-    background: white;
-    color: var(--linkedin-blue);
-    border: 1px solid var(--linkedin-blue);
-    border-radius: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.browse-link:hover {
-    background: rgba(10, 102, 194, 0.1);
-    box-shadow: inset 0 0 0 1px var(--linkedin-blue);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Enrollments Grid */
 .enrollments-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
+    margin-bottom: 48px;
 }
 
 .enrollment-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
     border-radius: 8px;
     overflow: hidden;
-    transition: box-shadow 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .enrollment-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--glass-border-strong);
 }
 
 .enrollment-thumbnail {
     position: relative;
     padding-top: 56.25%;
-    /* 16:9 Aspect Ratio */
+    /* 16:9 */
+    background: var(--neutral-100);
+    overflow: hidden;
 }
 
 .enrollment-thumbnail img {
@@ -143,6 +173,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.enrollment-card:hover .enrollment-thumbnail img {
+    transform: scale(1.05);
 }
 
 .progress-overlay {
@@ -150,8 +185,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 8px 12px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 20px 12px 12px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -170,12 +205,14 @@
     background: #30A668;
     /* Success Green */
     border-radius: 2px;
+    box-shadow: 0 0 8px rgba(48, 166, 104, 0.5);
 }
 
 .progress-text {
     color: white;
     font-size: 12px;
     font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .enrollment-content {
@@ -189,7 +226,7 @@
     font-size: 16px;
     font-weight: 600;
     color: var(--neutral-900);
-    margin: 0 0 8px 0;
+    margin: 0 0 4px 0;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -197,28 +234,25 @@
     overflow: hidden;
 }
 
-.enrollment-content p {
+.instructor {
     font-size: 14px;
     color: var(--neutral-600);
     margin: 0 0 16px 0;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
 }
 
 .continue-button {
-    display: block;
-    width: 100%;
-    padding: 6px 16px;
-    text-align: center;
-    background: white;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: transparent;
     color: var(--linkedin-blue);
     border: 1px solid var(--linkedin-blue);
-    border-radius: 16px;
+    border-radius: 20px;
     font-weight: 600;
+    font-size: 14px;
     text-decoration: none;
     transition: all 0.2s ease;
 }
@@ -228,7 +262,14 @@
     box-shadow: inset 0 0 0 1px var(--linkedin-blue);
 }
 
-/* Certificates Grid */
+/* Certificates Section */
+.certificates-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 24px;
+}
+
 .certificates-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -236,26 +277,36 @@
 }
 
 .certificate-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
     border-radius: 8px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: box-shadow 0.2s ease;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    /* Remove underline from link */
+    color: inherit;
+    /* Inherit text color */
+    cursor: pointer;
 }
 
 .certificate-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--glass-border-strong);
 }
 
 .certificate-icon {
     width: 64px;
     height: 64px;
-    background: rgba(10, 102, 194, 0.1);
-    color: var(--linkedin-blue);
+    background: rgba(180, 105, 14, 0.1);
+    /* Gold tint */
+    color: #b4690e;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -263,34 +314,75 @@
     margin-bottom: 16px;
 }
 
-.certificate-card h3 {
+.certificate-info h3 {
     font-size: 16px;
     font-weight: 600;
     color: var(--neutral-900);
     margin: 0 0 8px 0;
 }
 
-.certificate-card p {
+.certificate-info p {
     font-size: 14px;
     color: var(--neutral-600);
     margin: 0 0 16px 0;
 }
 
-.view-cert-button {
+.certificate-link {
+    display: inline-block;
     padding: 6px 16px;
-    background: white;
+    background: transparent;
     color: var(--neutral-600);
-    border: 1px solid var(--neutral-600);
+    border: 1px solid var(--neutral-400);
     border-radius: 16px;
     font-weight: 600;
+    font-size: 14px;
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
-.view-cert-button:hover {
+.certificate-link:hover {
     background: var(--neutral-100);
     color: var(--neutral-900);
-    border-color: var(--neutral-900);
+    border-color: var(--neutral-600);
+}
+
+/* Empty State */
+.dashboard-empty {
+    text-align: center;
+    padding: 64px 24px;
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+}
+
+.dashboard-empty h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin: 16px 0 8px;
+}
+
+.dashboard-empty p {
+    font-size: 16px;
+    color: var(--neutral-600);
+    margin-bottom: 24px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--linkedin-blue);
+    color: white;
+    border-radius: 24px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--linkedin-blue-dark);
 }
 
 /* Loading State */
@@ -315,5 +407,138 @@
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .dashboard-main {
+        padding: 16px 0;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .dashboard-header {
+        display: flex;
+        /* Enable flexbox for alignment */
+        flex-direction: column;
+        align-items: flex-start;
+        /* Strictly Left Aligned */
+        margin-bottom: 20px;
+        text-align: left;
+        width: 100%;
+        /* Ensure full width */
+    }
+
+    .dashboard-user-info {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .dashboard-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 20px;
+    }
+
+    .dashboard-header p {
+        font-size: 14px;
+    }
+
+    /* Tabs - Smaller & Left Aligned */
+    .dashboard-tabs {
+        overflow-x: auto;
+        padding-bottom: 0;
+        gap: 16px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid var(--neutral-200);
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        justify-content: flex-start;
+        /* Strictly Left Aligned */
+    }
+
+    .dashboard-tab {
+        white-space: nowrap;
+        font-size: 14px;
+        padding: 10px 0;
+        font-weight: 600;
+    }
+
+    /* Filters - Smaller & Left Aligned */
+    .dashboard-filters {
+        margin-bottom: 24px;
+        gap: 8px;
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        justify-content: flex-start;
+        /* Strictly Left Aligned */
+    }
+
+    .filter-pill {
+        padding: 6px 12px;
+        font-size: 13px;
+        border-radius: 16px;
+    }
+
+    /* Course Grid - CENTERED */
+    .enrollments-grid,
+    .certificates-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 400px);
+        /* Constrain width */
+        justify-content: center;
+        /* Center the grid column */
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    .enrollment-card {
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--glass-border);
+        width: 100%;
+        /* Fill the centered column */
+    }
+
+    .enrollment-thumbnail {
+        padding-top: 56.25%;
+    }
+
+    .enrollment-content {
+        padding: 12px;
+    }
+
+    .enrollment-content h3 {
+        font-size: 15px;
+        margin-bottom: 4px;
+        line-height: 1.4;
+    }
+
+    .instructor {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .progress-bar {
+        height: 4px;
+    }
+
+    .continue-button {
+        padding: 6px 16px;
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+        margin-top: auto;
     }
 }

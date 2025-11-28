@@ -25,7 +25,7 @@
 /* Header */
 .login-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .logo {
@@ -52,23 +52,26 @@
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1px;
+    /* Reduced from 12px */
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
+    /* Reduced from 4px */
 }
 
 .form-group label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--neutral-900);
 }
 
 .form-group input {
-    padding: 12px 16px;
+    padding: 8px 12px;
+    /* Reduced padding */
     border: 1px solid var(--neutral-300);
     border-radius: 4px;
     font-size: 14px;
@@ -77,41 +80,44 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--linkedin-blue);
-    box-shadow: 0 0 0 1px var(--linkedin-blue);
+    border-color: var(--linkedin-blue-light);
+    box-shadow: 0 0 0 1px var(--linkedin-blue-light);
 }
 
 .input-hint {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--neutral-600);
 }
 
 /* Error Message */
 .error-message {
-    padding: 12px;
+    padding: 8px;
     background: #FEE;
     border: 1px solid #FCC;
     border-radius: 4px;
     color: #C33;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
 }
 
 /* Buttons */
 .btn-primary {
-    padding: 12px 24px;
-    background: var(--linkedin-blue);
+    padding: 10px 20px;
+    background: var(--linkedin-blue-light);
     color: white;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     border: none;
     border-radius: 24px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    margin-top: 4px;
 }
 
 .btn-primary:hover:not(:disabled) {
-    background: var(--linkedin-blue-dark);
+    background: #2d7ccf;
+    /* Slightly darker shade of light blue, not full dark blue */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(55, 143, 233, 0.3);
 }
 
 .btn-primary:disabled {
@@ -123,7 +129,7 @@
 .divider {
     display: flex;
     align-items: center;
-    margin: 24px 0;
+    margin: 16px 0;
     color: var(--neutral-500);
     font-size: 14px;
 }
@@ -146,7 +152,7 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 12px 24px;
+    padding: 10px 24px;
     background: white;
     color: var(--neutral-700);
     font-size: 14px;
@@ -170,7 +176,7 @@
 /* Toggle Mode */
 .toggle-mode {
     text-align: center;
-    margin-top: 24px;
+    margin-top: 16px;
     font-size: 14px;
     color: var(--neutral-700);
 }

@@ -103,122 +103,173 @@ async function generateCertificate(userId, courseId, quizAttemptId, client) {
 /**
  * Create PDF certificate
  */
+/**
+ * Create PDF certificate
+ */
 async function createCertificatePDF(recipientName, courseTitle, verificationHash, outputPath) {
     return new Promise((resolve, reject) => {
         try {
             const doc = new PDFDocument({
                 size: 'A4',
                 layout: 'landscape',
-                margins: { top: 50, bottom: 50, left: 50, right: 50 }
+                margins: { top: 0, bottom: 0, left: 0, right: 0 }
             });
 
             const stream = fs.createWriteStream(outputPath);
             doc.pipe(stream);
 
-            // Certificate border
-            doc.rect(30, 30, doc.page.width - 60, doc.page.height - 60)
-                .lineWidth(2)
-                .stroke('#0071e3');
+            // Colors
+            const colors = {
+                black: '#000000',
+                gold: '#D4AF37', // Metallic Gold
+                darkGrey: '#333333',
+                white: '#ffffff'
+            };
 
-            // Inner border
-            doc.rect(40, 40, doc.page.width - 80, doc.page.height - 80)
-                .lineWidth(1)
-                .stroke('#d2d2d7');
+            const width = doc.page.width;
+            const height = doc.page.height;
 
-            // Title
-            doc.fontSize(48)
-                .font('Helvetica-Bold')
-                .fillColor('#1d1d1f')
-                .text('Certificate of Completion', 0, 100, {
+            // --- Background ---
+            doc.rect(0, 0, width, height).fill(colors.white);
+
+            // --- Border ---
+            // Single, elegant gold border inset by 40px
+            const margin = 40;
+            doc.rect(margin, margin, width - (margin * 2), height - (margin * 2))
+                .lineWidth(1.5)
+                .stroke(colors.gold);
+
+            // --- Header ---
+            doc.moveDown(5);
+
+            // "CERTIFICATE OF COMPLETION" - Tracking (letter spacing) is key for luxury
+            doc.font('Helvetica')
+                .fontSize(12)
+                .fillColor(colors.darkGrey)
+                .text('CERTIFICATE OF COMPLETION', 0, 100, {
                     align: 'center',
-                    width: doc.page.width
+                    characterSpacing: 5 // Wide spacing for elegance
                 });
 
-            // Decorative line
-            doc.moveTo(doc.page.width / 2 - 100, 170)
-                .lineTo(doc.page.width / 2 + 100, 170)
-                .lineWidth(2)
-                .stroke('#0071e3');
+            // --- Content ---
 
-            // "This is to certify that"
-            doc.fontSize(16)
-                .font('Helvetica')
-                .fillColor('#6e6e73')
-                .text('This is to certify that', 0, 200, {
-                    align: 'center',
-                    width: doc.page.width
+            // Recipient Name
+            doc.moveDown(3);
+            doc.font('Times-Roman')
+                .fontSize(48)
+                .fillColor(colors.black)
+                .text(recipientName, {
+                    align: 'center'
                 });
 
-            // Recipient name
-            doc.fontSize(36)
-                .font('Helvetica-Bold')
-                .fillColor('#1d1d1f')
-                .text(recipientName, 0, 240, {
+            // Separator Line - Move closer to name
+            const nameBottomY = doc.y; // Get Y position after name
+            const lineLength = 300; // Slightly wider for better proportion
+            const lineY = nameBottomY + 5; // 5px gap
+
+            doc.moveTo((width - lineLength) / 2, lineY)
+                .lineTo((width + lineLength) / 2, lineY)
+                .lineWidth(0.5)
+                .strokeColor(colors.gold)
+                .stroke();
+
+            // "For successfully completing the course"
+            doc.y = lineY + 20; // Explicitly set Y below line
+            doc.font('Helvetica')
+                .fontSize(10)
+                .fillColor(colors.darkGrey)
+                .text('HAS SUCCESSFULLY COMPLETED THE COURSE', {
                     align: 'center',
-                    width: doc.page.width
+                    characterSpacing: 2
                 });
 
-            // "has successfully completed"
-            doc.fontSize(16)
-                .font('Helvetica')
-                .fillColor('#6e6e73')
-                .text('has successfully completed', 0, 300, {
-                    align: 'center',
-                    width: doc.page.width
+            // Course Title
+            doc.moveDown(1);
+            doc.font('Times-Roman')
+                .fontSize(32)
+                .fillColor(colors.black)
+                .text(courseTitle, {
+                    align: 'center'
                 });
 
-            // Course title
-            doc.fontSize(24)
-                .font('Helvetica-Bold')
-                .fillColor('#0071e3')
-                .text(courseTitle, 0, 340, {
-                    align: 'center',
-                    width: doc.page.width
-                });
+            // --- Footer ---
+            const bottomY = height - 100;
 
-            // Organization
-            doc.fontSize(14)
-                .font('Helvetica')
-                .fillColor('#6e6e73')
-                .text('Issued by You Learn', 0, 400, {
-                    align: 'center',
-                    width: doc.page.width
-                });
+            // Date Section
+            const dateLineStart = 100;
+            const dateLineEnd = 250;
+            const dateLineWidth = dateLineEnd - dateLineStart;
+            const dateCenter = dateLineStart + (dateLineWidth / 2);
 
-            // Date
             const completionDate = new Date().toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             });
 
-            doc.fontSize(12)
-                .text(`Date of Completion: ${completionDate}`, 0, 440, {
+            // Date Text (Above Line)
+            doc.font('Helvetica').fontSize(10).fillColor(colors.darkGrey)
+                .text(completionDate.toUpperCase(), dateLineStart, bottomY - 15, {
+                    width: dateLineWidth,
                     align: 'center',
-                    width: doc.page.width
+                    characterSpacing: 1
                 });
 
-            // Verification info
-            doc.fontSize(10)
-                .fillColor('#86868b')
-                .text(`Verification ID: ${verificationHash}`, 0, doc.page.height - 100, {
+            // Date Line
+            doc.moveTo(dateLineStart, bottomY).lineTo(dateLineEnd, bottomY).lineWidth(0.5).strokeColor(colors.black).stroke();
+
+            // Date Label (Centered Under Line)
+            doc.font('Helvetica-Bold').fontSize(8).fillColor(colors.gold)
+                .text('DATE', dateLineStart, bottomY + 8, {
+                    width: dateLineWidth,
                     align: 'center',
-                    width: doc.page.width
+                    characterSpacing: 2
                 });
 
-            doc.text(`Verify at: ${process.env.FRONTEND_URL || 'https://youlearn.com'}/verify?id=${verificationHash}`, 0, doc.page.height - 80, {
-                align: 'center',
-                width: doc.page.width
-            });
 
-            // Digital signature placeholder
-            doc.fontSize(10)
-                .fillColor('#1d1d1f')
-                .text('Digitally Signed', doc.page.width - 200, doc.page.height - 120);
+            // Signature Section
+            const sigLineEnd = width - 100;
+            const sigLineStart = width - 250;
+            const sigLineWidth = sigLineEnd - sigLineStart;
+            const sigCenter = sigLineStart + (sigLineWidth / 2);
 
-            doc.moveTo(doc.page.width - 250, doc.page.height - 130)
-                .lineTo(doc.page.width - 100, doc.page.height - 130)
-                .stroke('#1d1d1f');
+            // Signature Text (You Learn)
+            doc.font('Times-Italic').fontSize(24).fillColor(colors.black)
+                .text('You Learn', sigLineStart, bottomY - 30, {
+                    width: sigLineWidth,
+                    align: 'center'
+                });
+
+            // Signature Line
+            doc.moveTo(sigLineStart, bottomY).lineTo(sigLineEnd, bottomY).lineWidth(0.5).strokeColor(colors.black).stroke();
+
+            // Signature Label (Centered Under Line)
+            doc.font('Helvetica-Bold').fontSize(8).fillColor(colors.gold)
+                .text('SIGNATURE', sigLineStart, bottomY + 8, {
+                    width: sigLineWidth,
+                    align: 'center',
+                    characterSpacing: 2
+                });
+
+
+            // --- Minimal Seal ---
+            const sealX = width / 2;
+            const sealY = height - 90;
+
+            // Just a clean circle outline
+            doc.circle(sealX, sealY, 30).lineWidth(1).stroke(colors.gold);
+
+            // Widen the text box to prevent wrapping
+            doc.font('Helvetica').fontSize(8).fillColor(colors.gold)
+                .text('VERIFIED', sealX - 30, sealY - 3, { align: 'center', width: 60, characterSpacing: 1 });
+
+
+            // --- Verification ID (Tiny, Bottom Center) ---
+            doc.font('Helvetica').fontSize(6).fillColor('#cccccc')
+                .text(`ID: ${verificationHash}`, 0, height - 20, {
+                    align: 'center',
+                    characterSpacing: 1
+                });
 
             doc.end();
 
@@ -237,5 +288,6 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
 }
 
 module.exports = {
-    generateCertificate
+    generateCertificate,
+    createCertificatePDF
 };

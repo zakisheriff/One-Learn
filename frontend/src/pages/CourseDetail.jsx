@@ -3,20 +3,38 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { LanguageContext } from '../context/LanguageContext';
+import { AuthContext } from '../App';
 import '../styles/CourseDetail.css';
 
 const CourseDetail = () => {
     const { slug } = useParams();
     const navigate = useNavigate();
     const { t } = useContext(LanguageContext);
+    const { user } = useContext(AuthContext);
     const [course, setCourse] = useState(null);
+
     const [loading, setLoading] = useState(true);
     const [enrolling, setEnrolling] = useState(false);
     const [error, setError] = useState('');
 
+    const [isEnrolled, setIsEnrolled] = useState(false);
+
     useEffect(() => {
         fetchCourseDetails();
+        checkEnrollmentStatus();
     }, [slug]);
+
+    const checkEnrollmentStatus = async () => {
+        try {
+            const response = await axios.get('/api/enrollments');
+            if (response.data.enrollments) {
+                const enrolled = response.data.enrollments.some(e => e.course.slug === slug);
+                setIsEnrolled(enrolled);
+            }
+        } catch (err) {
+            console.error('Failed to check enrollment:', err);
+        }
+    };
 
     const fetchCourseDetails = async () => {
         try {
@@ -31,6 +49,11 @@ const CourseDetail = () => {
     };
 
     const handleEnroll = async () => {
+        if (isEnrolled) {
+            navigate(`/course/${slug}/learn`);
+            return;
+        }
+
         setEnrolling(true);
         try {
             await axios.post('/api/enrollments', { courseId: course.id });
@@ -92,11 +115,13 @@ const CourseDetail = () => {
                                 className="enroll-button"
                                 disabled={enrolling}
                             >
-                                {enrolling ? (t('enrolling') || 'Enrolling...') : (t('enrollNow') || 'Enroll for Free')}
+                                {enrolling ? (t('processing') || 'Processing...') :
+                                    isEnrolled ? (t('continueLearning') || 'Continue Learning') :
+                                        (t('enrollNow') || 'Enroll for Free')}
                             </button>
 
                             <p className="login-hint">
-                                {t('loginToAccess') || "You'll need to sign in to access course content"}
+                                {isEnrolled ? t('alreadyEnrolled') : (!user && t('loginToAccess'))}
                             </p>
                         </div>
                     </div>

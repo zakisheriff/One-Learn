@@ -97,6 +97,7 @@ CREATE TABLE enrollments (
     last_accessed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     completed_lessons JSONB DEFAULT '[]', -- Array of lesson IDs completed
     is_completed BOOLEAN DEFAULT false,
+    completed_at TIMESTAMP,
     
     -- One enrollment per user per course
     UNIQUE(user_id, course_id)

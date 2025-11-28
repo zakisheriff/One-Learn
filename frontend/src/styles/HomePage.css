@@ -79,7 +79,8 @@
 .category-section {
     max-width: 1128px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 12px 24px 24px;
+    /* Reduced top padding */
 }
 
 .category-pills {
@@ -124,7 +125,12 @@
     max-width: 1128px;
     margin: 0 auto;
     padding: 0 24px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
+}
+
+.continue-learning {
+    margin-top: 40px;
+    /* Space from Hero Banner */
 }
 
 .section-header {
@@ -360,24 +366,37 @@
 
 @media (max-width: 768px) {
     .hero-banner {
-        height: 280px;
+        height: auto;
+        /* Allow auto height for content */
+        min-height: 280px;
+        padding: 40px 0;
     }
 
     .hero-content {
-        padding: 0 16px;
+        padding: 0 24px;
+        text-align: center;
+        /* Center text on mobile */
+        align-items: center;
     }
 
     .hero-content h1 {
         font-size: 28px;
+        margin-bottom: 12px;
     }
 
     .hero-content p {
         font-size: 16px;
+        margin-bottom: 20px;
     }
 
     .category-section,
     .course-section {
         padding: 0 16px;
+    }
+
+    .category-section {
+        padding-top: 12px;
+        padding-bottom: 16px;
     }
 
     .section-header {
@@ -389,11 +408,16 @@
     }
 
     .linkedin-course-card {
-        width: 220px;
+        width: 240px;
+        /* Keep cards readable */
     }
 
     .course-section {
         margin-bottom: 32px;
+    }
+
+    .continue-learning {
+        margin-top: 24px;
     }
 }
 
@@ -412,6 +436,6 @@
     }
 
     .linkedin-course-card {
-        width: 200px;
+        width: 220px;
     }
 }

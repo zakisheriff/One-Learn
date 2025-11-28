@@ -128,7 +128,7 @@ exports.getCourseContent = async (req, res) => {
 
         // Check if user is enrolled
         const enrollmentResult = await pool.query(
-            'SELECT id, completed_lessons FROM enrollments WHERE user_id = $1 AND course_id = $2',
+            'SELECT id, completed_lessons, is_completed FROM enrollments WHERE user_id = $1 AND course_id = $2',
             [userId, course.id]
         );
 
@@ -141,6 +141,29 @@ exports.getCourseContent = async (req, res) => {
 
         const enrollment = enrollmentResult.rows[0];
         const completedLessons = enrollment.completed_lessons || [];
+        let isCompleted = enrollment.is_completed;
+
+        // Check if certificate exists (for users who completed before the fix)
+        if (!isCompleted) {
+            try {
+                const certificateResult = await pool.query(
+                    'SELECT id FROM certificates WHERE user_id = $1 AND course_id = $2',
+                    [userId, course.id]
+                );
+
+                if (certificateResult.rows.length > 0) {
+                    isCompleted = true;
+                    // Self-heal: update enrollment
+                    await pool.query(
+                        'UPDATE enrollments SET is_completed = true, completed_at = CURRENT_TIMESTAMP WHERE id = $1',
+                        [enrollment.id]
+                    );
+                }
+            } catch (certError) {
+                console.error('Self-healing check failed:', certError);
+                // Continue without failing the request
+            }
+        }
 
         // Get full course structure with YouTube URLs
         const modulesResult = await pool.query(
@@ -185,7 +208,8 @@ exports.getCourseContent = async (req, res) => {
                 thumbnailUrl: course.thumbnail_url,
                 modules
             },
-            enrollmentId: enrollment.id
+            enrollmentId: enrollment.id,
+            isCompleted: isCompleted // Return calculated completion status
         });
 
     } catch (error) {

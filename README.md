@@ -100,6 +100,9 @@ You Learn democratizes learning by making **every course, every quiz, and every 
 - **YouTube Integration**  
   Learn from the best educational content on the web.
 
+- **Smart Navigation**  
+  Collapsible sidebar with independent scrolling and progress indicators.
+
 - **Progress Tracking**  
   Visual progress bars and lesson completion tracking.
 
@@ -127,7 +130,8 @@ YouLearn/
 │   │   ├── authController.js     # Authentication (Bcrypt + JWT + OAuth)
 │   │   ├── courseController.js   # Course management
 │   │   ├── quizController.js     # Quiz handling & scoring
-│   │   └── certificateController.js
+│   │   ├── certificateController.js # Certificate generation & verification
+│   │   └── enrollmentController.js # Progress tracking & enrollment logic
 │   ├── services/
 │   │   ├── geminiService.js      # AI quiz generation
 │   │   └── certificateService.js # PDF generation
@@ -139,12 +143,17 @@ YouLearn/
     ├── src/
     │   ├── App.jsx               # Main app with routing
     │   ├── pages/                # All application pages
+    │   │   ├── HomePage.jsx      # Landing page
     │   │   ├── LoginPage.jsx     # Dual auth (Email + Google)
     │   │   ├── CourseCatalog.jsx # Public course browsing
+    │   │   ├── CourseDetail.jsx  # Course syllabus & enrollment
     │   │   ├── Dashboard.jsx     # User dashboard
     │   │   ├── CourseViewer.jsx  # Video player + sidebar
     │   │   ├── QuizPage.jsx      # Assessment interface
-    │   │   └── CertificatePage.jsx
+    │   │   ├── CertificatePage.jsx # Certificate view & download
+    │   │   ├── VerifyPage.jsx    # Public certificate verification
+    │   │   ├── SettingsPage.jsx  # User profile settings
+    │   │   └── HelpCenter.jsx    # Support & FAQs
     │   ├── components/           # Reusable components
     │   └── styles/               # Pure CSS (Apple-inspired)
     │       ├── variables.css     # Design system tokens
@@ -229,8 +238,10 @@ Visit **http://localhost:5173** 🎉
 ✅ **Browse Courses** — Explore free courses without signing up  
 ✅ **Dual Authentication** — Email/password or Google OAuth  
 ✅ **Video Learning** — Embedded YouTube lessons with progress tracking  
+✅ **Distraction-Free Learning** — Optimized video player with no suggestions  
 ✅ **AI Quizzes** — Intelligent assessments generated from video content  
 ✅ **Verified Certificates** — Download PDFs or share to LinkedIn  
+✅ **Self-Healing System** — Robust progress tracking and status recovery  
 
 ### For Admins
 

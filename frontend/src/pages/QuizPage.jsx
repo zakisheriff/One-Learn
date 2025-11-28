@@ -51,7 +51,8 @@ const QuizPage = () => {
                 }, 3000);
             }
         } catch (err) {
-            alert('Failed to submit quiz: ' + (err.response?.data?.error || err.message));
+            const errorMessage = err.response?.data?.details || err.response?.data?.error || err.message;
+            alert('Failed to submit quiz: ' + errorMessage);
         } finally {
             setSubmitting(false);
         }

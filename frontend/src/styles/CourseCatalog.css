@@ -51,8 +51,10 @@
 /* Search Bar */
 .catalog-search {
     max-width: 600px;
-    margin: 0 auto;
+    margin: -32px auto 0;
+    /* Pull up into hero */
     position: relative;
+    z-index: 10;
 }
 
 .search-glass {
@@ -308,39 +310,103 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .catalog-hero {
-        padding: var(--space-12) 0 var(--space-16);
+        padding: 16px 0 48px;
+        /* More bottom padding for search bar space */
     }
 
     .catalog-hero h1 {
-        font-size: var(--text-4xl);
+        font-size: 24px;
+        /* Smaller title */
+        margin-bottom: 8px;
     }
 
     .catalog-hero p {
-        font-size: var(--text-lg);
+        font-size: 14px;
+        margin-bottom: 0;
+        padding: 0 8px;
+        line-height: 1.4;
+    }
+
+    .catalog-search {
+        margin: -24px -16px 0;
+        /* Pull up and span width */
+        padding: 8px 16px;
+        position: sticky;
+        top: 52px;
+        /* Height of navbar */
+        z-index: 900;
+        background: rgba(255, 255, 255, 0.85);
+        /* Glassy background */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        width: calc(100% + 32px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        /* Subtle separator instead of shadow */
+    }
+
+    .search-glass {
+        padding: 8px 12px;
+        background: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        /* Add shadow to input itself */
+    }
+
+    .search-input {
+        font-size: 14px;
     }
 
     .course-grid,
     .catalog-loading {
         grid-template-columns: 1fr;
-        gap: var(--space-4);
+        gap: 8px;
+        /* Tighter grid */
     }
 
     .catalog-content {
-        padding: 0 var(--space-4);
-        margin-top: calc(var(--space-8) * -1);
+        padding: 0 8px;
+        margin-top: 16px;
+        /* Adjusted margin */
+    }
+
+    .course-card {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow */
+        border-radius: 6px;
     }
 }
 
 @media (max-width: 640px) {
-    .catalog-hero h1 {
-        font-size: var(--text-3xl);
-    }
-
     .course-thumbnail {
-        height: 180px;
+        height: 140px;
+        /* Even smaller thumbnail */
     }
 
     .course-info {
-        padding: var(--space-4);
+        padding: 12px;
+    }
+
+    .course-title {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .course-description {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        margin-bottom: 8px;
+    }
+
+    .course-footer {
+        padding-top: 8px;
+    }
+
+    .course-lessons {
+        font-size: 12px;
+    }
+
+    .course-cta {
+        padding: 4px 12px;
+        font-size: 12px;
     }
 }

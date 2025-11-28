@@ -41,7 +41,7 @@ const Navbar = () => {
                 <div className="navbar-left">
                     <Link to="/" className="navbar-logo">
                         <div className="navbar-logo-icon">YL</div>
-                        <span className="navbar-logo-text">YouLearn</span>
+                        <span className="navbar-logo-text">You Learn</span>
                     </Link>
 
                     <div className="navbar-divider"></div>
@@ -76,17 +76,26 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Toggle */}
-                <button
-                    className="navbar-mobile-toggle"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <MenuIcon size={24} />
-                </button>
+                <div className="navbar-mobile-actions">
+                    <button
+                        className="navbar-mobile-search-toggle"
+                        onClick={() => setSearchOpen(!searchOpen)}
+                        aria-label="Toggle search"
+                    >
+                        <SearchIcon size={24} />
+                    </button>
+                    <button
+                        className="navbar-mobile-toggle"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        <MenuIcon size={24} />
+                    </button>
+                </div>
 
-                {/* Center Section: Search */}
+                {/* Center Section: Search (Desktop) */}
                 <div className="navbar-center">
-                    <div className={`navbar-search ${searchOpen ? 'open' : ''}`}>
+                    <div className="navbar-search">
                         <div className="navbar-search-input-wrapper">
                             <span className="navbar-search-icon"><SearchIcon size={16} /></span>
                             <input
@@ -95,8 +104,6 @@ const Navbar = () => {
                                 placeholder={t('searchPlaceholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                onFocus={() => setSearchOpen(true)}
-                                onBlur={() => setTimeout(() => setSearchOpen(false), 200)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
                                         window.location.href = `/explore?search=${encodeURIComponent(searchTerm)}`;
@@ -106,6 +113,35 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Mobile Search Overlay */}
+                {searchOpen && (
+                    <div className="navbar-mobile-search-overlay">
+                        <div className="navbar-search-input-wrapper mobile">
+                            <span className="navbar-search-icon"><SearchIcon size={16} /></span>
+                            <input
+                                type="text"
+                                className="navbar-search-input mobile"
+                                placeholder={t('searchPlaceholder')}
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                autoFocus
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        window.location.href = `/explore?search=${encodeURIComponent(searchTerm)}`;
+                                        setSearchOpen(false);
+                                    }
+                                }}
+                            />
+                            <button
+                                className="mobile-search-close"
+                                onClick={() => setSearchOpen(false)}
+                            >
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+                )}
 
                 {/* Right Section: Nav Links + Profile */}
                 <div className="navbar-right">
@@ -158,6 +194,27 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
+
+                        {/* Mobile Auth Links (Logged Out Only) */}
+                        {!user && (
+                            <div className="mobile-auth-links">
+                                <div className="navbar-divider-horizontal"></div>
+                                <Link
+                                    to="/login"
+                                    className="navbar-link"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    <span className="navbar-link-text">{t('signIn')}</span>
+                                </Link>
+                                <Link
+                                    to="/login?mode=signup"
+                                    className="navbar-link"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    <span className="navbar-link-text">{t('joinNow')}</span>
+                                </Link>
+                            </div>
+                        )}
                     </div>
 
                     <div className="navbar-divider-vertical"></div>

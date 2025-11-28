@@ -3,11 +3,17 @@
 .course-viewer-page {
     min-height: 100vh;
     background: var(--neutral-50);
+    display: flex;
+    flex-direction: column;
 }
 
 .viewer-container {
     display: flex;
-    height: calc(100vh - 56px);
+    flex: 1;
+    height: calc(100vh - 64px);
+    /* Adjust based on actual Navbar height */
+    overflow: hidden;
+    /* Prevent double scrollbars */
 }
 
 /* Sidebar */
@@ -17,27 +23,36 @@
     border-right: 1px solid var(--neutral-200);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    height: 100%;
+    z-index: 10;
 }
 
 .viewer-sidebar.closed {
-    transform: translateX(-100%);
+    width: 0;
+    border-right: none;
+    overflow: hidden;
 }
 
 .sidebar-header {
-    padding: 20px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--neutral-200);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: white;
+    flex-shrink: 0;
 }
 
 .sidebar-header h2 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--neutral-900);
-    flex: 1;
-    margin-right: 12px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .toggle-sidebar {
@@ -46,11 +61,15 @@
     border: none;
     color: var(--neutral-600);
     cursor: pointer;
-    font-size: 18px;
-    transition: color 0.2s ease;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
 }
 
 .toggle-sidebar:hover {
+    background: var(--neutral-100);
     color: var(--neutral-900);
 }
 
@@ -58,37 +77,41 @@
 .modules-list {
     flex: 1;
     overflow-y: auto;
-    padding: 16px;
+    padding: 0;
 }
 
 .module-section {
-    margin-bottom: 24px;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.module-section:last-child {
+    border-bottom: none;
 }
 
 .module-title {
     font-size: 14px;
     font-weight: 600;
     color: var(--neutral-900);
-    padding: 8px 12px;
-    background: var(--neutral-100);
-    border-radius: 4px;
-    margin-bottom: 8px;
+    padding: 16px 20px;
+    background: var(--neutral-50);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .lessons-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
 }
 
 .lesson-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
-    padding: 12px;
+    padding: 12px 20px;
     background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 4px;
+    border: none;
+    border-left: 3px solid transparent;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: left;
@@ -97,41 +120,27 @@
 
 .lesson-item:hover {
     background: var(--neutral-50);
-    border-color: var(--linkedin-blue);
 }
 
 .lesson-item.active {
-    background: rgba(10, 102, 194, 0.1);
-    border-color: var(--linkedin-blue);
+    background: rgba(10, 102, 194, 0.05);
+    border-left-color: var(--linkedin-blue);
 }
 
-.lesson-item.completed {
-    opacity: 0.7;
+.lesson-item.active .lesson-title {
+    color: var(--linkedin-blue);
+    font-weight: 600;
 }
 
 .lesson-number {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--neutral-100);
-    border-radius: 50%;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--neutral-700);
-    flex-shrink: 0;
-}
-
-.lesson-item.active .lesson-number {
-    background: var(--linkedin-blue);
-    color: white;
+    display: none;
+    /* Hide number for cleaner look, or keep if preferred */
 }
 
 .lesson-title {
     flex: 1;
     font-size: 14px;
-    color: var(--neutral-900);
+    color: var(--neutral-700);
     line-height: 1.4;
 }
 
@@ -139,32 +148,86 @@
     color: #2D9F5D;
     font-size: 16px;
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
 /* Take Quiz Button */
 .take-quiz-button {
     display: block;
-    margin: 16px;
-    padding: 12px 24px;
+    margin: 20px;
+    padding: 12px;
     background: var(--linkedin-blue);
     color: white;
     text-align: center;
     font-size: 14px;
     font-weight: 600;
-    border-radius: 16px;
+    border-radius: 24px;
     text-decoration: none;
     transition: background 0.2s ease;
+    flex-shrink: 0;
 }
 
 .take-quiz-button:hover {
     background: var(--linkedin-blue-dark);
+    color: white;
+}
+
+.take-quiz-button.disabled {
+    background: var(--neutral-300);
+    color: var(--neutral-600);
+    cursor: not-allowed;
+    margin-top: 4px;
+    border: none;
+    width: calc(100% - 32px);
+    /* Match margin of Link */
+}
+
+.take-quiz-button.disabled:hover {
+    background: var(--neutral-300);
 }
 
 /* Main Content */
 .viewer-main {
     flex: 1;
     overflow-y: auto;
+    background: var(--neutral-100);
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.open-sidebar-button {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid var(--neutral-200);
+    color: var(--neutral-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    transition: all 0.2s ease;
+    font-size: 18px;
+}
+
+.open-sidebar-button:hover {
     background: var(--neutral-50);
+    color: var(--neutral-900);
+    transform: scale(1.05);
+}
+
+.video-wrapper {
+    width: 100%;
+    max-width: 1120px;
+    margin-bottom: 24px;
 }
 
 .video-container {
@@ -173,6 +236,9 @@
     padding-top: 56.25%;
     /* 16:9 Aspect Ratio */
     background: black;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .video-container iframe {
@@ -184,13 +250,16 @@
 }
 
 .lesson-info {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 32px 24px;
+    width: 100%;
+    max-width: 1120px;
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .lesson-info h1 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--neutral-900);
     margin-bottom: 16px;
@@ -204,83 +273,55 @@
 }
 
 .mark-complete-button {
-    padding: 12px 24px;
-    background: var(--linkedin-blue);
-    color: white;
+    padding: 10px 20px;
+    background: white;
+    color: var(--linkedin-blue);
+    border: 1px solid var(--linkedin-blue);
     font-size: 14px;
     font-weight: 600;
-    border: none;
-    border-radius: 16px;
+    border-radius: 24px;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .mark-complete-button:hover {
-    background: var(--linkedin-blue-dark);
+    background: rgba(10, 102, 194, 0.05);
+    border-width: 2px;
+    padding: 9px 19px;
+    /* Adjust for border width change */
 }
 
 .no-lesson {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 400px;
+    height: 100%;
     color: var(--neutral-600);
     font-size: 16px;
-}
-
-/* Error State */
-.error-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-    padding: 48px;
-}
-
-.error-state p {
-    font-size: 16px;
-    color: var(--neutral-600);
-    margin-bottom: 16px;
-}
-
-.error-state a {
-    color: var(--linkedin-blue);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.error-state a:hover {
-    text-decoration: underline;
 }
 
 /* Mobile Responsive */
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
+    .viewer-container {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+
     .viewer-sidebar {
-        position: fixed;
-        top: 56px;
-        left: 0;
-        bottom: 0;
-        z-index: 100;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        border-right: none;
+        border-bottom: 1px solid var(--neutral-200);
     }
 
     .viewer-sidebar.closed {
-        transform: translateX(-100%);
-    }
-}
-
-@media (max-width: 768px) {
-    .viewer-sidebar {
-        width: 100%;
-        max-width: 320px;
+        display: none;
     }
 
-    .lesson-info {
-        padding: 24px 16px;
-    }
-
-    .lesson-info h1 {
-        font-size: 24px;
+    .viewer-main {
+        padding: 16px;
+        height: auto;
     }
 }
