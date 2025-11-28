@@ -103,7 +103,7 @@ const LoginPage = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
-                body: JSON.stringify({ token: response.credential })
+                body: JSON.stringify({ credential: response.credential })
             });
 
             const data = await res.json();
