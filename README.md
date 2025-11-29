@@ -15,9 +15,14 @@
 
 <br />
 
-<a href="https://github.com/zakisheriff/You-Learn">
-<img src="https://img.shields.io/badge/View%20Demo-Live-0071e3?style=for-the-badge" height="50" />
+<a href="https://you-learn-production.up.railway.app">
+<img src="https://img.shields.io/badge/View%20Live%20Demo-Click%20Here-0071e3?style=for-the-badge&logo=safari&logoColor=white" height="50" />
 </a>
+
+<br />
+<br />
+
+**[🌐 Visit Live Site: https://you-learn-production.up.railway.app](https://you-learn-production.up.railway.app)**
 
 </div>
 
