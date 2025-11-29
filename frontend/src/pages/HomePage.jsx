@@ -15,7 +15,19 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
 
-    const categories = ['All', 'Python', 'JavaScript', 'Web Design', 'Full Stack', 'Java'];
+    const categories = [
+        'All',
+        'Technology & CS',
+        'English & Communication',
+        'Design & Creative',
+        'Math & Science',
+        'Business & Finance',
+        'Video & Animation',
+        'Health & Self-Improvement',
+        'School Subjects',
+        'Data Science & AI',
+        'Music & Arts'
+    ];
 
     useEffect(() => {
         const fetchData = async () => {
