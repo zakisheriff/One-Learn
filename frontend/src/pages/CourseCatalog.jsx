@@ -19,7 +19,19 @@ const CourseCatalog = () => {
     const searchQuery = searchParams.get('search');
     const categoryQuery = searchParams.get('category');
 
-    const categories = ['All', 'Technology', 'Business', 'Art & Design', 'Health & Wellness', 'Science'];
+    const categories = [
+        'All',
+        'Technology & CS',
+        'English & Communication',
+        'Design & Creative',
+        'Math & Science',
+        'Business & Finance',
+        'Video & Animation',
+        'Health & Self-Improvement',
+        'School Subjects',
+        'Data Science & AI',
+        'Music & Arts'
+    ];
 
     useEffect(() => {
         if (searchQuery) {
@@ -69,11 +81,10 @@ const CourseCatalog = () => {
         let matchesCategory = true;
         if (selectedCategory !== 'All') {
             const categoryKeywords = {
-                'Technology': ['Python', 'JavaScript', 'React', 'AI', 'Machine', 'Cybersecurity', 'Cloud', 'DevOps', 'Data', 'Web', 'Mobile', 'IoT', 'Game', 'Robotics'],
-                'Business': ['Marketing', 'Finance', 'Leadership', 'Entrepreneurship', 'Sales', 'Project', 'HR', 'Accounting', 'Strategy', 'Economics', 'Negotiation', 'Public', 'Branding', 'Investing', 'E-commerce'],
-                'Art & Design': ['Design', 'Photography', 'Painting', 'Music', 'Art', 'Illustration', 'UI/UX', 'Fashion', 'Animation', 'Filmmaking', 'Typography', 'Ceramics', 'Sketching'],
-                'Health & Wellness': ['Nutrition', 'Yoga', 'Meditation', 'Fitness', 'Health', 'Anatomy', 'First Aid', 'Sleep', 'Dieting', 'Strength', 'Mindfulness', 'Running', 'Pilates', 'Cooking'],
-                'Science': ['Physics', 'Chemistry', 'Biology', 'Astronomy', 'Geology', 'Environmental', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Quantum', 'Marine', 'Meteorology', 'Ecology', 'Paleontology']
+                'Health & Self-Improvement': ['Health', 'Psychology', 'Self-Improvement', 'Fitness', 'Mental', 'Therapy', 'Motivation', 'Productivity', 'Habits', 'Tedx'],
+                'School Subjects': ['School', 'History', 'Geography', 'Civics', 'Literature', 'Biology', 'Physics', 'Chemistry', 'Math', 'CrashCourse'],
+                'Data Science & AI': ['Data', 'AI', 'Machine Learning', 'Artificial Intelligence', 'Cloud', 'AWS', 'Azure', 'Google Cloud', 'Statistics', 'Deep Learning'],
+                'Music & Arts': ['Music', 'Guitar', 'Piano', 'Drawing', 'Painting', 'Art', 'Singing', 'Theory', 'Production', 'Instrument']
             };
 
             const keywords = categoryKeywords[selectedCategory] || [];

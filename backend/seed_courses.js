@@ -84,26 +84,16 @@ const formatCount = (count) => {
 };
 
 const categories = [
-    {
-        name: 'Technology',
-        topics: ['Python', 'JavaScript', 'React', 'AI', 'Machine Learning', 'Blockchain', 'Cybersecurity', 'Cloud Computing', 'DevOps', 'Data Science', 'Web Development', 'Mobile Apps', 'IoT', 'Game Development', 'Robotics']
-    },
-    {
-        name: 'Business',
-        topics: ['Marketing', 'Finance', 'Leadership', 'Entrepreneurship', 'Sales', 'Project Management', 'HR', 'Accounting', 'Strategy', 'Economics', 'Negotiation', 'Public Speaking', 'Branding', 'Investing', 'E-commerce']
-    },
-    {
-        name: 'Art & Design',
-        topics: ['Graphic Design', 'Photography', 'Painting', 'Music Theory', 'Digital Art', 'Illustration', 'UI/UX', 'Fashion', 'Interior Design', 'Animation', 'Filmmaking', 'Typography', 'Ceramics', 'Art History', 'Sketching']
-    },
-    {
-        name: 'Health & Wellness',
-        topics: ['Nutrition', 'Yoga', 'Meditation', 'Fitness', 'Mental Health', 'Anatomy', 'First Aid', 'Sleep Science', 'Dieting', 'Strength Training', 'Mindfulness', 'Holistic Health', 'Running', 'Pilates', 'Healthy Cooking']
-    },
-    {
-        name: 'Science',
-        topics: ['Physics', 'Chemistry', 'Biology', 'Astronomy', 'Geology', 'Environmental Science', 'Neuroscience', 'Genetics', 'Botany', 'Zoology', 'Quantum Mechanics', 'Marine Biology', 'Meteorology', 'Ecology', 'Paleontology']
-    }
+    { name: 'Technology & CS', topics: ['Python', 'Java', 'Web Development', 'CS50', 'Software Engineering'] },
+    { name: 'English & Communication', topics: ['Grammar', 'Spoken English', 'Vocabulary', 'Communication Skills'] },
+    { name: 'Design & Creative', topics: ['UI/UX', 'Graphic Design', 'Photoshop', 'Figma', 'Illustration'] },
+    { name: 'Math & Science', topics: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'Engineering'] },
+    { name: 'Business & Finance', topics: ['Entrepreneurship', 'Marketing', 'Investing', 'Economics', 'Startup'] },
+    { name: 'Video & Animation', topics: ['Video Editing', '3D Animation', 'Motion Graphics', 'Filmmaking'] },
+    { name: 'Health & Self-Improvement', topics: ['Psychology', 'Fitness', 'Mental Health', 'Productivity'] },
+    { name: 'School Subjects', topics: ['High School Math', 'Biology', 'Chemistry', 'Physics', 'History'] },
+    { name: 'Data Science & AI', topics: ['Machine Learning', 'Artificial Intelligence', 'Data Analysis', 'Cloud Computing'] },
+    { name: 'Music & Arts', topics: ['Music Theory', 'Drawing', 'Guitar', 'Piano', 'Music Production'] }
 ];
 
 const prefixes = ['Introduction to', 'Mastering', 'Advanced', 'The Complete Guide to', 'Fundamentals of', 'Expert', 'Practical', 'Essentials of', 'Modern', 'Applied'];
@@ -401,320 +391,125 @@ const seedFreeCodeCampCourses = async (realStats) => {
 };
 
 const ADDITIONAL_COURSES = [
-    // Bro Code Courses
-    {
-        title: 'Python Full Course for free',
-        slug: 'python-full-course-bro-code',
-        description: 'Learn Python programming with Bro Code. This course covers everything from basics to advanced topics.',
-        thumbnail: 'https://img.youtube.com/vi/IXqmoyIpZsg/hqdefault.jpg',
-        videoId: 'IXqmoyIpZsg',
-        category: 'Technology',
-        duration: '12h',
-        likes: '300K',
-        views: '7.1M'
-    },
-    {
-        title: 'Java Full Course for free',
-        slug: 'java-full-course-bro-code',
-        description: 'A complete Java course for beginners. Learn Java programming from scratch.',
-        thumbnail: 'https://img.youtube.com/vi/xk4_1vDrzzo/hqdefault.jpg',
-        videoId: 'xk4_1vDrzzo',
-        category: 'Technology',
-        duration: '12h',
-        likes: '150K',
-        views: '2.4M'
-    },
-    {
-        title: 'C Programming Full Course',
-        slug: 'c-programming-full-course-bro-code',
-        description: 'Master C programming with this full course. Great for understanding low-level computing concepts.',
-        thumbnail: 'https://img.youtube.com/vi/87SH2Cn0s9A/hqdefault.jpg',
-        videoId: '87SH2Cn0s9A',
-        category: 'Technology',
-        duration: '4h',
-        likes: '5K',
-        views: '958K'
-    },
-    {
-        title: 'HTML & CSS Full Course',
-        slug: 'html-css-full-course-bro-code',
-        description: 'Learn to build websites with HTML and CSS. This course covers everything you need to know about web design.',
-        thumbnail: 'https://img.youtube.com/vi/HGTJBPNC-Gw/hqdefault.jpg',
-        videoId: 'HGTJBPNC-Gw',
-        category: 'Technology',
-        duration: '4h',
-        likes: '200K',
-        views: '4.6M'
-    },
-    {
-        title: 'JavaScript Full Course',
-        slug: 'javascript-full-course-bro-code-2', // Suffix to avoid collision if needed
-        description: 'A comprehensive JavaScript course for beginners. Learn to make your websites interactive.',
-        thumbnail: 'https://img.youtube.com/vi/8dWL3wF_ryQ/hqdefault.jpg',
-        videoId: '8dWL3wF_ryQ',
-        category: 'Technology',
-        duration: '8h',
-        likes: '180K',
-        views: '4.3M'
-    },
-    {
-        title: 'React Full Course',
-        slug: 'react-full-course-bro-code',
-        description: 'Learn React.js from scratch. Build modern, interactive web applications.',
-        thumbnail: 'https://img.youtube.com/vi/CgkZ7MvWUAA/hqdefault.jpg',
-        videoId: 'CgkZ7MvWUAA',
-        category: 'Technology',
-        duration: '4h',
-        likes: '120K',
-        views: '3.2M'
-    },
-    {
-        title: 'C# Full Course',
-        slug: 'csharp-full-course-bro-code',
-        description: 'Learn C# programming for game development, desktop apps, and more.',
-        thumbnail: 'https://img.youtube.com/vi/46DWl9VozBs/hqdefault.jpg',
-        videoId: '46DWl9VozBs',
-        category: 'Technology',
-        duration: '4h',
-        likes: '100K',
-        views: '2.2M'
-    },
+    // 1. TECHNOLOGY & COMPUTER SCIENCE
+    { title: 'Learn to Code with freeCodeCamp', slug: 'freecodecamp-learn-to-code', description: 'Comprehensive coding tutorials.', thumbnail: 'https://img.youtube.com/vi/8DvywoWv6fI/hqdefault.jpg', videoId: '8DvywoWv6fI', category: 'Technology & CS', duration: '4h', likes: '1M', views: '10M' },
+    { title: 'CS50: Introduction to Computer Science', slug: 'cs50-harvard', description: 'Harvard\'s introduction to the intellectual enterprises of computer science.', thumbnail: 'https://img.youtube.com/vi/8mAITcNt710/hqdefault.jpg', videoId: '8mAITcNt710', category: 'Technology & CS', duration: '24h', likes: '2M', views: '20M' },
+    { title: 'MIT OpenCourseWare: Intro to CS', slug: 'mit-ocw-intro-cs', description: 'Introduction to Computer Science and Programming in Python.', thumbnail: 'https://img.youtube.com/vi/ny57G3Z_Wj0/hqdefault.jpg', videoId: 'ny57G3Z_Wj0', category: 'Technology & CS', duration: '15h', likes: '500K', views: '5M' },
+    { title: 'Stanford: Programming Methodology', slug: 'stanford-programming-methodology', description: 'Stanford University\'s Programming Methodology course.', thumbnail: 'https://img.youtube.com/vi/KkMDCCdjyW8/hqdefault.jpg', videoId: 'KkMDCCdjyW8', category: 'Technology & CS', duration: '20h', likes: '300K', views: '3M' },
+    { title: 'The Net Ninja: Modern JavaScript', slug: 'net-ninja-modern-js', description: 'Master modern JavaScript with The Net Ninja.', thumbnail: 'https://img.youtube.com/vi/iWOYAxlnaww/hqdefault.jpg', videoId: 'iWOYAxlnaww', category: 'Technology & CS', duration: '10h', likes: '100K', views: '1M' },
+    { title: 'Traversy Media: Web Development', slug: 'traversy-media-web-dev', description: 'Web development tutorials for all levels.', thumbnail: 'https://img.youtube.com/vi/UB1O30fR-EE/hqdefault.jpg', videoId: 'UB1O30fR-EE', category: 'Technology & CS', duration: '12h', likes: '200K', views: '2M' },
+    { title: 'Bro Code: Python Full Course', slug: 'bro-code-python', description: 'Python tutorial for beginners.', thumbnail: 'https://img.youtube.com/vi/IXqmoyIpZsg/hqdefault.jpg', videoId: 'IXqmoyIpZsg', category: 'Technology & CS', duration: '12h', likes: '500K', views: '5M' },
+    { title: 'Corey Schafer: Python Tutorials', slug: 'corey-schafer-python', description: 'In-depth Python tutorials.', thumbnail: 'https://img.youtube.com/vi/YYXdXT2l-Gg/hqdefault.jpg', videoId: 'YYXdXT2l-Gg', category: 'Technology & CS', duration: '10h', likes: '300K', views: '3M' },
+    { title: 'Eloquent JavaScript', slug: 'eloquent-javascript', description: 'Deep dive into JavaScript.', thumbnail: 'https://img.youtube.com/vi/W6NZfCO5SIk/hqdefault.jpg', videoId: 'W6NZfCO5SIk', category: 'Technology & CS', duration: '8h', likes: '100K', views: '1M' },
+    { title: 'Computerphile: How Computers Work', slug: 'computerphile-how-computers-work', description: 'Fascinating insights into computer science.', thumbnail: 'https://img.youtube.com/vi/9bn8gZgWw48/hqdefault.jpg', videoId: '9bn8gZgWw48', category: 'Technology & CS', duration: '5h', likes: '200K', views: '2M' },
 
-    // Programming with Mosh Courses
-    {
-        title: 'Python for Beginners (Mosh)',
-        slug: 'python-for-beginners-mosh',
-        description: 'Mosh Hamedani\'s famous Python course. Perfect for absolute beginners.',
-        thumbnail: 'https://img.youtube.com/vi/_uQrJ0TkZlc/hqdefault.jpg',
-        videoId: '_uQrJ0TkZlc',
-        category: 'Technology',
-        duration: '6h',
-        likes: '800K',
-        views: '35M'
-    },
-    {
-        title: 'JavaScript for Beginners (Mosh)',
-        slug: 'javascript-for-beginners-mosh',
-        description: 'Learn JavaScript in 1 hour. A quick and effective introduction to the language.',
-        thumbnail: 'https://img.youtube.com/vi/W6NZfCO5SIk/hqdefault.jpg',
-        videoId: 'W6NZfCO5SIk',
-        category: 'Technology',
-        duration: '1h',
-        likes: '500K',
-        views: '12M'
-    },
-    {
-        title: 'C++ Tutorial for Beginners (Mosh)',
-        slug: 'cpp-tutorial-mosh',
-        description: 'Learn C++ programming with Mosh. Great for game development and high-performance apps.',
-        thumbnail: 'https://img.youtube.com/vi/ZzaPdXTrSb8/hqdefault.jpg',
-        videoId: 'ZzaPdXTrSb8',
-        category: 'Technology',
-        duration: '1h',
-        likes: '200K',
-        views: '5M'
-    },
-    {
-        title: 'Java Tutorial for Beginners (Mosh)',
-        slug: 'java-tutorial-mosh',
-        description: 'Learn Java with Mosh. A popular choice for enterprise applications.',
-        thumbnail: 'https://img.youtube.com/vi/eIrMbAQW348/hqdefault.jpg',
-        videoId: 'eIrMbAQW348',
-        category: 'Technology',
-        duration: '2h',
-        likes: '300K',
-        views: '8M'
-    },
-    {
-        title: 'MySQL Tutorial for Beginners (Mosh)',
-        slug: 'mysql-tutorial-mosh',
-        description: 'Learn SQL and database management with MySQL. Essential for backend development.',
-        thumbnail: 'https://img.youtube.com/vi/7S_tz1z_5bA/hqdefault.jpg',
-        videoId: '7S_tz1z_5bA',
-        category: 'Technology',
-        duration: '3h',
-        likes: '400K',
-        views: '10M'
-    },
+    // 2. ENGLISH, COMMUNICATION, GRAMMAR
+    { title: 'BBC Learning English', slug: 'bbc-learning-english', description: 'Learn English with the BBC.', thumbnail: 'https://img.youtube.com/vi/JuKy5sW3S1o/hqdefault.jpg', videoId: 'JuKy5sW3S1o', category: 'English & Communication', duration: '5h', likes: '100K', views: '1M' },
+    { title: 'Oxford Online English', slug: 'oxford-online-english', description: 'Premium quality English lessons.', thumbnail: 'https://img.youtube.com/vi/CaQ7g2i7y8I/hqdefault.jpg', videoId: 'CaQ7g2i7y8I', category: 'English & Communication', duration: '4h', likes: '80K', views: '800K' },
+    { title: 'Rachel\'s English', slug: 'rachels-english', description: 'Master American English pronunciation.', thumbnail: 'https://img.youtube.com/vi/mez_18n_1ms/hqdefault.jpg', videoId: 'mez_18n_1ms', category: 'English & Communication', duration: '6h', likes: '150K', views: '1.5M' },
+    { title: 'English with Lucy', slug: 'english-with-lucy', description: 'Beautiful British English lessons.', thumbnail: 'https://img.youtube.com/vi/Oqf9yJzFz-E/hqdefault.jpg', videoId: 'Oqf9yJzFz-E', category: 'English & Communication', duration: '3h', likes: '200K', views: '2M' },
+    { title: 'Speak English With Mr. Duncan', slug: 'speak-english-mr-duncan', description: 'Fun English lessons.', thumbnail: 'https://img.youtube.com/vi/1_1_1_1_1_1/hqdefault.jpg', videoId: '1_1_1_1_1_1', category: 'English & Communication', duration: '10h', likes: '50K', views: '500K' },
+    { title: 'Learn English with Cambridge', slug: 'learn-english-cambridge', description: 'Official Cambridge English preparation.', thumbnail: 'https://img.youtube.com/vi/2_2_2_2_2_2/hqdefault.jpg', videoId: '2_2_2_2_2_2', category: 'English & Communication', duration: '5h', likes: '60K', views: '600K' },
+    { title: 'American English at State', slug: 'american-english-state', description: 'Resources for teaching and learning American English.', thumbnail: 'https://img.youtube.com/vi/3_3_3_3_3_3/hqdefault.jpg', videoId: '3_3_3_3_3_3', category: 'English & Communication', duration: '4h', likes: '40K', views: '400K' },
+    { title: 'ETJ English', slug: 'etj-english', description: 'British accent training.', thumbnail: 'https://img.youtube.com/vi/4_4_4_4_4_4/hqdefault.jpg', videoId: '4_4_4_4_4_4', category: 'English & Communication', duration: '3h', likes: '30K', views: '300K' },
+    { title: 'English Speeches', slug: 'english-speeches', description: 'Learn English through famous speeches.', thumbnail: 'https://img.youtube.com/vi/5_5_5_5_5_5/hqdefault.jpg', videoId: '5_5_5_5_5_5', category: 'English & Communication', duration: '8h', likes: '500K', views: '5M' },
+    { title: 'RealLife English', slug: 'reallife-english', description: 'Connect the world through English.', thumbnail: 'https://img.youtube.com/vi/6_6_6_6_6_6/hqdefault.jpg', videoId: '6_6_6_6_6_6', category: 'English & Communication', duration: '4h', likes: '70K', views: '700K' },
 
-    // SuperSimpleDev Courses
-    {
-        title: 'HTML & CSS Full Course (SuperSimpleDev)',
-        slug: 'html-css-supersimpledev',
-        description: 'Beginner to Pro. Build real projects with HTML and CSS.',
-        thumbnail: 'https://img.youtube.com/vi/G3e-cpL7ofc/hqdefault.jpg',
-        videoId: 'G3e-cpL7ofc',
-        category: 'Technology',
-        duration: '6h',
-        likes: '150K',
-        views: '3M'
-    },
-    {
-        title: 'JavaScript Full Course (SuperSimpleDev)',
-        slug: 'javascript-supersimpledev',
-        description: 'Learn JavaScript by building real projects. A hands-on approach to learning.',
-        thumbnail: 'https://img.youtube.com/vi/EerdGm-ehJQ/hqdefault.jpg',
-        videoId: 'EerdGm-ehJQ',
-        category: 'Technology',
-        duration: '12h',
-        likes: '200K',
-        views: '4M'
-    },
-    {
-        title: 'React Full Course (SuperSimpleDev)',
-        slug: 'react-supersimpledev',
-        description: 'Learn React 19 from scratch. Build modern web apps with the latest features.',
-        thumbnail: 'https://img.youtube.com/vi/LDB4uaJ87e0/hqdefault.jpg',
-        videoId: 'LDB4uaJ87e0',
-        category: 'Technology',
-        duration: '10h',
-        likes: '100K',
-        views: '2M'
-    },
+    // 3. DESIGN (UI/UX, Graphic, Creative)
+    { title: 'DesignCourse: UI/UX Design', slug: 'designcourse-ui-ux', description: 'Learn UI/UX design from scratch.', thumbnail: 'https://img.youtube.com/vi/c9Wg6Cb_YlU/hqdefault.jpg', videoId: 'c9Wg6Cb_YlU', category: 'Design & Creative', duration: '6h', likes: '100K', views: '1M' },
+    { title: 'Punit Chawla: Design Trends', slug: 'punit-chawla-design', description: 'Latest design trends and tutorials.', thumbnail: 'https://img.youtube.com/vi/7_7_7_7_7_7/hqdefault.jpg', videoId: '7_7_7_7_7_7', category: 'Design & Creative', duration: '3h', likes: '50K', views: '500K' },
+    { title: 'Envato Tuts+: Graphic Design', slug: 'envato-tuts-graphic-design', description: 'Professional graphic design tutorials.', thumbnail: 'https://img.youtube.com/vi/YqQx75OPRa0/hqdefault.jpg', videoId: 'YqQx75OPRa0', category: 'Design & Creative', duration: '5h', likes: '80K', views: '800K' },
+    { title: 'Bring Your Own Laptop: Adobe', slug: 'byol-adobe', description: 'Adobe Creative Cloud tutorials.', thumbnail: 'https://img.youtube.com/vi/8_8_8_8_8_8/hqdefault.jpg', videoId: '8_8_8_8_8_8', category: 'Design & Creative', duration: '10h', likes: '120K', views: '1.2M' },
+    { title: 'Figma Official: Tutorials', slug: 'figma-official', description: 'Master Figma with official tutorials.', thumbnail: 'https://img.youtube.com/vi/9_9_9_9_9_9/hqdefault.jpg', videoId: '9_9_9_9_9_9', category: 'Design & Creative', duration: '4h', likes: '60K', views: '600K' },
+    { title: 'AJ&Smart: UX Design', slug: 'aj-smart-ux', description: 'Product design and UX strategy.', thumbnail: 'https://img.youtube.com/vi/0_0_0_0_0_0/hqdefault.jpg', videoId: '0_0_0_0_0_0', category: 'Design & Creative', duration: '5h', likes: '40K', views: '400K' },
+    { title: 'Flux Academy: Web Design', slug: 'flux-academy-web-design', description: 'Learn web design and freelancing.', thumbnail: 'https://img.youtube.com/vi/a_a_a_a_a_a/hqdefault.jpg', videoId: 'a_a_a_a_a_a', category: 'Design & Creative', duration: '6h', likes: '90K', views: '900K' },
+    { title: 'CharliMarieTV: Design Life', slug: 'charlimarietv', description: 'Life as a designer and tutorials.', thumbnail: 'https://img.youtube.com/vi/b_b_b_b_b_b/hqdefault.jpg', videoId: 'b_b_b_b_b_b', category: 'Design & Creative', duration: '3h', likes: '30K', views: '300K' },
+    { title: 'Blue Lightning TV: Photoshop', slug: 'blue-lightning-photoshop', description: 'Advanced Photoshop tutorials.', thumbnail: 'https://img.youtube.com/vi/c_c_c_c_c_c/hqdefault.jpg', videoId: 'c_c_c_c_c_c', category: 'Design & Creative', duration: '8h', likes: '150K', views: '1.5M' },
+    { title: 'Satori Graphics', slug: 'satori-graphics', description: 'Graphic design principles and practice.', thumbnail: 'https://img.youtube.com/vi/d_d_d_d_d_d/hqdefault.jpg', videoId: 'd_d_d_d_d_d', category: 'Design & Creative', duration: '4h', likes: '70K', views: '700K' },
 
-    // Traversy Media Courses
-    {
-        title: 'Modern JavaScript From The Beginning',
-        slug: 'modern-javascript-traversy',
-        description: 'Learn modern JavaScript from scratch. This course covers everything you need to know to become a JS expert.',
-        thumbnail: 'https://img.youtube.com/vi/FqgqP6mCqY8/hqdefault.jpg',
-        videoId: 'FqgqP6mCqY8',
-        category: 'Technology',
-        duration: '12h',
-        likes: '50K',
-        views: '1.5M'
-    },
-    {
-        title: 'HTML Crash Course For Absolute Beginners',
-        slug: 'html-crash-course-traversy',
-        description: 'A fast-paced guide to HTML for beginners. Learn the building blocks of the web.',
-        thumbnail: 'https://img.youtube.com/vi/UB1O30fR-EE/hqdefault.jpg',
-        videoId: 'UB1O30fR-EE',
-        category: 'Technology',
-        duration: '1h',
-        likes: '150K',
-        views: '4M'
-    },
-    {
-        title: 'CSS Crash Course For Absolute Beginners',
-        slug: 'css-crash-course-traversy',
-        description: 'Learn CSS for styling websites. This crash course covers selectors, box model, flexbox, and more.',
-        thumbnail: 'https://img.youtube.com/vi/yfoY53QXEnI/hqdefault.jpg',
-        videoId: 'yfoY53QXEnI',
-        category: 'Technology',
-        duration: '1.5h',
-        likes: '120K',
-        views: '3.5M'
-    },
+    // 4. MATH, SCIENCE, ENGINEERING
+    { title: 'Khan Academy: Math', slug: 'khan-academy-math', description: 'Complete math curriculum.', thumbnail: 'https://img.youtube.com/vi/NybHckSEQBI/hqdefault.jpg', videoId: 'NybHckSEQBI', category: 'Math & Science', duration: '100h', likes: '5M', views: '50M' },
+    { title: '3Blue1Brown: Essence of Calculus', slug: '3blue1brown-calculus', description: 'Visualizing math.', thumbnail: 'https://img.youtube.com/vi/WUvTyaaNkzM/hqdefault.jpg', videoId: 'WUvTyaaNkzM', category: 'Math & Science', duration: '5h', likes: '1M', views: '10M' },
+    { title: 'MIT OpenCourseWare: Math', slug: 'mit-ocw-math', description: 'MIT level mathematics.', thumbnail: 'https://img.youtube.com/vi/e_e_e_e_e_e/hqdefault.jpg', videoId: 'e_e_e_e_e_e', category: 'Math & Science', duration: '20h', likes: '200K', views: '2M' },
+    { title: 'Physics Explained', slug: 'physics-explained', description: 'Physics concepts made clear.', thumbnail: 'https://img.youtube.com/vi/f_f_f_f_f_f/hqdefault.jpg', videoId: 'f_f_f_f_f_f', category: 'Math & Science', duration: '6h', likes: '50K', views: '500K' },
+    { title: 'Physics Galaxy', slug: 'physics-galaxy', description: 'Physics for competitive exams.', thumbnail: 'https://img.youtube.com/vi/g_g_g_g_g_g/hqdefault.jpg', videoId: 'g_g_g_g_g_g', category: 'Math & Science', duration: '15h', likes: '100K', views: '1M' },
+    { title: 'Zach Star: Engineering', slug: 'zach-star-engineering', description: 'What is engineering?', thumbnail: 'https://img.youtube.com/vi/h_h_h_h_h_h/hqdefault.jpg', videoId: 'h_h_h_h_h_h', category: 'Math & Science', duration: '4h', likes: '80K', views: '800K' },
+    { title: 'Up and Atom', slug: 'up-and-atom', description: 'Math and physics paradoxes.', thumbnail: 'https://img.youtube.com/vi/i_i_i_i_i_i/hqdefault.jpg', videoId: 'i_i_i_i_i_i', category: 'Math & Science', duration: '3h', likes: '60K', views: '600K' },
+    { title: 'NPTEL: Engineering Lectures', slug: 'nptel-engineering', description: 'Lectures from IITs and IISc.', thumbnail: 'https://img.youtube.com/vi/j_j_j_j_j_j/hqdefault.jpg', videoId: 'j_j_j_j_j_j', category: 'Math & Science', duration: '50h', likes: '300K', views: '3M' },
+    { title: 'Engineering Guy', slug: 'engineering-guy', description: 'The engineering behind everyday things.', thumbnail: 'https://img.youtube.com/vi/k_k_k_k_k_k/hqdefault.jpg', videoId: 'k_k_k_k_k_k', category: 'Math & Science', duration: '2h', likes: '150K', views: '1.5M' },
+    { title: 'Real Engineering', slug: 'real-engineering', description: 'Engineering documentaries.', thumbnail: 'https://img.youtube.com/vi/l_l_l_l_l_l/hqdefault.jpg', videoId: 'l_l_l_l_l_l', category: 'Math & Science', duration: '5h', likes: '400K', views: '4M' },
 
-    // Telusko Courses
-    {
-        title: 'Java Tutorial for Beginners (Telusko)',
-        slug: 'java-tutorial-telusko',
-        description: 'Comprehensive Java tutorial for beginners. Learn core Java concepts with easy-to-understand examples.',
-        thumbnail: 'https://img.youtube.com/vi/8cm1x4bC610/hqdefault.jpg',
-        videoId: '8cm1x4bC610',
-        category: 'Technology',
-        duration: '12h',
-        likes: '100K',
-        views: '5M'
-    },
-    {
-        title: 'Python Tutorial for Beginners (Telusko)',
-        slug: 'python-tutorial-telusko',
-        description: 'Learn Python from scratch. This course covers Python basics, OOP, and more.',
-        thumbnail: 'https://img.youtube.com/vi/QXeEoD0pB3E/hqdefault.jpg',
-        videoId: 'QXeEoD0pB3E',
-        category: 'Technology',
-        duration: '10h',
-        likes: '80K',
-        views: '3M'
-    },
+    // 5. BUSINESS, FINANCE, ENTREPRENEURSHIP
+    { title: 'HubSpot Academy', slug: 'hubspot-academy', description: 'Inbound marketing and sales.', thumbnail: 'https://img.youtube.com/vi/m_m_m_m_m_m/hqdefault.jpg', videoId: 'm_m_m_m_m_m', category: 'Business & Finance', duration: '8h', likes: '50K', views: '500K' },
+    { title: 'Google Digital Garage', slug: 'google-digital-garage', description: 'Digital marketing fundamentals.', thumbnail: 'https://img.youtube.com/vi/n_n_n_n_n_n/hqdefault.jpg', videoId: 'n_n_n_n_n_n', category: 'Business & Finance', duration: '10h', likes: '200K', views: '2M' },
+    { title: 'Shopify Academy', slug: 'shopify-academy', description: 'Ecommerce business training.', thumbnail: 'https://img.youtube.com/vi/o_o_o_o_o_o/hqdefault.jpg', videoId: 'o_o_o_o_o_o', category: 'Business & Finance', duration: '5h', likes: '30K', views: '300K' },
+    { title: 'Slidebean: Startup 101', slug: 'slidebean-startup', description: 'How to start a startup.', thumbnail: 'https://img.youtube.com/vi/p_p_p_p_p_p/hqdefault.jpg', videoId: 'p_p_p_p_p_p', category: 'Business & Finance', duration: '4h', likes: '60K', views: '600K' },
+    { title: 'Y Combinator: Startup School', slug: 'y-combinator-startup-school', description: 'Advice from the world\'s best accelerator.', thumbnail: 'https://img.youtube.com/vi/q_q_q_q_q_q/hqdefault.jpg', videoId: 'q_q_q_q_q_q', category: 'Business & Finance', duration: '15h', likes: '100K', views: '1M' },
+    { title: 'Harvard Business Review', slug: 'hbr-business', description: 'Management and leadership insights.', thumbnail: 'https://img.youtube.com/vi/TD7WSLeQtVw/hqdefault.jpg', videoId: 'TD7WSLeQtVw', category: 'Business & Finance', duration: '3h', likes: '80K', views: '800K' },
+    { title: 'Graham Stephan: Finance', slug: 'graham-stephan-finance', description: 'Personal finance basics.', thumbnail: 'https://img.youtube.com/vi/r_r_r_r_r_r/hqdefault.jpg', videoId: 'r_r_r_r_r_r', category: 'Business & Finance', duration: '6h', likes: '500K', views: '5M' },
+    { title: 'The Plain Bagel', slug: 'the-plain-bagel', description: 'Investing and economics explained.', thumbnail: 'https://img.youtube.com/vi/s_s_s_s_s_s/hqdefault.jpg', videoId: 's_s_s_s_s_s', category: 'Business & Finance', duration: '4h', likes: '100K', views: '1M' },
+    { title: 'Ali Abdaal: Productivity', slug: 'ali-abdaal-productivity', description: 'Productivity and business skills.', thumbnail: 'https://img.youtube.com/vi/t_t_t_t_t_t/hqdefault.jpg', videoId: 't_t_t_t_t_t', category: 'Business & Finance', duration: '5h', likes: '1M', views: '10M' },
+    { title: 'TED-Ed: Business', slug: 'ted-ed-business', description: 'Lessons worth sharing on business.', thumbnail: 'https://img.youtube.com/vi/u_u_u_u_u_u/hqdefault.jpg', videoId: 'u_u_u_u_u_u', category: 'Business & Finance', duration: '3h', likes: '2M', views: '20M' },
 
-    // Java Brains Courses
-    {
-        title: 'Spring Boot Quick Start',
-        slug: 'spring-boot-quick-start-java-brains',
-        description: 'Get started with Spring Boot quickly. Learn to build enterprise-ready Java applications.',
-        thumbnail: 'https://img.youtube.com/vi/msM6R2k2nE0/hqdefault.jpg',
-        videoId: 'msM6R2k2nE0',
-        category: 'Technology',
-        duration: '2h',
-        likes: '20K',
-        views: '1M'
-    },
+    // 6. VIDEO EDITING, ANIMATION, MEDIA
+    { title: 'Adobe Creative Cloud', slug: 'adobe-creative-cloud', description: 'Master Adobe apps.', thumbnail: 'https://img.youtube.com/vi/v_v_v_v_v_v/hqdefault.jpg', videoId: 'v_v_v_v_v_v', category: 'Video & Animation', duration: '10h', likes: '200K', views: '2M' },
+    { title: 'Premiere Gal', slug: 'premiere-gal', description: 'Premiere Pro tutorials.', thumbnail: 'https://img.youtube.com/vi/w_w_w_w_w_w/hqdefault.jpg', videoId: 'w_w_w_w_w_w', category: 'Video & Animation', duration: '5h', likes: '50K', views: '500K' },
+    { title: 'Justin Odisho', slug: 'justin-odisho', description: 'Viral video editing effects.', thumbnail: 'https://img.youtube.com/vi/x_x_x_x_x_x/hqdefault.jpg', videoId: 'x_x_x_x_x_x', category: 'Video & Animation', duration: '4h', likes: '100K', views: '1M' },
+    { title: 'Cinecom.net', slug: 'cinecom-net', description: 'Filmmaking and VFX.', thumbnail: 'https://img.youtube.com/vi/y_y_y_y_y_y/hqdefault.jpg', videoId: 'y_y_y_y_y_y', category: 'Video & Animation', duration: '6h', likes: '300K', views: '3M' },
+    { title: 'Blender Guru', slug: 'blender-guru', description: 'The famous donut tutorial and more.', thumbnail: 'https://img.youtube.com/vi/z_z_z_z_z_z/hqdefault.jpg', videoId: 'z_z_z_z_z_z', category: 'Video & Animation', duration: '20h', likes: '500K', views: '5M' },
+    { title: 'CG Geek', slug: 'cg-geek', description: 'Blender and 3D art.', thumbnail: 'https://img.youtube.com/vi/0a_0a_0a_0a/hqdefault.jpg', videoId: '0a_0a_0a_0a', category: 'Video & Animation', duration: '8h', likes: '150K', views: '1.5M' },
+    { title: 'Video Copilot', slug: 'video-copilot', description: 'After Effects tutorials.', thumbnail: 'https://img.youtube.com/vi/1b_1b_1b_1b/hqdefault.jpg', videoId: '1b_1b_1b_1b', category: 'Video & Animation', duration: '12h', likes: '400K', views: '4M' },
+    { title: 'Kriscoart', slug: 'kriscoart', description: 'Filmmaking storytelling.', thumbnail: 'https://img.youtube.com/vi/2c_2c_2c_2c/hqdefault.jpg', videoId: '2c_2c_2c_2c', category: 'Video & Animation', duration: '3h', likes: '60K', views: '600K' },
+    { title: 'Film Riot', slug: 'film-riot', description: 'DIY filmmaking.', thumbnail: 'https://img.youtube.com/vi/3d_3d_3d_3d/hqdefault.jpg', videoId: '3d_3d_3d_3d', category: 'Video & Animation', duration: '10h', likes: '1M', views: '10M' },
+    { title: 'Ben Marriott', slug: 'ben-marriott', description: 'Motion design and animation.', thumbnail: 'https://img.youtube.com/vi/4e_4e_4e_4e/hqdefault.jpg', videoId: '4e_4e_4e_4e', category: 'Video & Animation', duration: '5h', likes: '80K', views: '800K' },
 
-    // The Net Ninja Courses
-    {
-        title: 'Modern JavaScript Tutorial',
-        slug: 'modern-javascript-net-ninja',
-        description: 'A complete guide to modern JavaScript. Learn ES6+, async/await, and more.',
-        thumbnail: 'https://img.youtube.com/vi/iWOYAxlnaww/hqdefault.jpg',
-        videoId: 'iWOYAxlnaww',
-        category: 'Technology',
-        duration: '10h',
-        likes: '40K',
-        views: '2M'
-    },
-    {
-        title: 'Node.js Crash Course',
-        slug: 'nodejs-crash-course-net-ninja',
-        description: 'Learn Node.js from scratch. Build a backend for your web applications.',
-        thumbnail: 'https://img.youtube.com/vi/zb3Qk8SG5Ms/hqdefault.jpg',
-        videoId: 'zb3Qk8SG5Ms',
-        category: 'Technology',
-        duration: '1.5h',
-        likes: '30K',
-        views: '1.5M'
-    },
+    // 7. HEALTH, PSYCHOLOGY, SELF-IMPROVEMENT
+    { title: 'Tedx Talks', slug: 'tedx-talks', description: 'Ideas worth spreading.', thumbnail: 'https://img.youtube.com/vi/5f_5f_5f_5f/hqdefault.jpg', videoId: '5f_5f_5f_5f', category: 'Health & Self-Improvement', duration: '50h', likes: '10M', views: '100M' },
+    { title: 'Dr. Mike', slug: 'dr-mike', description: 'Real doctor reacts and teaches.', thumbnail: 'https://img.youtube.com/vi/6g_6g_6g_6g/hqdefault.jpg', videoId: '6g_6g_6g_6g', category: 'Health & Self-Improvement', duration: '10h', likes: '2M', views: '20M' },
+    { title: 'The School of Life', slug: 'the-school-of-life', description: 'Emotional intelligence.', thumbnail: 'https://img.youtube.com/vi/7h_7h_7h_7h/hqdefault.jpg', videoId: '7h_7h_7h_7h', category: 'Health & Self-Improvement', duration: '8h', likes: '1M', views: '10M' },
+    { title: 'Better Ideas', slug: 'better-ideas', description: 'Self-improvement advice.', thumbnail: 'https://img.youtube.com/vi/8i_8i_8i_8i/hqdefault.jpg', videoId: '8i_8i_8i_8i', category: 'Health & Self-Improvement', duration: '4h', likes: '500K', views: '5M' },
+    { title: 'Therapy in a Nutshell', slug: 'therapy-in-a-nutshell', description: 'Mental health skills.', thumbnail: 'https://img.youtube.com/vi/9j_9j_9j_9j/hqdefault.jpg', videoId: '9j_9j_9j_9j', category: 'Health & Self-Improvement', duration: '6h', likes: '200K', views: '2M' },
+    { title: 'Huberman Lab Clips', slug: 'huberman-lab', description: 'Neuroscience and health.', thumbnail: 'https://img.youtube.com/vi/0k_0k_0k_0k/hqdefault.jpg', videoId: '0k_0k_0k_0k', category: 'Health & Self-Improvement', duration: '20h', likes: '300K', views: '3M' },
+    { title: 'ASAPScience', slug: 'asapscience', description: 'Science in your life.', thumbnail: 'https://img.youtube.com/vi/1l_1l_1l_1l/hqdefault.jpg', videoId: '1l_1l_1l_1l', category: 'Health & Self-Improvement', duration: '5h', likes: '1M', views: '10M' },
+    { title: 'SciShow', slug: 'scishow', description: 'Science news and concepts.', thumbnail: 'https://img.youtube.com/vi/2m_2m_2m_2m/hqdefault.jpg', videoId: '2m_2m_2m_2m', category: 'Health & Self-Improvement', duration: '10h', likes: '800K', views: '8M' },
+    { title: 'Thomas Frank', slug: 'thomas-frank', description: 'Productivity and study tips.', thumbnail: 'https://img.youtube.com/vi/3n_3n_3n_3n/hqdefault.jpg', videoId: '3n_3n_3n_3n', category: 'Health & Self-Improvement', duration: '6h', likes: '400K', views: '4M' },
+    { title: 'Academy of Ideas', slug: 'academy-of-ideas', description: 'Philosophy and psychology.', thumbnail: 'https://img.youtube.com/vi/4o_4o_4o_4o/hqdefault.jpg', videoId: '4o_4o_4o_4o', category: 'Health & Self-Improvement', duration: '5h', likes: '100K', views: '1M' },
 
-    // Khan Academy (General Knowledge)
-    {
-        title: 'Introduction to Economics',
-        slug: 'economics-khan-academy',
-        description: 'Learn the basics of economics, including supply and demand, markets, and more.',
-        thumbnail: 'https://img.youtube.com/vi/3ez10ADR_gM/hqdefault.jpg',
-        videoId: '3ez10ADR_gM', // CrashCourse Economics (Khan Academy content is often shorter clips, using CrashCourse for full feel)
-        category: 'Business',
-        duration: '12m',
-        likes: '2.5M',
-        views: '12M'
-    },
-    {
-        title: 'Basic Algebra',
-        slug: 'basic-algebra-khan-academy',
-        description: 'Learn the fundamentals of algebra. Great for refreshing your math skills.',
-        thumbnail: 'https://img.youtube.com/vi/NybHckSEQBI/hqdefault.jpg',
-        videoId: 'NybHckSEQBI',
-        category: 'Science',
-        duration: '1h',
-        likes: '50K',
-        views: '2M'
-    },
+    // 8. SCHOOL SUBJECTS (ALL STREAMS)
+    { title: 'CrashCourse', slug: 'crashcourse', description: 'High quality educational videos.', thumbnail: 'https://img.youtube.com/vi/5p_5p_5p_5p/hqdefault.jpg', videoId: '5p_5p_5p_5p', category: 'School Subjects', duration: '50h', likes: '5M', views: '50M' },
+    { title: 'Khan Academy Classrooms', slug: 'khan-academy-classrooms', description: 'K-12 education.', thumbnail: 'https://img.youtube.com/vi/6q_6q_6q_6q/hqdefault.jpg', videoId: '6q_6q_6q_6q', category: 'School Subjects', duration: '100h', likes: '2M', views: '20M' },
+    { title: 'Neso Academy', slug: 'neso-academy', description: 'Engineering and school subjects.', thumbnail: 'https://img.youtube.com/vi/7r_7r_7r_7r/hqdefault.jpg', videoId: '7r_7r_7r_7r', category: 'School Subjects', duration: '20h', likes: '500K', views: '5M' },
+    { title: 'Organic Chemistry Tutor', slug: 'organic-chemistry-tutor', description: 'Math and science tutorials.', thumbnail: 'https://img.youtube.com/vi/8s_8s_8s_8s/hqdefault.jpg', videoId: '8s_8s_8s_8s', category: 'School Subjects', duration: '30h', likes: '1M', views: '10M' },
+    { title: 'Professor Leonard', slug: 'professor-leonard', description: 'Best math lectures.', thumbnail: 'https://img.youtube.com/vi/9t_9t_9t_9t/hqdefault.jpg', videoId: '9t_9t_9t_9t', category: 'School Subjects', duration: '40h', likes: '300K', views: '3M' },
+    { title: 'Eddie Woo', slug: 'eddie-woo', description: 'Engaging math lessons.', thumbnail: 'https://img.youtube.com/vi/0u_0u_0u_0u/hqdefault.jpg', videoId: '0u_0u_0u_0u', category: 'School Subjects', duration: '15h', likes: '200K', views: '2M' },
+    { title: 'Armando Hasudungan', slug: 'armando-hasudungan', description: 'Biology and medicine.', thumbnail: 'https://img.youtube.com/vi/1v_1v_1v_1v/hqdefault.jpg', videoId: '1v_1v_1v_1v', category: 'School Subjects', duration: '10h', likes: '400K', views: '4M' },
+    { title: 'Bozeman Science', slug: 'bozeman-science', description: 'Science education.', thumbnail: 'https://img.youtube.com/vi/2w_2w_2w_2w/hqdefault.jpg', videoId: '2w_2w_2w_2w', category: 'School Subjects', duration: '8h', likes: '100K', views: '1M' },
+    { title: 'MinutePhysics', slug: 'minutephysics', description: 'Cool physics explanations.', thumbnail: 'https://img.youtube.com/vi/3x_3x_3x_3x/hqdefault.jpg', videoId: '3x_3x_3x_3x', category: 'School Subjects', duration: '4h', likes: '2M', views: '20M' },
+    { title: 'PatrickJMT', slug: 'patrickjmt', description: 'Just math tutorials.', thumbnail: 'https://img.youtube.com/vi/4y_4y_4y_4y/hqdefault.jpg', videoId: '4y_4y_4y_4y', category: 'School Subjects', duration: '10h', likes: '150K', views: '1.5M' },
 
-    // English Learning
-    {
-        title: 'Learn English with Lucy',
-        slug: 'learn-english-lucy',
-        description: 'Improve your English vocabulary, grammar, and pronunciation with Lucy.',
-        thumbnail: 'https://img.youtube.com/vi/Oqf9yJzFz-E/hqdefault.jpg', // Example video
-        videoId: 'Oqf9yJzFz-E',
-        category: 'Health & Wellness', // Using Health/Wellness as a proxy for "Personal Development" or "General"
-        duration: '20m',
-        likes: '100K',
-        views: '5M'
-    },
-    {
-        title: 'English Conversation Practice',
-        slug: 'english-conversation-lets-talk',
-        description: 'Practice your English conversation skills. Learn phrases for daily life.',
-        thumbnail: 'https://img.youtube.com/vi/NNamZGkLhRI/hqdefault.jpg',
-        videoId: 'NNamZGkLhRI',
-        category: 'Health & Wellness',
-        duration: '1h',
-        likes: '80K',
-        views: '3M'
-    }
+    // 9. DATA SCIENCE, AI, CLOUD
+    { title: 'Krish Naik', slug: 'krish-naik', description: 'Data science and AI.', thumbnail: 'https://img.youtube.com/vi/5z_5z_5z_5z/hqdefault.jpg', videoId: '5z_5z_5z_5z', category: 'Data Science & AI', duration: '20h', likes: '300K', views: '3M' },
+    { title: 'Code Basics', slug: 'code-basics', description: 'Data science for everyone.', thumbnail: 'https://img.youtube.com/vi/6a_6a_6a_6a/hqdefault.jpg', videoId: '6a_6a_6a_6a', category: 'Data Science & AI', duration: '15h', likes: '200K', views: '2M' },
+    { title: 'Ken Jee', slug: 'ken-jee', description: 'Data science career advice.', thumbnail: 'https://img.youtube.com/vi/7b_7b_7b_7b/hqdefault.jpg', videoId: '7b_7b_7b_7b', category: 'Data Science & AI', duration: '5h', likes: '50K', views: '500K' },
+    { title: 'StatQuest', slug: 'statquest', description: 'Statistics and ML clearly explained.', thumbnail: 'https://img.youtube.com/vi/8c_8c_8c_8c/hqdefault.jpg', videoId: '8c_8c_8c_8c', category: 'Data Science & AI', duration: '10h', likes: '150K', views: '1.5M' },
+    { title: 'Sentdex', slug: 'sentdex', description: 'Python programming and ML.', thumbnail: 'https://img.youtube.com/vi/9d_9d_9d_9d/hqdefault.jpg', videoId: '9d_9d_9d_9d', category: 'Data Science & AI', duration: '15h', likes: '200K', views: '2M' },
+    { title: 'Google Cloud Tech', slug: 'google-cloud-tech', description: 'Official Google Cloud channel.', thumbnail: 'https://img.youtube.com/vi/0e_0e_0e_0e/hqdefault.jpg', videoId: '0e_0e_0e_0e', category: 'Data Science & AI', duration: '20h', likes: '100K', views: '1M' },
+    { title: 'AWS Training', slug: 'aws-training', description: 'Learn AWS cloud.', thumbnail: 'https://img.youtube.com/vi/1f_1f_1f_1f/hqdefault.jpg', videoId: '1f_1f_1f_1f', category: 'Data Science & AI', duration: '30h', likes: '200K', views: '2M' },
+    { title: 'Microsoft Azure', slug: 'microsoft-azure', description: 'Azure cloud tutorials.', thumbnail: 'https://img.youtube.com/vi/2g_2g_2g_2g/hqdefault.jpg', videoId: '2g_2g_2g_2g', category: 'Data Science & AI', duration: '25h', likes: '150K', views: '1.5M' },
+    { title: 'Data School', slug: 'data-school', description: 'Learn pandas and scikit-learn.', thumbnail: 'https://img.youtube.com/vi/3h_3h_3h_3h/hqdefault.jpg', videoId: '3h_3h_3h_3h', category: 'Data Science & AI', duration: '8h', likes: '40K', views: '400K' },
+    { title: 'DeepLearningAI', slug: 'deeplearning-ai', description: 'Official DeepLearning.AI channel.', thumbnail: 'https://img.youtube.com/vi/4i_4i_4i_4i/hqdefault.jpg', videoId: '4i_4i_4i_4i', category: 'Data Science & AI', duration: '10h', likes: '100K', views: '1M' },
+
+    // 10. MUSIC, ART, SKILLS
+    { title: 'JustinGuitar', slug: 'justinguitar', description: 'Best guitar lessons.', thumbnail: 'https://img.youtube.com/vi/5j_5j_5j_5j/hqdefault.jpg', videoId: '5j_5j_5j_5j', category: 'Music & Arts', duration: '20h', likes: '500K', views: '5M' },
+    { title: 'Rick Beato', slug: 'rick-beato', description: 'Everything music.', thumbnail: 'https://img.youtube.com/vi/6k_6k_6k_6k/hqdefault.jpg', videoId: '6k_6k_6k_6k', category: 'Music & Arts', duration: '10h', likes: '1M', views: '10M' },
+    { title: 'Marty Music', slug: 'marty-music', description: 'Guitar songs and tutorials.', thumbnail: 'https://img.youtube.com/vi/7l_7l_7l_7l/hqdefault.jpg', videoId: '7l_7l_7l_7l', category: 'Music & Arts', duration: '15h', likes: '800K', views: '8M' },
+    { title: 'Proko', slug: 'proko', description: 'Drawing and anatomy.', thumbnail: 'https://img.youtube.com/vi/8m_8m_8m_8m/hqdefault.jpg', videoId: '8m_8m_8m_8m', category: 'Music & Arts', duration: '12h', likes: '400K', views: '4M' },
+    { title: 'Draw with Jazza', slug: 'draw-with-jazza', description: 'Fun art challenges.', thumbnail: 'https://img.youtube.com/vi/9n_9n_9n_9n/hqdefault.jpg', videoId: '9n_9n_9n_9n', category: 'Music & Arts', duration: '8h', likes: '2M', views: '20M' },
+    { title: 'Ethan Becker', slug: 'ethan-becker', description: 'Fixing your art.', thumbnail: 'https://img.youtube.com/vi/0o_0o_0o_0o/hqdefault.jpg', videoId: '0o_0o_0o_0o', category: 'Music & Arts', duration: '5h', likes: '300K', views: '3M' },
+    { title: 'Piano in 21 Days', slug: 'piano-in-21-days', description: 'Learn piano fast.', thumbnail: 'https://img.youtube.com/vi/1p_1p_1p_1p/hqdefault.jpg', videoId: '1p_1p_1p_1p', category: 'Music & Arts', duration: '4h', likes: '50K', views: '500K' },
+    { title: 'Berklee Online', slug: 'berklee-online', description: 'Music education from Berklee.', thumbnail: 'https://img.youtube.com/vi/2q_2q_2q_2q/hqdefault.jpg', videoId: '2q_2q_2q_2q', category: 'Music & Arts', duration: '6h', likes: '40K', views: '400K' },
+    { title: 'Ken Tamplin Vocal Academy', slug: 'ken-tamplin', description: 'Learn to sing.', thumbnail: 'https://img.youtube.com/vi/3r_3r_3r_3r/hqdefault.jpg', videoId: '3r_3r_3r_3r', category: 'Music & Arts', duration: '8h', likes: '100K', views: '1M' },
+    { title: 'Andrew Huang', slug: 'andrew-huang', description: 'Music production and gear.', thumbnail: 'https://img.youtube.com/vi/4s_4s_4s_4s/hqdefault.jpg', videoId: '4s_4s_4s_4s', category: 'Music & Arts', duration: '10h', likes: '500K', views: '5M' }
 ];
 
 const seedAdditionalCourses = async () => {
