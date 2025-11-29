@@ -60,26 +60,7 @@ const CourseViewer = () => {
         }
     };
 
-    const getYouTubeEmbedUrl = (url) => {
-        const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
-        if (!videoId) return null;
 
-        // Add parameters to disable related videos and improve experience
-        const params = new URLSearchParams({
-            rel: '0',              // Don't show related videos from other channels
-            modestbranding: '1',   // Minimal YouTube branding
-            autoplay: '0',         // Don't autoplay
-            controls: '1',         // Show controls
-            fs: '1',               // Allow fullscreen
-            iv_load_policy: '3',   // Hide video annotations
-            cc_load_policy: '0',   // Don't show captions by default
-            playsinline: '1',      // Play inline on mobile
-            loop: '1',             // Loop video to prevent suggestions
-            playlist: videoId      // Required for loop to work
-        });
-
-        return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
-    };
 
     const allLessonsCompleted = () => {
         if (!course) return false;
@@ -185,25 +166,83 @@ const CourseViewer = () => {
                         <>
                             <div className="video-wrapper">
                                 <div className="video-container">
-                                    <iframe
-                                        src={getYouTubeEmbedUrl(currentLesson.youtubeUrl)}
-                                        title={currentLesson.title}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    ></iframe>
-                                </div>
-                            </div>
+                                    {(() => {
+                                        // More robust regex to handle various YouTube URL formats including shorts, mobile, etc.
+                                        const videoIdMatch = currentLesson.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+                                        const videoId = videoIdMatch ? videoIdMatch[1] : null;
 
-                            <div className="video-fallback-link" style={{ marginTop: '10px', textAlign: 'center' }}>
-                                <a
-                                    href={currentLesson.youtubeUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: '#007bff', textDecoration: 'none', fontSize: '0.9rem' }}
-                                >
-                                    Having trouble playing? Watch on YouTube ↗
-                                </a>
+                                        // Use high quality thumbnail if available, fallback to standard
+                                        const thumbnailUrl = videoId
+                                            ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+                                            : 'https://via.placeholder.com/800x450?text=Video+Unavailable';
+
+                                        return (
+                                            <a
+                                                href={currentLesson.youtubeUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="video-thumbnail-player"
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: 0,
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    display: 'block',
+                                                    cursor: 'pointer',
+                                                    textDecoration: 'none',
+                                                    backgroundImage: `url(${thumbnailUrl})`,
+                                                    backgroundSize: 'cover',
+                                                    backgroundPosition: 'center',
+                                                    backgroundColor: '#000' // Fallback background
+                                                }}
+                                            >
+                                                <div className="play-button-overlay" style={{
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: 0,
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    backgroundColor: 'rgba(0,0,0,0.3)',
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    transition: 'background-color 0.3s ease'
+                                                }}>
+                                                    <div className="play-icon" style={{
+                                                        width: '68px',
+                                                        height: '68px',
+                                                        backgroundColor: '#ff0000',
+                                                        borderRadius: '50%',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+                                                        transition: 'transform 0.2s ease'
+                                                    }}>
+                                                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                                                            <path d="M8 5v14l11-7z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div className="watch-on-youtube-text" style={{
+                                                    position: 'absolute',
+                                                    bottom: '24px',
+                                                    left: 0,
+                                                    width: '100%',
+                                                    textAlign: 'center',
+                                                    color: 'white',
+                                                    fontWeight: '600',
+                                                    fontSize: '16px',
+                                                    textShadow: '0 2px 4px rgba(0,0,0,0.8)',
+                                                    letterSpacing: '0.5px'
+                                                }}>
+                                                    Watch on YouTube ↗
+                                                </div>
+                                            </a>
+                                        );
+                                    })()}
+                                </div>
                             </div>
 
                             <div className="lesson-info">
