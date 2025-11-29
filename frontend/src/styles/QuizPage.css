@@ -3,10 +3,8 @@
 .quiz-page {
     min-height: 100vh;
     background: var(--neutral-50);
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    min-height: 100vh;
+    background: var(--neutral-50);
 }
 
 /* Privacy: Hide content on print */

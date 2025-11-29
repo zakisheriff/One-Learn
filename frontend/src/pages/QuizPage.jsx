@@ -176,20 +176,11 @@ const QuizPage = () => {
     const currentQuestions = quiz.questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
     const totalPages = Math.ceil(quiz.questions.length / questionsPerPage);
 
-    const preventActions = (e) => {
-        e.preventDefault();
-        return false;
-    };
+
 
     return (
         <div
             className="quiz-page"
-            onContextMenu={preventActions}
-            onCopy={preventActions}
-            onCut={preventActions}
-            onPaste={preventActions}
-            onDragStart={preventActions}
-            onSelectStart={preventActions}
         >
             <Navbar />
 

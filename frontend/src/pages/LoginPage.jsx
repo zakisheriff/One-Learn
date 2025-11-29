@@ -84,6 +84,9 @@ const LoginPage = () => {
     const handleGoogleSignIn = () => {
         // Initialize Google Sign-In
         if (window.google) {
+            // Fix: Clear Google One Tap cool-down state so prompt always shows
+            document.cookie = 'g_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+
             window.google.accounts.id.initialize({
                 client_id: '1063877415823-2a5ml4u8n0sg8lrgsq23b91o38huuu1s.apps.googleusercontent.com',
                 callback: handleGoogleCallback

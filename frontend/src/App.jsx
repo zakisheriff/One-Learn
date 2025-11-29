@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -26,6 +26,15 @@ export const AuthContext = React.createContext(null);
 // Configure axios defaults
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = import.meta.env.VITE_API_URL || '';
+
+// Footer Controller Component
+const FooterController = () => {
+    const location = useLocation();
+    const isQuizPage = location.pathname.includes('/quiz');
+
+    if (isQuizPage) return null;
+    return <Footer />;
+};
 
 function App() {
     const [user, setUser] = useState(null);
@@ -122,7 +131,7 @@ function App() {
                         {/* 404 */}
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
-                    <Footer />
+                    <FooterController />
                 </BrowserRouter>
             </AuthContext.Provider>
         </LanguageProvider>
