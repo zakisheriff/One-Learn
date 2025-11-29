@@ -9,7 +9,7 @@ exports.getAllCourses = async (req, res) => {
     try {
         const result = await pool.query(
             `SELECT 
-                c.id, c.slug, c.title, c.description, c.thumbnail_url, c.estimated_hours, c.likes, c.views,
+                c.id, c.slug, c.title, c.description, c.thumbnail_url, c.estimated_hours, c.likes, c.views, c.category,
                 COUNT(DISTINCT m.id) as module_count,
                 COUNT(DISTINCT l.id) as lesson_count,
                 SUM(l.duration_seconds) as total_duration_seconds
@@ -32,7 +32,8 @@ exports.getAllCourses = async (req, res) => {
             duration: formatDuration(course.total_duration_seconds),
             estimatedHours: course.estimated_hours,
             likes: course.likes,
-            views: course.views
+            views: course.views,
+            category: course.category
         }));
 
         res.json({ courses });
