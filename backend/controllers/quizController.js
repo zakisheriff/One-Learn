@@ -42,9 +42,24 @@ exports.getQuiz = async (req, res) => {
             [courseId]
         );
 
-        // If quiz doesn't exist, generate it on-demand
+        // Check if we need to generate or upgrade the quiz
+        let shouldGenerate = false;
+        let existingQuizId = null;
+
         if (quizResult.rows.length === 0) {
-            console.log(`Quiz not found for course ${course.title}. Generating on-demand...`);
+            shouldGenerate = true;
+        } else {
+            const existingQuiz = quizResult.rows[0];
+            // Upgrade if it has fewer than 10 questions
+            if (existingQuiz.quiz_data.questions && existingQuiz.quiz_data.questions.length < 10) {
+                console.log(`Upgrading quiz for course ${course.title} from ${existingQuiz.quiz_data.questions.length} to 10 questions.`);
+                shouldGenerate = true;
+                existingQuizId = existingQuiz.id;
+            }
+        }
+
+        if (shouldGenerate) {
+            console.log(`Generating quiz for course ${course.title}...`);
 
             // Get video URL from the first lesson
             // We need to join lessons -> modules -> courses
@@ -67,13 +82,21 @@ exports.getQuiz = async (req, res) => {
             try {
                 const quizData = await generateQuiz(videoUrl, course.title);
 
-                // Save to database
-                const insertResult = await pool.query(
-                    'INSERT INTO quizzes (course_id, quiz_data, passing_score) VALUES ($1, $2, $3) RETURNING id, quiz_data, passing_score',
-                    [courseId, JSON.stringify(quizData), 70]
-                );
-
-                quizResult = insertResult;
+                if (existingQuizId) {
+                    // Update existing quiz
+                    const updateResult = await pool.query(
+                        'UPDATE quizzes SET quiz_data = $1, passing_score = $2 WHERE id = $3 RETURNING id, quiz_data, passing_score',
+                        [JSON.stringify(quizData), 70, existingQuizId]
+                    );
+                    quizResult = updateResult;
+                } else {
+                    // Insert new quiz
+                    const insertResult = await pool.query(
+                        'INSERT INTO quizzes (course_id, quiz_data, passing_score) VALUES ($1, $2, $3) RETURNING id, quiz_data, passing_score',
+                        [courseId, JSON.stringify(quizData), 70]
+                    );
+                    quizResult = insertResult;
+                }
             } catch (err) {
                 console.error('Failed to generate quiz:', err);
                 return res.status(500).json({ error: 'Failed to generate quiz. Please try again later.' });

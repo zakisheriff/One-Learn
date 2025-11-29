@@ -3,6 +3,24 @@
 .quiz-page {
     min-height: 100vh;
     background: var(--neutral-50);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Privacy: Hide content on print */
+@media print {
+    .quiz-page {
+        display: none !important;
+    }
+
+    body::after {
+        content: "Quiz content is protected.";
+        display: block;
+        padding: 2rem;
+        text-align: center;
+    }
 }
 
 .quiz-main {
@@ -163,6 +181,49 @@
     cursor: not-allowed;
 }
 
+/* Navigation Buttons */
+.nav-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.nav-button.primary {
+    background: var(--linkedin-blue);
+    color: white;
+}
+
+.nav-button.primary:hover {
+    background: var(--linkedin-blue-dark);
+}
+
+.nav-button.secondary {
+    background: transparent;
+    color: var(--neutral-600);
+    border: 1px solid var(--neutral-300);
+}
+
+.nav-button.secondary:hover {
+    background: var(--neutral-100);
+    color: var(--neutral-900);
+    border-color: var(--neutral-400);
+}
+
+.quiz-progress {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--neutral-600);
+    background: var(--neutral-100);
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 16px;
+}
+
 /* Result Card */
 .result-card {
     background: white;
@@ -288,4 +349,84 @@
     .score {
         font-size: 48px;
     }
+
+    .quiz-controls {
+        flex-direction: row;
+        /* Keep side by side */
+        gap: 12px;
+        margin-top: 32px;
+    }
+
+    .nav-button,
+    .submit-quiz-button {
+        padding: 12px 20px;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Primary actions take available space */
+    .nav-button.primary,
+    .submit-quiz-button {
+        flex: 1;
+    }
+
+    /* Previous button - Proper Secondary Style */
+    .nav-button.secondary {
+        flex: 1;
+        width: auto;
+        padding: 12px 20px;
+        border: 1px solid var(--neutral-300);
+        background: white;
+        color: var(--neutral-700);
+        border-radius: 24px;
+        justify-content: center;
+        margin-top: 23px;
+    }
+}
+
+/* Privacy Overlay */
+.privacy-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.privacy-message {
+    padding: 24px;
+}
+
+.privacy-message h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.privacy-message p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+}
+
+.privacy-warning {
+    color: #ff4d4f !important;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.quiz-main.blurred {
+    filter: blur(10px);
+    pointer-events: none;
 }

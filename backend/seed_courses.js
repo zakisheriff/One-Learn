@@ -223,7 +223,11 @@ const ADDITIONAL_COURSES = [
 const seedAllCourses = async () => {
     console.log('Seeding Courses from JSON files...');
 
+    console.log(`Found ${ADDITIONAL_COURSES.length} courses to seed.`);
+    let count = 0;
     for (const course of ADDITIONAL_COURSES) {
+        count++;
+        if (count % 10 === 0) console.log(`Seeding course ${count}/${ADDITIONAL_COURSES.length}...`);
         // Insert Course
         const courseRes = await pool.query(
             `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views, category) 

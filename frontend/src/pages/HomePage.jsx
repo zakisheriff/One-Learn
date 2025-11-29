@@ -4,7 +4,7 @@ import axios from 'axios';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
 import Navbar from '../components/Navbar';
-import { StarIcon, ClockIcon, LessonIcon, ArrowRightIcon, BookIcon } from '../components/Icons';
+import { StarIcon, ClockIcon, LessonIcon, ArrowRightIcon, BookIcon, CodeIcon, ChartBarIcon, PenToolIcon, RocketIcon } from '../components/Icons';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
@@ -113,6 +113,65 @@ const HomePage = () => {
                     <Link to="/explore" className="hero-cta">
                         <span>{t('exploreCourses')}</span>
                         <ArrowRightIcon size={16} />
+                    </Link>
+                </div>
+            </div>
+
+            {/* Stats Bar */}
+            <div className="stats-bar">
+                <div className="stat-item">
+                    <span className="stat-number">10k+</span>
+                    <span className="stat-label">Learners</span>
+                </div>
+                <div className="stat-divider"></div>
+                <div className="stat-item">
+                    <span className="stat-number">500+</span>
+                    <span className="stat-label">Courses</span>
+                </div>
+                <div className="stat-divider"></div>
+                <div className="stat-item">
+                    <span className="stat-number">100+</span>
+                    <span className="stat-label">Mentors</span>
+                </div>
+            </div>
+
+            {/* Roadmap CTA Section */}
+            <div className="roadmap-cta-section">
+                <div className="roadmap-cta-content">
+                    <h2>Not sure where to start?</h2>
+                    <p>Tell us your dream career, and our AI will build a personalized learning path just for you.</p>
+                    <Link to="/roadmap" className="roadmap-btn">
+                        <StarIcon size={18} />
+                        <span>Generate My Roadmap</span>
+                    </Link>
+                </div>
+            </div>
+
+            {/* Featured Career Paths */}
+            <div className="course-section">
+                <div className="section-header">
+                    <h2 className="section-title">Featured Career Paths</h2>
+                </div>
+                <div className="paths-grid">
+                    <Link to="/roadmap" className="path-card">
+                        <div className="path-icon"><CodeIcon size={32} color="#0071e3" /></div>
+                        <h3>Software Engineer</h3>
+                        <p>Master Python, Java, and System Design</p>
+                    </Link>
+                    <Link to="/roadmap" className="path-card">
+                        <div className="path-icon"><ChartBarIcon size={32} color="#0071e3" /></div>
+                        <h3>Data Scientist</h3>
+                        <p>Learn Python, SQL, and Machine Learning</p>
+                    </Link>
+                    <Link to="/roadmap" className="path-card">
+                        <div className="path-icon"><PenToolIcon size={32} color="#0071e3" /></div>
+                        <h3>Product Designer</h3>
+                        <p>UI/UX, Figma, and User Research</p>
+                    </Link>
+                    <Link to="/roadmap" className="path-card">
+                        <div className="path-icon"><RocketIcon size={32} color="#0071e3" /></div>
+                        <h3>Product Manager</h3>
+                        <p>Strategy, Agile, and Leadership</p>
                     </Link>
                 </div>
             </div>

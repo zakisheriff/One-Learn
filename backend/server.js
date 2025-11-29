@@ -50,6 +50,7 @@ const enrollmentRoutes = require('./routes/enrollmentRoutes');
 const quizRoutes = require('./routes/quizRoutes');
 const certificateRoutes = require('./routes/certificateRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const roadmapRoutes = require('./routes/roadmapRoutes');
 
 // Mount routes
 app.use('/api/auth', authRoutes);
@@ -58,6 +59,7 @@ app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/quizzes', quizRoutes);
 app.use('/api/certificates', certificateRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/roadmaps', roadmapRoutes);
 
 // Certificate verification (public)
 app.get('/api/verify', async (req, res) => {

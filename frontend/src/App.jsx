@@ -16,6 +16,7 @@ import VerifyPage from './pages/VerifyPage';
 import HelpCenter from './pages/HelpCenter';
 import SettingsPage from './pages/SettingsPage';
 import InfoPage from './pages/InfoPage';
+import RoadmapPage from './pages/RoadmapPage';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -82,6 +83,8 @@ function App() {
                         <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
                         <Route path="/course/:slug" element={<CourseDetail />} />
                         <Route path="/verify" element={<VerifyPage />} />
+                        <Route path="/roadmap" element={<RoadmapPage />} />
+                        <Route path="/roadmap/:id" element={<RoadmapPage />} />
 
                         {/* Protected routes */}
                         <Route

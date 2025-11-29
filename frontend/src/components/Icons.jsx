@@ -172,3 +172,42 @@ export const GitHubIcon = ({ size = 20, color = 'currentColor' }) => (
         <path d="M9 19C9 19 9.00001 16.0589 9 14.1765C9 13.1176 9.6 12.5294 10.2 12.2353C7.2 11.8824 4.2 10.8235 4.2 6.11765C4.2 4.82353 4.8 3.64706 5.7 2.82353C5.7 2.82353 5.4 1.64706 6 0.470588C6 0.470588 7.2 0.117647 9.6 1.76471C10.8 1.41176 12 1.41176 13.2 1.76471C15.6 0.117647 16.8 0.470588 16.8 0.470588C17.4 1.64706 17.1 2.82353 17.1 2.82353C18 3.64706 18.6 4.82353 18.6 6.11765C18.6 10.8235 15.6 11.8824 12.6 12.2353C13.2 12.8235 13.8 13.7647 13.8 15.2941C13.8 17.4706 13.8 19 13.8 19" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
+export const CodeIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 18L22 12L16 6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8 6L2 12L8 18" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const ChartBarIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 20V10" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 20V4" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M6 20V14" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const PenToolIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 19L19 12L22 15L15 22L12 19Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M18 13L16.5 5.5L2 2L5.5 16.5L13 18L18 13Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 2L9.586 9.586" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M11 13C11 13 11 13 11 13" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const RocketIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 16.5C6.98528 16.5 9 14.4853 9 12C9 9.51472 6.98528 7.5 4.5 7.5C2.01472 7.5 0 9.51472 0 12C0 14.4853 2.01472 16.5 4.5 16.5Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 15L9 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 15C12 15 13.5 15 15 13.5C16.5 12 16.5 10.5 16.5 10.5L21 6L18 3L13.5 7.5C13.5 7.5 12 7.5 10.5 9C9 10.5 9 12 9 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const TargetIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="2" fill={color} />
+    </svg>
+);

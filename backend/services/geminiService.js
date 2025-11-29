@@ -52,13 +52,13 @@ Title: ${courseTitle}
 Transcript/Content: "${transcriptText}"
 
 REQUIREMENTS:
-1. Generate EXACTLY 5 Multiple Choice Questions (MCQs)
+1. Generate EXACTLY 10 Multiple Choice Questions (MCQs)
 2. Each question must have EXACTLY 4 options (A, B, C, D)
-3. Questions must be based on the provided transcript/content
-4. Cover fundamental concepts mentioned in the video
-5. Difficulty should be appropriate for certification (80% passing threshold = 4/5 correct)
+3. Questions must be STRICTLY based on the provided transcript/content. Do not ask generic questions.
+4. Focus on specific details, facts, and concepts mentioned in the video.
+5. DIFFICULTY: EXTREME. These must be the hardest possible questions derived from the content.
 6. One and only one option should be correct for each question
-7. Questions should be clear, unambiguous, and test real understanding
+7. Questions should be clear, unambiguous, and test deep understanding of this specific video.
 
 OUTPUT FORMAT (strict JSON only, no markdown, no explanations):
 {
@@ -87,7 +87,7 @@ Generate the quiz now:`;
                 temperature: 0.7,
                 topK: 40,
                 topP: 0.95,
-                maxOutputTokens: 2048,
+                maxOutputTokens: 8192,
             }
         });
 
@@ -140,8 +140,8 @@ Generate the quiz now:`;
             throw new Error('Invalid quiz format: missing questions array');
         }
 
-        if (quizData.questions.length !== 5) {
-            throw new Error(`Invalid quiz: expected 5 questions, got ${quizData.questions.length}`);
+        if (quizData.questions.length !== 10) {
+            console.warn(`Warning: Expected 10 questions, got ${quizData.questions.length}. Proceeding anyway.`);
         }
 
         // Validate each question
@@ -160,45 +160,19 @@ Generate the quiz now:`;
             }
         });
 
-        console.log(`Successfully generated 5-question quiz for: ${courseTitle}`);
+        console.log(`Successfully generated ${quizData.questions.length}-question quiz for: ${courseTitle}`);
         return quizData;
 
     } catch (error) {
         console.error('Quiz generation error:', error);
         // Fallback to basic quiz if generation fails
         return {
-            questions: [
-                {
-                    type: 'multiple_choice',
-                    question: `What is the main topic of ${courseTitle}?`,
-                    options: ['Technology', 'Business', 'Art', 'Science'],
-                    correctAnswer: 0
-                },
-                {
-                    type: 'multiple_choice',
-                    question: 'This course is designed for:',
-                    options: ['Beginners', 'Experts', 'Aliens', 'Robots'],
-                    correctAnswer: 0
-                },
-                {
-                    type: 'multiple_choice',
-                    question: 'Which of the following is covered?',
-                    options: ['Fundamentals', 'Advanced Rocket Science', 'Cooking', 'Magic'],
-                    correctAnswer: 0
-                },
-                {
-                    type: 'multiple_choice',
-                    question: 'To pass this course you need to:',
-                    options: ['Study', 'Sleep', 'Eat', 'Dance'],
-                    correctAnswer: 0
-                },
-                {
-                    type: 'multiple_choice',
-                    question: 'The instructor is:',
-                    options: ['Knowledgeable', 'A cat', 'A rock', 'Invisible'],
-                    correctAnswer: 0
-                }
-            ]
+            questions: Array(10).fill(null).map((_, i) => ({
+                type: 'multiple_choice',
+                question: `Question ${i + 1}: What is a key concept from ${courseTitle}?`,
+                options: ['Concept A', 'Concept B', 'Concept C', 'Concept D'],
+                correctAnswer: 0
+            }))
         };
     }
 }

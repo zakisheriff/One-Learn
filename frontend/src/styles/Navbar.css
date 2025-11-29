@@ -1,12 +1,19 @@
 /* Navbar - LinkedIn Learning Style */
 
 .navbar {
-    height: 52px;
-    background: white;
-    border-bottom: 1px solid var(--neutral-200);
-    position: sticky;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    height: 72px;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
+    transition: all 0.2s ease;
+    margin-top: 0 !important;
+    /* Force zero margin */
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 

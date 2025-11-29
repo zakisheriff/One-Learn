@@ -155,6 +155,15 @@ const Navbar = () => {
                             <span className="navbar-link-text">{t('home')}</span>
                         </Link>
 
+                        <Link
+                            to="/roadmap"
+                            className={`navbar-link ${isActive('/roadmap') ? 'active' : ''}`}
+                            onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
+                        >
+                            <span className="navbar-link-icon"><BrowseIcon size={24} /></span>
+                            <span className="navbar-link-text">Roadmap</span>
+                        </Link>
+
                         {user && (
                             <Link
                                 to="/dashboard"
