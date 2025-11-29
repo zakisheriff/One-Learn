@@ -360,7 +360,7 @@ If You Learn helped you access free education or inspired your next project:
 ---
 
 <p align="center">
-Made with ❤️ by <strong>Zaki Sheriff</strong>
+Made by <strong>Zaki Sheriff</strong>
 </p>
 
 <p align="center">

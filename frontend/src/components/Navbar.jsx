@@ -39,7 +39,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 {/* Left Section: Logo + Browse */}
                 <div className="navbar-left">
-                    <Link to="/" className="navbar-logo">
+                    <Link to="/" className="navbar-logo" onClick={() => window.scrollTo(0, 0)}>
                         <span className="navbar-logo-text">You Learn</span>
                     </Link>
 
@@ -54,21 +54,21 @@ const Navbar = () => {
                         <div className="browse-dropdown">
                             <div className="browse-column">
                                 <h3>{t('programming')}</h3>
-                                <Link to="/explore?search=python">Python</Link>
-                                <Link to="/explore?search=java">Java</Link>
-                                <Link to="/explore?search=javascript">JavaScript</Link>
+                                <Link to="/explore?search=python" onClick={() => window.scrollTo(0, 0)}>Python</Link>
+                                <Link to="/explore?search=java" onClick={() => window.scrollTo(0, 0)}>Java</Link>
+                                <Link to="/explore?search=javascript" onClick={() => window.scrollTo(0, 0)}>JavaScript</Link>
                             </div>
                             <div className="browse-column">
                                 <h3>{t('webDev')}</h3>
-                                <Link to="/explore?search=web">Full Stack</Link>
-                                <Link to="/explore?search=responsive">Responsive Design</Link>
-                                <Link to="/explore?search=frontend">Frontend</Link>
+                                <Link to="/explore?search=web" onClick={() => window.scrollTo(0, 0)}>Full Stack</Link>
+                                <Link to="/explore?search=responsive" onClick={() => window.scrollTo(0, 0)}>Responsive Design</Link>
+                                <Link to="/explore?search=frontend" onClick={() => window.scrollTo(0, 0)}>Frontend</Link>
                             </div>
                             <div className="browse-column">
                                 <h3>{t('technology')}</h3>
-                                <Link to="/explore?search=algorithms">Algorithms</Link>
-                                <Link to="/explore?search=data">Data Structures</Link>
-                                <Link to="/explore?search=development">Software Development</Link>
+                                <Link to="/explore?search=algorithms" onClick={() => window.scrollTo(0, 0)}>Algorithms</Link>
+                                <Link to="/explore?search=data" onClick={() => window.scrollTo(0, 0)}>Data Structures</Link>
+                                <Link to="/explore?search=development" onClick={() => window.scrollTo(0, 0)}>Software Development</Link>
                             </div>
                         </div>
                     </div>
@@ -148,7 +148,7 @@ const Navbar = () => {
                         <Link
                             to="/"
                             className={`navbar-link ${isActive('/') ? 'active' : ''}`}
-                            onClick={() => setMobileMenuOpen(false)}
+                            onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                         >
                             <span className="navbar-link-icon"><HomeIcon size={24} /></span>
                             <span className="navbar-link-text">{t('home')}</span>
@@ -158,7 +158,7 @@ const Navbar = () => {
                             <Link
                                 to="/dashboard"
                                 className={`navbar-link ${isActive('/dashboard') ? 'active' : ''}`}
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                             >
                                 <span className="navbar-link-icon"><BookIcon size={24} /></span>
                                 <span className="navbar-link-text">{t('myLearning')}</span>
@@ -201,14 +201,14 @@ const Navbar = () => {
                                 <Link
                                     to="/login"
                                     className="navbar-link"
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                                 >
                                     <span className="navbar-link-text">{t('signIn')}</span>
                                 </Link>
                                 <Link
                                     to="/login?mode=signup"
                                     className="navbar-link"
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                                 >
                                     <span className="navbar-link-text">{t('joinNow')}</span>
                                 </Link>
@@ -246,7 +246,7 @@ const Navbar = () => {
                                 <Link
                                     to="/dashboard"
                                     className="navbar-dropdown-item"
-                                    onClick={() => setProfileOpen(false)}
+                                    onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}
                                 >
                                     <DashboardIcon size={18} />
                                     <span>{t('myLearning')}</span>
@@ -254,7 +254,7 @@ const Navbar = () => {
                                 <Link
                                     to="/dashboard#certificates"
                                     className="navbar-dropdown-item"
-                                    onClick={() => setProfileOpen(false)}
+                                    onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}
                                 >
                                     <StarIcon size={18} />
                                     <span>My Certificates</span>
@@ -262,8 +262,8 @@ const Navbar = () => {
                                 <div className="navbar-dropdown-divider"></div>
                                 <div className="dropdown-section">
                                     <h5>Account</h5>
-                                    <Link to="/settings" className="navbar-dropdown-link">{t('settings')}</Link>
-                                    <Link to="/help" className="navbar-dropdown-link">{t('helpCenter')}</Link>
+                                    <Link to="/settings" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>{t('settings')}</Link>
+                                    <Link to="/help" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>{t('helpCenter')}</Link>
                                 </div>
                                 <div className="navbar-dropdown-divider"></div>
                                 <button
@@ -277,8 +277,8 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="auth-buttons">
-                            <Link to="/login" className="btn-text">{t('signIn')}</Link>
-                            <Link to="/login?mode=signup">
+                            <Link to="/login" className="btn-text" onClick={() => window.scrollTo(0, 0)}>{t('signIn')}</Link>
+                            <Link to="/login?mode=signup" onClick={() => window.scrollTo(0, 0)}>
                                 <button className="btn-primary-small">
                                     {t('joinNow')}
                                 </button>

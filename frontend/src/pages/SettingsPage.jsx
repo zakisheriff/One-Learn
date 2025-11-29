@@ -2,6 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
 import Navbar from '../components/Navbar';
+import {
+    UserIcon, NotificationIcon, LockIcon, CreditCardIcon,
+    CoffeeIcon, ChevronRightIcon
+} from '../components/Icons';
 import axios from 'axios';
 import '../styles/SettingsPage.css';
 
@@ -85,25 +89,41 @@ const SettingsPage = () => {
                                 className={activeSection === 'account' ? 'active' : ''}
                                 onClick={() => scrollToSection('account')}
                             >
-                                {t('account')}
+                                <span className="nav-icon"><UserIcon size={20} /></span>
+                                <span className="nav-text">{t('account')}</span>
+                                <span className="nav-chevron"><ChevronRightIcon size={16} /></span>
                             </button>
                             <button
                                 className={activeSection === 'notifications' ? 'active' : ''}
                                 onClick={() => scrollToSection('notifications')}
                             >
-                                {t('notificationsSettings')}
+                                <span className="nav-icon"><NotificationIcon size={20} /></span>
+                                <span className="nav-text">{t('notificationsSettings')}</span>
+                                <span className="nav-chevron"><ChevronRightIcon size={16} /></span>
                             </button>
                             <button
                                 className={activeSection === 'privacy' ? 'active' : ''}
                                 onClick={() => scrollToSection('privacy')}
                             >
-                                {t('privacy')}
+                                <span className="nav-icon"><LockIcon size={20} /></span>
+                                <span className="nav-text">{t('privacy')}</span>
+                                <span className="nav-chevron"><ChevronRightIcon size={16} /></span>
                             </button>
                             <button
                                 className={activeSection === 'billing' ? 'active' : ''}
                                 onClick={() => scrollToSection('billing')}
                             >
-                                {t('billing')}
+                                <span className="nav-icon"><CreditCardIcon size={20} /></span>
+                                <span className="nav-text">{t('billing')}</span>
+                                <span className="nav-chevron"><ChevronRightIcon size={16} /></span>
+                            </button>
+                            <button
+                                className={activeSection === 'support' ? 'active' : ''}
+                                onClick={() => scrollToSection('support')}
+                            >
+                                <span className="nav-icon"><CoffeeIcon size={20} /></span>
+                                <span className="nav-text">Support</span>
+                                <span className="nav-chevron"><ChevronRightIcon size={16} /></span>
                             </button>
                         </nav>
                     </div>
@@ -274,6 +294,24 @@ const SettingsPage = () => {
                                         <p>View your past invoices and receipts.</p>
                                     </div>
                                     <button className="edit-btn">View History</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="support" className="settings-section">
+                            <h3>Support</h3>
+                            <div className="settings-card support-card">
+                                <div className="support-content">
+                                    <div className="support-icon">
+                                        <CoffeeIcon size={32} color="#FFDD00" />
+                                    </div>
+                                    <div className="support-text">
+                                        <h4>Enjoying You Learn?</h4>
+                                        <p>If you find this platform helpful, consider buying me a coffee to support future development!</p>
+                                    </div>
+                                    <a href="https://buymeacoffee.com/zakisherifw" target="_blank" rel="noopener noreferrer" className="coffee-btn">
+                                        Buy Me a Coffee
+                                    </a>
                                 </div>
                             </div>
                         </section>

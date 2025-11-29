@@ -110,3 +110,59 @@ export const ChevronDownIcon = ({ size = 16, color = 'currentColor' }) => (
         <path d="M6 9L12 15L18 9" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
+export const LockIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 11H5C3.89543 11 3 11.8954 3 13V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V13C21 11.8954 20.1046 11 19 11Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const CreditCardIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M1 10H23" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const CoffeeIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 8H19C20.1046 8 21.1634 8.43883 21.9445 9.21989C22.7256 10.001 23.1644 11.0602 23.1644 12.1648C23.1644 13.2694 22.7256 14.3286 21.9445 15.1097C21.1634 15.8907 20.1046 16.3296 19 16.3296H18" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2 8H18V14C18 15.0609 17.5786 16.0783 16.8284 16.8284C16.0783 17.5786 15.0609 18 14 18H6C4.93913 18 3.92172 17.5786 3.17157 16.8284C2.42143 16.0783 2 15.0609 2 14V8Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M6 1V4" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M10 1V4" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14 1V4" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const ChevronRightIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+export const LinkedInIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M6 9H2V21H6V9Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const TwitterIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34675 17.567 3.12398C16.6767 2.90121 15.7395 2.95725 14.8821 3.28451C14.0247 3.61177 13.2884 4.19446 12.773 4.95377C12.2575 5.71309 11.9877 6.61239 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const InstagramIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M17.5 6.5H17.51" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+export const GitHubIcon = ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 19C9 19 9.00001 16.0589 9 14.1765C9 13.1176 9.6 12.5294 10.2 12.2353C7.2 11.8824 4.2 10.8235 4.2 6.11765C4.2 4.82353 4.8 3.64706 5.7 2.82353C5.7 2.82353 5.4 1.64706 6 0.470588C6 0.470588 7.2 0.117647 9.6 1.76471C10.8 1.41176 12 1.41176 13.2 1.76471C15.6 0.117647 16.8 0.470588 16.8 0.470588C17.4 1.64706 17.1 2.82353 17.1 2.82353C18 3.64706 18.6 4.82353 18.6 6.11765C18.6 10.8235 15.6 11.8824 12.6 12.2353C13.2 12.8235 13.8 13.7647 13.8 15.2941C13.8 17.4706 13.8 19 13.8 19" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);

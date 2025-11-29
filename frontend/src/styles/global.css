@@ -10,6 +10,8 @@ body {
     background: var(--neutral-50);
     background-image: var(--gradient-mesh);
     min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 #root {

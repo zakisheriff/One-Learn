@@ -15,6 +15,9 @@ import CertificatePage from './pages/CertificatePage';
 import VerifyPage from './pages/VerifyPage';
 import HelpCenter from './pages/HelpCenter';
 import SettingsPage from './pages/SettingsPage';
+import InfoPage from './pages/InfoPage';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 // Context for authentication
 export const AuthContext = React.createContext(null);
@@ -71,6 +74,7 @@ function App() {
         <LanguageProvider>
             <AuthContext.Provider value={{ user, setUser, logout, checkAuth }}>
                 <BrowserRouter>
+                    <ScrollToTop />
                     <Routes>
                         {/* Public routes */}
                         <Route path="/" element={<HomePage />} />
@@ -99,9 +103,23 @@ function App() {
                         <Route path="/help" element={<HelpCenter />} />
                         <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/login" />} />
 
+                        {/* Static Pages */}
+                        <Route path="/about" element={<InfoPage pageKey="about" />} />
+                        <Route path="/careers" element={<InfoPage pageKey="careers" />} />
+                        <Route path="/press" element={<InfoPage pageKey="press" />} />
+                        <Route path="/blog" element={<InfoPage pageKey="blog" />} />
+                        <Route path="/contact" element={<InfoPage pageKey="contact" />} />
+                        <Route path="/community" element={<InfoPage pageKey="community" />} />
+                        <Route path="/accessibility" element={<InfoPage pageKey="accessibility" />} />
+                        <Route path="/privacy" element={<InfoPage pageKey="privacy" />} />
+                        <Route path="/terms" element={<InfoPage pageKey="terms" />} />
+                        <Route path="/cookies" element={<InfoPage pageKey="cookies" />} />
+                        <Route path="/security" element={<InfoPage pageKey="security" />} />
+
                         {/* 404 */}
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
+                    <Footer />
                 </BrowserRouter>
             </AuthContext.Provider>
         </LanguageProvider>

@@ -17,6 +17,7 @@ const CourseCatalog = () => {
 
     const [searchParams] = useSearchParams();
     const searchQuery = searchParams.get('search');
+    const categoryQuery = searchParams.get('category');
 
     const categories = ['All', 'Technology', 'Business', 'Art & Design', 'Health & Wellness', 'Science'];
 
@@ -24,7 +25,15 @@ const CourseCatalog = () => {
         if (searchQuery) {
             setSearchTerm(searchQuery);
         }
-    }, [searchQuery]);
+        if (categoryQuery) {
+            // Capitalize first letter to match state if needed, or just match case-insensitive
+            // The links use lowercase (e.g. 'technology'), state uses Title Case ('Technology')
+            const matchedCategory = categories.find(c => c.toLowerCase() === categoryQuery.toLowerCase());
+            if (matchedCategory) {
+                setSelectedCategory(matchedCategory);
+            }
+        }
+    }, [searchQuery, categoryQuery]);
 
     useEffect(() => {
         fetchCourses();
