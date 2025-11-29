@@ -3,6 +3,7 @@ import { useNavigate, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../App';
 import '../styles/LoginPage.css';
+import Logo from '../components/Logo';
 
 const LoginPage = () => {
     const location = useLocation();
@@ -121,16 +122,14 @@ const LoginPage = () => {
             setLoading(false);
         }
     };
-
     return (
         <div className="login-page">
             <div className="login-container">
                 <div className="login-card">
                     <div className="login-header">
-                        <h1 className="logo">
-                            <span className="logo-you">You</span>
-                            <span className="logo-learn">Learn</span>
-                        </h1>
+                        <Link to="/" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                            <Logo size={28} iconSize={32} />
+                        </Link>
                         <p className="tagline">
                             {isLogin ? 'Welcome back' : 'Start your learning journey'}
                         </p>

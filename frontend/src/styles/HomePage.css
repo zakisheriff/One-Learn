@@ -540,9 +540,8 @@
 }
 
 .roadmap-btn:hover {
-    background: #0077ed;
     transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(0, 113, 227, 0.4);
+    color: white;
 }
 
 /* Featured Paths */

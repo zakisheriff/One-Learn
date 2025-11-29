@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
     LinkedInIcon, TwitterIcon, InstagramIcon, GitHubIcon,
     GlobeIcon
@@ -7,6 +7,13 @@ import {
 import '../styles/Footer.css';
 
 const Footer = () => {
+    const location = useLocation();
+
+    // Don't show footer on login page
+    if (location.pathname === '/login') {
+        return null;
+    }
+
     return (
         <footer className="footer">
             <div className="footer-container">

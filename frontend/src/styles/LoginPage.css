@@ -67,6 +67,8 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--neutral-900);
+    text-transform: none !important;
+    letter-spacing: normal !important;
 }
 
 .form-group input {
@@ -76,6 +78,8 @@
     border-radius: 4px;
     font-size: 14px;
     transition: all 0.2s ease;
+    text-transform: none !important;
+    letter-spacing: normal !important;
 }
 
 .form-group input:focus {

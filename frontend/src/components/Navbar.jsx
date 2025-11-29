@@ -8,6 +8,7 @@ import {
     BrowseIcon, NotificationIcon, ChevronDownIcon
 } from './Icons';
 import '../styles/Navbar.css';
+import Logo from './Logo';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
@@ -33,14 +34,13 @@ const Navbar = () => {
         setLanguage(lang);
         setLanguageOpen(false);
     };
-
     return (
         <nav className="navbar">
             <div className="navbar-container">
                 {/* Left Section: Logo + Browse */}
                 <div className="navbar-left">
                     <Link to="/" className="navbar-logo" onClick={() => window.scrollTo(0, 0)}>
-                        <span className="navbar-logo-text">You Learn</span>
+                        <Logo size={20} iconSize={24} />
                     </Link>
 
                     <div className="navbar-divider"></div>
