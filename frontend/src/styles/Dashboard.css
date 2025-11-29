@@ -58,39 +58,46 @@
 /* Tabs */
 .dashboard-tabs {
     display: flex;
-    gap: 24px;
-    border-bottom: 1px solid var(--neutral-200);
+    gap: 12px;
+    border-bottom: none;
     margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.6);
+    /* Slightly more transparent container */
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    width: fit-content;
+    backdrop-filter: blur(8px);
 }
 
 .dashboard-tab {
-    background: none;
+    background: transparent;
     border: none;
-    padding: 12px 0;
-    font-size: 16px;
+    padding: 8px 20px;
+    font-size: 14px;
     font-weight: 600;
-    color: var(--neutral-600);
+    color: var(--neutral-700);
+    /* Darker text for better visibility */
     cursor: pointer;
     position: relative;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
+    border-radius: 8px;
 }
 
 .dashboard-tab:hover {
     color: var(--neutral-900);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .dashboard-tab.active {
     color: var(--linkedin-blue);
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-weight: 700;
 }
 
 .dashboard-tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--linkedin-blue);
+    display: none;
 }
 
 /* Filters */
@@ -106,11 +113,12 @@
 .filter-pill {
     padding: 8px 16px;
     border-radius: 20px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-white);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    color: var(--neutral-600);
+    border: 1px solid var(--neutral-300);
+    /* Stronger border */
+    background: white;
+    /* Solid white for better contrast */
+    color: var(--neutral-700);
+    /* Darker text */
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -119,7 +127,7 @@
 }
 
 .filter-pill:hover {
-    background: var(--glass-white-strong);
+    background: var(--neutral-50);
     color: var(--neutral-900);
     border-color: var(--neutral-400);
 }
@@ -128,7 +136,7 @@
     background: var(--linkedin-blue);
     color: white;
     border-color: var(--linkedin-blue);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 4px rgba(10, 102, 194, 0.2);
 }
 
 /* Enrollments Grid */

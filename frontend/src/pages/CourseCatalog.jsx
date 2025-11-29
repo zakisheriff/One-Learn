@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { LanguageContext } from '../context/LanguageContext';
-import { SearchIcon, ClockIcon, BookIcon } from '../components/Icons';
+import { SearchIcon, ClockIcon, BookIcon, ChevronLeftIcon, ChevronRightIcon } from '../components/Icons';
 import '../styles/CourseCatalog.css';
 
 const CourseCatalog = () => {
@@ -71,27 +71,8 @@ const CourseCatalog = () => {
         const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             course.description?.toLowerCase().includes(searchTerm.toLowerCase());
 
-        // Simple category matching based on title keywords or explicit category if available
-        // Since we don't have a category column in DB yet, we'll infer from title/description or just show all for now
-        // Ideally, we should add a category column. For now, let's use the seed data's structure if possible, 
-        // or just filter by keywords if we can't.
-        // Wait, the seed script didn't add a category column. 
-        // Let's do a keyword match for now based on the category names.
-
-        let matchesCategory = true;
-        if (selectedCategory !== 'All') {
-            const categoryKeywords = {
-                'Health & Self-Improvement': ['Health', 'Psychology', 'Self-Improvement', 'Fitness', 'Mental', 'Therapy', 'Motivation', 'Productivity', 'Habits', 'Tedx'],
-                'School Subjects': ['School', 'History', 'Geography', 'Civics', 'Literature', 'Biology', 'Physics', 'Chemistry', 'Math', 'CrashCourse'],
-                'Data Science & AI': ['Data', 'AI', 'Machine Learning', 'Artificial Intelligence', 'Cloud', 'AWS', 'Azure', 'Google Cloud', 'Statistics', 'Deep Learning'],
-                'Music & Arts': ['Music', 'Guitar', 'Piano', 'Drawing', 'Painting', 'Art', 'Singing', 'Theory', 'Production', 'Instrument']
-            };
-
-            const keywords = categoryKeywords[selectedCategory] || [];
-            matchesCategory = keywords.some(keyword =>
-                course.title.includes(keyword) || course.description.includes(keyword)
-            );
-        }
+        // Exact category match using the database column
+        const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
 
         return matchesSearch && matchesCategory;
     });
@@ -196,8 +177,9 @@ const CourseCatalog = () => {
                                         onClick={() => paginate(currentPage - 1)}
                                         disabled={currentPage === 1}
                                         className="pagination-btn"
+                                        aria-label="Previous Page"
                                     >
-                                        &laquo; Prev
+                                        <ChevronLeftIcon size={20} />
                                     </button>
 
                                     {[...Array(totalPages)].map((_, i) => (
@@ -214,8 +196,9 @@ const CourseCatalog = () => {
                                         onClick={() => paginate(currentPage + 1)}
                                         disabled={currentPage === totalPages}
                                         className="pagination-btn"
+                                        aria-label="Next Page"
                                     >
-                                        Next &raquo;
+                                        <ChevronRightIcon size={20} />
                                     </button>
                                 </div>
                             )}

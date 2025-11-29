@@ -205,7 +205,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             description: 'Learn Python programming from scratch with FreeCodeCamp. This comprehensive course covers Python basics, data structures, web scraping, databases, and more.',
             thumbnail: 'https://i.ytimg.com/vi/8DvywoWv6fI/hqdefault.jpg',
             videoId: '8DvywoWv6fI',
-            category: 'Technology',
+            category: 'Technology & CS',
             duration: '13h',
             likes: '2.5M',
             views: '45M'
@@ -216,7 +216,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             description: 'Master JavaScript fundamentals, ES6, algorithms, and data structures with FreeCodeCamp. Build a strong foundation for web development.',
             thumbnail: 'https://i.ytimg.com/vi/PkZNo7MFNFg/hqdefault.jpg',
             videoId: 'PkZNo7MFNFg',
-            category: 'Technology',
+            category: 'Technology & CS',
             duration: '3h',
             likes: '800K',
             views: '15M'
@@ -227,7 +227,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             description: 'Learn to build responsive websites with HTML, CSS, and JavaScript. Master modern web design principles and best practices.',
             thumbnail: 'https://i.ytimg.com/vi/mU6anWqZJcc/hqdefault.jpg',
             videoId: 'mU6anWqZJcc',
-            category: 'Technology',
+            category: 'Technology & CS',
             duration: '4h',
             likes: '500K',
             views: '12M'
@@ -238,7 +238,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             description: 'Become a full stack developer with FreeCodeCamp. Learn frontend and backend technologies, databases, and deployment.',
             thumbnail: 'https://i.ytimg.com/vi/nu_pCVPKzTk/hqdefault.jpg',
             videoId: 'nu_pCVPKzTk',
-            category: 'Technology',
+            category: 'Technology & CS',
             duration: '10h',
             likes: '1.1M',
             views: '22M'
@@ -249,7 +249,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             description: 'Learn Java programming from beginner to advanced with FreeCodeCamp. Master object-oriented programming and build real applications.',
             thumbnail: 'https://i.ytimg.com/vi/grEKMHGYyns/hqdefault.jpg',
             videoId: 'grEKMHGYyns',
-            category: 'Technology',
+            category: 'Technology & CS',
             duration: '4h',
             likes: '600K',
             views: '14M'
@@ -261,7 +261,7 @@ const seedFreeCodeCampCourses = async (realStats) => {
             description: 'Learn C++ programming from the basics to advanced concepts. This course covers everything you need to know about C++.',
             thumbnail: 'https://i.ytimg.com/vi/8jLOx1hD3_o/hqdefault.jpg',
             videoId: '8jLOx1hD3_o',
-            category: 'Technology',
+            category: 'Technology & CS',
             duration: '4h',
             likes: '400K',
             views: '8.5M'
@@ -343,8 +343,8 @@ const seedFreeCodeCampCourses = async (realStats) => {
     for (const course of fccCourses) {
         // Insert Course
         const courseRes = await pool.query(
-            `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+            `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views, category) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
              RETURNING id`,
             [
                 course.slug,
@@ -355,7 +355,8 @@ const seedFreeCodeCampCourses = async (realStats) => {
                 true,
                 course.duration,
                 course.likes,
-                course.views
+                course.views,
+                course.category || 'Technology & CS' // Default for FCC
             ]
         );
 
@@ -420,12 +421,13 @@ const seedAdditionalCourses = async () => {
     for (const course of ADDITIONAL_COURSES) {
         // Insert Course
         const courseRes = await pool.query(
-            `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+            `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views, category) 
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
              ON CONFLICT (slug) DO UPDATE 
              SET title = EXCLUDED.title, 
                  description = EXCLUDED.description,
-                 thumbnail_url = EXCLUDED.thumbnail_url
+                 thumbnail_url = EXCLUDED.thumbnail_url,
+                 category = EXCLUDED.category
              RETURNING id`,
             [
                 course.slug,
@@ -436,7 +438,8 @@ const seedAdditionalCourses = async () => {
                 true,
                 course.duration,
                 course.likes,
-                course.views
+                course.views,
+                course.category
             ]
         );
 
@@ -491,7 +494,8 @@ const generateCourses = async () => {
             await pool.query(`ALTER TABLE courses ADD COLUMN IF NOT EXISTS estimated_hours VARCHAR(50)`);
             await pool.query(`ALTER TABLE courses ADD COLUMN IF NOT EXISTS likes VARCHAR(50)`);
             await pool.query(`ALTER TABLE courses ADD COLUMN IF NOT EXISTS views VARCHAR(50)`);
-            console.log('Schema updated with estimated_hours, likes, and views columns.');
+            await pool.query(`ALTER TABLE courses ADD COLUMN IF NOT EXISTS category VARCHAR(100)`);
+            console.log('Schema updated with estimated_hours, likes, views, and category columns.');
         } catch (e) {
             console.log('Schema update skipped or failed (columns might exist).');
         }
