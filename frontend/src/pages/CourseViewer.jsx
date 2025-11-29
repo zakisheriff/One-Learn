@@ -195,6 +195,17 @@ const CourseViewer = () => {
                                 </div>
                             </div>
 
+                            <div className="video-fallback-link" style={{ marginTop: '10px', textAlign: 'center' }}>
+                                <a
+                                    href={currentLesson.youtubeUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: '#007bff', textDecoration: 'none', fontSize: '0.9rem' }}
+                                >
+                                    Having trouble playing? Watch on YouTube ↗
+                                </a>
+                            </div>
+
                             <div className="lesson-info">
                                 <h1>{currentLesson.title}</h1>
                                 {currentLesson.description && (
