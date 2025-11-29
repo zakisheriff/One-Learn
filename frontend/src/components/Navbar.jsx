@@ -53,22 +53,23 @@ const Navbar = () => {
                         </button>
                         <div className="browse-dropdown">
                             <div className="browse-column">
-                                <h3>{t('programming')}</h3>
-                                <Link to="/explore?search=python" onClick={() => window.scrollTo(0, 0)}>Python</Link>
-                                <Link to="/explore?search=java" onClick={() => window.scrollTo(0, 0)}>Java</Link>
-                                <Link to="/explore?search=javascript" onClick={() => window.scrollTo(0, 0)}>JavaScript</Link>
+                                <h3>Tech & Science</h3>
+                                <Link to="/explore?category=Technology%20%26%20CS" onClick={() => window.scrollTo(0, 0)}>Technology & CS</Link>
+                                <Link to="/explore?category=Data%20Science%20%26%20AI" onClick={() => window.scrollTo(0, 0)}>Data Science & AI</Link>
+                                <Link to="/explore?category=Math%20%26%20Science" onClick={() => window.scrollTo(0, 0)}>Math & Science</Link>
                             </div>
                             <div className="browse-column">
-                                <h3>{t('webDev')}</h3>
-                                <Link to="/explore?search=web" onClick={() => window.scrollTo(0, 0)}>Full Stack</Link>
-                                <Link to="/explore?search=responsive" onClick={() => window.scrollTo(0, 0)}>Responsive Design</Link>
-                                <Link to="/explore?search=frontend" onClick={() => window.scrollTo(0, 0)}>Frontend</Link>
+                                <h3>Business & Skills</h3>
+                                <Link to="/explore?category=Business%20%26%20Finance" onClick={() => window.scrollTo(0, 0)}>Business & Finance</Link>
+                                <Link to="/explore?category=English%20%26%20Communication" onClick={() => window.scrollTo(0, 0)}>English & Communication</Link>
+                                <Link to="/explore?category=School%20Subjects" onClick={() => window.scrollTo(0, 0)}>School Subjects</Link>
                             </div>
                             <div className="browse-column">
-                                <h3>{t('technology')}</h3>
-                                <Link to="/explore?search=algorithms" onClick={() => window.scrollTo(0, 0)}>Algorithms</Link>
-                                <Link to="/explore?search=data" onClick={() => window.scrollTo(0, 0)}>Data Structures</Link>
-                                <Link to="/explore?search=development" onClick={() => window.scrollTo(0, 0)}>Software Development</Link>
+                                <h3>Creative & Lifestyle</h3>
+                                <Link to="/explore?category=Design%20%26%20Creative" onClick={() => window.scrollTo(0, 0)}>Design & Creative</Link>
+                                <Link to="/explore?category=Video%20%26%20Animation" onClick={() => window.scrollTo(0, 0)}>Video & Animation</Link>
+                                <Link to="/explore?category=Music%20%26%20Arts" onClick={() => window.scrollTo(0, 0)}>Music & Arts</Link>
+                                <Link to="/explore?category=Health%20%26%20Self-Improvement" onClick={() => window.scrollTo(0, 0)}>Health & Self-Improvement</Link>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { LanguageContext } from '../context/LanguageContext';
 import { AuthContext } from '../App';
+import { StarIcon, ClockIcon } from '../components/Icons';
 import '../styles/CourseDetail.css';
 
 const CourseDetail = () => {
@@ -109,6 +110,20 @@ const CourseDetail = () => {
                         <div className="hero-content">
                             <h1>{course.title}</h1>
                             <p className="course-description">{course.description}</p>
+
+                            <div className="course-meta-stats" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px', color: '#333', fontSize: '14px', fontWeight: '500' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <StarIcon size={16} filled={true} color="#b4690e" />
+                                    <span>{course.likes || '0'} likes</span>
+                                </div>
+                                <div>•</div>
+                                <div>{course.views || '0'} views</div>
+                                <div>•</div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <ClockIcon size={16} />
+                                    <span>{course.estimatedHours || 'N/A'}</span>
+                                </div>
+                            </div>
 
                             <button
                                 onClick={handleEnroll}

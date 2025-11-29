@@ -195,202 +195,6 @@ const topicVideos = {
     'Paleontology': { id: 'i_i_i_i_i_i', duration: '10m', likes: '300K', views: '5.8M' } // PBS Eons
 };
 
-const seedFreeCodeCampCourses = async (realStats) => {
-    console.log('Seeding FreeCodeCamp courses...');
-
-    const fccCourses = [
-        {
-            title: 'Python for Everybody',
-            slug: 'python-for-everybody',
-            description: 'Learn Python programming from scratch with FreeCodeCamp. This comprehensive course covers Python basics, data structures, web scraping, databases, and more.',
-            thumbnail: 'https://i.ytimg.com/vi/8DvywoWv6fI/hqdefault.jpg',
-            videoId: '8DvywoWv6fI',
-            category: 'Technology & CS',
-            duration: '13h',
-            likes: '2.5M',
-            views: '45M'
-        },
-        {
-            title: 'JavaScript Algorithms and Data Structures',
-            slug: 'javascript-algorithms-data-structures',
-            description: 'Master JavaScript fundamentals, ES6, algorithms, and data structures with FreeCodeCamp. Build a strong foundation for web development.',
-            thumbnail: 'https://i.ytimg.com/vi/PkZNo7MFNFg/hqdefault.jpg',
-            videoId: 'PkZNo7MFNFg',
-            category: 'Technology & CS',
-            duration: '3h',
-            likes: '800K',
-            views: '15M'
-        },
-        {
-            title: 'Responsive Web Design',
-            slug: 'responsive-web-design',
-            description: 'Learn to build responsive websites with HTML, CSS, and JavaScript. Master modern web design principles and best practices.',
-            thumbnail: 'https://i.ytimg.com/vi/mU6anWqZJcc/hqdefault.jpg',
-            videoId: 'mU6anWqZJcc',
-            category: 'Technology & CS',
-            duration: '4h',
-            likes: '500K',
-            views: '12M'
-        },
-        {
-            title: 'Full Stack Development',
-            slug: 'full-stack-development',
-            description: 'Become a full stack developer with FreeCodeCamp. Learn frontend and backend technologies, databases, and deployment.',
-            thumbnail: 'https://i.ytimg.com/vi/nu_pCVPKzTk/hqdefault.jpg',
-            videoId: 'nu_pCVPKzTk',
-            category: 'Technology & CS',
-            duration: '10h',
-            likes: '1.1M',
-            views: '22M'
-        },
-        {
-            title: 'Java Programming',
-            slug: 'java-programming',
-            description: 'Learn Java programming from beginner to advanced with FreeCodeCamp. Master object-oriented programming and build real applications.',
-            thumbnail: 'https://i.ytimg.com/vi/grEKMHGYyns/hqdefault.jpg',
-            videoId: 'grEKMHGYyns',
-            category: 'Technology & CS',
-            duration: '4h',
-            likes: '600K',
-            views: '14M'
-        },
-        // New "More" Courses
-        {
-            title: 'C++ Programming Course',
-            slug: 'cpp-programming-course',
-            description: 'Learn C++ programming from the basics to advanced concepts. This course covers everything you need to know about C++.',
-            thumbnail: 'https://i.ytimg.com/vi/8jLOx1hD3_o/hqdefault.jpg',
-            videoId: '8jLOx1hD3_o',
-            category: 'Technology & CS',
-            duration: '4h',
-            likes: '400K',
-            views: '8.5M'
-        },
-        {
-            title: 'C# for Beginners',
-            slug: 'csharp-for-beginners',
-            description: 'Learn C# programming with this full course for beginners. Covers .NET, object-oriented programming, and more.',
-            thumbnail: 'https://i.ytimg.com/vi/GhQdlIFylQ8/hqdefault.jpg',
-            videoId: 'GhQdlIFylQ8',
-            category: 'Technology',
-            duration: '4h',
-            likes: '350K',
-            views: '7.2M'
-        },
-        {
-            title: 'SQL Database Course',
-            slug: 'sql-database-course',
-            description: 'Learn SQL and database management systems. This course covers SQL syntax, queries, joins, and database design.',
-            thumbnail: 'https://i.ytimg.com/vi/HXV3zeQKqGY/hqdefault.jpg',
-            videoId: 'HXV3zeQKqGY',
-            category: 'Technology',
-            duration: '4h',
-            likes: '900K',
-            views: '18M'
-        },
-        {
-            title: 'Data Analysis with Python',
-            slug: 'data-analysis-python',
-            description: 'Learn data analysis using Python, Pandas, NumPy, and Matplotlib. Analyze real-world datasets and visualize data.',
-            thumbnail: 'https://i.ytimg.com/vi/r-uOLxNrNk4/hqdefault.jpg',
-            videoId: 'r-uOLxNrNk4',
-            category: 'Technology',
-            duration: '10h',
-            likes: '1.5M',
-            views: '25M'
-        },
-        {
-            title: 'Machine Learning for Everybody',
-            slug: 'machine-learning-everybody',
-            description: 'An introduction to machine learning concepts and algorithms. Learn how to build ML models using Python.',
-            thumbnail: 'https://i.ytimg.com/vi/i_LwzRVP7bg/hqdefault.jpg',
-            videoId: 'i_LwzRVP7bg',
-            category: 'Technology',
-            duration: '10h',
-            likes: '2M',
-            views: '35M'
-        }
-    ];
-
-    // If real stats are available, update the courses
-    if (realStats) {
-        for (const course of fccCourses) {
-            if (realStats[course.videoId]) {
-                course.duration = realStats[course.videoId].duration;
-                course.likes = realStats[course.videoId].likes;
-                course.views = realStats[course.videoId].views;
-            }
-        }
-        console.log('Updated FreeCodeCamp courses with real stats.');
-    } else if (process.env.YOUTUBE_API_KEY) {
-        // If key exists but realStats wasn't passed (or we need to fetch specifically for these)
-        // We should fetch here if not passed. But for now, let's assume we fetch all needed IDs in main.
-        // Wait, I didn't fetch FCC IDs in main. Let's fetch them here to be safe.
-        const ids = fccCourses.map(c => c.videoId);
-        const stats = await fetchYouTubeStats(ids);
-        if (stats) {
-            for (const course of fccCourses) {
-                if (stats[course.videoId]) {
-                    course.duration = stats[course.videoId].duration;
-                    course.likes = stats[course.videoId].likes;
-                    course.views = stats[course.videoId].views;
-                }
-            }
-            console.log('Updated FreeCodeCamp courses with real stats (fetched locally).');
-        }
-    }
-
-    for (const course of fccCourses) {
-        // Insert Course
-        const courseRes = await pool.query(
-            `INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views, category) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
-             RETURNING id`,
-            [
-                course.slug,
-                course.title,
-                course.description,
-                course.thumbnail,
-                `Module 1: Introduction\nModule 2: Core Concepts\nModule 3: Advanced Topics\nModule 4: Final Project`,
-                true,
-                course.duration,
-                course.likes,
-                course.views,
-                course.category || 'Technology & CS' // Default for FCC
-            ]
-        );
-
-        const courseId = courseRes.rows[0].id;
-
-        // Insert Module
-        const moduleRes = await pool.query(
-            `INSERT INTO modules (course_id, title, description, order_index) 
-             VALUES ($1, $2, $3, $4) 
-             RETURNING id`,
-            [courseId, 'Course Content', 'Main course modules', 0]
-        );
-
-        const moduleId = moduleRes.rows[0].id;
-
-        // Insert Lesson
-        await pool.query(
-            `INSERT INTO lessons (module_id, title, description, youtube_url, duration_seconds, order_index) 
-             VALUES ($1, $2, $3, $4, $5, $6)`,
-            [
-                moduleId,
-                course.title,
-                'Full Course Video',
-                `https://www.youtube.com/watch?v=${course.videoId}`,
-                14400, // ~4 hours default
-                0
-            ]
-        );
-
-        // Quiz will be generated on-demand
-    }
-    console.log(`Seeded ${fccCourses.length} FreeCodeCamp courses.`);
-};
-
 const technologyCourses = require('./data/courses/technology.json');
 const englishCourses = require('./data/courses/english.json');
 const designCourses = require('./data/courses/design.json');
@@ -415,8 +219,8 @@ const ADDITIONAL_COURSES = [
     ...musicArtsCourses
 ];
 
-const seedAdditionalCourses = async () => {
-    console.log('Seeding Additional Courses (Bro Code, Mosh, SuperSimpleDev)...');
+const seedAllCourses = async () => {
+    console.log('Seeding Courses from JSON files...');
 
     for (const course of ADDITIONAL_COURSES) {
         // Insert Course
@@ -504,11 +308,8 @@ const generateCourses = async () => {
         await pool.query('DELETE FROM courses');
         console.log('Cleared existing courses.');
 
-        // Seed FreeCodeCamp Courses
-        await seedFreeCodeCampCourses();
-
-        // Seed Additional Courses (Bro Code, Mosh, SuperSimpleDev)
-        await seedAdditionalCourses();
+        // Seed Courses from JSON files
+        await seedAllCourses();
 
         console.log('Successfully seeded courses!');
     } catch (err) {

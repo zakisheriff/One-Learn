@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { LanguageContext } from '../context/LanguageContext';
-import { SearchIcon, ClockIcon, BookIcon, ChevronLeftIcon, ChevronRightIcon } from '../components/Icons';
+import { SearchIcon, ClockIcon, BookIcon, ChevronLeftIcon, ChevronRightIcon, StarIcon } from '../components/Icons';
 import '../styles/CourseCatalog.css';
 
 const CourseCatalog = () => {
@@ -157,6 +157,12 @@ const CourseCatalog = () => {
                                             <p className="course-description">
                                                 {course.description || 'Learn essential programming skills with this comprehensive course.'}
                                             </p>
+                                            <div className="course-stats" style={{ display: 'flex', alignItems: 'center', fontSize: '12px', color: '#666', marginBottom: '12px', gap: '4px' }}>
+                                                <StarIcon size={12} filled={true} color="#b4690e" />
+                                                <span>{course.likes || '0'} likes</span>
+                                                <span style={{ margin: '0 4px' }}>•</span>
+                                                <span>{course.views || '0'} views</span>
+                                            </div>
                                             <div className="course-footer">
                                                 <span className="course-lessons">
                                                     <BookIcon size={14} /> {t('multipleLessons')}

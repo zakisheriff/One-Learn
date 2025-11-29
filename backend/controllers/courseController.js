@@ -58,7 +58,7 @@ exports.getCourseBySlug = async (req, res) => {
 
         // Get course info
         const courseResult = await pool.query(
-            `SELECT id, slug, title, description, thumbnail_url, syllabus, created_at
+            `SELECT id, slug, title, description, thumbnail_url, syllabus, created_at, likes, views, estimated_hours
              FROM courses
              WHERE slug = $1 AND is_published = true`,
             [slug]
@@ -99,7 +99,10 @@ exports.getCourseBySlug = async (req, res) => {
                 thumbnailUrl: course.thumbnail_url,
                 syllabus: course.syllabus,
                 modules,
-                createdAt: course.created_at
+                createdAt: course.created_at,
+                likes: course.likes,
+                views: course.views,
+                estimatedHours: course.estimated_hours
             }
         });
 

@@ -156,13 +156,13 @@ const HomePage = () => {
                     <div className="course-carousel">
                         {courses
                             .filter(course =>
-                                course.title.toLowerCase().includes(activeCategory.toLowerCase()) &&
+                                (activeCategory === 'All' || course.category === activeCategory) &&
                                 !enrollments.some(e => e.course.id === course.id) // Filter out enrolled courses
                             )
                             .map((course) => renderCourseCard(course))}
                     </div>
                     {courses.filter(course =>
-                        course.title.toLowerCase().includes(activeCategory.toLowerCase()) &&
+                        (activeCategory === 'All' || course.category === activeCategory) &&
                         !enrollments.some(e => e.course.id === course.id)
                     ).length === 0 && (
                             <div className="section-empty">
