@@ -1,0 +1,112 @@
+[
+    {
+        "title": "DesignCourse: UI/UX Design",
+        "slug": "designcourse-ui-ux",
+        "description": "Learn UI/UX design from scratch.",
+        "thumbnail": "https://img.youtube.com/vi/c9Wg6Cb_YlU/hqdefault.jpg",
+        "videoId": "c9Wg6Cb_YlU",
+        "category": "Design & Creative",
+        "duration": "6h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Punit Chawla: Design Trends",
+        "slug": "punit-chawla-design",
+        "description": "Latest design trends and tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/7_7_7_7_7_7/hqdefault.jpg",
+        "videoId": "7_7_7_7_7_7",
+        "category": "Design & Creative",
+        "duration": "3h",
+        "likes": "5K",
+        "views": "500K"
+    },
+    {
+        "title": "Envato Tuts+: Graphic Design",
+        "slug": "envato-tuts-graphic-design",
+        "description": "Professional graphic design tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/YqQx75OPRa0/hqdefault.jpg",
+        "videoId": "YqQx75OPRa0",
+        "category": "Design & Creative",
+        "duration": "5h",
+        "likes": "80K",
+        "views": "800K"
+    },
+    {
+        "title": "Bring Your Own Laptop: Adobe",
+        "slug": "byol-adobe",
+        "description": "Adobe Creative Cloud tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/8_8_8_8_8_8/hqdefault.jpg",
+        "videoId": "8_8_8_8_8_8",
+        "category": "Design & Creative",
+        "duration": "10h",
+        "likes": "120K",
+        "views": "1.2M"
+    },
+    {
+        "title": "Figma Official: Tutorials",
+        "slug": "figma-official",
+        "description": "Master Figma with official tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/9_9_9_9_9_9/hqdefault.jpg",
+        "videoId": "9_9_9_9_9_9",
+        "category": "Design & Creative",
+        "duration": "4h",
+        "likes": "60K",
+        "views": "600K"
+    },
+    {
+        "title": "AJ&Smart: UX Design",
+        "slug": "aj-smart-ux",
+        "description": "Product design and UX strategy.",
+        "thumbnail": "https://img.youtube.com/vi/0_0_0_0_0_0/hqdefault.jpg",
+        "videoId": "0_0_0_0_0_0",
+        "category": "Design & Creative",
+        "duration": "5h",
+        "likes": "40K",
+        "views": "400K"
+    },
+    {
+        "title": "Flux Academy: Web Design",
+        "slug": "flux-academy-web-design",
+        "description": "Learn web design and freelancing.",
+        "thumbnail": "https://img.youtube.com/vi/a_a_a_a_a_a/hqdefault.jpg",
+        "videoId": "a_a_a_a_a_a",
+        "category": "Design & Creative",
+        "duration": "6h",
+        "likes": "90K",
+        "views": "900K"
+    },
+    {
+        "title": "CharliMarieTV: Design Life",
+        "slug": "charlimarietv",
+        "description": "Life as a designer and tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/b_b_b_b_b_b/hqdefault.jpg",
+        "videoId": "b_b_b_b_b_b",
+        "category": "Design & Creative",
+        "duration": "3h",
+        "likes": "30K",
+        "views": "300K"
+    },
+    {
+        "title": "Blue Lightning TV: Photoshop",
+        "slug": "blue-lightning-photoshop",
+        "description": "Advanced Photoshop tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/c_c_c_c_c_c/hqdefault.jpg",
+        "videoId": "c_c_c_c_c_c",
+        "category": "Design & Creative",
+        "duration": "8h",
+        "likes": "150K",
+        "views": "1.5M"
+    },
+    {
+        "title": "Satori Graphics",
+        "slug": "satori-graphics",
+        "description": "Graphic design principles and practice.",
+        "thumbnail": "https://img.youtube.com/vi/d_d_d_d_d_d/hqdefault.jpg",
+        "videoId": "d_d_d_d_d_d",
+        "category": "Design & Creative",
+        "duration": "4h",
+        "likes": "70K",
+        "views": "700K"
+    }
+]

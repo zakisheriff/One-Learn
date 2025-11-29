@@ -1,0 +1,112 @@
+[
+    {
+        "title": "HubSpot Academy",
+        "slug": "hubspot-academy",
+        "description": "Inbound marketing and sales.",
+        "thumbnail": "https://img.youtube.com/vi/m_m_m_m_m_m/hqdefault.jpg",
+        "videoId": "m_m_m_m_m_m",
+        "category": "Business & Finance",
+        "duration": "8h",
+        "likes": "50K",
+        "views": "500K"
+    },
+    {
+        "title": "Google Digital Garage",
+        "slug": "google-digital-garage",
+        "description": "Digital marketing fundamentals.",
+        "thumbnail": "https://img.youtube.com/vi/n_n_n_n_n_n/hqdefault.jpg",
+        "videoId": "n_n_n_n_n_n",
+        "category": "Business & Finance",
+        "duration": "10h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Shopify Academy",
+        "slug": "shopify-academy",
+        "description": "Ecommerce business training.",
+        "thumbnail": "https://img.youtube.com/vi/o_o_o_o_o_o/hqdefault.jpg",
+        "videoId": "o_o_o_o_o_o",
+        "category": "Business & Finance",
+        "duration": "5h",
+        "likes": "30K",
+        "views": "300K"
+    },
+    {
+        "title": "Slidebean: Startup 101",
+        "slug": "slidebean-startup",
+        "description": "How to start a startup.",
+        "thumbnail": "https://img.youtube.com/vi/p_p_p_p_p_p/hqdefault.jpg",
+        "videoId": "p_p_p_p_p_p",
+        "category": "Business & Finance",
+        "duration": "4h",
+        "likes": "60K",
+        "views": "600K"
+    },
+    {
+        "title": "Y Combinator: Startup School",
+        "slug": "y-combinator-startup-school",
+        "description": "Advice from the world's best accelerator.",
+        "thumbnail": "https://img.youtube.com/vi/q_q_q_q_q_q/hqdefault.jpg",
+        "videoId": "q_q_q_q_q_q",
+        "category": "Business & Finance",
+        "duration": "15h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Harvard Business Review",
+        "slug": "hbr-business",
+        "description": "Management and leadership insights.",
+        "thumbnail": "https://img.youtube.com/vi/TD7WSLeQtVw/hqdefault.jpg",
+        "videoId": "TD7WSLeQtVw",
+        "category": "Business & Finance",
+        "duration": "3h",
+        "likes": "80K",
+        "views": "800K"
+    },
+    {
+        "title": "Graham Stephan: Finance",
+        "slug": "graham-stephan-finance",
+        "description": "Personal finance basics.",
+        "thumbnail": "https://img.youtube.com/vi/r_r_r_r_r_r/hqdefault.jpg",
+        "videoId": "r_r_r_r_r_r",
+        "category": "Business & Finance",
+        "duration": "6h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "The Plain Bagel",
+        "slug": "the-plain-bagel",
+        "description": "Investing and economics explained.",
+        "thumbnail": "https://img.youtube.com/vi/s_s_s_s_s_s/hqdefault.jpg",
+        "videoId": "s_s_s_s_s_s",
+        "category": "Business & Finance",
+        "duration": "4h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Ali Abdaal: Productivity",
+        "slug": "ali-abdaal-productivity",
+        "description": "Productivity and business skills.",
+        "thumbnail": "https://img.youtube.com/vi/t_t_t_t_t_t/hqdefault.jpg",
+        "videoId": "t_t_t_t_t_t",
+        "category": "Business & Finance",
+        "duration": "5h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "TED-Ed: Business",
+        "slug": "ted-ed-business",
+        "description": "Lessons worth sharing on business.",
+        "thumbnail": "https://img.youtube.com/vi/u_u_u_u_u_u/hqdefault.jpg",
+        "videoId": "u_u_u_u_u_u",
+        "category": "Business & Finance",
+        "duration": "3h",
+        "likes": "2M",
+        "views": "20M"
+    }
+]

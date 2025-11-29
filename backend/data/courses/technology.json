@@ -1,0 +1,112 @@
+[
+    {
+        "title": "Learn to Code with freeCodeCamp",
+        "slug": "freecodecamp-learn-to-code",
+        "description": "Comprehensive coding tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/8DvywoWv6fI/hqdefault.jpg",
+        "videoId": "8DvywoWv6fI",
+        "category": "Technology & CS",
+        "duration": "4h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "CS50: Introduction to Computer Science",
+        "slug": "cs50-harvard",
+        "description": "Harvard's introduction to the intellectual enterprises of computer science.",
+        "thumbnail": "https://img.youtube.com/vi/8mAITcNt710/hqdefault.jpg",
+        "videoId": "8mAITcNt710",
+        "category": "Technology & CS",
+        "duration": "24h",
+        "likes": "2M",
+        "views": "20M"
+    },
+    {
+        "title": "MIT OpenCourseWare: Intro to CS",
+        "slug": "mit-ocw-intro-cs",
+        "description": "Introduction to Computer Science and Programming in Python.",
+        "thumbnail": "https://img.youtube.com/vi/ny57G3Z_Wj0/hqdefault.jpg",
+        "videoId": "ny57G3Z_Wj0",
+        "category": "Technology & CS",
+        "duration": "15h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "Stanford: Programming Methodology",
+        "slug": "stanford-programming-methodology",
+        "description": "Stanford University's Programming Methodology course.",
+        "thumbnail": "https://img.youtube.com/vi/KkMDCCdjyW8/hqdefault.jpg",
+        "videoId": "KkMDCCdjyW8",
+        "category": "Technology & CS",
+        "duration": "20h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "The Net Ninja: Modern JavaScript",
+        "slug": "net-ninja-modern-js",
+        "description": "Master modern JavaScript with The Net Ninja.",
+        "thumbnail": "https://img.youtube.com/vi/iWOYAxlnaww/hqdefault.jpg",
+        "videoId": "iWOYAxlnaww",
+        "category": "Technology & CS",
+        "duration": "10h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Traversy Media: Web Development",
+        "slug": "traversy-media-web-dev",
+        "description": "Web development tutorials for all levels.",
+        "thumbnail": "https://img.youtube.com/vi/UB1O30fR-EE/hqdefault.jpg",
+        "videoId": "UB1O30fR-EE",
+        "category": "Technology & CS",
+        "duration": "12h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Bro Code: Python Full Course",
+        "slug": "bro-code-python",
+        "description": "Python tutorial for beginners.",
+        "thumbnail": "https://img.youtube.com/vi/IXqmoyIpZsg/hqdefault.jpg",
+        "videoId": "IXqmoyIpZsg",
+        "category": "Technology & CS",
+        "duration": "12h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "Corey Schafer: Python Tutorials",
+        "slug": "corey-schafer-python",
+        "description": "In-depth Python tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/YYXdXT2l-Gg/hqdefault.jpg",
+        "videoId": "YYXdXT2l-Gg",
+        "category": "Technology & CS",
+        "duration": "10h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "Eloquent JavaScript",
+        "slug": "eloquent-javascript",
+        "description": "Deep dive into JavaScript.",
+        "thumbnail": "https://img.youtube.com/vi/W6NZfCO5SIk/hqdefault.jpg",
+        "videoId": "W6NZfCO5SIk",
+        "category": "Technology & CS",
+        "duration": "8h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Computerphile: How Computers Work",
+        "slug": "computerphile-how-computers-work",
+        "description": "Fascinating insights into computer science.",
+        "thumbnail": "https://img.youtube.com/vi/9bn8gZgWw48/hqdefault.jpg",
+        "videoId": "9bn8gZgWw48",
+        "category": "Technology & CS",
+        "duration": "5h",
+        "likes": "200K",
+        "views": "2M"
+    }
+]

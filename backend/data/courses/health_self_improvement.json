@@ -1,0 +1,112 @@
+[
+    {
+        "title": "Tedx Talks",
+        "slug": "tedx-talks",
+        "description": "Ideas worth spreading.",
+        "thumbnail": "https://img.youtube.com/vi/5f_5f_5f_5f/hqdefault.jpg",
+        "videoId": "5f_5f_5f_5f",
+        "category": "Health & Self-Improvement",
+        "duration": "50h",
+        "likes": "10M",
+        "views": "100M"
+    },
+    {
+        "title": "Dr. Mike",
+        "slug": "dr-mike",
+        "description": "Real doctor reacts and teaches.",
+        "thumbnail": "https://img.youtube.com/vi/6g_6g_6g_6g/hqdefault.jpg",
+        "videoId": "6g_6g_6g_6g",
+        "category": "Health & Self-Improvement",
+        "duration": "10h",
+        "likes": "2M",
+        "views": "20M"
+    },
+    {
+        "title": "The School of Life",
+        "slug": "the-school-of-life",
+        "description": "Emotional intelligence.",
+        "thumbnail": "https://img.youtube.com/vi/7h_7h_7h_7h/hqdefault.jpg",
+        "videoId": "7h_7h_7h_7h",
+        "category": "Health & Self-Improvement",
+        "duration": "8h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "Better Ideas",
+        "slug": "better-ideas",
+        "description": "Self-improvement advice.",
+        "thumbnail": "https://img.youtube.com/vi/8i_8i_8i_8i/hqdefault.jpg",
+        "videoId": "8i_8i_8i_8i",
+        "category": "Health & Self-Improvement",
+        "duration": "4h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "Therapy in a Nutshell",
+        "slug": "therapy-in-a-nutshell",
+        "description": "Mental health skills.",
+        "thumbnail": "https://img.youtube.com/vi/9j_9j_9j_9j/hqdefault.jpg",
+        "videoId": "9j_9j_9j_9j",
+        "category": "Health & Self-Improvement",
+        "duration": "6h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Huberman Lab Clips",
+        "slug": "huberman-lab",
+        "description": "Neuroscience and health.",
+        "thumbnail": "https://img.youtube.com/vi/0k_0k_0k_0k/hqdefault.jpg",
+        "videoId": "0k_0k_0k_0k",
+        "category": "Health & Self-Improvement",
+        "duration": "20h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "ASAPScience",
+        "slug": "asapscience",
+        "description": "Science in your life.",
+        "thumbnail": "https://img.youtube.com/vi/1l_1l_1l_1l/hqdefault.jpg",
+        "videoId": "1l_1l_1l_1l",
+        "category": "Health & Self-Improvement",
+        "duration": "5h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "SciShow",
+        "slug": "scishow",
+        "description": "Science news and concepts.",
+        "thumbnail": "https://img.youtube.com/vi/2m_2m_2m_2m/hqdefault.jpg",
+        "videoId": "2m_2m_2m_2m",
+        "category": "Health & Self-Improvement",
+        "duration": "10h",
+        "likes": "800K",
+        "views": "8M"
+    },
+    {
+        "title": "Thomas Frank",
+        "slug": "thomas-frank",
+        "description": "Productivity and study tips.",
+        "thumbnail": "https://img.youtube.com/vi/3n_3n_3n_3n/hqdefault.jpg",
+        "videoId": "3n_3n_3n_3n",
+        "category": "Health & Self-Improvement",
+        "duration": "6h",
+        "likes": "400K",
+        "views": "4M"
+    },
+    {
+        "title": "Academy of Ideas",
+        "slug": "academy-of-ideas",
+        "description": "Philosophy and psychology.",
+        "thumbnail": "https://img.youtube.com/vi/4o_4o_4o_4o/hqdefault.jpg",
+        "videoId": "4o_4o_4o_4o",
+        "category": "Health & Self-Improvement",
+        "duration": "5h",
+        "likes": "100K",
+        "views": "1M"
+    }
+]

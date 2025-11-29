@@ -1,0 +1,112 @@
+[
+    {
+        "title": "CrashCourse",
+        "slug": "crashcourse",
+        "description": "High quality educational videos.",
+        "thumbnail": "https://img.youtube.com/vi/5p_5p_5p_5p/hqdefault.jpg",
+        "videoId": "5p_5p_5p_5p",
+        "category": "School Subjects",
+        "duration": "50h",
+        "likes": "5M",
+        "views": "50M"
+    },
+    {
+        "title": "Khan Academy Classrooms",
+        "slug": "khan-academy-classrooms",
+        "description": "K-12 education.",
+        "thumbnail": "https://img.youtube.com/vi/6q_6q_6q_6q/hqdefault.jpg",
+        "videoId": "6q_6q_6q_6q",
+        "category": "School Subjects",
+        "duration": "100h",
+        "likes": "2M",
+        "views": "20M"
+    },
+    {
+        "title": "Neso Academy",
+        "slug": "neso-academy",
+        "description": "Engineering and school subjects.",
+        "thumbnail": "https://img.youtube.com/vi/7r_7r_7r_7r/hqdefault.jpg",
+        "videoId": "7r_7r_7r_7r",
+        "category": "School Subjects",
+        "duration": "20h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "Organic Chemistry Tutor",
+        "slug": "organic-chemistry-tutor",
+        "description": "Math and science tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/8s_8s_8s_8s/hqdefault.jpg",
+        "videoId": "8s_8s_8s_8s",
+        "category": "School Subjects",
+        "duration": "30h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "Professor Leonard",
+        "slug": "professor-leonard",
+        "description": "Best math lectures.",
+        "thumbnail": "https://img.youtube.com/vi/9t_9t_9t_9t/hqdefault.jpg",
+        "videoId": "9t_9t_9t_9t",
+        "category": "School Subjects",
+        "duration": "40h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "Eddie Woo",
+        "slug": "eddie-woo",
+        "description": "Engaging math lessons.",
+        "thumbnail": "https://img.youtube.com/vi/0u_0u_0u_0u/hqdefault.jpg",
+        "videoId": "0u_0u_0u_0u",
+        "category": "School Subjects",
+        "duration": "15h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Armando Hasudungan",
+        "slug": "armando-hasudungan",
+        "description": "Biology and medicine.",
+        "thumbnail": "https://img.youtube.com/vi/1v_1v_1v_1v/hqdefault.jpg",
+        "videoId": "1v_1v_1v_1v",
+        "category": "School Subjects",
+        "duration": "10h",
+        "likes": "400K",
+        "views": "4M"
+    },
+    {
+        "title": "Bozeman Science",
+        "slug": "bozeman-science",
+        "description": "Science education.",
+        "thumbnail": "https://img.youtube.com/vi/2w_2w_2w_2w/hqdefault.jpg",
+        "videoId": "2w_2w_2w_2w",
+        "category": "School Subjects",
+        "duration": "8h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "MinutePhysics",
+        "slug": "minutephysics",
+        "description": "Cool physics explanations.",
+        "thumbnail": "https://img.youtube.com/vi/3x_3x_3x_3x/hqdefault.jpg",
+        "videoId": "3x_3x_3x_3x",
+        "category": "School Subjects",
+        "duration": "4h",
+        "likes": "2M",
+        "views": "20M"
+    },
+    {
+        "title": "PatrickJMT",
+        "slug": "patrickjmt",
+        "description": "Just math tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/4y_4y_4y_4y/hqdefault.jpg",
+        "videoId": "4y_4y_4y_4y",
+        "category": "School Subjects",
+        "duration": "10h",
+        "likes": "150K",
+        "views": "1.5M"
+    }
+]

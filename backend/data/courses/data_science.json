@@ -1,0 +1,112 @@
+[
+    {
+        "title": "Krish Naik",
+        "slug": "krish-naik",
+        "description": "Data science and AI.",
+        "thumbnail": "https://img.youtube.com/vi/5z_5z_5z_5z/hqdefault.jpg",
+        "videoId": "5z_5z_5z_5z",
+        "category": "Data Science & AI",
+        "duration": "20h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "Code Basics",
+        "slug": "code-basics",
+        "description": "Data science for everyone.",
+        "thumbnail": "https://img.youtube.com/vi/6a_6a_6a_6a/hqdefault.jpg",
+        "videoId": "6a_6a_6a_6a",
+        "category": "Data Science & AI",
+        "duration": "15h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Ken Jee",
+        "slug": "ken-jee",
+        "description": "Data science career advice.",
+        "thumbnail": "https://img.youtube.com/vi/7b_7b_7b_7b/hqdefault.jpg",
+        "videoId": "7b_7b_7b_7b",
+        "category": "Data Science & AI",
+        "duration": "5h",
+        "likes": "50K",
+        "views": "500K"
+    },
+    {
+        "title": "StatQuest",
+        "slug": "statquest",
+        "description": "Statistics and ML clearly explained.",
+        "thumbnail": "https://img.youtube.com/vi/8c_8c_8c_8c/hqdefault.jpg",
+        "videoId": "8c_8c_8c_8c",
+        "category": "Data Science & AI",
+        "duration": "10h",
+        "likes": "150K",
+        "views": "1.5M"
+    },
+    {
+        "title": "Sentdex",
+        "slug": "sentdex",
+        "description": "Python programming and ML.",
+        "thumbnail": "https://img.youtube.com/vi/9d_9d_9d_9d/hqdefault.jpg",
+        "videoId": "9d_9d_9d_9d",
+        "category": "Data Science & AI",
+        "duration": "15h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Google Cloud Tech",
+        "slug": "google-cloud-tech",
+        "description": "Official Google Cloud channel.",
+        "thumbnail": "https://img.youtube.com/vi/0e_0e_0e_0e/hqdefault.jpg",
+        "videoId": "0e_0e_0e_0e",
+        "category": "Data Science & AI",
+        "duration": "20h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "AWS Training",
+        "slug": "aws-training",
+        "description": "Learn AWS cloud.",
+        "thumbnail": "https://img.youtube.com/vi/1f_1f_1f_1f/hqdefault.jpg",
+        "videoId": "1f_1f_1f_1f",
+        "category": "Data Science & AI",
+        "duration": "30h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Microsoft Azure",
+        "slug": "microsoft-azure",
+        "description": "Azure cloud tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/2g_2g_2g_2g/hqdefault.jpg",
+        "videoId": "2g_2g_2g_2g",
+        "category": "Data Science & AI",
+        "duration": "25h",
+        "likes": "150K",
+        "views": "1.5M"
+    },
+    {
+        "title": "Data School",
+        "slug": "data-school",
+        "description": "Learn pandas and scikit-learn.",
+        "thumbnail": "https://img.youtube.com/vi/3h_3h_3h_3h/hqdefault.jpg",
+        "videoId": "3h_3h_3h_3h",
+        "category": "Data Science & AI",
+        "duration": "8h",
+        "likes": "4K",
+        "views": "400K"
+    },
+    {
+        "title": "DeepLearningAI",
+        "slug": "deeplearning-ai",
+        "description": "Official DeepLearning.AI channel.",
+        "thumbnail": "https://img.youtube.com/vi/4i_4i_4i_4i/hqdefault.jpg",
+        "videoId": "4i_4i_4i_4i",
+        "category": "Data Science & AI",
+        "duration": "10h",
+        "likes": "100K",
+        "views": "1M"
+    }
+]

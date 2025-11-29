@@ -1,0 +1,112 @@
+[
+    {
+        "title": "Adobe Creative Cloud",
+        "slug": "adobe-creative-cloud",
+        "description": "Master Adobe apps.",
+        "thumbnail": "https://img.youtube.com/vi/v_v_v_v_v_v/hqdefault.jpg",
+        "videoId": "v_v_v_v_v_v",
+        "category": "Video & Animation",
+        "duration": "10h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Premiere Gal",
+        "slug": "premiere-gal",
+        "description": "Premiere Pro tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/w_w_w_w_w_w/hqdefault.jpg",
+        "videoId": "w_w_w_w_w_w",
+        "category": "Video & Animation",
+        "duration": "5h",
+        "likes": "50K",
+        "views": "500K"
+    },
+    {
+        "title": "Justin Odisho",
+        "slug": "justin-odisho",
+        "description": "Viral video editing effects.",
+        "thumbnail": "https://img.youtube.com/vi/x_x_x_x_x_x/hqdefault.jpg",
+        "videoId": "x_x_x_x_x_x",
+        "category": "Video & Animation",
+        "duration": "4h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Cinecom.net",
+        "slug": "cinecom-net",
+        "description": "Filmmaking and VFX.",
+        "thumbnail": "https://img.youtube.com/vi/y_y_y_y_y_y/hqdefault.jpg",
+        "videoId": "y_y_y_y_y_y",
+        "category": "Video & Animation",
+        "duration": "6h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "Blender Guru",
+        "slug": "blender-guru",
+        "description": "The famous donut tutorial and more.",
+        "thumbnail": "https://img.youtube.com/vi/z_z_z_z_z_z/hqdefault.jpg",
+        "videoId": "z_z_z_z_z_z",
+        "category": "Video & Animation",
+        "duration": "20h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "CG Geek",
+        "slug": "cg-geek",
+        "description": "Blender and 3D art.",
+        "thumbnail": "https://img.youtube.com/vi/0a_0a_0a_0a/hqdefault.jpg",
+        "videoId": "0a_0a_0a_0a",
+        "category": "Video & Animation",
+        "duration": "8h",
+        "likes": "150K",
+        "views": "1.5M"
+    },
+    {
+        "title": "Video Copilot",
+        "slug": "video-copilot",
+        "description": "After Effects tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/1b_1b_1b_1b/hqdefault.jpg",
+        "videoId": "1b_1b_1b_1b",
+        "category": "Video & Animation",
+        "duration": "12h",
+        "likes": "400K",
+        "views": "4M"
+    },
+    {
+        "title": "Kriscoart",
+        "slug": "kriscoart",
+        "description": "Filmmaking storytelling.",
+        "thumbnail": "https://img.youtube.com/vi/2c_2c_2c_2c/hqdefault.jpg",
+        "videoId": "2c_2c_2c_2c",
+        "category": "Video & Animation",
+        "duration": "3h",
+        "likes": "60K",
+        "views": "600K"
+    },
+    {
+        "title": "Film Riot",
+        "slug": "film-riot",
+        "description": "DIY filmmaking.",
+        "thumbnail": "https://img.youtube.com/vi/3d_3d_3d_3d/hqdefault.jpg",
+        "videoId": "3d_3d_3d_3d",
+        "category": "Video & Animation",
+        "duration": "10h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "Ben Marriott",
+        "slug": "ben-marriott",
+        "description": "Motion design and animation.",
+        "thumbnail": "https://img.youtube.com/vi/4e_4e_4e_4e/hqdefault.jpg",
+        "videoId": "4e_4e_4e_4e",
+        "category": "Video & Animation",
+        "duration": "5h",
+        "likes": "8K",
+        "views": "800K"
+    }
+]

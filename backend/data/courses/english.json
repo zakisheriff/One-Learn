@@ -1,0 +1,112 @@
+[
+    {
+        "title": "BBC Learning English",
+        "slug": "bbc-learning-english",
+        "description": "Learn English with the BBC.",
+        "thumbnail": "https://img.youtube.com/vi/JuKy5sW3S1o/hqdefault.jpg",
+        "videoId": "JuKy5sW3S1o",
+        "category": "English & Communication",
+        "duration": "5h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Oxford Online English",
+        "slug": "oxford-online-english",
+        "description": "Premium quality English lessons.",
+        "thumbnail": "https://img.youtube.com/vi/CaQ7g2i7y8I/hqdefault.jpg",
+        "videoId": "CaQ7g2i7y8I",
+        "category": "English & Communication",
+        "duration": "4h",
+        "likes": "80K",
+        "views": "800K"
+    },
+    {
+        "title": "Rachel's English",
+        "slug": "rachels-english",
+        "description": "Master American English pronunciation.",
+        "thumbnail": "https://img.youtube.com/vi/mez_18n_1ms/hqdefault.jpg",
+        "videoId": "mez_18n_1ms",
+        "category": "English & Communication",
+        "duration": "6h",
+        "likes": "150K",
+        "views": "1.5M"
+    },
+    {
+        "title": "English with Lucy",
+        "slug": "english-with-lucy",
+        "description": "Beautiful British English lessons.",
+        "thumbnail": "https://img.youtube.com/vi/Oqf9yJzFz-E/hqdefault.jpg",
+        "videoId": "Oqf9yJzFz-E",
+        "category": "English & Communication",
+        "duration": "3h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Speak English With Mr. Duncan",
+        "slug": "speak-english-mr-duncan",
+        "description": "Fun English lessons.",
+        "thumbnail": "https://img.youtube.com/vi/1_1_1_1_1_1/hqdefault.jpg",
+        "videoId": "1_1_1_1_1_1",
+        "category": "English & Communication",
+        "duration": "10h",
+        "likes": "5K",
+        "views": "500K"
+    },
+    {
+        "title": "Learn English with Cambridge",
+        "slug": "learn-english-cambridge",
+        "description": "Official Cambridge English preparation.",
+        "thumbnail": "https://img.youtube.com/vi/2_2_2_2_2_2/hqdefault.jpg",
+        "videoId": "2_2_2_2_2_2",
+        "category": "English & Communication",
+        "duration": "5h",
+        "likes": "60K",
+        "views": "600K"
+    },
+    {
+        "title": "American English at State",
+        "slug": "american-english-state",
+        "description": "Resources for teaching and learning American English.",
+        "thumbnail": "https://img.youtube.com/vi/3_3_3_3_3_3/hqdefault.jpg",
+        "videoId": "3_3_3_3_3_3",
+        "category": "English & Communication",
+        "duration": "4h",
+        "likes": "40K",
+        "views": "400K"
+    },
+    {
+        "title": "ETJ English",
+        "slug": "etj-english",
+        "description": "British accent training.",
+        "thumbnail": "https://img.youtube.com/vi/4_4_4_4_4_4/hqdefault.jpg",
+        "videoId": "4_4_4_4_4_4",
+        "category": "English & Communication",
+        "duration": "3h",
+        "likes": "30K",
+        "views": "300K"
+    },
+    {
+        "title": "English Speeches",
+        "slug": "english-speeches",
+        "description": "Learn English through famous speeches.",
+        "thumbnail": "https://img.youtube.com/vi/5_5_5_5_5_5/hqdefault.jpg",
+        "videoId": "5_5_5_5_5_5",
+        "category": "English & Communication",
+        "duration": "8h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "RealLife English",
+        "slug": "reallife-english",
+        "description": "Connect the world through English.",
+        "thumbnail": "https://img.youtube.com/vi/6_6_6_6_6_6/hqdefault.jpg",
+        "videoId": "6_6_6_6_6_6",
+        "category": "English & Communication",
+        "duration": "4h",
+        "likes": "70K",
+        "views": "700K"
+    }
+]

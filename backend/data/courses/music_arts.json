@@ -1,0 +1,112 @@
+[
+    {
+        "title": "JustinGuitar",
+        "slug": "justinguitar",
+        "description": "Best guitar lessons.",
+        "thumbnail": "https://img.youtube.com/vi/5j_5j_5j_5j/hqdefault.jpg",
+        "videoId": "5j_5j_5j_5j",
+        "category": "Music & Arts",
+        "duration": "20h",
+        "likes": "500K",
+        "views": "5M"
+    },
+    {
+        "title": "Rick Beato",
+        "slug": "rick-beato",
+        "description": "Everything music.",
+        "thumbnail": "https://img.youtube.com/vi/6k_6k_6k_6k/hqdefault.jpg",
+        "videoId": "6k_6k_6k_6k",
+        "category": "Music & Arts",
+        "duration": "10h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "Marty Music",
+        "slug": "marty-music",
+        "description": "Guitar songs and tutorials.",
+        "thumbnail": "https://img.youtube.com/vi/7l_7l_7l_7l/hqdefault.jpg",
+        "videoId": "7l_7l_7l_7l",
+        "category": "Music & Arts",
+        "duration": "15h",
+        "likes": "800K",
+        "views": "8M"
+    },
+    {
+        "title": "Proko",
+        "slug": "proko",
+        "description": "Drawing and anatomy.",
+        "thumbnail": "https://img.youtube.com/vi/8m_8m_8m_8m/hqdefault.jpg",
+        "videoId": "8m_8m_8m_8m",
+        "category": "Music & Arts",
+        "duration": "12h",
+        "likes": "400K",
+        "views": "4M"
+    },
+    {
+        "title": "Draw with Jazza",
+        "slug": "draw-with-jazza",
+        "description": "Fun art challenges.",
+        "thumbnail": "https://img.youtube.com/vi/9n_9n_9n_9n/hqdefault.jpg",
+        "videoId": "9n_9n_9n_9n",
+        "category": "Music & Arts",
+        "duration": "8h",
+        "likes": "2M",
+        "views": "20M"
+    },
+    {
+        "title": "Ethan Becker",
+        "slug": "ethan-becker",
+        "description": "Fixing your art.",
+        "thumbnail": "https://img.youtube.com/vi/0o_0o_0o_0o/hqdefault.jpg",
+        "videoId": "0o_0o_0o_0o",
+        "category": "Music & Arts",
+        "duration": "5h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "Piano in 21 Days",
+        "slug": "piano-in-21-days",
+        "description": "Learn piano fast.",
+        "thumbnail": "https://img.youtube.com/vi/1p_1p_1p_1p/hqdefault.jpg",
+        "videoId": "1p_1p_1p_1p",
+        "category": "Music & Arts",
+        "duration": "4h",
+        "likes": "50K",
+        "views": "500K"
+    },
+    {
+        "title": "Berklee Online",
+        "slug": "berklee-online",
+        "description": "Music education from Berklee.",
+        "thumbnail": "https://img.youtube.com/vi/2q_2q_2q_2q/hqdefault.jpg",
+        "videoId": "2q_2q_2q_2q",
+        "category": "Music & Arts",
+        "duration": "6h",
+        "likes": "4K",
+        "views": "400K"
+    },
+    {
+        "title": "Ken Tamplin Vocal Academy",
+        "slug": "ken-tamplin",
+        "description": "Learn to sing.",
+        "thumbnail": "https://img.youtube.com/vi/3r_3r_3r_3r/hqdefault.jpg",
+        "videoId": "3r_3r_3r_3r",
+        "category": "Music & Arts",
+        "duration": "8h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Andrew Huang",
+        "slug": "andrew-huang",
+        "description": "Music production and gear.",
+        "thumbnail": "https://img.youtube.com/vi/4s_4s_4s_4s/hqdefault.jpg",
+        "videoId": "4s_4s_4s_4s",
+        "category": "Music & Arts",
+        "duration": "10h",
+        "likes": "500K",
+        "views": "5M"
+    }
+]

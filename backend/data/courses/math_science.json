@@ -1,0 +1,112 @@
+[
+    {
+        "title": "Khan Academy: Math",
+        "slug": "khan-academy-math",
+        "description": "Complete math curriculum.",
+        "thumbnail": "https://img.youtube.com/vi/NybHckSEQBI/hqdefault.jpg",
+        "videoId": "NybHckSEQBI",
+        "category": "Math & Science",
+        "duration": "100h",
+        "likes": "5M",
+        "views": "50M"
+    },
+    {
+        "title": "3Blue1Brown: Essence of Calculus",
+        "slug": "3blue1brown-calculus",
+        "description": "Visualizing math.",
+        "thumbnail": "https://img.youtube.com/vi/WUvTyaaNkzM/hqdefault.jpg",
+        "videoId": "WUvTyaaNkzM",
+        "category": "Math & Science",
+        "duration": "5h",
+        "likes": "1M",
+        "views": "10M"
+    },
+    {
+        "title": "MIT OpenCourseWare: Math",
+        "slug": "mit-ocw-math",
+        "description": "MIT level mathematics.",
+        "thumbnail": "https://img.youtube.com/vi/e_e_e_e_e_e/hqdefault.jpg",
+        "videoId": "e_e_e_e_e_e",
+        "category": "Math & Science",
+        "duration": "20h",
+        "likes": "200K",
+        "views": "2M"
+    },
+    {
+        "title": "Physics Explained",
+        "slug": "physics-explained",
+        "description": "Physics concepts made clear.",
+        "thumbnail": "https://img.youtube.com/vi/f_f_f_f_f_f/hqdefault.jpg",
+        "videoId": "f_f_f_f_f_f",
+        "category": "Math & Science",
+        "duration": "6h",
+        "likes": "5K",
+        "views": "500K"
+    },
+    {
+        "title": "Physics Galaxy",
+        "slug": "physics-galaxy",
+        "description": "Physics for competitive exams.",
+        "thumbnail": "https://img.youtube.com/vi/g_g_g_g_g_g/hqdefault.jpg",
+        "videoId": "g_g_g_g_g_g",
+        "category": "Math & Science",
+        "duration": "15h",
+        "likes": "100K",
+        "views": "1M"
+    },
+    {
+        "title": "Zach Star: Engineering",
+        "slug": "zach-star-engineering",
+        "description": "What is engineering?",
+        "thumbnail": "https://img.youtube.com/vi/h_h_h_h_h_h/hqdefault.jpg",
+        "videoId": "h_h_h_h_h_h",
+        "category": "Math & Science",
+        "duration": "4h",
+        "likes": "80K",
+        "views": "800K"
+    },
+    {
+        "title": "Up and Atom",
+        "slug": "up-and-atom",
+        "description": "Math and physics paradoxes.",
+        "thumbnail": "https://img.youtube.com/vi/i_i_i_i_i_i/hqdefault.jpg",
+        "videoId": "i_i_i_i_i_i",
+        "category": "Math & Science",
+        "duration": "3h",
+        "likes": "60K",
+        "views": "600K"
+    },
+    {
+        "title": "NPTEL: Engineering Lectures",
+        "slug": "nptel-engineering",
+        "description": "Lectures from IITs and IISc.",
+        "thumbnail": "https://img.youtube.com/vi/j_j_j_j_j_j/hqdefault.jpg",
+        "videoId": "j_j_j_j_j_j",
+        "category": "Math & Science",
+        "duration": "50h",
+        "likes": "300K",
+        "views": "3M"
+    },
+    {
+        "title": "Engineering Guy",
+        "slug": "engineering-guy",
+        "description": "The engineering behind everyday things.",
+        "thumbnail": "https://img.youtube.com/vi/k_k_k_k_k_k/hqdefault.jpg",
+        "videoId": "k_k_k_k_k_k",
+        "category": "Math & Science",
+        "duration": "2h",
+        "likes": "150K",
+        "views": "1.5M"
+    },
+    {
+        "title": "Real Engineering",
+        "slug": "real-engineering",
+        "description": "Engineering documentaries.",
+        "thumbnail": "https://img.youtube.com/vi/l_l_l_l_l_l/hqdefault.jpg",
+        "videoId": "l_l_l_l_l_l",
+        "category": "Math & Science",
+        "duration": "5h",
+        "likes": "400K",
+        "views": "4M"
+    }
+]
