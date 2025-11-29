@@ -4,7 +4,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { LanguageContext } from '../context/LanguageContext';
 import { AuthContext } from '../App';
-import { StarIcon, ClockIcon } from '../components/Icons';
+import { StarIcon, ClockIcon, ChartBarIcon, GlobeIcon, CheckIcon } from '../components/Icons';
 import '../styles/CourseDetail.css';
 
 const CourseDetail = () => {
@@ -100,74 +100,101 @@ const CourseDetail = () => {
 
             <main className="detail-main">
                 <div className="container">
-                    <div className="course-hero">
-                        {course.thumbnailUrl && (
-                            <div className="hero-image">
-                                <img src={course.thumbnailUrl} alt={course.title} />
+                    {/* Header Section */}
+                    <div className="course-header">
+                        <h1 className="course-title">{course.title}</h1>
+                        <div className="instructor-info">
+                            <div className="instructor-avatar">
+                                {course.instructor ? course.instructor.charAt(0).toUpperCase() : 'F'}
                             </div>
-                        )}
-
-                        <div className="hero-content">
-                            <h1>{course.title}</h1>
-                            <p className="course-description">{course.description}</p>
-
-                            <div className="course-meta-stats" style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px', color: '#333', fontSize: '14px', fontWeight: '500' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                    <StarIcon size={16} filled={true} color="#b4690e" />
-                                    <span>{course.likes || '0'} likes</span>
-                                </div>
-                                <div>•</div>
-                                <div>{course.views || '0'} views</div>
-                                <div>•</div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                    <ClockIcon size={16} />
-                                    <span>{course.estimatedHours || 'N/A'}</span>
-                                </div>
+                            <div className="instructor-details">
+                                <span className="instructor-name">FreeCodeCamp</span>
+                                <span className="instructor-label">Instructor</span>
                             </div>
-
-                            <button
-                                onClick={handleEnroll}
-                                className="enroll-button"
-                                disabled={enrolling}
-                            >
-                                {enrolling ? (t('processing') || 'Processing...') :
-                                    isEnrolled ? (t('continueLearning') || 'Continue Learning') :
-                                        (t('enrollNow') || 'Enroll for Free')}
-                            </button>
-
-                            <p className="login-hint">
-                                {isEnrolled ? t('alreadyEnrolled') : (!user && t('loginToAccess'))}
-                            </p>
                         </div>
+
+                        <div className="course-meta-row">
+                            <div className="meta-item">
+                                <StarIcon size={16} filled={true} color="#b4690e" />
+                                <span>{course.likes || '4.8'} ({(course.likes * 12) || '1.2k'} ratings)</span>
+                            </div>
+                            <div className="meta-item">
+                                <ClockIcon size={16} />
+                                <span>{course.estimatedHours || '2h 30m'}</span>
+                            </div>
+                            <div className="meta-item">
+                                <ChartBarIcon size={16} />
+                                <span>Beginner</span>
+                            </div>
+                            <div className="meta-item">
+                                <GlobeIcon size={16} />
+                                <span>English</span>
+                            </div>
+                        </div>
+
+                        <button
+                            onClick={handleEnroll}
+                            className="enroll-button-large"
+                            disabled={enrolling}
+                        >
+                            {enrolling ? (t('processing') || 'Processing...') :
+                                isEnrolled ? (t('continueLearning') || 'Continue Learning') :
+                                    (t('enrollNow') || 'Start Course')}
+                        </button>
                     </div>
 
-                    <div className="course-syllabus">
-                        <h2>{t('courseSyllabus') || 'Course Syllabus'}</h2>
+                    <div className="course-content-layout">
+                        {/* Main Column */}
+                        <div className="course-main-column">
+                            {course.thumbnailUrl && (
+                                <div className="course-preview-image">
+                                    <img src={course.thumbnailUrl} alt={course.title} />
+                                </div>
+                            )}
 
-                        {course.syllabus && (
-                            <div className="syllabus-text">
-                                <p>{course.syllabus}</p>
-                            </div>
-                        )}
+                            <section className="course-section">
+                                <h2>Course Overview</h2>
+                                <p className="course-description">{course.description}</p>
+                            </section>
 
-                        {course.modules && course.modules.length > 0 && (
-                            <div className="modules-list">
-                                {course.modules.map((module, index) => (
-                                    <div key={module.id} className="module-card">
-                                        <div className="module-header">
-                                            <span className="module-number">{t('module') || 'Module'} {index + 1}</span>
-                                            <h3>{module.title}</h3>
-                                        </div>
-                                        {module.description && (
-                                            <p className="module-description">{module.description}</p>
-                                        )}
-                                        <div className="module-meta">
-                                            <span>{module.lessonCount} {module.lessonCount === 1 ? (t('lesson') || 'lesson') : (t('lessons') || 'lessons')}</span>
-                                        </div>
-                                    </div>
-                                ))}
+                            <section className="course-section">
+                                <h2>What you'll learn</h2>
+                                <ul className="learning-objectives">
+                                    <li><CheckIcon size={16} color="#2D9F5D" /> Master the core concepts of {course.category || 'this subject'}</li>
+                                    <li><CheckIcon size={16} color="#2D9F5D" /> Build real-world projects and applications</li>
+                                    <li><CheckIcon size={16} color="#2D9F5D" /> Understand best practices and industry standards</li>
+                                    <li><CheckIcon size={16} color="#2D9F5D" /> Prepare for technical interviews</li>
+                                </ul>
+                            </section>
+
+                            <section className="course-section">
+                                <h2>Who this course is for</h2>
+                                <p>This course is designed for beginners who want to learn {course.title} from scratch. No prior experience is required.</p>
+                            </section>
+                        </div>
+
+                        {/* Sidebar Column */}
+                        <div className="course-sidebar-column">
+                            <div className="sidebar-card">
+                                <h3>Course Content</h3>
+                                <div className="sidebar-syllabus">
+                                    {course.modules && course.modules.length > 0 ? (
+                                        course.modules.map((module, index) => (
+                                            <div key={module.id} className="sidebar-module">
+                                                <div className="sidebar-module-header">
+                                                    <span className="module-title-text">{module.title}</span>
+                                                </div>
+                                                <div className="sidebar-lessons-count">
+                                                    {module.lessonCount} lessons
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="no-content-text">No modules available</p>
+                                    )}
+                                </div>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </main>

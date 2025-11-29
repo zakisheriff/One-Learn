@@ -30,8 +30,15 @@ body {
     background: var(--neutral-50);
     background-image: var(--gradient-mesh);
     min-height: 100vh;
-    padding-top: 72px;
-    /* Compensate for fixed navbar (72px) */
+    padding-top: 52px;
+    /* Compensate for fixed navbar (52px) */
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 44px;
+        /* Compensate for smaller mobile navbar (44px) */
+    }
 }
 
 #root {

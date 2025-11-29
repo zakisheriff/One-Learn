@@ -4,8 +4,64 @@ import axios from 'axios';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
 import Navbar from '../components/Navbar';
-import { StarIcon, ClockIcon, LessonIcon, ArrowRightIcon, BookIcon, CodeIcon, ChartBarIcon, PenToolIcon, RocketIcon } from '../components/Icons';
+import {
+    StarIcon, ClockIcon, LessonIcon, ArrowRightIcon, BookIcon,
+    CodeIcon, ChartBarIcon, PenToolIcon, RocketIcon,
+    GlobeIcon, PlayIcon, CheckIcon
+} from '../components/Icons';
 import '../styles/HomePage.css';
+
+const HeroCarousel = ({ featuredCourses }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % featuredCourses.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [featuredCourses.length]);
+
+    if (!featuredCourses.length) return null;
+
+    const currentCourse = featuredCourses[currentIndex];
+
+    return (
+        <div className="hero-carousel">
+            <div className="hero-slide" key={currentCourse.id}>
+                <div className="hero-content">
+                    <div className="hero-text">
+                        <span className="hero-badge">Featured Course</span>
+                        <h1>{currentCourse.title}</h1>
+                        <p className="hero-instructor">By FreeCodeCamp • {currentCourse.estimated_hours || '2h 30m'}</p>
+                        <p className="hero-description">{currentCourse.description}</p>
+                        <div className="hero-actions">
+                            <Link to={`/course/${currentCourse.slug}`} className="hero-btn-primary">
+                                <PlayIcon size={16} /> Start Learning
+                            </Link>
+                            <button className="hero-btn-secondary">
+                                <StarIcon size={16} /> Save
+                            </button>
+                        </div>
+                    </div>
+                    <div className="hero-image-wrapper">
+                        <img src={currentCourse.thumbnailUrl} alt={currentCourse.title} className="hero-image" />
+                    </div>
+                </div>
+            </div>
+            <div className="hero-indicators">
+                <div className="hero-indicators">
+                    {featuredCourses.map((_, idx) => (
+                        <button
+                            key={idx}
+                            className={`hero-indicator ${idx === currentIndex ? 'active' : ''}`}
+                            onClick={() => setCurrentIndex(idx)}
+                        />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const HomePage = () => {
     const { user } = useContext(AuthContext);
@@ -16,17 +72,12 @@ const HomePage = () => {
     const [activeCategory, setActiveCategory] = useState('All');
 
     const categories = [
-        'All',
-        'Technology & CS',
-        'English & Communication',
-        'Design & Creative',
-        'Math & Science',
-        'Business & Finance',
-        'Video & Animation',
-        'Health & Self-Improvement',
-        'School Subjects',
-        'Data Science & AI',
-        'Music & Arts'
+        { name: 'Technology & CS', icon: <CodeIcon size={24} /> },
+        { name: 'Business & Finance', icon: <ChartBarIcon size={24} /> },
+        { name: 'Design & Creative', icon: <PenToolIcon size={24} /> },
+        { name: 'Data Science & AI', icon: <RocketIcon size={24} /> },
+        { name: 'English & Communication', icon: <GlobeIcon size={24} /> },
+        { name: 'Health & Self-Improvement', icon: <StarIcon size={24} /> },
     ];
 
     useEffect(() => {
@@ -37,13 +88,11 @@ const HomePage = () => {
                     user ? axios.get('/api/enrollments') : Promise.resolve({ data: { enrollments: [] } })
                 ]);
 
-                // Handle courses data
                 const coursesData = Array.isArray(coursesRes.data)
                     ? coursesRes.data
                     : (coursesRes.data.courses || []);
                 setCourses(coursesData);
 
-                // Handle enrollments data
                 if (user && enrollmentsRes.data.enrollments) {
                     setEnrollments(enrollmentsRes.data.enrollments);
                 }
@@ -79,14 +128,8 @@ const HomePage = () => {
                 <div className="linkedin-card-meta">
                     <div className="linkedin-card-rating">
                         <span className="linkedin-card-rating-star"><StarIcon size={12} filled={true} color="#b4690e" /></span>
-                        {course.likes && <span>{course.likes} likes</span>}
-                        {course.likes && course.views && <span style={{ margin: '0 4px', color: '#ccc' }}>•</span>}
-                        {course.views && <span>{course.views} views</span>}
-                    </div>
-                    <div className="linkedin-card-stats">
-                        <span>•</span>
-                        <LessonIcon size={12} />
-                        <span>Multiple lessons</span>
+                        {course.likes && <span>{course.likes}</span>}
+                        {course.views && <span>({course.views})</span>}
                     </div>
                 </div>
             </div>
@@ -101,199 +144,142 @@ const HomePage = () => {
         </Link>
     );
 
+    // Mock featured courses if loading or empty, otherwise pick top 3
+    const featuredCourses = courses.length > 0 ? courses.slice(0, 3) : [];
+
     return (
         <div className="homepage">
             <Navbar />
 
-            {/* Hero Banner */}
-            <div className="hero-banner">
-                <div className="hero-content">
-                    <h1>{t('heroTitle')}</h1>
-                    <p>{t('heroSubtitle')}</p>
-                    <Link to="/explore" className="hero-cta">
-                        <span>{t('exploreCourses')}</span>
-                        <ArrowRightIcon size={16} />
-                    </Link>
-                </div>
-            </div>
+            {/* Hero Carousel */}
+            {!loading && featuredCourses.length > 0 && (
+                <HeroCarousel featuredCourses={featuredCourses} />
+            )}
 
-            {/* Stats Bar */}
-            <div className="stats-bar">
-                <div className="stat-item">
-                    <span className="stat-number">10k+</span>
-                    <span className="stat-label">Learners</span>
+            <div className="homepage-content">
+                {/* Category Pills */}
+                <div className="category-section">
+                    <div className="category-pills">
+                        {categories.map((category, idx) => (
+                            <button
+                                key={idx}
+                                className={`category-pill ${activeCategory === category.name ? 'active' : ''}`}
+                                onClick={() => setActiveCategory(category.name)}
+                            >
+                                {category.name}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                    <span className="stat-number">500+</span>
-                    <span className="stat-label">Courses</span>
-                </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                    <span className="stat-number">100+</span>
-                    <span className="stat-label">Mentors</span>
-                </div>
-            </div>
 
-            {/* Roadmap CTA Section */}
-            <div className="roadmap-cta-section">
-                <div className="roadmap-cta-content">
-                    <h2>Not sure where to start?</h2>
-                    <p>Tell us your dream career, and our AI will build a personalized learning path just for you.</p>
-                    <Link to="/roadmap" className="roadmap-btn">
-                        <StarIcon size={18} />
-                        <span>Generate My Roadmap</span>
-                    </Link>
-                </div>
-            </div>
+                {/* Continue Learning Section */}
+                {user && enrollments.length > 0 && (
+                    <div className="course-section continue-learning">
+                        <div className="section-header">
+                            <h2 className="section-title">{t('continueLearning')}</h2>
+                            <Link to="/dashboard" className="section-see-all">
+                                {t('seeAll')} <ArrowRightIcon size={14} />
+                            </Link>
+                        </div>
+                        <div className="course-carousel">
+                            {enrollments.slice(0, 5).map((enrollment) => renderCourseCard(enrollment.course, enrollment.progress))}
+                        </div>
+                    </div>
+                )}
 
-            {/* Featured Career Paths */}
-            <div className="course-section">
-                <div className="section-header">
-                    <h2 className="section-title">Featured Career Paths</h2>
-                </div>
-                <div className="paths-grid">
-                    <Link to="/roadmap" className="path-card">
-                        <div className="path-icon"><CodeIcon size={32} color="#0071e3" /></div>
-                        <h3>Software Engineer</h3>
-                        <p>Master Python, Java, and System Design</p>
-                    </Link>
-                    <Link to="/roadmap" className="path-card">
-                        <div className="path-icon"><ChartBarIcon size={32} color="#0071e3" /></div>
-                        <h3>Data Scientist</h3>
-                        <p>Learn Python, SQL, and Machine Learning</p>
-                    </Link>
-                    <Link to="/roadmap" className="path-card">
-                        <div className="path-icon"><PenToolIcon size={32} color="#0071e3" /></div>
-                        <h3>Product Designer</h3>
-                        <p>UI/UX, Figma, and User Research</p>
-                    </Link>
-                    <Link to="/roadmap" className="path-card">
-                        <div className="path-icon"><RocketIcon size={32} color="#0071e3" /></div>
-                        <h3>Product Manager</h3>
-                        <p>Strategy, Agile, and Leadership</p>
-                    </Link>
-                </div>
-            </div>
-
-            {/* Continue Learning Section (Always visible if user is logged in) */}
-            {user && enrollments.length > 0 && (
-                <div className="course-section continue-learning">
+                {/* Browse Topics */}
+                <div className="course-section">
                     <div className="section-header">
-                        <h2 className="section-title">{t('continueLearning')}</h2>
-                        <Link to="/dashboard" className="section-see-all">
+                        <h2 className="section-title">Explore Topics</h2>
+                    </div>
+                    <div className="topics-grid">
+                        {categories.map((cat, idx) => (
+                            <Link to={`/explore?category=${encodeURIComponent(cat.name)}`} key={idx} className="topic-card">
+                                <div className="topic-icon">{cat.icon}</div>
+                                <span className="topic-name">{cat.name}</span>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Recommended for You */}
+                <div className="course-section">
+                    <div className="section-header">
+                        <h2 className="section-title">{t('recommended')}</h2>
+                        <Link to="/explore" className="section-see-all">
                             {t('seeAll')} <ArrowRightIcon size={14} />
                         </Link>
                     </div>
                     <div className="course-carousel">
-                        {enrollments.slice(0, 5).map((enrollment) => renderCourseCard(enrollment.course, enrollment.progress))}
+                        {loading ? (
+                            [1, 2, 3, 4].map((i) => (
+                                <div key={i} className="linkedin-course-card skeleton">
+                                    <div className="linkedin-card-thumbnail shimmer"></div>
+                                    <div className="linkedin-card-content">
+                                        <div className="skeleton-line title shimmer"></div>
+                                        <div className="skeleton-line shimmer"></div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            courses
+                                .filter(course => !enrollments.some(e => e.course.id === course.id))
+                                .slice(0, 5)
+                                .map((course) => renderCourseCard(course))
+                        )}
                     </div>
                 </div>
-            )}
 
-            {/* Category Pills */}
-            <div className="category-section">
-                <div className="category-pills">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            className={`category-pill ${activeCategory === category ? 'active' : ''}`}
-                            onClick={() => setActiveCategory(category)}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Filtered View (if category selected) */}
-            {activeCategory !== 'All' ? (
+                {/* Learning Paths */}
                 <div className="course-section">
                     <div className="section-header">
-                        <h2 className="section-title">Top courses in {activeCategory}</h2>
+                        <h2 className="section-title">Learning Paths</h2>
+                    </div>
+                    <div className="paths-grid">
+                        <Link to="/roadmap" className="path-card">
+                            <div className="path-icon"><CodeIcon size={28} color="#0071e3" /></div>
+                            <div className="path-info">
+                                <h3>Software Engineer</h3>
+                                <p>Master Python, Java, and System Design</p>
+                                <span className="path-meta">12 Courses • 40h</span>
+                            </div>
+                        </Link>
+                        <Link to="/roadmap" className="path-card">
+                            <div className="path-icon"><ChartBarIcon size={28} color="#0071e3" /></div>
+                            <div className="path-info">
+                                <h3>Data Scientist</h3>
+                                <p>Learn Python, SQL, and Machine Learning</p>
+                                <span className="path-meta">15 Courses • 55h</span>
+                            </div>
+                        </Link>
+                        <Link to="/roadmap" className="path-card">
+                            <div className="path-icon"><PenToolIcon size={28} color="#0071e3" /></div>
+                            <div className="path-info">
+                                <h3>Product Designer</h3>
+                                <p>UI/UX, Figma, and User Research</p>
+                                <span className="path-meta">8 Courses • 25h</span>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+
+                {/* New & Trending */}
+                <div className="course-section">
+                    <div className="section-header">
+                        <h2 className="section-title">{t('trending')}</h2>
+                        <Link to="/explore" className="section-see-all">
+                            {t('seeAll')} <ArrowRightIcon size={14} />
+                        </Link>
                     </div>
                     <div className="course-carousel">
-                        {courses
-                            .filter(course =>
-                                (activeCategory === 'All' || course.category === activeCategory) &&
-                                !enrollments.some(e => e.course.id === course.id) // Filter out enrolled courses
-                            )
-                            .map((course) => renderCourseCard(course))}
+                        {!loading && courses
+                            .filter(course => !enrollments.some(e => e.course.id === course.id))
+                            .slice().reverse().slice(0, 5)
+                            .map((course) => renderCourseCard(course))
+                        }
                     </div>
-                    {courses.filter(course =>
-                        (activeCategory === 'All' || course.category === activeCategory) &&
-                        !enrollments.some(e => e.course.id === course.id)
-                    ).length === 0 && (
-                            <div className="section-empty">
-                                <div className="section-empty-icon"><BookIcon size={48} color="#0000004d" /></div>
-                                <h3>No new courses found</h3>
-                                <p>You've enrolled in all courses in this category!</p>
-                            </div>
-                        )}
                 </div>
-            ) : (
-                <>
-                    {/* Recommended for You */}
-                    <div className="course-section">
-                        <div className="section-header">
-                            <h2 className="section-title">{t('recommended')}</h2>
-                            <Link to="/explore" className="section-see-all">
-                                {t('seeAll')} <ArrowRightIcon size={14} />
-                            </Link>
-                        </div>
-                        {loading ? (
-                            <div className="course-carousel">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="linkedin-course-card">
-                                        <div className="linkedin-card-thumbnail shimmer"></div>
-                                        <div className="linkedin-card-content">
-                                            <div className="skeleton-line title shimmer"></div>
-                                            <div className="skeleton-line shimmer"></div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="course-carousel">
-                                {courses
-                                    .filter(course => !enrollments.some(e => e.course.id === course.id)) // Filter out enrolled
-                                    .slice(0, 5)
-                                    .map((course) => renderCourseCard(course))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Trending Courses */}
-                    <div className="course-section">
-                        <div className="section-header">
-                            <h2 className="section-title">{t('trending')}</h2>
-                            <Link to="/explore" className="section-see-all">
-                                {t('seeAll')} <ArrowRightIcon size={14} />
-                            </Link>
-                        </div>
-                        {loading ? (
-                            <div className="course-carousel">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className="linkedin-course-card">
-                                        <div className="linkedin-card-thumbnail shimmer"></div>
-                                        <div className="linkedin-card-content">
-                                            <div className="skeleton-line title shimmer"></div>
-                                            <div className="skeleton-line shimmer"></div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="course-carousel">
-                                {courses
-                                    .filter(course => !enrollments.some(e => e.course.id === course.id)) // Filter out enrolled
-                                    .slice().reverse().slice(0, 5)
-                                    .map((course) => renderCourseCard(course))}
-                            </div>
-                        )}
-                    </div>
-                </>
-            )}
+            </div>
         </div>
     );
 };

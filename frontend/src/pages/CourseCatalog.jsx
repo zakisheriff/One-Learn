@@ -139,35 +139,35 @@ const CourseCatalog = () => {
                                     <Link
                                         key={course.id}
                                         to={`/course/${course.slug}`}
-                                        className="course-card"
+                                        className="catalog-card"
                                     >
-                                        <div className="course-thumbnail">
+                                        <div className="catalog-thumbnail">
                                             <img
                                                 src={course.thumbnailUrl || 'https://via.placeholder.com/400x200?text=Course'}
                                                 alt={course.title}
                                             />
-                                            <div className="course-thumbnail-overlay">
-                                                <span className="course-duration">
+                                            <div className="catalog-thumbnail-overlay">
+                                                <span className="catalog-duration">
                                                     <ClockIcon size={12} /> {course.estimated_hours || course.estimatedHours || 'N/A'}
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="course-info">
-                                            <h3 className="course-title">{course.title}</h3>
-                                            <p className="course-description">
+                                        <div className="catalog-info">
+                                            <h3 className="catalog-title">{course.title}</h3>
+                                            <p className="catalog-description">
                                                 {course.description || 'Learn essential programming skills with this comprehensive course.'}
                                             </p>
-                                            <div className="course-stats" style={{ display: 'flex', alignItems: 'center', fontSize: '12px', color: '#666', marginBottom: '12px', gap: '4px' }}>
+                                            <div className="catalog-stats" style={{ display: 'flex', alignItems: 'center', fontSize: '12px', color: '#666', marginBottom: '12px', gap: '4px' }}>
                                                 <StarIcon size={12} filled={true} color="#b4690e" />
                                                 <span>{course.likes || '0'} likes</span>
                                                 <span style={{ margin: '0 4px' }}>•</span>
                                                 <span>{course.views || '0'} views</span>
                                             </div>
-                                            <div className="course-footer">
-                                                <span className="course-lessons">
+                                            <div className="catalog-footer">
+                                                <span className="catalog-lessons">
                                                     <BookIcon size={14} /> {t('multipleLessons')}
                                                 </span>
-                                                <button className="course-cta">
+                                                <button className="catalog-cta">
                                                     {t('enrollFree')}
                                                 </button>
                                             </div>
