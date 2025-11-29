@@ -4,6 +4,8 @@
     min-height: 100vh;
     background: var(--neutral-50);
     background-image: var(--gradient-mesh);
+    padding-top: 52px;
+    /* Match Navbar height */
 }
 
 /* Hero Banner (400px height) */
@@ -370,6 +372,11 @@
 }
 
 @media (max-width: 768px) {
+    .homepage {
+        padding-top: 44px;
+        /* Match Mobile Navbar height */
+    }
+
     .hero-banner {
         height: auto;
         /* Allow auto height for content */

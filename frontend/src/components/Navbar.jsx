@@ -5,7 +5,7 @@ import { LanguageContext } from '../context/LanguageContext';
 import {
     HomeIcon, BookIcon, SearchIcon, DashboardIcon, LogoutIcon,
     MenuIcon, GlobeIcon, CheckIcon, StarIcon,
-    BrowseIcon, NotificationIcon, ChevronDownIcon
+    BrowseIcon, NotificationIcon, ChevronDownIcon, CoffeeIcon
 } from './Icons';
 import '../styles/Navbar.css';
 import Logo from './Logo';
@@ -17,6 +17,7 @@ const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
+
     const [searchTerm, setSearchTerm] = useState('');
 
     const [languageOpen, setLanguageOpen] = useState(false);
@@ -40,7 +41,7 @@ const Navbar = () => {
                 {/* Left Section: Logo + Browse */}
                 <div className="navbar-left">
                     <Link to="/" className="navbar-logo" onClick={() => window.scrollTo(0, 0)}>
-                        <Logo size={20} iconSize={24} />
+                        <Logo size={18} iconSize={20} />
                     </Link>
 
                     <div className="navbar-divider"></div>
@@ -82,14 +83,14 @@ const Navbar = () => {
                         onClick={() => setSearchOpen(!searchOpen)}
                         aria-label="Toggle search"
                     >
-                        <SearchIcon size={24} />
+                        <SearchIcon size={20} />
                     </button>
                     <button
                         className="navbar-mobile-toggle"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
-                        <MenuIcon size={24} />
+                        <MenuIcon size={20} />
                     </button>
                 </div>
 
@@ -151,7 +152,7 @@ const Navbar = () => {
                             className={`navbar-link ${isActive('/') ? 'active' : ''}`}
                             onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                         >
-                            <span className="navbar-link-icon"><HomeIcon size={24} /></span>
+                            <span className="navbar-link-icon"><HomeIcon size={20} /></span>
                             <span className="navbar-link-text">{t('home')}</span>
                         </Link>
 
@@ -160,7 +161,7 @@ const Navbar = () => {
                             className={`navbar-link ${isActive('/roadmap') ? 'active' : ''}`}
                             onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                         >
-                            <span className="navbar-link-icon"><BrowseIcon size={24} /></span>
+                            <span className="navbar-link-icon"><BrowseIcon size={20} /></span>
                             <span className="navbar-link-text">Roadmap</span>
                         </Link>
 
@@ -170,22 +171,22 @@ const Navbar = () => {
                                 className={`navbar-link ${isActive('/dashboard') ? 'active' : ''}`}
                                 onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                             >
-                                <span className="navbar-link-icon"><BookIcon size={24} /></span>
+                                <span className="navbar-link-icon"><BookIcon size={20} /></span>
                                 <span className="navbar-link-text">{t('myLearning')}</span>
                             </Link>
                         )}
 
-                        <button className="navbar-link icon-only">
-                            <span className="navbar-link-icon"><NotificationIcon size={24} /></span>
-                            <span className="navbar-link-text">{t('notifications')}</span>
-                        </button>
+                        <a href="https://www.buymeacoffee.com/zakisherifw" className="navbar-link icon-only" target='_blank'>
+                            <span className="navbar-link-icon"><CoffeeIcon size={20} /></span>
+                            <span className="navbar-link-text">Buy Me a Coffee</span>
+                        </a>
 
                         <div className="navbar-language-wrapper">
                             <button
                                 className="navbar-link icon-only"
                                 onClick={() => setLanguageOpen(!languageOpen)}
                             >
-                                <span className="navbar-link-icon"><GlobeIcon size={24} /></span>
+                                <span className="navbar-link-icon"><GlobeIcon size={20} /></span>
                                 <span className="navbar-link-text">{language}</span>
                             </button>
                             {languageOpen && (

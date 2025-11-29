@@ -7,7 +7,6 @@ const Logo = ({ size = 24, className = '', iconSize = 24 }) => {
             <div style={{ color: 'var(--color-primary)', display: 'flex', alignItems: 'center' }}>
                 <BookIcon size={iconSize} />
             </div>
-            <span>You Learn</span>
         </div>
     );
 };

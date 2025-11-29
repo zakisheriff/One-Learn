@@ -5,7 +5,7 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    height: 72px;
+    height: 52px;
     position: fixed;
     top: 0;
     left: 0;
@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
+    height: 36px;
     text-decoration: none;
 }
 
@@ -53,7 +53,12 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
+}
+
+.navbar-logo svg {
+    width: 20px;
+    height: 20px;
 }
 
 .navbar-logo-text {
@@ -75,6 +80,10 @@
 /* Browse Menu */
 .navbar-browse {
     position: relative;
+    height: 52px;
+    /* Match navbar height */
+    display: flex;
+    align-items: center;
 }
 
 .browse-button {
@@ -99,21 +108,31 @@
 
 .browse-dropdown {
     position: absolute;
-    top: 100%;
+    top: 52px;
+    /* Exact navbar height */
     left: 0;
     background: white;
     border: 1px solid var(--neutral-200);
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 24px;
-    display: none;
+    display: grid;
     grid-template-columns: repeat(3, 200px);
     gap: 24px;
     width: max-content;
+
+    /* Animation Properties */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.98);
+    transform-origin: top left;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar-browse:hover .browse-dropdown {
-    display: grid;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
 }
 
 .browse-column h3 {
@@ -148,18 +167,21 @@
 .navbar-search-input-wrapper {
     position: relative;
     width: 100%;
-    background: #EEF3F8;
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    /* Subtle gray */
+    border-radius: 99px;
+    /* Pill shape */
     display: flex;
     align-items: center;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    border: 1px solid transparent;
 }
 
 .navbar-search-input-wrapper:focus-within {
     background: white;
-    box-shadow: 0 0 0 2px var(--neutral-900);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
     width: 100%;
-    /* Expand on focus */
+    border-color: rgba(0, 0, 0, 0.05);
 }
 
 .navbar-search-icon {
@@ -171,11 +193,13 @@
 
 .navbar-search-input {
     width: 100%;
-    height: 34px;
+    height: 36px;
+    /* Slightly taller for better touch target */
     border: none;
     background: transparent;
     font-size: 14px;
     color: var(--neutral-900);
+    padding-right: 16px;
 }
 
 .navbar-search-input:focus {
@@ -243,7 +267,8 @@
 .navbar-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 32px;
+    /* Increased from 8px for better spacing */
 }
 
 .navbar-link {
@@ -253,7 +278,7 @@
     justify-content: center;
     text-decoration: none;
     color: var(--neutral-600);
-    min-width: 80px;
+    min-width: 64px;
     height: 52px;
     border-bottom: 2px solid transparent;
     transition: all 0.2s ease;
@@ -299,7 +324,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    min-width: 60px;
+    min-width: 48px;
     height: 52px;
     color: var(--neutral-600);
 }
@@ -502,6 +527,15 @@
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        height: 44px;
+    }
+
+    .navbar-container {
+        padding: 0 16px;
+        /* Standard mobile padding */
+    }
+
     .navbar-mobile-toggle {
         display: block;
         position: absolute;
@@ -539,10 +573,17 @@
     }
 
     /* Show profile on mobile header */
+    /* Show profile on mobile header */
     .navbar-profile {
         display: flex;
-        margin-right: 88px;
-        /* Increased from 48px to fit Search + Menu buttons */
+        position: absolute;
+        right: 108px;
+        /* 16px padding + 36px menu + 16px gap + 36px search + 4px gap */
+        top: 50%;
+        transform: translateY(-50%);
+        margin-right: 0;
+        z-index: 1002;
+        /* Above search overlay if needed, but below menu */
     }
 
     .navbar-profile-label,
@@ -552,37 +593,116 @@
     }
 
     /* Adjust profile dropdown for mobile */
+    /* Adjust profile dropdown for mobile */
     .navbar-profile-dropdown {
         position: fixed;
-        top: 52px;
-        right: 0;
-        left: 0;
-        width: 100%;
-        border-radius: 0 0 8px 8px;
-        border-left: none;
-        border-right: none;
+        top: 44px;
+        right: auto;
+        /* Align with screen padding */
+        left: auto;
+        height: auto;
+        width: 260px;
+        /* Standard width */
+        background: white;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        margin-top: 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        padding: 8px 0;
+        overflow-y: visible;
+
+        /* Apple-style Animation State: Closed */
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+        transform-origin: top right;
+        pointer-events: none;
+        transition:
+            opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+            transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
+    .navbar-profile.open .navbar-profile-dropdown {
+        /* Animation State: Open */
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    /* Style items inside profile dropdown */
+    /* Style items inside profile dropdown */
+    /* Style items inside profile dropdown */
+    .navbar-profile-dropdown .navbar-link,
+    .navbar-profile-dropdown button,
+    .navbar-profile-dropdown a,
+    .navbar-dropdown-item,
+    .navbar-dropdown-link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: auto;
+        min-height: 0;
+        padding: 8px 16px;
+        border-bottom: none;
+        font-size: 14px;
+        color: var(--neutral-600);
+        font-weight: 400;
+        background: none;
+        text-align: left;
+    }
+
+    .navbar-profile-dropdown .navbar-link:hover,
+    .navbar-profile-dropdown button:hover,
+    .navbar-profile-dropdown a:hover,
+    .navbar-dropdown-item:hover,
+    .navbar-dropdown-link:hover {
+        background: var(--neutral-100);
+        color: var(--neutral-900);
+    }
+
+    /* Profile Header in Mobile Menu */
+    .profile-header {
+        padding: 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        background: none;
+    }
+
+
+
+    /* Mobile Menu */
     /* Mobile Menu */
     .navbar-nav {
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 52px;
+        top: 44px;
         left: 0;
         right: 0;
-        background: white;
-        border-top: 1px solid var(--neutral-200);
+        height: calc(100vh - 44px);
+        /* Full screen height */
+        background: rgba(255, 255, 255, 0.95);
+        /* Apple-style glass */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
         padding: 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        /* Remove padding to let links touch edges */
+        box-shadow: none;
         z-index: 999;
         overflow-y: auto;
+        gap: 0;
+        /* Reset gap to remove extra spacing */
 
         /* Apple-style Animation State: Closed */
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-10px) scale(0.98);
+        transform-origin: top center;
         pointer-events: none;
-        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition:
+            opacity 0.2s cubic-bezier(0.32, 0.72, 0, 1),
+            transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     /* Hide vertical divider on mobile */
@@ -604,22 +724,30 @@
     .navbar-nav.open {
         /* Apple-style Animation State: Open */
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         pointer-events: auto;
+        margin-top: 0;
     }
 
     .navbar-nav .navbar-link {
         width: 100%;
         flex-direction: row;
         justify-content: flex-start;
-        gap: 12px;
-        height: 48px;
-        padding: 0 20px;
+        gap: 16px;
+        height: 56px;
+        /* Larger touch target */
+        padding: 0 24px;
+        /* Match container padding + extra */
         position: relative;
-        border-bottom: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        /* Subtle separator */
         opacity: 0;
         transform: translateY(-10px);
         transition: opacity 0.2s ease, transform 0.2s ease;
+        font-size: 17px;
+        /* Apple standard font size */
+        color: #1d1d1f;
+        font-weight: 500;
     }
 
     .navbar-nav.open .navbar-link {
@@ -710,10 +838,11 @@
     .navbar-mobile-actions {
         display: flex;
         align-items: center;
-        gap: 4px;
-        /* Tighter gap */
+        gap: 16px;
+        /* Increased from 4px for equal spacing */
         position: absolute;
         right: 16px;
+        /* Match container padding */
         top: 50%;
         transform: translateY(-50%);
         height: 100%;
@@ -749,7 +878,7 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 52px;
+        height: 44px;
         /* Match navbar height */
         background: white;
         z-index: 1100;
@@ -764,22 +893,20 @@
         flex: 1;
         display: flex;
         align-items: center;
-        background: #EEF3F8;
+        background: rgba(0, 0, 0, 0.05);
         /* Match desktop theme */
-        border-radius: 4px;
+        border-radius: 99px;
         padding: 0 8px;
         gap: 8px;
-        height: 34px;
-        transition: all 0.2s ease;
+        height: 36px;
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         border: 1px solid transparent;
-        /* Prevent layout shift on border change */
     }
 
     .navbar-search-input-wrapper.mobile:focus-within {
-
-        /* Black border on focus */
-        box-shadow: 0 0 0;
-        /* Double thickness visual */
+        background: white;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 0, 0, 0.05);
     }
 
     .navbar-search-input.mobile {
