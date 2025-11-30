@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../App';
 import { CheckIcon } from './Icons';
@@ -14,6 +14,14 @@ const OnboardingModal = ({ onClose }) => {
     const { user, setUser } = useContext(AuthContext);
     const [selectedInterests, setSelectedInterests] = useState([]);
     const [loading, setLoading] = useState(false);
+    const contentRef = useRef(null);
+
+    // Ensure modal starts at the top when opened
+    useEffect(() => {
+        if (contentRef.current) {
+            contentRef.current.scrollTop = 0;
+        }
+    }, []);
 
     const toggleInterest = (topic) => {
         setSelectedInterests(prev =>
@@ -44,7 +52,7 @@ const OnboardingModal = ({ onClose }) => {
 
     return (
         <div className="onboarding-overlay">
-            <div className="onboarding-content">
+            <div className="onboarding-content" ref={contentRef}>
                 <div className="onboarding-header">
                     <h2 className="onboarding-title">
                         Welcome to You Learn!

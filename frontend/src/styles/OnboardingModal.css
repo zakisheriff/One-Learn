@@ -9,22 +9,28 @@
     /* Lighter background */
     z-index: 2000;
     display: flex;
-    align-items: center;
     justify-content: center;
     backdrop-filter: blur(4px);
     /* Reduced blur */
     -webkit-backdrop-filter: blur(4px);
     padding: 20px;
+    
 }
 
 .onboarding-content {
     background-color: white;
     border-radius: 24px;
-    padding: 40px;
+    /* Removed padding from container to allow full-width header/footer */
+    padding: 0;
     max-width: 600px;
     width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
+    height: 80vh;
+    /* Fixed height for desktop to ensure scrolling */
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Clip children */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     /* Softer shadow */
     animation: modalScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -32,7 +38,11 @@
 
 .onboarding-header {
     text-align: center;
-    margin-bottom: 32px;
+    padding: 40px 40px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    background: white;
+    z-index: 10;
 }
 
 .onboarding-title {
@@ -53,8 +63,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-bottom: 40px;
+    padding: 24px 40px;
     justify-content: center;
+    flex-grow: 1;
+    overflow-y: auto;
+    /* Scrollable area */
+    align-content: flex-start;
 }
 
 .interest-chip {
@@ -89,11 +103,11 @@
 .onboarding-footer {
     display: flex;
     justify-content: center;
-    position: sticky;
-    bottom: 0;
-    background: white;
-    padding-top: 20px;
+    padding: 20px 40px 40px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    background: white;
+    z-index: 10;
 }
 
 .start-btn {
@@ -143,54 +157,63 @@
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .onboarding-overlay {
-        padding: 20px;
-        /* Restore padding */
-        align-items: center;
-        /* Center vertically */
+        padding: 0;
+        align-items: stretch;
     }
 
     .onboarding-content {
-        border-radius: 24px;
-        /* Fully curved */
-        max-height: 80vh;
-        padding: 24px;
-        margin-bottom: 0;
+        border-radius: 0;
+        max-height: none;
+        height: 100vh;
+        height: 100dvh;
+        /* For mobile browsers */
+        margin: 0;
         width: 100%;
-        animation: modalScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        /* Use scale animation */
+        animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .onboarding-header {
+        padding: 24px 24px 10px;
     }
 
     .onboarding-title {
-        font-size: 22px;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .onboarding-subtitle {
+        font-size: 15px;
     }
 
     .interests-grid {
-        gap: 8px;
-        margin-bottom: 24px;
-        justify-content: center;
-        /* Center align chips */
+        padding: 10px 24px 24px;
+        justify-content: flex-start;
     }
 
     .interest-chip {
-        padding: 8px 16px;
-        font-size: 14px;
+        padding: 10px 20px;
+        font-size: 15px;
         flex-grow: 0;
-        /* Don't stretch chips */
-        justify-content: center;
     }
 
     .onboarding-footer {
-        padding-bottom: env(safe-area-inset-bottom, 20px);
-        /* Handle iPhone home bar */
-        padding-top: 16px;
-        position: static;
-        /* Remove sticky on mobile for centered card look */
-        border-top: none;
+        padding: 20px 24px;
+        padding-bottom: max(60px, env(safe-area-inset-bottom));
     }
 
     .start-btn {
         width: 100%;
-        padding: 14px;
+        padding: 16px;
         font-size: 16px;
     }
 }
