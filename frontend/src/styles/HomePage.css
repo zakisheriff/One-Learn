@@ -1,3 +1,20 @@
+CSS
+/* Custom CSS Variables (assuming these are defined elsewhere or globally) */
+:root {
+    --linkedin-blue: #0a66c2;
+    --linkedin-blue-dark: #004182;
+    --neutral-50: #fafafa;
+    --neutral-100: #f3f2f1;
+    --neutral-200: #e6e6e6;
+    --neutral-300: #ccc;
+    --neutral-400: #aaa;
+    --neutral-500: #8c8c8c;
+    --neutral-600: #666;
+    --neutral-700: #555;
+    --neutral-900: #222;
+    --success-500: #00b87c;
+}
+
 /* LinkedIn Learning Homepage - Exact Structure + Glassmorphism */
 
 .homepage {
@@ -480,141 +497,6 @@
     font-weight: 500;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .homepage {
-        padding-top: 44px;
-    }
-
-    .homepage-content {
-        padding: 16px;
-    }
-
-    /* Hero Carousel Mobile - Smaller Text & Buttons */
-    .hero-carousel {
-        height: auto;
-        padding: 24px 0;
-        margin-bottom: 24px !important;
-    }
-
-    .hero-slide {
-        padding: 0 16px;
-    }
-
-    .hero-content {
-        flex-direction: column-reverse;
-        gap: 16px !important;
-        text-align: center;
-    }
-
-    .hero-text {
-        max-width: 100%;
-    }
-
-    .hero-text h1 {
-        font-size: 20px !important;
-        margin-bottom: 8px !important;
-        line-height: 1.3 !important;
-    }
-
-    .hero-description {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
-    }
-
-    .hero-actions {
-        justify-content: center;
-        gap: 8px !important;
-        margin-top: 10px !important;
-    }
-
-    .hero-actions .btn {
-        padding: 8px 14px !important;
-        font-size: 12px !important;
-    }
-
-    .hero-image-wrapper {
-        width: 100%;
-        height: 200px;
-    }
-
-    .hero-indicators {
-        bottom: 3px;
-        gap: 5px !important;
-    }
-
-    .hero-indicator {
-        width: 7px !important;
-        height: 7px !important;
-    }
-
-    /* Sections Mobile */
-    .course-section {
-        margin-bottom: 32px;
-    }
-
-    .section-title {
-        font-size: 18px;
-    }
-
-    .linkedin-course-card {
-        width: 240px;
-    }
-
-    .topics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-    .paths-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .category-section {
-        padding: 12px 16px;
-    }
-}
-
-/* Small Mobile Devices */
-@media (max-width: 480px) {
-    .homepage-content {
-        padding: 12px;
-    }
-
-    .hero-text h1 {
-        font-size: 24px;
-    }
-
-    .hero-description {
-        font-size: 14px;
-        -webkit-line-clamp: 4;
-        line-clamp: 4;
-    }
-
-    .hero-image-wrapper {
-        height: 180px;
-    }
-
-    .linkedin-course-card {
-        width: 220px;
-    }
-
-    .topic-card {
-        padding: 12px;
-    }
-
-    .topic-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .topic-name {
-        font-size: 13px;
-    }
-}
-
 /* Mission Banner - Elegant Dark Theme */
 .mission-banner {
     background-color: #0a66c2;
@@ -718,110 +600,6 @@
     font-size: 15px;
     color: rgba(255, 255, 255, 0.9) !important;
     line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-    .homepage {
-        padding-top: 44px;
-        /* Match mobile navbar height */
-    }
-
-    .mission-banner {
-        padding: 48px 24px;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        height: auto;
-        background-color: #0a66c2 !important;
-    }
-
-    .mission-content,
-    .mission-header,
-    .mission-header h2,
-    .mission-header p {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-header h2 {
-        font-size: 26px;
-        margin-bottom: 12px;
-        color: white !important;
-    }
-
-    .mission-header p {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.95) !important;
-    }
-
-    .mission-steps {
-        display: flex !important;
-        flex-direction: column;
-        gap: 32px;
-        margin-top: 32px;
-        align-items: center;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-step {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 12px;
-        width: 100%;
-        max-width: 320px;
-        padding: 0;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-icon-wrapper {
-        width: 64px;
-        height: 64px;
-        margin-bottom: 0;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        border-radius: 16px;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        gap: 6px;
-        width: 100%;
-    }
-
-    .mission-step h3 {
-        display: block !important;
-        text-align: center !important;
-        font-size: 18px;
-        margin: 0;
-        color: white !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 100%;
-    }
-
-    .mission-step p {
-        display: block !important;
-        text-align: center !important;
-        font-size: 15px;
-        margin: 0;
-        color: rgba(255, 255, 255, 0.9) !important;
-        line-height: 1.4;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 100%;
-    }
 }
 
 /* Skills Cloud */
@@ -949,8 +727,205 @@
     color: var(--neutral-500);
 }
 
-/* Mobile Adjustments for New Sections */
+
+/* --- Mobile Responsive (Max 768px) --- */
 @media (max-width: 768px) {
+    /* FIX: Set homepage to padding-top: 0 to allow the banner to sit at the absolute top. */
+    .homepage {
+        padding-top: 0; 
+    }
+
+    .homepage-content {
+        padding: 16px;
+    }
+
+    /* Hero Carousel Mobile - This element now needs the padding to clear the fixed mobile navbar */
+    .hero-carousel {
+        height: auto;
+        padding: 24px 0;
+        margin-bottom: 24px !important;
+        /* FIX: Add padding-top here to clear the fixed mobile navbar (assuming 44px height) */
+        padding-top: 44px; 
+    }
+
+    .hero-slide {
+        padding: 0 16px;
+    }
+
+    .hero-content {
+        flex-direction: column-reverse;
+        gap: 16px !important;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 20px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.3 !important;
+    }
+
+    .hero-description {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        gap: 8px !important;
+        margin-top: 10px !important;
+    }
+
+    .hero-actions .btn {
+        padding: 8px 14px !important;
+        font-size: 12px !important;
+    }
+
+    .hero-image-wrapper {
+        width: 100%;
+        height: 200px;
+    }
+
+    .hero-indicators {
+        bottom: 3px;
+        gap: 5px !important;
+    }
+
+    .hero-indicator {
+        width: 7px !important;
+        height: 7px !important;
+    }
+
+    /* Mission Banner Mobile */
+    .mission-banner {
+        padding: 48px 24px;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto;
+        background-color: #0a66c2 !important;
+        margin-top: 0 !important; /* Ensure no external margin pushes it down */
+    }
+
+    .mission-content,
+    .mission-header,
+    .mission-header h2,
+    .mission-header p {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .mission-header h2 {
+        font-size: 26px;
+        margin-bottom: 12px;
+        color: white !important;
+    }
+
+    .mission-header p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .mission-steps {
+        display: flex !important;
+        flex-direction: column;
+        gap: 32px;
+        margin-top: 32px;
+        align-items: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .mission-step {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        padding: 0;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .mission-icon-wrapper {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 0;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .mission-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 6px;
+        width: 100%;
+    }
+
+    .mission-step h3 {
+        display: block !important;
+        text-align: center !important;
+        font-size: 18px;
+        margin: 0;
+        color: white !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100%;
+    }
+
+    .mission-step p {
+        display: block !important;
+        text-align: center !important;
+        font-size: 15px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.9) !important;
+        line-height: 1.4;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100%;
+    }
+    
+    /* Sections Mobile */
+    .course-section {
+        margin-bottom: 32px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .linkedin-course-card {
+        width: 240px;
+    }
+
+    .topics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .paths-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-section {
+        padding: 12px 16px;
+    }
+
     .instructors-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
@@ -967,5 +942,43 @@
 
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .homepage-content {
+        padding: 12px;
+    }
+
+    .hero-text h1 {
+        font-size: 24px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+    }
+
+    .hero-image-wrapper {
+        height: 180px;
+    }
+
+    .linkedin-course-card {
+        width: 220px;
+    }
+
+    .topic-card {
+        padding: 12px;
+    }
+
+    .topic-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .topic-name {
+        font-size: 13px;
     }
 }
