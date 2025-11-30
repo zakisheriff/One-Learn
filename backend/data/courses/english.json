@@ -8,7 +8,10 @@
         "category": "English & Communication",
         "duration": "5h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Beginner",
+        "subject": "English",
+        "type": "Course"
     },
     {
         "title": "Oxford Online English",
@@ -19,7 +22,10 @@
         "category": "English & Communication",
         "duration": "4h",
         "likes": "80K",
-        "views": "800K"
+        "views": "800K",
+        "level": "Intermediate",
+        "subject": "English",
+        "type": "Lesson"
     },
     {
         "title": "Rachel's English",
@@ -30,7 +36,10 @@
         "category": "English & Communication",
         "duration": "6h",
         "likes": "150K",
-        "views": "1.5M"
+        "views": "1.5M",
+        "level": "Intermediate",
+        "subject": "Pronunciation",
+        "type": "Tutorial"
     },
     {
         "title": "English with Lucy",
@@ -39,9 +48,12 @@
         "thumbnail": "https://img.youtube.com/vi/Oqf9yJzFz-E/hqdefault.jpg",
         "videoId": "Oqf9yJzFz-E",
         "category": "English & Communication",
-        "duration": "3h",
+        "duration": "10mins",
         "likes": "200K",
-        "views": "2M"
+        "views": "2M",
+        "level": "Beginner",
+        "subject": "British English",
+        "type": "Lesson"
     },
     {
         "title": "Speak English With Mr. Duncan",
@@ -52,7 +64,10 @@
         "category": "English & Communication",
         "duration": "10h",
         "likes": "5K",
-        "views": "500K"
+        "views": "500K",
+        "level": "Beginner",
+        "subject": "English",
+        "type": "Series"
     },
     {
         "title": "Learn English with Cambridge",
@@ -63,7 +78,10 @@
         "category": "English & Communication",
         "duration": "5h",
         "likes": "60K",
-        "views": "600K"
+        "views": "600K",
+        "level": "Advanced",
+        "subject": "Exam Prep",
+        "type": "Course"
     },
     {
         "title": "American English at State",
@@ -74,7 +92,10 @@
         "category": "English & Communication",
         "duration": "4h",
         "likes": "40K",
-        "views": "400K"
+        "views": "400K",
+        "level": "Intermediate",
+        "subject": "American English",
+        "type": "Resource"
     },
     {
         "title": "ETJ English",
@@ -85,7 +106,10 @@
         "category": "English & Communication",
         "duration": "3h",
         "likes": "30K",
-        "views": "300K"
+        "views": "300K",
+        "level": "Intermediate",
+        "subject": "Accent Training",
+        "type": "Tutorial"
     },
     {
         "title": "English Speeches",
@@ -96,7 +120,10 @@
         "category": "English & Communication",
         "duration": "8h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Advanced",
+        "subject": "Listening",
+        "type": "Speech"
     },
     {
         "title": "RealLife English",
@@ -107,6 +134,9 @@
         "category": "English & Communication",
         "duration": "4h",
         "likes": "70K",
-        "views": "700K"
+        "views": "700K",
+        "level": "Intermediate",
+        "subject": "Conversation",
+        "type": "Podcast"
     }
 ]

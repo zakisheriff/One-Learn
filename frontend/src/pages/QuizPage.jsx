@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import { CheckIcon } from '../components/Icons';
 import '../styles/QuizPage.css';
 
@@ -104,22 +103,9 @@ const QuizPage = () => {
         window.scrollTo(0, 0);
     };
 
-    if (loading) {
+    if (!quiz && !loading) {
         return (
             <div className="quiz-page">
-                <Navbar />
-                <div className="loading-state">
-                    <div className="spinner"></div>
-                    <p>Loading quiz...</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (!quiz) {
-        return (
-            <div className="quiz-page">
-                <Navbar />
                 <div className="error-state">
                     <p>Quiz not available</p>
                 </div>
@@ -130,7 +116,6 @@ const QuizPage = () => {
     if (result) {
         return (
             <div className="quiz-page">
-                <Navbar />
                 <main className="quiz-main">
                     <div className="container">
                         <div className={`result-card ${result.passed ? 'passed' : 'failed'}`}>
@@ -173,93 +158,98 @@ const QuizPage = () => {
     // Pagination Logic
     const indexOfLastQuestion = currentPage * questionsPerPage;
     const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-    const currentQuestions = quiz.questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
-    const totalPages = Math.ceil(quiz.questions.length / questionsPerPage);
-
-
+    const currentQuestions = quiz ? quiz.questions.slice(indexOfFirstQuestion, indexOfLastQuestion) : [];
+    const totalPages = quiz ? Math.ceil(quiz.questions.length / questionsPerPage) : 0;
 
     return (
-        <div
-            className="quiz-page"
-        >
-            <Navbar />
-
-            {/* Privacy Overlay when window is blurred */}
-            {!isWindowFocused && (
-                <div className="privacy-overlay">
-                    <div className="privacy-message">
-                        <h2>Quiz Paused</h2>
-                        <p>Please return to this window to continue your quiz.</p>
-                        <p className="privacy-warning">Leaving the window is not allowed.</p>
-                    </div>
+        <div className="quiz-page">
+            {loading ? (
+                <div className="loading-state">
+                    <div className="spinner"></div>
+                    <p>Loading quiz...</p>
                 </div>
-            )}
+            ) : (
+                <>
 
-            <main className={`quiz-main ${!isWindowFocused ? 'blurred' : ''}`}>
-                <div className="container">
-                    <header className="quiz-header">
-                        <h1>Final Quiz</h1>
-                        <p>You need {quiz.passingScore}% to pass and earn your certificate</p>
-                        <div className="quiz-progress">
-                            Page {currentPage} of {totalPages}
+                    {/* Privacy Overlay when window is blurred */}
+                    {!isWindowFocused && (
+                        <div className="privacy-overlay">
+                            <div className="privacy-message">
+                                <h2>Quiz Paused</h2>
+                                <p>Please return to this window to continue your quiz.</p>
+                                <p className="privacy-warning">Leaving the window is not allowed.</p>
+                            </div>
                         </div>
-                    </header>
+                    )}
 
-                    <form onSubmit={handleSubmit} className="quiz-form">
-                        {currentQuestions.map((question, index) => {
-                            const globalIndex = indexOfFirstQuestion + index;
-                            return (
-                                <div key={globalIndex} className="question-card">
-                                    <div className="question-header">
-                                        <span className="question-number">Question {globalIndex + 1}</span>
-                                        <span className="question-type">{question.type.replace('_', ' ')}</span>
-                                    </div>
+                    <main className={`quiz-main ${!isWindowFocused ? 'blurred' : ''}`}>
+                        <div className="container">
+                            <header className="quiz-header">
+                                <h1>Final Quiz</h1>
+                                <p>You need {quiz.passingScore}% to pass and earn your certificate</p>
+                                <div className="quiz-progress">
+                                    Page {currentPage} of {totalPages}
+                                </div>
+                            </header>
 
-                                    <p className="question-text">{question.question}</p>
+                            <form onSubmit={handleSubmit} className="quiz-form">
+                                {currentQuestions.map((question, index) => {
+                                    const globalIndex = indexOfFirstQuestion + index;
+                                    return (
+                                        <div key={globalIndex} className="question-card">
+                                            <div className="question-header">
+                                                <span className="question-number">Question {globalIndex + 1}</span>
+                                                <span className="question-type">{question.type.replace('_', ' ')}</span>
+                                            </div>
 
-                                    {question.type === 'multiple_choice' && (
-                                        <div className="options-list">
-                                            {question.options.map((option, optionIndex) => (
-                                                <label key={optionIndex} className="option-label">
-                                                    <input
-                                                        type="radio"
-                                                        name={`question-${globalIndex}`}
-                                                        value={optionIndex}
-                                                        checked={answers[globalIndex] === optionIndex}
-                                                        onChange={() => handleAnswerChange(globalIndex, optionIndex)}
-                                                        required
-                                                    />
-                                                    <span>{option}</span>
-                                                </label>
-                                            ))}
+                                            <p className="question-text">{question.question}</p>
+
+                                            {question.type === 'multiple_choice' && (
+                                                <div className="options-list">
+                                                    {question.options.map((option, optionIndex) => (
+                                                        <label key={optionIndex} className="option-label">
+                                                            <input
+                                                                type="radio"
+                                                                name={`question-${globalIndex}`}
+                                                                value={optionIndex}
+                                                                checked={answers[globalIndex] === optionIndex}
+                                                                onChange={() => handleAnswerChange(globalIndex, optionIndex)}
+                                                                required
+                                                            />
+                                                            <span>{option}</span>
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
+                                    );
+                                })}
+
+                                <div className="quiz-controls" style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
+                                    {currentPage > 1 && (
+                                        <button type="button" onClick={handlePrevious} className="nav-button secondary">
+                                            Previous
+                                        </button>
+                                    )}
+
+                                    {currentPage < totalPages ? (
+                                        <button key="next-btn" type="button" onClick={handleNext} className="nav-button primary" style={{ marginLeft: 'auto' }}>
+                                            Next
+                                        </button>
+                                    ) : (
+                                        <button key="submit-btn" type="submit" className="submit-quiz-button" disabled={submitting} style={{ marginLeft: 'auto' }}>
+                                            {submitting ? 'Submitting...' : 'Submit Quiz'}
+                                        </button>
                                     )}
                                 </div>
-                            );
-                        })}
-
-                        <div className="quiz-controls" style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
-                            {currentPage > 1 && (
-                                <button type="button" onClick={handlePrevious} className="nav-button secondary">
-                                    Previous
-                                </button>
-                            )}
-
-                            {currentPage < totalPages ? (
-                                <button key="next-btn" type="button" onClick={handleNext} className="nav-button primary" style={{ marginLeft: 'auto' }}>
-                                    Next
-                                </button>
-                            ) : (
-                                <button key="submit-btn" type="submit" className="submit-quiz-button" disabled={submitting} style={{ marginLeft: 'auto' }}>
-                                    {submitting ? 'Submitting...' : 'Submit Quiz'}
-                                </button>
-                            )}
+                            </form>
                         </div>
-                    </form>
-                </div>
-            </main>
+                    </main>
+                </>
+            )}
         </div>
     );
 };
 
 export default QuizPage;
+

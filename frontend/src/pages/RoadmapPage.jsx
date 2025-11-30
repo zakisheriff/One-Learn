@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
 import { StarIcon, BookIcon, CheckIcon, TargetIcon, ArrowRightIcon, SearchIcon } from '../components/Icons';
@@ -68,7 +67,10 @@ const RoadmapPage = () => {
 
         try {
             const response = await axios.post('/api/roadmaps/generate', { goal: targetGoal });
-            setRoadmap(response.data.roadmap);
+            setRoadmap({
+                ...response.data.roadmap,
+                courseMap: response.data.courseMap || {}
+            });
         } catch (err) {
             console.error(err);
             setError('Failed to generate roadmap. Please try again.');
@@ -98,60 +100,110 @@ const RoadmapPage = () => {
 
     return (
         <div className="roadmap-page">
-            <Navbar />
-
             <main className="roadmap-container">
                 <div className="roadmap-hero">
                     <div className="hero-badge">
-                        <StarIcon size={14} color="#0071e3" filled /> AI-Powered Learning Paths
+                        <StarIcon size={14} color="#0a66c2" filled /> AI-Powered Learning Paths
                     </div>
                     <h1>Design Your Future Career</h1>
                     <p>Tell us your dream role, and our AI will build a personalized, step-by-step roadmap just for you.</p>
 
                     {!roadmap && (
-                        <div className="roadmap-input-section">
-                            <div className="input-wrapper">
-                                <div className="search-icon-wrapper">
-                                    <SearchIcon size={20} color="#86868b" />
+                        <>
+                            <div className="roadmap-input-section">
+                                <div className="input-wrapper">
+                                    <div className="search-icon-wrapper">
+                                        <SearchIcon size={20} color="#86868b" />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        placeholder="What do you want to become? (e.g. Senior React Developer)"
+                                        value={goal}
+                                        onChange={(e) => setGoal(e.target.value)}
+                                        onKeyDown={(e) => e.key === 'Enter' && handleGenerate()}
+                                    />
+                                    <button
+                                        className="generate-btn"
+                                        onClick={() => handleGenerate()}
+                                        disabled={loading || !goal.trim()}
+                                    >
+                                        {loading ? (
+                                            <span className="loading-dots">Generating<span>.</span><span>.</span><span>.</span></span>
+                                        ) : (
+                                            <>
+                                                Generate Path <ArrowRightIcon size={16} color="white" />
+                                            </>
+                                        )}
+                                    </button>
                                 </div>
-                                <input
-                                    type="text"
-                                    placeholder="What do you want to become? (e.g. Senior React Developer)"
-                                    value={goal}
-                                    onChange={(e) => setGoal(e.target.value)}
-                                    onKeyDown={(e) => e.key === 'Enter' && handleGenerate()}
-                                />
-                                <button
-                                    className="generate-btn"
-                                    onClick={() => handleGenerate()}
-                                    disabled={loading || !goal.trim()}
-                                >
-                                    {loading ? (
-                                        <span className="loading-dots">Generating<span>.</span><span>.</span><span>.</span></span>
-                                    ) : (
-                                        <>
-                                            Generate Path <ArrowRightIcon size={16} color="white" />
-                                        </>
-                                    )}
-                                </button>
+
+                                <div className="popular-tags">
+                                    <span>Trending Roles:</span>
+                                    {popularRoles.map(role => (
+                                        <button
+                                            key={role}
+                                            className="tag-pill"
+                                            onClick={() => {
+                                                setGoal(role);
+                                                handleGenerate(role);
+                                            }}
+                                        >
+                                            {role}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
 
-                            <div className="popular-tags">
-                                <span>Trending Roles:</span>
-                                {popularRoles.map(role => (
-                                    <button
-                                        key={role}
-                                        className="tag-pill"
-                                        onClick={() => {
-                                            setGoal(role);
-                                            handleGenerate(role);
-                                        }}
-                                    >
-                                        {role}
-                                    </button>
-                                ))}
+                            {/* Benefits Section */}
+                            <div className="benefits-section">
+                                <h2>Why Use AI Roadmaps?</h2>
+                                <div className="benefits-grid">
+                                    <div className="benefit-card">
+                                        <div className="benefit-icon">
+                                            <TargetIcon size={24} color="#0a66c2" />
+                                        </div>
+                                        <h3>Personalized Path</h3>
+                                        <p>Get a custom learning journey tailored to your specific career goals and current skill level.</p>
+                                    </div>
+                                    <div className="benefit-card">
+                                        <div className="benefit-icon">
+                                            <BookIcon size={24} color="#0a66c2" />
+                                        </div>
+                                        <h3>Curated Resources</h3>
+                                        <p>Access hand-picked courses and materials from top platforms, all in one organized path.</p>
+                                    </div>
+                                    <div className="benefit-card">
+                                        <div className="benefit-icon">
+                                            <CheckIcon size={24} color="#0a66c2" />
+                                        </div>
+                                        <h3>Track Progress</h3>
+                                        <p>Monitor your advancement through each step and celebrate milestones along the way.</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                            {/* How It Works Section */}
+                            <div className="how-it-works-section">
+                                <h2>How It Works</h2>
+                                <div className="steps-grid">
+                                    <div className="work-step">
+                                        <div className="step-number">1</div>
+                                        <h3>Enter Your Goal</h3>
+                                        <p>Tell us what role or skill you want to achieve</p>
+                                    </div>
+                                    <div className="work-step">
+                                        <div className="step-number">2</div>
+                                        <h3>AI Analyzes</h3>
+                                        <p>Our AI creates a personalized learning path</p>
+                                    </div>
+                                    <div className="work-step">
+                                        <div className="step-number">3</div>
+                                        <h3>Start Learning</h3>
+                                        <p>Follow the roadmap and track your progress</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
                     )}
                 </div>
 
@@ -204,6 +256,33 @@ const RoadmapPage = () => {
                                                 </span>
                                             ))}
                                         </div>
+                                        {step.recommendedCourses && step.recommendedCourses.length > 0 && (
+                                            <div className="recommended-courses">
+                                                <h4>
+                                                    <BookIcon size={16} color="#0a66c2" />
+                                                    <span>Recommended Courses</span>
+                                                </h4>
+                                                <ul>
+                                                    {step.recommendedCourses.map((courseTitle, i) => {
+                                                        const slug = roadmap.courseMap?.[courseTitle];
+                                                        return slug ? (
+                                                            <li key={i}>
+                                                                <Link to={`/course/${slug}`} onClick={() => window.scrollTo(0, 0)}>
+                                                                    <BookIcon size={14} color="#0a66c2" />
+                                                                    <span>{courseTitle}</span>
+                                                                    <ArrowRightIcon size={14} color="#0a66c2" />
+                                                                </Link>
+                                                            </li>
+                                                        ) : (
+                                                            <li key={i} className="no-link">
+                                                                <BookIcon size={14} color="#86868b" />
+                                                                <span>{courseTitle}</span>
+                                                            </li>
+                                                        );
+                                                    })}
+                                                </ul>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}

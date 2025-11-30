@@ -2,7 +2,10 @@
 
 .settings-page {
     min-height: 100vh;
-    background: var(--neutral-50);
+    background-color: #fbfbfd;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.03) 0%, transparent 70%),
+        radial-gradient(circle at 80% 10%, rgba(52, 199, 89, 0.03) 0%, transparent 50%);
     width: 100%;
     overflow-x: hidden;
 }

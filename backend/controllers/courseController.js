@@ -9,7 +9,7 @@ exports.getAllCourses = async (req, res) => {
     try {
         const result = await pool.query(
             `SELECT 
-                c.id, c.slug, c.title, c.description, c.thumbnail_url, c.estimated_hours, c.likes, c.views, c.category,
+                c.id, c.slug, c.title, c.description, c.thumbnail_url, c.estimated_hours, c.likes, c.views, c.category, c.level, c.type, c.subject, c.instructor,
                 COUNT(DISTINCT m.id) as module_count,
                 COUNT(DISTINCT l.id) as lesson_count,
                 SUM(l.duration_seconds) as total_duration_seconds
@@ -33,7 +33,11 @@ exports.getAllCourses = async (req, res) => {
             estimatedHours: course.estimated_hours,
             likes: course.likes,
             views: course.views,
-            category: course.category
+            category: course.category,
+            level: course.level,
+            type: course.type,
+            subject: course.subject,
+            instructor: course.instructor
         }));
 
         res.json({ courses });
@@ -123,7 +127,7 @@ exports.getCourseContent = async (req, res) => {
 
         // Get course
         const courseResult = await pool.query(
-            'SELECT id, title, description, thumbnail_url FROM courses WHERE slug = $1 AND is_published = true',
+            'SELECT id, title, description, thumbnail_url, category, instructor, level, type, subject FROM courses WHERE slug = $1 AND is_published = true',
             [slug]
         );
 
@@ -213,6 +217,11 @@ exports.getCourseContent = async (req, res) => {
                 title: course.title,
                 description: course.description,
                 thumbnailUrl: course.thumbnail_url,
+                category: course.category,
+                instructor: course.instructor,
+                level: course.level,
+                type: course.type,
+                subject: course.subject,
                 modules
             },
             enrollmentId: enrollment.id,
@@ -221,7 +230,11 @@ exports.getCourseContent = async (req, res) => {
 
     } catch (error) {
         console.error('Get course content error:', error);
-        res.status(500).json({ error: 'Failed to fetch course content' });
+        res.status(500).json({
+            error: 'Failed to fetch course content',
+            details: error.message,
+            stack: error.stack
+        });
     }
 };
 

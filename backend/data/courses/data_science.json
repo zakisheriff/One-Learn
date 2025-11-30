@@ -8,7 +8,10 @@
         "category": "Data Science & AI",
         "duration": "1h 15m",
         "likes": "2.6K",
-        "views": "110K"
+        "views": "110K",
+        "level": "Beginner",
+        "subject": "Data Science",
+        "type": "Tutorial"
     },
     {
         "title": "Code Basics: Data Analyst Full Course (Roadmap)",
@@ -19,7 +22,10 @@
         "category": "Data Science & AI",
         "duration": "12h",
         "likes": "200K",
-        "views": "4M"
+        "views": "4M",
+        "level": "Beginner",
+        "subject": "Data Analysis",
+        "type": "Roadmap"
     },
     {
         "title": "Ken Jee: 5 Impactful Data Science Projects For Your Portfolio",
@@ -30,7 +36,10 @@
         "category": "Data Science & AI",
         "duration": "12m",
         "likes": "5K",
-        "views": "110K"
+        "views": "110K",
+        "level": "Beginner",
+        "subject": "Career",
+        "type": "Guide"
     },
     {
         "title": "StatQuest: Neural Networks Part 1: The Essential Main Ideas",
@@ -41,7 +50,10 @@
         "category": "Data Science & AI",
         "duration": "15m",
         "likes": "200K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Intermediate",
+        "subject": "Machine Learning",
+        "type": "Concept"
     },
     {
         "title": "Sentdex: Practical Machine Learning Tutorial with Python Intro",
@@ -52,7 +64,10 @@
         "category": "Data Science & AI",
         "duration": "19h",
         "likes": "23K",
-        "views": "2.4M"
+        "views": "2.4M",
+        "level": "Intermediate",
+        "subject": "Machine Learning",
+        "type": "Tutorial"
     },
     {
         "title": "Google Cloud Tech: BigQuery for Data Analysts",
@@ -63,7 +78,10 @@
         "category": "Data Science & AI",
         "duration": "40m",
         "likes": "15K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Intermediate",
+        "subject": "BigQuery",
+        "type": "Tutorial"
     },
     {
         "title": "AWS Training: AWS Certified Solutions Architect Full Course",
@@ -74,7 +92,10 @@
         "category": "Data Science & AI",
         "duration": "10h",
         "likes": "1.5K",
-        "views": "25K"
+        "views": "25K",
+        "level": "Advanced",
+        "subject": "Cloud Computing",
+        "type": "Certification"
     },
     {
         "title": "Microsoft Azure: DP-100 Azure Data Scientist Certification Prep",
@@ -85,7 +106,10 @@
         "category": "Data Science & AI",
         "duration": "3h",
         "likes": "15K",
-        "views": "500K"
+        "views": "500K",
+        "level": "Advanced",
+        "subject": "Data Science",
+        "type": "Certification"
     },
     {
         "title": "Data School: Pandas Tutorial: DataFrames in Python",
@@ -96,7 +120,10 @@
         "category": "Data Science & AI",
         "duration": "30m",
         "likes": "100K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Beginner",
+        "subject": "Pandas",
+        "type": "Tutorial"
     },
     {
         "title": "DeepLearningAI: Neural Networks and Deep Learning (Andrew Ng)",
@@ -107,6 +134,9 @@
         "category": "Data Science & AI",
         "duration": "1h",
         "likes": "80K",
-        "views": "1.5M"
+        "views": "1.5M",
+        "level": "Advanced",
+        "subject": "Deep Learning",
+        "type": "Course"
     }
 ]

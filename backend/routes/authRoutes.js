@@ -14,6 +14,7 @@ router.post('/logout', authController.logout);
 router.get('/me', authenticateToken, authController.getCurrentUser);
 router.put('/profile', authenticateToken, authController.updateProfile);
 router.put('/password', authenticateToken, authController.updatePassword);
+router.put('/interests', authenticateToken, authController.updateInterests);
 router.delete('/account', authenticateToken, authController.deleteAccount);
 
 module.exports = router;

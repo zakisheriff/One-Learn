@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--neutral-50);
+    justify-content: center;
     padding: 24px;
 }
 

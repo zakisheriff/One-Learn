@@ -2,8 +2,6 @@
 
 .help-center-page {
     min-height: 100vh;
-    background: var(--neutral-50);
-    background-image: var(--gradient-mesh);
 }
 
 .help-main {

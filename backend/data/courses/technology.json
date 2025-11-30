@@ -8,7 +8,10 @@
         "category": "Technology & CS",
         "duration": "14h",
         "likes": "200K",
-        "views": "7.5M"
+        "views": "7.5M",
+        "level": "Beginner",
+        "subject": "Coding",
+        "type": "Course"
     },
     {
         "title": "CS50: Introduction to Computer Science",
@@ -19,7 +22,10 @@
         "category": "Technology & CS",
         "duration": "24h",
         "likes": "2M",
-        "views": "20M"
+        "views": "20M",
+        "level": "Beginner",
+        "subject": "CS",
+        "type": "Course"
     },
     {
         "title": "MIT OpenCourseWare: Intro to CS",
@@ -30,7 +36,10 @@
         "category": "Technology & CS",
         "duration": "15h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Advanced",
+        "subject": "CS",
+        "type": "Lecture"
     },
     {
         "title": "Stanford: Programming Methodology",
@@ -41,7 +50,10 @@
         "category": "Technology & CS",
         "duration": "20h",
         "likes": "300K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Advanced",
+        "subject": "Programming",
+        "type": "Lecture"
     },
     {
         "title": "The Net Ninja: Modern JavaScript",
@@ -52,7 +64,10 @@
         "category": "Technology & CS",
         "duration": "10h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Intermediate",
+        "subject": "JavaScript",
+        "type": "Tutorial"
     },
     {
         "title": "Traversy Media: Web Development",
@@ -63,7 +78,10 @@
         "category": "Technology & CS",
         "duration": "12h",
         "likes": "200K",
-        "views": "2M"
+        "views": "2M",
+        "level": "Beginner",
+        "subject": "Web Dev",
+        "type": "Tutorial"
     },
     {
         "title": "Bro Code: Python Full Course",
@@ -74,7 +92,10 @@
         "category": "Technology & CS",
         "duration": "12h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Beginner",
+        "subject": "Python",
+        "type": "Course"
     },
     {
         "title": "Corey Schafer: Python Tutorials",
@@ -85,7 +106,10 @@
         "category": "Technology & CS",
         "duration": "10h",
         "likes": "300K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Intermediate",
+        "subject": "Python",
+        "type": "Tutorial"
     },
     {
         "title": "Eloquent JavaScript",
@@ -96,7 +120,10 @@
         "category": "Technology & CS",
         "duration": "8h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Advanced",
+        "subject": "JavaScript",
+        "type": "Deep Dive"
     },
     {
         "title": "Computerphile: How Computers Work",
@@ -107,6 +134,9 @@
         "category": "Technology & CS",
         "duration": "5h",
         "likes": "200K",
-        "views": "2M"
+        "views": "2M",
+        "level": "Beginner",
+        "subject": "CS Concepts",
+        "type": "Explainer"
     }
 ]

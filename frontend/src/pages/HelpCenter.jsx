@@ -1,11 +1,9 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import '../styles/HelpCenter.css';
 
 const HelpCenter = () => {
     return (
         <div className="help-center-page">
-            <Navbar />
             <main className="help-main">
                 <div className="help-hero">
                     <h1>How can we help you?</h1>

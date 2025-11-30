@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import { LanguageContext } from '../context/LanguageContext';
 import { AuthContext } from '../App';
 import { StarIcon, ClockIcon, ChartBarIcon, GlobeIcon, CheckIcon } from '../components/Icons';
@@ -73,7 +72,6 @@ const CourseDetail = () => {
     if (loading) {
         return (
             <div className="course-detail-page">
-                <Navbar />
                 <div className="loading-state">
                     <div className="spinner"></div>
                     <p>{t('loading') || 'Loading...'}</p>
@@ -85,7 +83,6 @@ const CourseDetail = () => {
     if (error || !course) {
         return (
             <div className="course-detail-page">
-                <Navbar />
                 <div className="error-state">
                     <p>{error || t('courseNotFound') || 'Course not found'}</p>
                     <Link to="/" className="back-link">← {t('backToCourses') || 'Back to courses'}</Link>
@@ -96,7 +93,6 @@ const CourseDetail = () => {
 
     return (
         <div className="course-detail-page">
-            <Navbar />
 
             <main className="detail-main">
                 <div className="container">
@@ -105,10 +101,10 @@ const CourseDetail = () => {
                         <h1 className="course-title">{course.title}</h1>
                         <div className="instructor-info">
                             <div className="instructor-avatar">
-                                {course.instructor ? course.instructor.charAt(0).toUpperCase() : 'F'}
+                                {course.instructor ? course.instructor.charAt(0).toUpperCase() : 'Y'}
                             </div>
                             <div className="instructor-details">
-                                <span className="instructor-name">FreeCodeCamp</span>
+                                <span className="instructor-name">{course.instructor || 'YouLearn Instructor'}</span>
                                 <span className="instructor-label">Instructor</span>
                             </div>
                         </div>
@@ -116,15 +112,15 @@ const CourseDetail = () => {
                         <div className="course-meta-row">
                             <div className="meta-item">
                                 <StarIcon size={16} filled={true} color="#b4690e" />
-                                <span>{course.likes || '4.8'} ({(course.likes * 12) || '1.2k'} ratings)</span>
+                                <span>{course.likes || '0'} Likes</span>
                             </div>
                             <div className="meta-item">
                                 <ClockIcon size={16} />
-                                <span>{course.estimatedHours || '2h 30m'}</span>
+                                <span>{course.estimatedHours || course.estimated_hours || 'N/A'}</span>
                             </div>
                             <div className="meta-item">
                                 <ChartBarIcon size={16} />
-                                <span>Beginner</span>
+                                <span>{course.level || 'All Levels'}</span>
                             </div>
                             <div className="meta-item">
                                 <GlobeIcon size={16} />

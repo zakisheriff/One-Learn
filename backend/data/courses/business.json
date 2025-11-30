@@ -8,7 +8,10 @@
         "category": "Business & Finance",
         "duration": "14m",
         "likes": "50K",
-        "views": "2.5M"
+        "views": "2.5M",
+        "level": "Beginner",
+        "subject": "Marketing",
+        "type": "Course"
     },
     {
         "title": "Google Digital Garage: Fundamentals of Digital Marketing (Full Course)",
@@ -19,7 +22,10 @@
         "category": "Business & Finance",
         "duration": "40h",
         "likes": "80K",
-        "views": "3.5M"
+        "views": "3.5M",
+        "level": "Beginner",
+        "subject": "Marketing",
+        "type": "Certification"
     },
     {
         "title": "Shopify Academy: Official Shopify Tutorial For Beginners",
@@ -30,7 +36,10 @@
         "category": "Business & Finance",
         "duration": "32m",
         "likes": "110K",
-        "views": "3.3M"
+        "views": "3.3M",
+        "level": "Beginner",
+        "subject": "E-commerce",
+        "type": "Tutorial"
     },
     {
         "title": "Slidebean: Startups 101 - How to Start a Startup",
@@ -41,7 +50,10 @@
         "category": "Business & Finance",
         "duration": "13m",
         "likes": "40K",
-        "views": "1.8M"
+        "views": "1.8M",
+        "level": "Beginner",
+        "subject": "Startups",
+        "type": "Guide"
     },
     {
         "title": "Y Combinator: How to Start a Startup - Lecture 1 (Sam Altman)",
@@ -52,7 +64,10 @@
         "category": "Business & Finance",
         "duration": "1h 25m",
         "likes": "70K",
-        "views": "1.9M"
+        "views": "1.9M",
+        "level": "Intermediate",
+        "subject": "Startups",
+        "type": "Lecture"
     },
     {
         "title": "Harvard Business Review: You Need to Be Bored. Here's Why.",
@@ -63,7 +78,10 @@
         "category": "Business & Finance",
         "duration": "6m",
         "likes": "200K",
-        "views": "10M"
+        "views": "10M",
+        "level": "Intermediate",
+        "subject": "Leadership",
+        "type": "Insight"
     },
     {
         "title": "Graham Stephan: The Easiest Path To $1M (Personal Finance Basics)",
@@ -74,7 +92,10 @@
         "category": "Business & Finance",
         "duration": "42m",
         "likes": "150K",
-        "views": "4M"
+        "views": "4M",
+        "level": "Beginner",
+        "subject": "Finance",
+        "type": "Guide"
     },
     {
         "title": "The Plain Bagel: The Simple Math to Retiring Rich",
@@ -85,7 +106,10 @@
         "category": "Business & Finance",
         "duration": "21m",
         "likes": "110K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Beginner",
+        "subject": "Economics",
+        "type": "Guide"
     },
     {
         "title": "Ali Abdaal: How to Build an Intentional Productivity System",
@@ -96,7 +120,10 @@
         "category": "Business & Finance",
         "duration": "23m",
         "likes": "100K",
-        "views": "2.5M"
+        "views": "2.5M",
+        "level": "Intermediate",
+        "subject": "Productivity",
+        "type": "Guide"
     },
     {
         "title": "TED-Ed: The surprising secret to becoming an entrepreneur",
@@ -107,6 +134,9 @@
         "category": "Business & Finance",
         "duration": "5m 20s",
         "likes": "100K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Beginner",
+        "subject": "Entrepreneurship",
+        "type": "Talk"
     }
 ]

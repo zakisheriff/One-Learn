@@ -8,7 +8,10 @@
         "category": "Design & Creative",
         "duration": "6h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Beginner",
+        "subject": "UI/UX",
+        "type": "Course"
     },
     {
         "title": "Punit Chawla: Design Trends",
@@ -19,7 +22,10 @@
         "category": "Design & Creative",
         "duration": "3h",
         "likes": "5K",
-        "views": "500K"
+        "views": "500K",
+        "level": "Intermediate",
+        "subject": "Design Trends",
+        "type": "Update"
     },
     {
         "title": "Envato Tuts+: Graphic Design",
@@ -30,7 +36,10 @@
         "category": "Design & Creative",
         "duration": "5h",
         "likes": "80K",
-        "views": "800K"
+        "views": "800K",
+        "level": "Beginner",
+        "subject": "Graphic Design",
+        "type": "Tutorial"
     },
     {
         "title": "Bring Your Own Laptop: Adobe",
@@ -41,7 +50,10 @@
         "category": "Design & Creative",
         "duration": "10h",
         "likes": "120K",
-        "views": "1.2M"
+        "views": "1.2M",
+        "level": "Beginner",
+        "subject": "Adobe Creative Cloud",
+        "type": "Course"
     },
     {
         "title": "Figma Official: Tutorials",
@@ -52,7 +64,10 @@
         "category": "Design & Creative",
         "duration": "4h",
         "likes": "60K",
-        "views": "600K"
+        "views": "600K",
+        "level": "Beginner",
+        "subject": "Figma",
+        "type": "Tutorial"
     },
     {
         "title": "AJ&Smart: UX Design",
@@ -63,7 +78,10 @@
         "category": "Design & Creative",
         "duration": "5h",
         "likes": "40K",
-        "views": "400K"
+        "views": "400K",
+        "level": "Intermediate",
+        "subject": "UX Strategy",
+        "type": "Guide"
     },
     {
         "title": "Flux Academy: Web Design",
@@ -74,7 +92,10 @@
         "category": "Design & Creative",
         "duration": "6h",
         "likes": "90K",
-        "views": "900K"
+        "views": "900K",
+        "level": "Intermediate",
+        "subject": "Web Design",
+        "type": "Guide"
     },
     {
         "title": "CharliMarieTV: Design Life",
@@ -85,7 +106,10 @@
         "category": "Design & Creative",
         "duration": "3h",
         "likes": "30K",
-        "views": "300K"
+        "views": "300K",
+        "level": "Beginner",
+        "subject": "Design Career",
+        "type": "Vlog"
     },
     {
         "title": "Blue Lightning TV: Photoshop",
@@ -96,7 +120,10 @@
         "category": "Design & Creative",
         "duration": "8h",
         "likes": "150K",
-        "views": "1.5M"
+        "views": "1.5M",
+        "level": "Advanced",
+        "subject": "Photoshop",
+        "type": "Tutorial"
     },
     {
         "title": "Satori Graphics",
@@ -107,6 +134,9 @@
         "category": "Design & Creative",
         "duration": "4h",
         "likes": "70K",
-        "views": "700K"
+        "views": "700K",
+        "level": "Beginner",
+        "subject": "Graphic Design",
+        "type": "Theory"
     }
 ]

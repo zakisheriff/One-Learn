@@ -2,9 +2,7 @@
 
 .quiz-page {
     min-height: 100vh;
-    background: var(--neutral-50);
     min-height: 100vh;
-    background: var(--neutral-50);
 }
 
 /* Privacy: Hide content on print */

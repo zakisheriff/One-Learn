@@ -8,7 +8,10 @@
         "category": "Video & Animation",
         "duration": "10h",
         "likes": "200K",
-        "views": "2M"
+        "views": "2M",
+        "level": "Beginner",
+        "subject": "Adobe",
+        "type": "Tutorial"
     },
     {
         "title": "Premiere Gal",
@@ -18,8 +21,11 @@
         "videoId": "w_w_w_w_w_w",
         "category": "Video & Animation",
         "duration": "5h",
-        "likes": "50K",
-        "views": "500K"
+        "likes": "5K",
+        "views": "500K",
+        "level": "Intermediate",
+        "subject": "Premiere Pro",
+        "type": "Tutorial"
     },
     {
         "title": "Justin Odisho",
@@ -30,7 +36,10 @@
         "category": "Video & Animation",
         "duration": "4h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Intermediate",
+        "subject": "Editing",
+        "type": "Effects"
     },
     {
         "title": "Cinecom.net",
@@ -41,7 +50,10 @@
         "category": "Video & Animation",
         "duration": "6h",
         "likes": "300K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Intermediate",
+        "subject": "Filmmaking",
+        "type": "Guide"
     },
     {
         "title": "Blender Guru",
@@ -52,7 +64,10 @@
         "category": "Video & Animation",
         "duration": "20h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Beginner",
+        "subject": "Blender",
+        "type": "Tutorial"
     },
     {
         "title": "CG Geek",
@@ -63,7 +78,10 @@
         "category": "Video & Animation",
         "duration": "8h",
         "likes": "150K",
-        "views": "1.5M"
+        "views": "1.5M",
+        "level": "Intermediate",
+        "subject": "Blender",
+        "type": "Tutorial"
     },
     {
         "title": "Video Copilot",
@@ -74,7 +92,10 @@
         "category": "Video & Animation",
         "duration": "12h",
         "likes": "400K",
-        "views": "4M"
+        "views": "4M",
+        "level": "Advanced",
+        "subject": "After Effects",
+        "type": "Tutorial"
     },
     {
         "title": "Kriscoart",
@@ -84,8 +105,11 @@
         "videoId": "2c_2c_2c_2c",
         "category": "Video & Animation",
         "duration": "3h",
-        "likes": "60K",
-        "views": "600K"
+        "likes": "6K",
+        "views": "600K",
+        "level": "Intermediate",
+        "subject": "Filmmaking",
+        "type": "Guide"
     },
     {
         "title": "Film Riot",
@@ -96,7 +120,10 @@
         "category": "Video & Animation",
         "duration": "10h",
         "likes": "1M",
-        "views": "10M"
+        "views": "10M",
+        "level": "Beginner",
+        "subject": "Filmmaking",
+        "type": "DIY"
     },
     {
         "title": "Ben Marriott",
@@ -107,6 +134,9 @@
         "category": "Video & Animation",
         "duration": "5h",
         "likes": "8K",
-        "views": "800K"
+        "views": "800K",
+        "level": "Advanced",
+        "subject": "Motion Design",
+        "type": "Tutorial"
     }
 ]

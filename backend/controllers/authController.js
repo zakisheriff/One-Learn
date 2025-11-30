@@ -275,7 +275,7 @@ exports.logout = (req, res) => {
 exports.getCurrentUser = async (req, res) => {
     try {
         const result = await pool.query(
-            'SELECT id, full_name, email, created_at FROM users WHERE id = $1',
+            'SELECT id, full_name, email, created_at, interests FROM users WHERE id = $1',
             [req.user.userId]
         );
 
@@ -290,13 +290,44 @@ exports.getCurrentUser = async (req, res) => {
                 id: user.id,
                 fullName: user.full_name,
                 email: user.email,
-                createdAt: user.created_at
+                createdAt: user.created_at,
+                interests: user.interests || []
             }
         });
 
     } catch (error) {
         console.error('Get current user error:', error);
         res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+/**
+ * Update user interests
+ * PUT /api/auth/interests
+ * Protected route
+ */
+exports.updateInterests = async (req, res) => {
+    try {
+        const { interests } = req.body;
+        const userId = req.user.userId;
+
+        if (!Array.isArray(interests)) {
+            return res.status(400).json({ error: 'Interests must be an array' });
+        }
+
+        const result = await pool.query(
+            'UPDATE users SET interests = $1 WHERE id = $2 RETURNING interests',
+            [JSON.stringify(interests), userId]
+        );
+
+        res.json({
+            message: 'Interests updated successfully',
+            interests: result.rows[0].interests
+        });
+
+    } catch (error) {
+        console.error('Update interests error:', error);
+        res.status(500).json({ error: 'Failed to update interests' });
     }
 };
 

@@ -8,7 +8,10 @@
         "category": "Music & Arts",
         "duration": "20h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Beginner",
+        "subject": "Guitar",
+        "type": "Course"
     },
     {
         "title": "Rick Beato",
@@ -19,7 +22,10 @@
         "category": "Music & Arts",
         "duration": "10h",
         "likes": "1M",
-        "views": "10M"
+        "views": "10M",
+        "level": "Advanced",
+        "subject": "Music Theory",
+        "type": "Analysis"
     },
     {
         "title": "Marty Music",
@@ -30,7 +36,10 @@
         "category": "Music & Arts",
         "duration": "15h",
         "likes": "800K",
-        "views": "8M"
+        "views": "8M",
+        "level": "Beginner",
+        "subject": "Guitar",
+        "type": "Tutorial"
     },
     {
         "title": "Proko",
@@ -41,7 +50,10 @@
         "category": "Music & Arts",
         "duration": "12h",
         "likes": "400K",
-        "views": "4M"
+        "views": "4M",
+        "level": "Intermediate",
+        "subject": "Drawing",
+        "type": "Course"
     },
     {
         "title": "Draw with Jazza",
@@ -52,7 +64,10 @@
         "category": "Music & Arts",
         "duration": "8h",
         "likes": "2M",
-        "views": "20M"
+        "views": "20M",
+        "level": "Beginner",
+        "subject": "Art",
+        "type": "Challenge"
     },
     {
         "title": "Ethan Becker",
@@ -63,7 +78,10 @@
         "category": "Music & Arts",
         "duration": "5h",
         "likes": "300K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Intermediate",
+        "subject": "Art",
+        "type": "Critique"
     },
     {
         "title": "Piano in 21 Days",
@@ -74,7 +92,10 @@
         "category": "Music & Arts",
         "duration": "4h",
         "likes": "50K",
-        "views": "500K"
+        "views": "500K",
+        "level": "Beginner",
+        "subject": "Piano",
+        "type": "Course"
     },
     {
         "title": "Berklee Online",
@@ -85,7 +106,10 @@
         "category": "Music & Arts",
         "duration": "6h",
         "likes": "4K",
-        "views": "400K"
+        "views": "400K",
+        "level": "Advanced",
+        "subject": "Music",
+        "type": "Course"
     },
     {
         "title": "Ken Tamplin Vocal Academy",
@@ -96,7 +120,10 @@
         "category": "Music & Arts",
         "duration": "8h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Intermediate",
+        "subject": "Vocals",
+        "type": "Lesson"
     },
     {
         "title": "Andrew Huang",
@@ -107,6 +134,9 @@
         "category": "Music & Arts",
         "duration": "10h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Intermediate",
+        "subject": "Music Production",
+        "type": "Guide"
     }
 ]

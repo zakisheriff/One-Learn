@@ -2,7 +2,6 @@
 
 .course-viewer-page {
     min-height: 100vh;
-    background: var(--neutral-50);
     display: flex;
     flex-direction: column;
 }
@@ -13,7 +12,6 @@
     height: calc(100vh - 64px);
     /* Adjust based on actual Navbar height */
     overflow: hidden;
-    /* Prevent double scrollbars */
 }
 
 /* Sidebar */
@@ -190,7 +188,7 @@
 .viewer-main {
     flex: 1;
     overflow-y: auto;
-    background: var(--neutral-100);
+    background: transparent;
     padding: 24px 32px;
     display: flex;
     flex-direction: column;
@@ -324,4 +322,126 @@
         padding: 16px;
         height: auto;
     }
+}
+
+/* Tabs Navigation */
+.course-tabs {
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid var(--neutral-200);
+    margin-bottom: 24px;
+    width: 100%;
+    max-width: 1120px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--neutral-600);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    color: var(--neutral-900);
+}
+
+.tab-btn.active {
+    color: var(--linkedin-blue);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--linkedin-blue);
+}
+
+/* Tab Content Areas */
+.tab-content {
+    width: 100%;
+    max-width: 1120px;
+}
+
+/* Overview Tab */
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.instructor-bio {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.instructor-bio img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.instructor-bio h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.instructor-bio p {
+    font-size: 14px;
+    color: var(--neutral-600);
+    margin: 0;
+}
+
+/* Recommendations Section */
+.recommendations-section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--neutral-200);
+    width: 100%;
+    max-width: 1120px;
+}
+
+.rec-category {
+    margin-bottom: 48px;
+}
+
+.rec-category h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--neutral-900);
+}
+
+.rec-list {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.rec-list::-webkit-scrollbar {
+    display: none;
+}
+
+.rec-list .course-card {
+    min-width: 280px;
+    width: 280px;
 }

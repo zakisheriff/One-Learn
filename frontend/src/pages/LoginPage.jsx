@@ -63,12 +63,12 @@ const LoginPage = () => {
             if (response.data.user) {
                 // Update auth context with user data
                 setUser(response.data.user);
-                // Navigate to dashboard
-                navigate('/dashboard');
+                // Navigate to home
+                navigate('/');
             } else {
                 // Fallback: check auth status
                 await checkAuth();
-                navigate('/dashboard');
+                navigate('/');
             }
 
         } catch (err) {
@@ -116,8 +116,8 @@ const LoginPage = () => {
                 throw new Error(data.error || 'Google Sign-In failed');
             }
 
-            // Success - redirect to dashboard
-            window.location.href = '/dashboard';
+            // Success - redirect to home
+            window.location.href = '/';
 
         } catch (err) {
             setError(err.message);

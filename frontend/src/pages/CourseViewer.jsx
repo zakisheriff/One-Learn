@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import { CheckIcon } from '../components/Icons';
+import CourseCard from '../components/CourseCard';
 import '../styles/CourseViewer.css';
 
 const CourseViewer = () => {
@@ -13,6 +13,9 @@ const CourseViewer = () => {
     const [currentLesson, setCurrentLesson] = useState(null);
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState('overview');
+    const [relatedCourses, setRelatedCourses] = useState([]);
+    const [quickLearningCourses, setQuickLearningCourses] = useState([]);
 
     useEffect(() => {
         fetchCourseContent();
@@ -20,6 +23,7 @@ const CourseViewer = () => {
 
     const fetchCourseContent = async () => {
         try {
+            setLoading(true);
             const response = await axios.get(`/api/courses/${slug}/content`);
             setCourse(response.data.course);
             setEnrollmentId(response.data.enrollmentId);
@@ -32,10 +36,42 @@ const CourseViewer = () => {
                     setCurrentLesson(firstModule.lessons[0]);
                 }
             }
+
+            // Fetch recommendations
+            fetchRecommendations(response.data.course);
+
         } catch (err) {
             console.error('Failed to load course content:', err);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const fetchRecommendations = async (currentCourse) => {
+        try {
+            const response = await axios.get('/api/courses');
+            const allCourses = response.data.courses || response.data; // Handle both {courses: [...]} and [...] formats
+
+            // Filter Related Courses (Same Category, excluding current)
+            const related = allCourses.filter(c => {
+                const isCategoryMatch = c.category === currentCourse.category;
+                const isNotCurrent = c.id !== currentCourse.id;
+                return isCategoryMatch && isNotCurrent;
+            }).slice(0, 5);
+            setRelatedCourses(related);
+
+            // Filter Quick Learning (Under 30 mins, excluding current)
+            const quick = allCourses.filter(c => {
+                const duration = c.duration || '';
+                // Simple heuristic for "under 30 mins" or "micro"
+                const isShort = (duration.includes('m') && !duration.includes('h') && parseInt(duration) < 30);
+                const isMicro = c.type === 'micro';
+                return (isShort || isMicro) && c.id !== currentCourse.id;
+            }).slice(0, 5);
+            setQuickLearningCourses(quick);
+
+        } catch (err) {
+            console.error('Failed to load recommendations:', err);
         }
     };
 
@@ -72,7 +108,6 @@ const CourseViewer = () => {
     if (loading) {
         return (
             <div className="course-viewer-page">
-                <Navbar />
                 <div className="loading-state">
                     <div className="spinner"></div>
                     <p>Loading course...</p>
@@ -84,7 +119,6 @@ const CourseViewer = () => {
     if (!course) {
         return (
             <div className="course-viewer-page">
-                <Navbar />
                 <div className="error-state">
                     <p>Course not found or you don't have access</p>
                     <Link to="/dashboard">← Back to Dashboard</Link>
@@ -95,7 +129,6 @@ const CourseViewer = () => {
 
     return (
         <div className="course-viewer-page">
-            <Navbar />
 
             <div className="viewer-container">
                 {/* Sidebar */}
@@ -167,11 +200,8 @@ const CourseViewer = () => {
                             <div className="video-wrapper">
                                 <div className="video-container">
                                     {(() => {
-                                        // More robust regex to handle various YouTube URL formats including shorts, mobile, etc.
                                         const videoIdMatch = currentLesson.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
                                         const videoId = videoIdMatch ? videoIdMatch[1] : null;
-
-                                        // Use high quality thumbnail if available, fallback to standard
                                         const thumbnailUrl = videoId
                                             ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
                                             : 'https://via.placeholder.com/800x450?text=Video+Unavailable';
@@ -194,7 +224,7 @@ const CourseViewer = () => {
                                                     backgroundImage: `url(${thumbnailUrl})`,
                                                     backgroundSize: 'cover',
                                                     backgroundPosition: 'center',
-                                                    backgroundColor: '#000' // Fallback background
+                                                    backgroundColor: '#000'
                                                 }}
                                             >
                                                 <div className="play-button-overlay" style={{
@@ -245,19 +275,92 @@ const CourseViewer = () => {
                                 </div>
                             </div>
 
-                            <div className="lesson-info">
-                                <h1>{currentLesson.title}</h1>
-                                {currentLesson.description && (
-                                    <p>{currentLesson.description}</p>
+                            <div className="course-tabs">
+                                <button
+                                    className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
+                                    onClick={() => setActiveTab('overview')}
+                                >
+                                    Overview
+                                </button>
+                            </div>
+
+                            <div className="tab-content">
+                                {activeTab === 'overview' && (
+                                    <div className="lesson-info">
+                                        <div className="lesson-header">
+                                            <h1>{currentLesson.title}</h1>
+                                            {!currentLesson.completed && (
+                                                <button
+                                                    onClick={() => markLessonComplete(currentLesson.id)}
+                                                    className="mark-complete-button"
+                                                >
+                                                    Mark as Complete
+                                                </button>
+                                            )}
+                                        </div>
+                                        <div className="instructor-bio">
+                                            <img src={`https://ui-avatars.com/api/?name=${course.instructor || 'Instructor'}&background=random`} alt="Instructor" />
+                                            <div>
+                                                <h3>{course.instructor || 'YouLearn Instructor'}</h3>
+                                                <p>Senior Software Engineer & Educator</p>
+                                            </div>
+                                        </div>
+                                        <div className="lesson-description">
+                                            <h3>About this lesson</h3>
+                                            <p>{currentLesson.description || "In this lesson, we will dive deep into the core concepts and practical applications. By the end, you'll have a solid understanding of the topic."}</p>
+                                        </div>
+                                    </div>
                                 )}
 
-                                {!currentLesson.completed && (
-                                    <button
-                                        onClick={() => markLessonComplete(currentLesson.id)}
-                                        className="mark-complete-button"
-                                    >
-                                        Mark as Complete
-                                    </button>
+                                {activeTab === 'qa' && (
+                                    <div className="qa-section">
+                                        <h3>Common Questions</h3>
+                                        <div className="qa-thread">
+                                            <div className="qa-message">
+                                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff" alt="User" />
+                                                <div>
+                                                    <h4>John Doe <span>2 hours ago</span></h4>
+                                                    <p>Is there a downloadable resource for this lesson?</p>
+                                                </div>
+                                            </div>
+                                            <div className="qa-reply">
+                                                <img src={`https://ui-avatars.com/api/?name=${course.instructor || 'Instructor'}&background=random`} alt="Instructor" />
+                                                <div>
+                                                    <h4>{course.instructor || 'Instructor'} <span>Instructor</span></h4>
+                                                    <p>Yes! Check the resources tab (coming soon) for the PDF guide.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="qa-input">
+                                            <input type="text" placeholder="Ask a question..." />
+                                            <button>Post</button>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Recommendations Section */}
+                            <div className="recommendations-section">
+                                {relatedCourses.length > 0 && (
+                                    <div className="rec-category">
+                                        <h3>Related Courses</h3>
+                                        <div className="rec-list">
+                                            {relatedCourses.map(course => (
+                                                <CourseCard key={course.id} course={course} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {quickLearningCourses.length > 0 && (
+                                    <div className="rec-category">
+                                        <h3>Quick Learning (Under 30 mins)</h3>
+                                        <div className="rec-list">
+                                            {quickLearningCourses.map(course => (
+                                                <CourseCard key={course.id} course={course} />
+                                            ))}
+                                        </div>
+                                    </div>
                                 )}
                             </div>
                         </>

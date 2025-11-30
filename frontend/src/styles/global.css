@@ -1,8 +1,11 @@
+@import './variables.css';
+
 /* ===== Global Resets ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 html,
@@ -10,6 +13,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+
 }
 
 html {
@@ -19,19 +23,20 @@ html {
 }
 
 /* Global Styles */
-@import './variables.css';
 
 body {
+
     font-family: var(--font-sans);
     font-size: var(--text-base);
     font-weight: var(--font-normal);
     line-height: var(--leading-normal);
     color: var(--neutral-900);
-    background: var(--neutral-50);
-    background-image: var(--gradient-mesh);
+    background-color: #fbfbfd;
+    background-image: radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.03) 0%, transparent 70%), radial-gradient(circle at 80% 10%, rgba(52, 199, 89, 0.03) 0%, transparent 50%);
     min-height: 100vh;
     padding-top: 52px;
     /* Compensate for fixed navbar (52px) */
+
 }
 
 @media (max-width: 768px) {

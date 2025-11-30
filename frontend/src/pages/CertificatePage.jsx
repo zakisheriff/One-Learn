@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import '../styles/CertificatePage.css';
 
 const CertificatePage = () => {
@@ -56,7 +55,6 @@ const CertificatePage = () => {
     if (loading) {
         return (
             <div className="certificate-page">
-                <Navbar />
                 <div className="loading-state">
                     <div className="spinner"></div>
                     <p>Loading certificate...</p>
@@ -68,7 +66,6 @@ const CertificatePage = () => {
     if (!certificate) {
         return (
             <div className="certificate-page">
-                <Navbar />
                 <div className="error-state">
                     <p>Certificate not found. Complete the course quiz to earn your certificate.</p>
                     <Link to="/dashboard">← Back to Dashboard</Link>
@@ -79,7 +76,6 @@ const CertificatePage = () => {
 
     return (
         <div className="certificate-page">
-            <Navbar />
 
             <main className="certificate-main">
                 <div className="container">

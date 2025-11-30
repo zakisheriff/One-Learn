@@ -533,16 +533,33 @@
 
     .navbar-container {
         padding: 0 16px;
-        /* Standard mobile padding */
     }
 
+    /* Mobile hamburger in navbar-left */
     .navbar-mobile-toggle {
         display: block;
-        position: absolute;
-        right: 16px;
-        /* Fixed to right */
-        top: 50%;
-        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--neutral-600);
+        cursor: pointer;
+        padding: 8px;
+        margin-right: 8px;
+    }
+
+    /* Mobile search toggle in navbar-mobile-actions (right side) */
+    .navbar-mobile-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-left: auto;
+    }
+
+    .navbar-mobile-search-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--neutral-600);
+        cursor: pointer;
         padding: 8px;
     }
 
@@ -555,9 +572,11 @@
     /* Ensure navbar-right is visible so the menu can be shown */
     .navbar-right {
         display: flex;
-        /* Changed from none */
-        position: static;
-        /* Allow children to be positioned relative to window if needed */
+    }
+
+    /* Hide desktop profile on mobile - we have it in mobile-actions now */
+    .navbar-right .navbar-profile.desktop-profile {
+        display: none !important;
     }
 
     /* Mobile Auth Links */
@@ -572,37 +591,40 @@
         display: none;
     }
 
-    /* Show profile on mobile header */
-    /* Show profile on mobile header */
-    .navbar-profile {
+    /* Show profile on mobile header - positioned in navbar-mobile-actions */
+    /* Show profile on mobile header - positioned in navbar-mobile-actions */
+    .navbar-profile.mobile-profile {
         display: flex;
-        position: absolute;
-        right: 108px;
-        /* 16px padding + 36px menu + 16px gap + 36px search + 4px gap */
-        top: 50%;
-        transform: translateY(-50%);
-        margin-right: 0;
-        z-index: 1002;
-        /* Above search overlay if needed, but below menu */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-width: auto;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
     }
 
-    .navbar-profile-label,
-    .navbar-profile-arrow {
+    .navbar-profile .navbar-avatar {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+    .navbar-profile-label {
         display: none;
-        /* Keep text hidden on mobile, just avatar */
     }
 
-    /* Adjust profile dropdown for mobile */
     /* Adjust profile dropdown for mobile */
     .navbar-profile-dropdown {
         position: fixed;
         top: 44px;
-        right: auto;
-        /* Align with screen padding */
+        right: 16px;
         left: auto;
         height: auto;
         width: 260px;
-        /* Standard width */
         background: white;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -651,6 +673,12 @@
         font-weight: 400;
         background: none;
         text-align: left;
+    }
+
+    /* Indent links without icons to align with text of items with icons */
+    .navbar-profile-dropdown .navbar-dropdown-link {
+        padding-left: 46px;
+        /* 16px padding + 18px icon + 12px gap */
     }
 
     .navbar-profile-dropdown .navbar-link:hover,

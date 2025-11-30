@@ -18,6 +18,8 @@ import SettingsPage from './pages/SettingsPage';
 import InfoPage from './pages/InfoPage';
 import RoadmapPage from './pages/RoadmapPage';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import './styles/PageTransition.css';
 import ScrollToTop from './components/ScrollToTop';
 
 // Context for authentication
@@ -85,57 +87,81 @@ function App() {
             <AuthContext.Provider value={{ user, setUser, logout, checkAuth }}>
                 <BrowserRouter>
                     <ScrollToTop />
-                    <Routes>
-                        {/* Public routes */}
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/explore" element={<CourseCatalog />} />
-                        <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
-                        <Route path="/course/:slug" element={<CourseDetail />} />
-                        <Route path="/verify" element={<VerifyPage />} />
-                        <Route path="/roadmap" element={<RoadmapPage />} />
-                        <Route path="/roadmap/:id" element={<RoadmapPage />} />
-
-                        {/* Protected routes */}
-                        <Route
-                            path="/dashboard"
-                            element={user ? <Dashboard /> : <Navigate to="/login" />}
-                        />
-                        <Route
-                            path="/course/:slug/learn"
-                            element={user ? <CourseViewer /> : <Navigate to="/login" />}
-                        />
-                        <Route
-                            path="/course/:slug/quiz"
-                            element={user ? <QuizPage /> : <Navigate to="/login" />}
-                        />
-                        <Route
-                            path="/course/:slug/certificate"
-                            element={user ? <CertificatePage /> : <Navigate to="/login" />}
-                        />
-                        <Route path="/help" element={<HelpCenter />} />
-                        <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/login" />} />
-
-                        {/* Static Pages */}
-                        <Route path="/about" element={<InfoPage pageKey="about" />} />
-                        <Route path="/careers" element={<InfoPage pageKey="careers" />} />
-                        <Route path="/press" element={<InfoPage pageKey="press" />} />
-                        <Route path="/blog" element={<InfoPage pageKey="blog" />} />
-                        <Route path="/contact" element={<InfoPage pageKey="contact" />} />
-                        <Route path="/community" element={<InfoPage pageKey="community" />} />
-                        <Route path="/accessibility" element={<InfoPage pageKey="accessibility" />} />
-                        <Route path="/privacy" element={<InfoPage pageKey="privacy" />} />
-                        <Route path="/terms" element={<InfoPage pageKey="terms" />} />
-                        <Route path="/cookies" element={<InfoPage pageKey="cookies" />} />
-                        <Route path="/security" element={<InfoPage pageKey="security" />} />
-
-                        {/* 404 */}
-                        <Route path="*" element={<Navigate to="/" />} />
-                    </Routes>
+                    <NavbarController />
+                    <AnimatedRoutes user={user} />
                     <FooterController />
                 </BrowserRouter>
             </AuthContext.Provider>
         </LanguageProvider>
     );
 }
+
+// Navbar Controller Component
+const NavbarController = () => {
+    const location = useLocation();
+    const isLoginPage = location.pathname === '/login';
+    const isQuizPage = location.pathname.includes('/quiz');
+
+    if (isLoginPage || isQuizPage) return null;
+    return <Navbar />;
+};
+
+// Animated Routes Component
+const AnimatedRoutes = ({ user }) => {
+    const location = useLocation();
+
+    return (
+        <div className="page-wrapper">
+            <div key={location.pathname} className="page-transition">
+                <Routes location={location}>
+                    {/* Public routes */}
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/explore" element={<CourseCatalog />} />
+                    <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <LoginPage />} />
+                    <Route path="/course/:slug" element={<CourseDetail />} />
+                    <Route path="/verify" element={<VerifyPage />} />
+                    <Route path="/roadmap" element={<RoadmapPage />} />
+                    <Route path="/roadmap/:id" element={<RoadmapPage />} />
+
+                    {/* Protected routes */}
+                    <Route
+                        path="/dashboard"
+                        element={user ? <Dashboard /> : <Navigate to="/login" />}
+                    />
+                    <Route
+                        path="/course/:slug/learn"
+                        element={user ? <CourseViewer /> : <Navigate to="/login" />}
+                    />
+                    <Route
+                        path="/course/:slug/quiz"
+                        element={user ? <QuizPage /> : <Navigate to="/login" />}
+                    />
+                    <Route
+                        path="/course/:slug/certificate"
+                        element={user ? <CertificatePage /> : <Navigate to="/login" />}
+                    />
+                    <Route path="/help" element={<HelpCenter />} />
+                    <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/login" />} />
+
+                    {/* Static Pages */}
+                    <Route path="/about" element={<InfoPage pageKey="about" />} />
+                    <Route path="/careers" element={<InfoPage pageKey="careers" />} />
+                    <Route path="/press" element={<InfoPage pageKey="press" />} />
+                    <Route path="/blog" element={<InfoPage pageKey="blog" />} />
+                    <Route path="/contact" element={<InfoPage pageKey="contact" />} />
+                    <Route path="/community" element={<InfoPage pageKey="community" />} />
+                    <Route path="/accessibility" element={<InfoPage pageKey="accessibility" />} />
+                    <Route path="/privacy" element={<InfoPage pageKey="privacy" />} />
+                    <Route path="/terms" element={<InfoPage pageKey="terms" />} />
+                    <Route path="/cookies" element={<InfoPage pageKey="cookies" />} />
+                    <Route path="/security" element={<InfoPage pageKey="security" />} />
+
+                    {/* 404 */}
+                    <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+            </div>
+        </div>
+    );
+};
 
 export default App;

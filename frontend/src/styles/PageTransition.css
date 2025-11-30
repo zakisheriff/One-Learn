@@ -1,0 +1,41 @@
+/* Smooth Page Transitions */
+.page-transition {
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(10px);
+    width: 100%;
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure the container takes full width/height if needed */
+.page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Content Fade In - for smooth loading state transitions */
+.content-fade-in {
+    animation: contentFade 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes contentFade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

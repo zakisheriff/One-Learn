@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
-import Navbar from '../components/Navbar';
 import {
     UserIcon, NotificationIcon, LockIcon, CreditCardIcon,
     CoffeeIcon, ChevronRightIcon
@@ -77,7 +76,6 @@ const SettingsPage = () => {
 
     return (
         <div className="settings-page">
-            <Navbar />
             <main className="settings-main">
                 <div className="settings-container">
                     <div className="settings-sidebar">

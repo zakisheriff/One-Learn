@@ -5,7 +5,7 @@ import { LanguageContext } from '../context/LanguageContext';
 import {
     HomeIcon, BookIcon, SearchIcon, DashboardIcon, LogoutIcon,
     MenuIcon, GlobeIcon, CheckIcon, StarIcon,
-    BrowseIcon, NotificationIcon, ChevronDownIcon, CoffeeIcon
+    BrowseIcon, NotificationIcon, ChevronDownIcon, CoffeeIcon, MapIcon
 } from './Icons';
 import '../styles/Navbar.css';
 import Logo from './Logo';
@@ -40,6 +40,15 @@ const Navbar = () => {
             <div className="navbar-container">
                 {/* Left Section: Logo + Browse */}
                 <div className="navbar-left">
+                    {/* Mobile Hamburger - shown on mobile only */}
+                    <button
+                        className="navbar-mobile-toggle"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        <MenuIcon size={20} />
+                    </button>
+
                     <Link to="/" className="navbar-logo" onClick={() => window.scrollTo(0, 0)}>
                         <Logo size={18} iconSize={20} />
                     </Link>
@@ -76,7 +85,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Toggle */}
+                {/* Mobile Actions - Right Side: Profile first, then Search */}
                 <div className="navbar-mobile-actions">
                     <button
                         className="navbar-mobile-search-toggle"
@@ -85,13 +94,62 @@ const Navbar = () => {
                     >
                         <SearchIcon size={20} />
                     </button>
-                    <button
-                        className="navbar-mobile-toggle"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        <MenuIcon size={20} />
-                    </button>
+
+                    {user && (
+                        <div
+                            className={`navbar-profile mobile-profile ${profileOpen ? 'open' : ''}`}
+                            onClick={() => setProfileOpen(!profileOpen)}
+                        >
+                            <div className="navbar-avatar">
+                                {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                            </div>
+
+                            <div className="navbar-profile-dropdown">
+                                <div className="profile-header">
+                                    <div className="navbar-avatar large">
+                                        {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                    </div>
+                                    <div className="profile-details">
+                                        <h4>{user.fullName || 'User'}</h4>
+                                        <p>{user.email}</p>
+                                    </div>
+                                </div>
+
+                                <Link
+                                    to="/dashboard"
+                                    className="navbar-dropdown-item"
+                                    onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}
+                                >
+                                    <DashboardIcon size={18} />
+                                    <span>{t('myLearning')}</span>
+                                </Link>
+
+                                <Link
+                                    to="/dashboard#certificates"
+                                    className="navbar-dropdown-item"
+                                    onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}
+                                >
+                                    <StarIcon size={18} />
+                                    <span>My Certificates</span>
+                                </Link>
+
+                                <div className="navbar-dropdown-divider"></div>
+
+                                <div className="dropdown-section">
+                                    <h5>Account</h5>
+                                    <Link to="/settings" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>Settings & Privacy</Link>
+                                    <Link to="/help" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>{t('helpCenter')}</Link>
+                                </div>
+
+                                <div className="navbar-dropdown-divider"></div>
+
+                                <button className="navbar-dropdown-item" onClick={handleLogout}>
+                                    <LogoutIcon size={18} />
+                                    <span>{t('signOut')}</span>
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Center Section: Search (Desktop) */}
@@ -161,7 +219,7 @@ const Navbar = () => {
                             className={`navbar-link ${isActive('/roadmap') ? 'active' : ''}`}
                             onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                         >
-                            <span className="navbar-link-icon"><BrowseIcon size={20} /></span>
+                            <span className="navbar-link-icon"><MapIcon size={20} /></span>
                             <span className="navbar-link-text">Roadmap</span>
                         </Link>
 
@@ -176,10 +234,14 @@ const Navbar = () => {
                             </Link>
                         )}
 
-                        <a href="https://www.buymeacoffee.com/zakisherifw" className="navbar-link icon-only" target='_blank'>
-                            <span className="navbar-link-icon"><CoffeeIcon size={20} /></span>
-                            <span className="navbar-link-text">Buy Me a Coffee</span>
-                        </a>
+                        <Link
+                            to="/explore"
+                            className={`navbar-link ${isActive('/explore') ? 'active' : ''}`}
+                            onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
+                        >
+                            <span className="navbar-link-icon"><BrowseIcon size={20} /></span>
+                            <span className="navbar-link-text">Explore Courses</span>
+                        </Link>
 
                         <div className="navbar-language-wrapper">
                             <button
@@ -232,7 +294,7 @@ const Navbar = () => {
                     {/* Profile */}
                     {user ? (
                         <div
-                            className={`navbar-profile ${profileOpen ? 'open' : ''}`}
+                            className={`navbar-profile desktop-profile ${profileOpen ? 'open' : ''}`}
                             onClick={() => setProfileOpen(!profileOpen)}
                         >
                             <div className="navbar-avatar">
@@ -273,7 +335,7 @@ const Navbar = () => {
                                 <div className="navbar-dropdown-divider"></div>
                                 <div className="dropdown-section">
                                     <h5>Account</h5>
-                                    <Link to="/settings" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>{t('settings')}</Link>
+                                    <Link to="/settings" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>Settings & Privacy</Link>
                                     <Link to="/help" className="navbar-dropdown-link" onClick={() => { setProfileOpen(false); window.scrollTo(0, 0); }}>{t('helpCenter')}</Link>
                                 </div>
                                 <div className="navbar-dropdown-divider"></div>

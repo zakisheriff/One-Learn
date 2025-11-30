@@ -8,7 +8,10 @@
         "category": "School Subjects",
         "duration": "50h",
         "likes": "5M",
-        "views": "50M"
+        "views": "50M",
+        "level": "Beginner",
+        "subject": "General",
+        "type": "Series"
     },
     {
         "title": "Khan Academy Classrooms",
@@ -19,7 +22,10 @@
         "category": "School Subjects",
         "duration": "100h",
         "likes": "2M",
-        "views": "20M"
+        "views": "20M",
+        "level": "Beginner",
+        "subject": "K-12",
+        "type": "Course"
     },
     {
         "title": "Neso Academy",
@@ -30,7 +36,10 @@
         "category": "School Subjects",
         "duration": "20h",
         "likes": "500K",
-        "views": "5M"
+        "views": "5M",
+        "level": "Advanced",
+        "subject": "Engineering",
+        "type": "Lecture"
     },
     {
         "title": "Organic Chemistry Tutor",
@@ -41,7 +50,10 @@
         "category": "School Subjects",
         "duration": "30h",
         "likes": "1M",
-        "views": "10M"
+        "views": "10M",
+        "level": "Intermediate",
+        "subject": "Chemistry",
+        "type": "Tutorial"
     },
     {
         "title": "Professor Leonard",
@@ -52,7 +64,10 @@
         "category": "School Subjects",
         "duration": "40h",
         "likes": "300K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Intermediate",
+        "subject": "Math",
+        "type": "Lecture"
     },
     {
         "title": "Eddie Woo",
@@ -63,7 +78,10 @@
         "category": "School Subjects",
         "duration": "15h",
         "likes": "200K",
-        "views": "2M"
+        "views": "2M",
+        "level": "Intermediate",
+        "subject": "Math",
+        "type": "Lecture"
     },
     {
         "title": "Armando Hasudungan",
@@ -74,7 +92,10 @@
         "category": "School Subjects",
         "duration": "10h",
         "likes": "400K",
-        "views": "4M"
+        "views": "4M",
+        "level": "Advanced",
+        "subject": "Biology",
+        "type": "Visualization"
     },
     {
         "title": "Bozeman Science",
@@ -85,7 +106,10 @@
         "category": "School Subjects",
         "duration": "8h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Intermediate",
+        "subject": "Science",
+        "type": "Lesson"
     },
     {
         "title": "MinutePhysics",
@@ -96,7 +120,10 @@
         "category": "School Subjects",
         "duration": "4h",
         "likes": "2M",
-        "views": "20M"
+        "views": "20M",
+        "level": "Beginner",
+        "subject": "Physics",
+        "type": "Explainer"
     },
     {
         "title": "PatrickJMT",
@@ -107,6 +134,9 @@
         "category": "School Subjects",
         "duration": "10h",
         "likes": "150K",
-        "views": "1.5M"
+        "views": "1.5M",
+        "level": "Intermediate",
+        "subject": "Math",
+        "type": "Tutorial"
     }
 ]

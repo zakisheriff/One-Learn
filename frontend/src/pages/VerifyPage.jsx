@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from '../components/Navbar';
 import '../styles/VerifyPage.css';
 
 const VerifyPage = () => {
@@ -33,7 +32,6 @@ const VerifyPage = () => {
 
     return (
         <div className="verify-page">
-            <Navbar />
 
             <main className="verify-main">
                 <div className="container">

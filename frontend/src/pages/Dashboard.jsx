@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
-import Navbar from '../components/Navbar';
 import { PlayIcon, BookIcon, StarIcon, TargetIcon } from '../components/Icons';
 import '../styles/Dashboard.css';
 
@@ -116,7 +115,6 @@ const Dashboard = () => {
     if (loading) {
         return (
             <div className="dashboard-page">
-                <Navbar />
                 <div className="loading-state">
                     <div className="spinner"></div>
                     <p>Loading dashboard...</p>
@@ -126,8 +124,7 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="dashboard-page">
-            <Navbar />
+        <div className="dashboard-container">
 
             <main className="dashboard-main">
                 <div className="container">
@@ -227,7 +224,7 @@ const Dashboard = () => {
                                             </div>
                                             <div className="enrollment-content">
                                                 <h3>{enrollment.course.title}</h3>
-                                                <p className="instructor">FreeCodeCamp</p>
+                                                <p className="instructor">{enrollment.course.instructor || 'YouLearn Instructor'}</p>
                                                 <Link to={`/course/${enrollment.course.slug}/learn`} className="continue-button">
                                                     <PlayIcon size={16} /> {t('continue')}
                                                 </Link>

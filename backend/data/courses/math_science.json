@@ -8,7 +8,10 @@
         "category": "Math & Science",
         "duration": "100h",
         "likes": "5M",
-        "views": "50M"
+        "views": "50M",
+        "level": "Beginner",
+        "subject": "Math",
+        "type": "Course"
     },
     {
         "title": "3Blue1Brown: Essence of Calculus",
@@ -19,7 +22,10 @@
         "category": "Math & Science",
         "duration": "5h",
         "likes": "1M",
-        "views": "10M"
+        "views": "10M",
+        "level": "Advanced",
+        "subject": "Calculus",
+        "type": "Visualization"
     },
     {
         "title": "MIT OpenCourseWare: Math",
@@ -30,7 +36,10 @@
         "category": "Math & Science",
         "duration": "20h",
         "likes": "200K",
-        "views": "2M"
+        "views": "2M",
+        "level": "Advanced",
+        "subject": "Math",
+        "type": "Lecture"
     },
     {
         "title": "Physics Explained",
@@ -41,7 +50,10 @@
         "category": "Math & Science",
         "duration": "6h",
         "likes": "5K",
-        "views": "500K"
+        "views": "500K",
+        "level": "Intermediate",
+        "subject": "Physics",
+        "type": "Explainer"
     },
     {
         "title": "Physics Galaxy",
@@ -52,7 +64,10 @@
         "category": "Math & Science",
         "duration": "15h",
         "likes": "100K",
-        "views": "1M"
+        "views": "1M",
+        "level": "Advanced",
+        "subject": "Physics",
+        "type": "Exam Prep"
     },
     {
         "title": "Zach Star: Engineering",
@@ -63,7 +78,10 @@
         "category": "Math & Science",
         "duration": "4h",
         "likes": "80K",
-        "views": "800K"
+        "views": "800K",
+        "level": "Beginner",
+        "subject": "Engineering",
+        "type": "Career"
     },
     {
         "title": "Up and Atom",
@@ -74,7 +92,10 @@
         "category": "Math & Science",
         "duration": "3h",
         "likes": "60K",
-        "views": "600K"
+        "views": "600K",
+        "level": "Intermediate",
+        "subject": "Physics Paradoxes",
+        "type": "Explainer"
     },
     {
         "title": "NPTEL: Engineering Lectures",
@@ -85,7 +106,10 @@
         "category": "Math & Science",
         "duration": "50h",
         "likes": "300K",
-        "views": "3M"
+        "views": "3M",
+        "level": "Advanced",
+        "subject": "Engineering",
+        "type": "Lecture"
     },
     {
         "title": "Engineering Guy",
@@ -96,7 +120,10 @@
         "category": "Math & Science",
         "duration": "2h",
         "likes": "150K",
-        "views": "1.5M"
+        "views": "1.5M",
+        "level": "Beginner",
+        "subject": "Engineering",
+        "type": "Documentary"
     },
     {
         "title": "Real Engineering",
@@ -107,6 +134,9 @@
         "category": "Math & Science",
         "duration": "5h",
         "likes": "400K",
-        "views": "4M"
+        "views": "4M",
+        "level": "Intermediate",
+        "subject": "Engineering",
+        "type": "Documentary"
     }
 ]
