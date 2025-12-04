@@ -55,7 +55,7 @@ const OnboardingModal = ({ onClose }) => {
             <div className="onboarding-content" ref={contentRef}>
                 <div className="onboarding-header">
                     <h2 className="onboarding-title">
-                        Welcome to You Learn!
+                        Welcome to One Learn!
                     </h2>
                     <p className="onboarding-subtitle">
                         What are you interested in learning today? We'll personalize your recommendations.

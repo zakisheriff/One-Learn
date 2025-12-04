@@ -19,6 +19,17 @@
     position: relative;
     overflow: hidden;
     border-bottom: 1px solid var(--glass-border);
+    
+    margin-top: 60px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #111 100%);
+    padding: 80px 24px;
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+
+    margin-bottom: 40px;
+    margin-right: 7%;
+    margin-left: 7%;
 }
 
 .help-hero::before {

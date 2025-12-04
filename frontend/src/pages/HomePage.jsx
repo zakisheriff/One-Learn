@@ -32,7 +32,7 @@ const HeroCarousel = ({ featuredCourses }) => {
                     <div className="hero-text">
                         <span className="hero-badge">Featured Course</span>
                         <h1>{currentCourse.title}</h1>
-                        <p className="hero-instructor">By {currentCourse.instructor || 'YouLearn Instructor'} • {currentCourse.estimated_hours || '2h 30m'}</p>
+                        <p className="hero-instructor">By {currentCourse.instructor || 'One Learn Instructor'} • {currentCourse.estimated_hours || '2h 30m'}</p>
                         <p className="hero-description">{currentCourse.description}</p>
                         <div className="hero-actions">
                             <Link to={`/course/${currentCourse.slug}`} className="hero-btn-primary">
@@ -126,7 +126,7 @@ const HomePage = () => {
             </div>
             <div className="linkedin-card-content">
                 <h3 className="linkedin-card-title">{course.title}</h3>
-                <p className="linkedin-card-instructor">{course.instructor || 'YouLearn Instructor'}</p>
+                <p className="linkedin-card-instructor">{course.instructor || 'One Learn Instructor'}</p>
                 <div className="linkedin-card-meta">
                     <div className="linkedin-card-rating">
                         <span className="linkedin-card-rating-star"><StarIcon size={12} filled={true} color="#b4690e" /></span>

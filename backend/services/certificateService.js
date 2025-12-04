@@ -74,13 +74,15 @@ async function generateCertificate(userId, courseId, quizAttemptId, client) {
         // It is generated on-the-fly when requested to support ephemeral hosting (Railway).
         const pdfPath = 'generated-on-demand';
 
+        const now = new Date();
+
         // Save certificate to database
         const certResult = await db.query(
             `INSERT INTO certificates 
-             (user_id, course_id, quiz_attempt_id, recipient_name, course_title, verification_hash, pdf_path)
-             VALUES ($1, $2, $3, $4, $5, $6, $7)
+             (user_id, course_id, quiz_attempt_id, recipient_name, course_title, verification_hash, pdf_path, completion_date, issued_at)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $8)
              RETURNING id, verification_hash, completion_date, issued_at`,
-            [userId, courseId, quizAttemptId, user.full_name, course.title, verificationHash, pdfPath]
+            [userId, courseId, quizAttemptId, user.full_name, course.title, verificationHash, pdfPath, now]
         );
 
         const certificate = certResult.rows[0];
@@ -126,25 +128,27 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
             const height = doc.page.height;
 
             // --- Background ---
-            doc.rect(0, 0, width, height).fill(colors.white);
+            // Dark background for "Dark Glass" theme with rounded corners
+            doc.roundedRect(0, 0, width, height, 40).clip(); // Clip everything to rounded corners
+            doc.rect(0, 0, width, height).fill('#0a0a0f'); // Fill background
 
             // --- Border ---
-            // Single, elegant gold border inset by 40px
+            // Subtle white border with rounded corners
             const margin = 40;
-            doc.rect(margin, margin, width - (margin * 2), height - (margin * 2))
-                .lineWidth(1.5)
-                .stroke(colors.gold);
+            doc.roundedRect(margin, margin, width - (margin * 2), height - (margin * 2), 30)
+                .lineWidth(1)
+                .stroke('#333333');
 
             // --- Header ---
             doc.moveDown(5);
 
-            // "CERTIFICATE OF COMPLETION" - Tracking (letter spacing) is key for luxury
+            // "CERTIFICATE OF COMPLETION"
             doc.font('Helvetica')
                 .fontSize(12)
-                .fillColor(colors.darkGrey)
+                .fillColor('#aaaaaa') // Light gray
                 .text('CERTIFICATE OF COMPLETION', 0, 100, {
                     align: 'center',
-                    characterSpacing: 5 // Wide spacing for elegance
+                    characterSpacing: 5
                 });
 
             // --- Content ---
@@ -153,27 +157,28 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
             doc.moveDown(3);
             doc.font('Times-Roman')
                 .fontSize(48)
-                .fillColor(colors.black)
+                .fillColor('#ffffff') // White
                 .text(recipientName, {
                     align: 'center'
                 });
 
-            // Separator Line - Move closer to name
-            const nameBottomY = doc.y; // Get Y position after name
-            const lineLength = 300; // Slightly wider for better proportion
-            const lineY = nameBottomY + 5; // 5px gap
+            // Separator Line
+            const nameBottomY = doc.y;
+            const lineLength = 200;
+            const lineY = nameBottomY + 5;
 
+            // Gradient-like line (simulated with gray)
             doc.moveTo((width - lineLength) / 2, lineY)
                 .lineTo((width + lineLength) / 2, lineY)
                 .lineWidth(0.5)
-                .strokeColor(colors.gold)
+                .strokeColor('#666666')
                 .stroke();
 
             // "For successfully completing the course"
-            doc.y = lineY + 20; // Explicitly set Y below line
+            doc.y = lineY + 20;
             doc.font('Helvetica')
                 .fontSize(10)
-                .fillColor(colors.darkGrey)
+                .fillColor('#aaaaaa')
                 .text('HAS SUCCESSFULLY COMPLETED THE COURSE', {
                     align: 'center',
                     characterSpacing: 2
@@ -183,7 +188,7 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
             doc.moveDown(1);
             doc.font('Times-Roman')
                 .fontSize(32)
-                .fillColor(colors.black)
+                .fillColor('#ffffff')
                 .text(courseTitle, {
                     align: 'center'
                 });
@@ -195,7 +200,6 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
             const dateLineStart = 100;
             const dateLineEnd = 250;
             const dateLineWidth = dateLineEnd - dateLineStart;
-            const dateCenter = dateLineStart + (dateLineWidth / 2);
 
             const completionDate = new Date().toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -203,8 +207,8 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
                 day: 'numeric'
             });
 
-            // Date Text (Above Line)
-            doc.font('Helvetica').fontSize(10).fillColor(colors.darkGrey)
+            // Date Text
+            doc.font('Helvetica').fontSize(10).fillColor('#aaaaaa')
                 .text(completionDate.toUpperCase(), dateLineStart, bottomY - 15, {
                     width: dateLineWidth,
                     align: 'center',
@@ -212,10 +216,10 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
                 });
 
             // Date Line
-            doc.moveTo(dateLineStart, bottomY).lineTo(dateLineEnd, bottomY).lineWidth(0.5).strokeColor(colors.black).stroke();
+            doc.moveTo(dateLineStart, bottomY).lineTo(dateLineEnd, bottomY).lineWidth(0.5).strokeColor('#666666').stroke();
 
-            // Date Label (Centered Under Line)
-            doc.font('Helvetica-Bold').fontSize(8).fillColor(colors.gold)
+            // Date Label
+            doc.font('Helvetica-Bold').fontSize(8).fillColor('#ffffff')
                 .text('DATE', dateLineStart, bottomY + 8, {
                     width: dateLineWidth,
                     align: 'center',
@@ -227,20 +231,19 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
             const sigLineEnd = width - 100;
             const sigLineStart = width - 250;
             const sigLineWidth = sigLineEnd - sigLineStart;
-            const sigCenter = sigLineStart + (sigLineWidth / 2);
 
-            // Signature Text (You Learn)
-            doc.font('Times-Italic').fontSize(24).fillColor(colors.black)
-                .text('You Learn', sigLineStart, bottomY - 30, {
+            // Signature Text (The One Atom)
+            doc.font('Times-Italic').fontSize(24).fillColor('#ffffff')
+                .text('The One Atom', sigLineStart, bottomY - 30, {
                     width: sigLineWidth,
                     align: 'center'
                 });
 
             // Signature Line
-            doc.moveTo(sigLineStart, bottomY).lineTo(sigLineEnd, bottomY).lineWidth(0.5).strokeColor(colors.black).stroke();
+            doc.moveTo(sigLineStart, bottomY).lineTo(sigLineEnd, bottomY).lineWidth(0.5).strokeColor('#666666').stroke();
 
-            // Signature Label (Centered Under Line)
-            doc.font('Helvetica-Bold').fontSize(8).fillColor(colors.gold)
+            // Signature Label
+            doc.font('Helvetica-Bold').fontSize(8).fillColor('#ffffff')
                 .text('SIGNATURE', sigLineStart, bottomY + 8, {
                     width: sigLineWidth,
                     align: 'center',
@@ -252,16 +255,16 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
             const sealX = width / 2;
             const sealY = height - 90;
 
-            // Just a clean circle outline
-            doc.circle(sealX, sealY, 30).lineWidth(1).stroke(colors.gold);
+            // Seal Circle
+            doc.circle(sealX, sealY, 30).lineWidth(1).stroke('#666666');
 
-            // Widen the text box to prevent wrapping
-            doc.font('Helvetica').fontSize(8).fillColor(colors.gold)
+            // Seal Text
+            doc.font('Helvetica').fontSize(8).fillColor('#ffffff')
                 .text('VERIFIED', sealX - 30, sealY - 3, { align: 'center', width: 60, characterSpacing: 1 });
 
 
-            // --- Verification ID (Tiny, Bottom Center) ---
-            doc.font('Helvetica').fontSize(6).fillColor('#cccccc')
+            // --- Verification ID ---
+            doc.font('Helvetica').fontSize(6).fillColor('#444444')
                 .text(`ID: ${verificationHash}`, 0, height - 20, {
                     align: 'center',
                     characterSpacing: 1

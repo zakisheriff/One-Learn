@@ -1,4 +1,4 @@
-# <div align="center">You Learn</div>
+# <div align="center">One Learn</div>
 
 <div align="center">
 <strong>100% Free, AI-Powered Learning Platform with Verified Certificates</strong>
@@ -179,8 +179,8 @@ YouLearn/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/zakisheriff/You-Learn.git
-cd You-Learn
+git clone https://github.com/zakisheriff/One-Learn.git
+cd One-Learn
 ```
 
 ### 2. Install Dependencies

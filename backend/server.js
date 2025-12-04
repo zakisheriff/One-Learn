@@ -1,4 +1,4 @@
-// You Learn LMS - Express Server
+// One Learn LMS - Express Server
 // Main server file with security configurations and route mounting
 
 const express = require('express');
@@ -96,7 +96,7 @@ app.get('/api/verify', async (req, res) => {
                 courseTitle: cert.course_title,
                 completionDate: cert.completion_date,
                 issuedAt: cert.issued_at,
-                organization: 'You Learn'
+                organization: 'The One Atom'
             }
         });
 
@@ -181,7 +181,7 @@ pool.query('SELECT NOW()', (err, res) => {
 
     // Start server
     app.listen(PORT, () => {
-        console.log(`\n🚀 You Learn API Server`);
+        console.log(`\n🚀 One Learn API Server`);
         console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
         console.log(`   Port: ${PORT}`);
         console.log(`   URL: http://localhost:${PORT}`);

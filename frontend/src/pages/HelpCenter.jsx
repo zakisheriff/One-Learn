@@ -48,8 +48,8 @@ const HelpCenter = () => {
                         <h2>Frequently Asked Questions</h2>
                         <div className="faq-list">
                             <div className="faq-item">
-                                <h3>Is You Learn free?</h3>
-                                <p>Yes, You Learn is completely free to use. We believe in accessible education for everyone.</p>
+                                <h3>Is One Learn free?</h3>
+                                <p>Yes, One Learn is completely free to use. We believe in accessible education for everyone.</p>
                             </div>
                             <div className="faq-item">
                                 <h3>How do I earn a certificate?</h3>

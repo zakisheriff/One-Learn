@@ -91,23 +91,20 @@ const Footer = () => {
 
                 <div className="footer-bottom">
                     <div className="footer-center-group">
-                        <Link to="/" className="footer-logo-small" onClick={() => window.scrollTo(0, 0)}>You Learn</Link>
+                        <Link to="/" className="footer-logo-small" onClick={() => window.scrollTo(0, 0)}>One Learn</Link>
                         <span className="footer-divider">|</span>
-                        <p className="footer-copyright-text">&copy; {new Date().getFullYear()} You Learn. All rights reserved.</p>
+                        <p className="footer-copyright-text">&copy; {new Date().getFullYear()} One Learn. All rights reserved.</p>
                     </div>
 
                     <div className="footer-social">
                         <a href="https://linkedin.com/in/zakisheriff" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <LinkedInIcon size={20} />
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                            <TwitterIcon size={20} />
+                            <LinkedInIcon size={16} />
                         </a>
                         <a href="https://instagram.com/zakisherifff" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <InstagramIcon size={20} />
+                            <InstagramIcon size={16} />
                         </a>
                         <a href="https://github.com/zakisheriff" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <GitHubIcon size={20} />
+                            <GitHubIcon size={16} />
                         </a>
                     </div>
                 </div>

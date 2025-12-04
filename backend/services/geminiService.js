@@ -43,7 +43,7 @@ async function generateQuiz(videoUrls, courseTitle) {
             transcriptText = `Transcript not available. Generate questions based on the course title: "${courseTitle}" and general knowledge about this topic.`;
         }
 
-        const prompt = `You are an expert educational assessment creator for the "You Learn" platform.
+        const prompt = `You are an expert educational assessment creator for the "One Learn" platform.
 
 TASK: Create a comprehensive certification quiz based on the following video content.
 

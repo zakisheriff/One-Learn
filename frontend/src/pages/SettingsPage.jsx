@@ -373,7 +373,7 @@ const SettingsPage = () => {
                                         <CoffeeIcon size={32} color="#FFDD00" />
                                     </div>
                                     <div className="support-text">
-                                        <h4>Enjoying You Learn?</h4>
+                                        <h4>Enjoying One Learn?</h4>
                                         <p>If you find this platform helpful, consider buying me a coffee to support future development!</p>
                                     </div>
                                     <a href="https://buymeacoffee.com/zakisherifw" target="_blank" rel="noopener noreferrer" className="coffee-btn">

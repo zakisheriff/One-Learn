@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { toPng } from 'html-to-image';
+import jsPDF from 'jspdf';
 import '../styles/CertificatePage.css';
 
 const CertificatePage = () => {
@@ -8,6 +10,7 @@ const CertificatePage = () => {
     const [certificate, setCertificate] = useState(null);
     const [course, setCourse] = useState(null);
     const [loading, setLoading] = useState(true);
+    const certificateRef = useRef(null);
 
     useEffect(() => {
         fetchCertificate();
@@ -42,6 +45,7 @@ const CertificatePage = () => {
             link.click();
             link.remove();
         } catch (err) {
+            console.error('Download failed:', err);
             alert('Failed to download certificate');
         }
     };
@@ -81,7 +85,8 @@ const CertificatePage = () => {
                 <div className="container">
                     <div className="certificate-container">
                         <div className="certificate-preview">
-                            <div className="cert-frame">
+                            {/* Ref attached to the frame for capture */}
+                            <div className="cert-frame" ref={certificateRef}>
                                 <div className="cert-inner-border">
                                     <div className="cert-content">
                                         <div className="cert-header">CERTIFICATE OF COMPLETION</div>
@@ -113,7 +118,7 @@ const CertificatePage = () => {
                                             </div>
 
                                             <div className="cert-footer-item">
-                                                <div className="cert-footer-text signature">You Learn</div>
+                                                <div className="cert-footer-text signature">The One Atom</div>
                                                 <div className="cert-footer-line"></div>
                                                 <div className="cert-footer-label">SIGNATURE</div>
                                             </div>
@@ -161,7 +166,7 @@ const CertificatePage = () => {
                                     <li>Go to <strong>Licenses & certifications</strong></li>
                                     <li>Click <strong>+</strong> to add new</li>
                                     <li><strong>Name:</strong> {certificate.courseTitle}</li>
-                                    <li><strong>Organization:</strong> You Learn</li>
+                                    <li><strong>Organization:</strong> The One Atom</li>
                                     <li><strong>Date:</strong> {new Date(certificate.completionDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</li>
                                     <li><strong>ID:</strong> {certificate.verificationHash}</li>
                                     <li><strong>URL:</strong> {certificate.verificationUrl}</li>

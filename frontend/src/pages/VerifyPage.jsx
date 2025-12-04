@@ -59,7 +59,7 @@ const VerifyPage = () => {
                         <div className="verify-success">
                             <div className="success-icon">✓</div>
                             <h1>Certificate Verified</h1>
-                            <p className="verify-subtitle">This is a valid certificate issued by You Learn</p>
+                            <p className="verify-subtitle">This is a valid certificate issued by One Learn</p>
 
                             <div className="certificate-details">
                                 <div className="detail-row">
