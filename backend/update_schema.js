@@ -14,6 +14,10 @@ const updateSchema = async () => {
         await pool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS interests JSONB DEFAULT '[]'`);
         console.log('✅ Added interests column to users table');
 
+        // Add profile_picture column to users table
+        await pool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_picture VARCHAR(255)`);
+        console.log('✅ Added profile_picture column to users table');
+
         // Add missing columns to courses table
         await pool.query(`ALTER TABLE courses ADD COLUMN IF NOT EXISTS estimated_hours VARCHAR(50)`);
         await pool.query(`ALTER TABLE courses ADD COLUMN IF NOT EXISTS likes VARCHAR(50)`);
