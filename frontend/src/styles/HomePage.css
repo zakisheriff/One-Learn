@@ -267,6 +267,10 @@
     padding: 6px 12px;
     border-radius: 100px;
     background: rgba(75, 144, 255, 0.1);
+    white-space: nowrap;
+    /* Prevent text wrapping */
+    flex-shrink: 0;
+    /* Prevent button from shrinking */
 }
 
 .section-see-all:hover {

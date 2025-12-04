@@ -10,7 +10,7 @@
     z-index: 2000;
     display: flex;
     justify-content: center;
-    align-items: center;
+
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 20px;
@@ -30,6 +30,7 @@
     overflow: hidden;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
     animation: modalScaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
 
 .onboarding-header {
@@ -150,16 +151,18 @@
 @media (max-width: 768px) {
     .onboarding-overlay {
         padding: 0;
-        align-items: flex-end;
+
     }
 
     .onboarding-content {
         border-radius: 32px 32px 0 0;
-        max-height: 90vh;
         margin: 0;
         width: 100%;
         animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        border-radius: 10px;
+
     }
+    
 
     @keyframes modalSlideUp {
         from {
@@ -184,16 +187,16 @@
     }
 
     .interest-chip {
-        padding: 10px 20px;
-        font-size: 14px;
+        padding: 10px 15px;
+        font-size: 12px;
     }
 
     .onboarding-footer {
-        padding: 24px;
-        padding-bottom: max(40px, env(safe-area-inset-bottom));
+        padding-bottom: max(60px, env(safe-area-inset-bottom));
+        
     }
 
     .start-btn {
-        width: 100%;
+        font-size: 15px;
     }
 }
