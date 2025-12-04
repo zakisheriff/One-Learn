@@ -1,16 +1,14 @@
-/* LinkedIn Learning Style Roadmap Design */
+/* Roadmap Page - Gemini Dark Glass Style */
+
 .roadmap-page {
     min-height: 100vh;
-    background-color: #fbfbfd;
-    background-image:
-        radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.03) 0%, transparent 70%),
-        radial-gradient(circle at 80% 10%, rgba(52, 199, 89, 0.03) 0%, transparent 50%);
+    background: var(--bg-main);
     padding-top: 60px;
     padding-bottom: 80px;
 }
 
 .roadmap-container {
-    max-width: 1128px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -25,30 +23,35 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(10, 102, 194, 0.1);
-    color: var(--linkedin-blue);
+    background: rgba(75, 144, 255, 0.1);
+    color: var(--accent-primary-start);
     font-size: 13px;
     font-weight: 600;
     padding: 6px 14px;
-    border-radius: 16px;
-    margin-bottom: 20px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(75, 144, 255, 0.2);
 }
 
 .roadmap-hero h1 {
-    font-size: 48px;
+    font-family: var(--font-display);
+    font-size: 56px;
     font-weight: 700;
-    color: var(--neutral-900);
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    letter-spacing: -1px;
     line-height: 1.1;
+    background: linear-gradient(135deg, white 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .roadmap-hero p {
     font-size: 20px;
-    color: var(--neutral-600);
+    color: var(--text-secondary);
     max-width: 700px;
-    margin: 0 auto 40px;
-    line-height: 1.5;
+    margin: 0 auto 48px;
+    line-height: 1.6;
 }
 
 /* Input Section */
@@ -58,70 +61,75 @@
 }
 
 .input-wrapper {
-    background: white;
-    border: 2px solid var(--neutral-200);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
     padding: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.2s;
-    margin-bottom: 20px;
+    gap: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .input-wrapper:focus-within {
-    border-color: var(--linkedin-blue);
-    box-shadow: 0 4px 12px rgba(10, 102, 194, 0.15);
+    border-color: var(--accent-primary-start);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(75, 144, 255, 0.1);
 }
 
 .search-icon-wrapper {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--neutral-500);
+    color: var(--text-muted);
 }
 
 .input-wrapper input {
     flex: 1;
     border: none;
     background: transparent;
-    font-size: 16px;
-    color: var(--neutral-900);
+    font-size: 18px;
+    color: var(--text-primary);
     padding: 12px 8px;
     outline: none;
 }
 
 .input-wrapper input::placeholder {
-    color: var(--neutral-500);
+    color: var(--text-muted);
 }
 
 .generate-btn {
-    background: var(--linkedin-blue);
+    background: var(--accent-primary-start);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
 }
 
 .generate-btn:hover:not(:disabled) {
-    background: #004182;
-    transform: translateY(-1px);
+    background: var(--accent-primary-end);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(75, 144, 255, 0.4);
 }
 
 .generate-btn:disabled {
-    background: var(--neutral-300);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 .loading-dots span {
@@ -154,33 +162,34 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
+    margin-top: 32px;
 }
 
 .popular-tags span {
     font-size: 14px;
-    color: var(--neutral-600);
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
 .tag-pill {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    padding: 8px 16px;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 8px 20px;
+    border-radius: 100px;
     font-size: 14px;
-    color: var(--neutral-700);
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     font-weight: 500;
 }
 
 .tag-pill:hover {
-    background: var(--neutral-100);
-    border-color: var(--linkedin-blue);
-    color: var(--linkedin-blue);
-    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary-start);
+    color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
 /* Loading State */
@@ -192,8 +201,8 @@
 .spinner-ring {
     width: 60px;
     height: 60px;
-    border: 4px solid var(--neutral-200);
-    border-top: 4px solid var(--linkedin-blue);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--accent-primary-start);
     border-radius: 50%;
     margin: 0 auto 24px;
     animation: spin 1s linear infinite;
@@ -207,23 +216,23 @@
 
 .loading-state h3 {
     font-size: 24px;
-    color: var(--neutral-900);
+    color: var(--text-primary);
     margin-bottom: 8px;
     font-weight: 600;
 }
 
 .loading-state p {
-    color: var(--neutral-600);
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
 /* Error Message */
 .error-message {
-    background: #fff4f4;
-    border: 1px solid #ffcdd2;
-    color: #c62828;
+    background: rgba(255, 92, 92, 0.1);
+    border: 1px solid rgba(255, 92, 92, 0.2);
+    color: var(--accent-error);
     padding: 16px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     margin: 20px 0;
 }
@@ -246,47 +255,49 @@
 }
 
 .result-header {
-    background: white;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
     padding: 32px;
     margin-bottom: 40px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--neutral-200);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 24px;
+    backdrop-filter: blur(10px);
 }
 
 .header-content {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 24px;
     flex: 1;
 }
 
 .header-icon {
     width: 64px;
     height: 64px;
-    background: rgba(10, 102, 194, 0.1);
-    border-radius: 12px;
+    background: rgba(75, 144, 255, 0.1);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    color: var(--accent-primary-start);
 }
 
 .result-header h2 {
     font-size: 28px;
     font-weight: 700;
-    color: var(--neutral-900);
+    color: var(--text-primary);
     margin: 0 0 8px 0;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.5px;
 }
 
 .result-header p {
     font-size: 16px;
-    color: var(--neutral-600);
+    color: var(--text-secondary);
     margin: 0;
     line-height: 1.5;
 }
@@ -298,11 +309,11 @@
 }
 
 .secondary-btn {
-    background: var(--neutral-100);
-    color: var(--neutral-700);
-    border: 1px solid var(--neutral-200);
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--glass-border);
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -310,24 +321,28 @@
 }
 
 .secondary-btn:hover {
-    background: var(--neutral-200);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border-color: var(--text-primary);
 }
 
 .primary-btn {
-    background: var(--linkedin-blue);
+    background: var(--accent-primary-start);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
+    padding: 10px 24px;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
 }
 
 .primary-btn:hover {
-    background: #004182;
-    transform: translateY(-1px);
+    background: var(--accent-primary-end);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(75, 144, 255, 0.4);
 }
 
 /* Timeline */
@@ -345,13 +360,13 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: var(--neutral-200);
+    background: var(--glass-border);
 }
 
 .timeline-item {
     position: relative;
     padding-left: 80px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
     animation: fadeInUp 0.6s ease;
     animation-fill-mode: both;
 }
@@ -382,65 +397,70 @@
     top: 0;
     width: 64px;
     height: 64px;
-    background: white;
-    border: 3px solid var(--linkedin-blue);
+    background: var(--bg-main);
+    border: 2px solid var(--accent-primary-start);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     font-size: 20px;
-    color: var(--linkedin-blue);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: var(--accent-primary-start);
+    box-shadow: 0 0 20px rgba(75, 144, 255, 0.2);
+    z-index: 1;
 }
 
 .timeline-content {
-    background: white;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid var(--neutral-200);
-    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .timeline-content:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .step-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     gap: 16px;
 }
 
 .step-header h3 {
     margin: 0;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
-    color: var(--neutral-900);
+    color: var(--text-primary);
     line-height: 1.3;
 }
 
 .duration-badge {
-    background: var(--neutral-100);
-    color: var(--neutral-700);
-    padding: 4px 10px;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 100px;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
+    border: 1px solid var(--glass-border);
 }
 
 .timeline-content p {
-    color: var(--neutral-600);
-    font-size: 15px;
+    color: var(--text-secondary);
+    font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .topics-list {
@@ -450,29 +470,30 @@
 }
 
 .topic-tag {
-    background: rgba(10, 102, 194, 0.1);
-    color: var(--linkedin-blue);
-    padding: 6px 12px;
-    border-radius: 6px;
+    background: rgba(75, 144, 255, 0.1);
+    color: var(--accent-primary-start);
+    padding: 6px 14px;
+    border-radius: 100px;
     font-size: 13px;
     font-weight: 500;
+    border: 1px solid rgba(75, 144, 255, 0.2);
 }
 
 /* Recommended Courses */
 .recommended-courses {
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid var(--neutral-200);
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--glass-border);
 }
 
 .recommended-courses h4 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--neutral-900);
-    margin: 0 0 12px 0;
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .recommended-courses ul {
@@ -481,12 +502,12 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .recommended-courses li {
-    background: rgba(10, 102, 194, 0.05);
-    border-left: 3px solid var(--linkedin-blue);
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--accent-primary-start);
     border-radius: 4px;
     transition: all 0.2s;
 }
@@ -494,17 +515,17 @@
 .recommended-courses li a {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 12px;
+    gap: 12px;
+    padding: 12px 16px;
     text-decoration: none;
-    color: var(--neutral-700);
+    color: var(--text-secondary);
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .recommended-courses li a:hover {
-    color: var(--linkedin-blue);
-    background: rgba(10, 102, 194, 0.08);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .recommended-courses li a span {
@@ -514,68 +535,73 @@
 .recommended-courses li.no-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 12px;
-    color: var(--neutral-500);
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--text-muted);
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* Benefits Section */
 .benefits-section {
     max-width: 1000px;
-    margin: 80px auto 60px;
+    margin: 100px auto 80px;
     text-align: center;
 }
 
 .benefits-section h2 {
-    font-size: 32px;
+    font-family: var(--font-display);
+    font-size: 36px;
     font-weight: 700;
-    color: var(--neutral-900);
-    margin-bottom: 40px;
+    color: var(--text-primary);
+    margin-bottom: 48px;
 }
 
 .benefits-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 32px;
 }
 
 .benefit-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
     padding: 32px 24px;
     text-align: center;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .benefit-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .benefit-icon {
-    width: 56px;
-    height: 56px;
-    background: rgba(10, 102, 194, 0.1);
-    border-radius: 12px;
+    width: 64px;
+    height: 64px;
+    background: rgba(75, 144, 255, 0.1);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px;
+    margin: 0 auto 24px;
+    color: var(--accent-primary-start);
 }
 
 .benefit-card h3 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--neutral-900);
-    margin-bottom: 8px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
 }
 
 .benefit-card p {
-    font-size: 14px;
-    color: var(--neutral-600);
+    font-size: 15px;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
 }
@@ -583,21 +609,22 @@
 /* How It Works Section */
 .how-it-works-section {
     max-width: 900px;
-    margin: 60px auto 80px;
+    margin: 80px auto 100px;
     text-align: center;
 }
 
 .how-it-works-section h2 {
-    font-size: 32px;
+    font-family: var(--font-display);
+    font-size: 36px;
     font-weight: 700;
-    color: var(--neutral-900);
-    margin-bottom: 40px;
+    color: var(--text-primary);
+    margin-bottom: 48px;
 }
 
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 40px;
 }
 
 .work-step {
@@ -605,45 +632,42 @@
 }
 
 .step-number {
-    width: 48px;
-    height: 48px;
-    background: var(--linkedin-blue);
+    width: 56px;
+    height: 56px;
+    background: var(--accent-primary-start);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
-    margin: 0 auto 16px;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 20px rgba(75, 144, 255, 0.4);
 }
 
 .work-step h3 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--neutral-900);
-    margin-bottom: 8px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
 }
 
 .work-step p {
-    font-size: 14px;
-    color: var(--neutral-600);
-    line-height: 1.5;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
     margin: 0;
 }
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .roadmap-page {
-        padding-top: 50px;
-    }
-
-    .roadmap-hero {
-        padding: 40px 0 60px;
+        padding-top: 40px;
     }
 
     .roadmap-hero h1 {
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .roadmap-hero p {
@@ -651,60 +675,28 @@
     }
 
     .input-wrapper {
-        padding: 4px;
         flex-wrap: wrap;
     }
 
-    .search-icon-wrapper {
-        width: 32px;
-        height: 32px;
-        padding-left: 4px;
-    }
-
     .input-wrapper input {
-        font-size: 16px;
-        padding: 10px 8px;
-        flex: 1;
-        min-width: 0;
+        width: 100%;
+        min-width: 200px;
     }
 
     .generate-btn {
-        padding: 10px 16px;
-        font-size: 12px;
-        flex-shrink: 0;
-    }
-
-    .popular-tags {
-        gap: 8px;
-    }
-
-    .tag-pill {
-        padding: 6px 12px;
-        font-size: 12px;
+        width: 100%;
+        justify-content: center;
     }
 
     .result-header {
         flex-direction: column;
-        padding: 24px;
         text-align: center;
+        padding: 24px;
     }
 
     .header-content {
         flex-direction: column;
         align-items: center;
-    }
-
-    .header-icon {
-        width: 56px;
-        height: 56px;
-    }
-
-    .result-header h2 {
-        font-size: 22px;
-    }
-
-    .result-header p {
-        font-size: 14px;
     }
 
     .result-actions {
@@ -715,11 +707,6 @@
     .secondary-btn,
     .primary-btn {
         width: 100%;
-        padding: 12px;
-    }
-
-    .timeline {
-        padding-left: 0;
     }
 
     .timeline::before {
@@ -728,100 +715,17 @@
 
     .timeline-item {
         padding-left: 64px;
-        margin-bottom: 24px;
     }
 
     .timeline-marker {
-        left: 0;
         width: 48px;
         height: 48px;
         font-size: 16px;
     }
 
-    .timeline-content {
-        padding: 16px;
-    }
-
-    .step-header h3 {
-        font-size: 16px;
-    }
-
-    .timeline-content p {
-        font-size: 13px;
-    }
-
-    .duration-badge {
-        font-size: 9px;
-        padding: 3px 6px;
-        white-space: normal;
-        text-align: center;
-        line-height: 1.2;
-        max-width: 80px;
-    }
-
-    .topic-tag {
-        font-size: 11px;
-        padding: 4px 8px;
-    }
-
-    /* Benefits Section Mobile */
-    .benefits-section {
-        margin: 60px auto 40px;
-    }
-
-    .benefits-section h2 {
-        font-size: 24px;
-        margin-bottom: 24px;
-    }
-
-    .benefits-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .benefit-card {
-        padding: 24px 20px;
-    }
-
-    .benefit-icon {
-        width: 48px;
-        height: 48px;
-    }
-
-    .benefit-card h3 {
-        font-size: 16px;
-    }
-
-    .benefit-card p {
-        font-size: 13px;
-    }
-
-    /* How It Works Section Mobile */
-    .how-it-works-section {
-        margin: 40px auto 60px;
-    }
-
-    .how-it-works-section h2 {
-        font-size: 24px;
-        margin-bottom: 24px;
-    }
-
+    .benefits-grid,
     .steps-grid {
         grid-template-columns: 1fr;
         gap: 24px;
-    }
-
-    .step-number {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-
-    .work-step h3 {
-        font-size: 16px;
-    }
-
-    .work-step p {
-        font-size: 13px;
     }
 }

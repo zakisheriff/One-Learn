@@ -405,6 +405,9 @@ const CourseCatalog = () => {
                                                         src={course.thumbnail || course.thumbnailUrl || 'https://via.placeholder.com/400x200?text=Course'}
                                                         alt={course.title}
                                                     />
+                                                    <div className="play-icon-overlay">
+                                                        <PlayIcon size={32} />
+                                                    </div>
                                                     <div className="catalog-thumbnail-overlay">
                                                         <span className="catalog-duration">
                                                             <ClockIcon size={12} /> {course.estimated_hours || course.estimatedHours || 'N/A'}

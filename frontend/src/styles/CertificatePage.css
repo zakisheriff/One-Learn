@@ -1,83 +1,119 @@
-/* Certificate Page - LinkedIn Learning Style */
+/* Certificate Page - Gemini Dark Glass Style */
 
 .certificate-page {
     min-height: 100vh;
+    background: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 80px 24px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .certificate-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 48px 24px;
+    width: 100%;
+    max-width: 1300px;
+    /* Removed margin: 0 auto as we are centering the grid container itself */
 }
 
 .container {
     max-width: 100%;
 }
 
-/* Certificate Container */
+/* Certificate Container (FIXED FOR CENTERING) */
 .certificate-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 32px;
+    gap: 40px;
     align-items: start;
+    
+    /* --- CENTERING FIX --- */
+    max-width: 1190px; /* Adjust this value if your design requires a different total width */
+    width: 100%; 
+    margin: 0 auto; /* This centers the entire grid content */
 }
 
 /* Certificate Preview */
 .certificate-preview {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
-    padding: 32px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .cert-frame {
     background: white;
-    padding: 20px;
+    padding: 24px;
     border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    aspect-ratio: 11 / 8.5;
+    /* Standard Landscape Aspect Ratio */
+    max-width: 800px;
+    position: relative;
+    border-radius: 20px;
 }
 
 .cert-inner-border {
     border: 2px solid #c5a059;
     padding: 40px;
     position: relative;
+    background: #fffdf5;
+    /* Slight cream background for paper feel */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .cert-content {
     text-align: center;
     color: #1a1a1a;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .cert-header {
     font-family: 'Helvetica', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 4px;
     color: #37474f;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     font-weight: 400;
+    text-transform: uppercase;
 }
 
 .cert-recipient {
     font-family: 'Times New Roman', serif;
     font-size: 48px;
     color: #000;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-weight: 400;
+    line-height: 1.1;
 }
 
 .cert-gold-line {
-    width: 300px;
-    height: 1px;
-    background: #c5a059;
-    margin: 0 auto 30px;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c5a059, transparent);
+    margin: 0 auto 24px;
 }
 
 .cert-text {
     font-family: 'Helvetica', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 2px;
     color: #37474f;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-transform: uppercase;
 }
 
@@ -85,8 +121,9 @@
     font-family: 'Times New Roman', serif;
     font-size: 32px;
     color: #000;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     font-weight: 400;
+    padding: 0 20px;
 }
 
 /* Footer Layout */
@@ -94,8 +131,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: 60px;
-    padding: 0 40px;
+    margin-top: auto;
+    padding: 0 20px;
 }
 
 .cert-footer-item {
@@ -105,7 +142,7 @@
 
 .cert-footer-text {
     font-family: 'Helvetica', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     color: #37474f;
     margin-bottom: 8px;
     letter-spacing: 1px;
@@ -116,22 +153,23 @@
     font-style: italic;
     font-size: 24px;
     color: #000;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .cert-footer-line {
     width: 100%;
     height: 1px;
     background: #000;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .cert-footer-label {
     font-family: 'Helvetica', sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     color: #c5a059;
     letter-spacing: 2px;
     font-weight: 700;
+    text-transform: uppercase;
 }
 
 /* Seal */
@@ -144,11 +182,23 @@
 .seal-circle {
     width: 80px;
     height: 80px;
-    border: 1px solid #c5a059;
+    border: 2px solid #c5a059;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.seal-circle::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border: 1px solid #c5a059;
+    border-radius: 50%;
 }
 
 .seal-circle span {
@@ -156,38 +206,43 @@
     font-size: 10px;
     color: #c5a059;
     letter-spacing: 1px;
+    font-weight: 700;
+    text-align: center;
 }
 
 .cert-id {
-    margin-top: 40px;
+    margin-top: 24px;
     font-family: 'Helvetica', sans-serif;
-    font-size: 8px;
+    font-size: 9px;
     color: #cccccc;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 /* Certificate Actions */
 .certificate-actions {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
-    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 32px;
     position: sticky;
-    top: 80px;
+    top: 100px;
+    backdrop-filter: blur(10px);
 }
 
 .certificate-actions h2 {
-    font-size: 20px;
+    font-family: var(--font-display);
+    font-size: 24px;
     font-weight: 600;
-    color: var(--neutral-900);
-    margin-bottom: 20px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
 }
 
 .action-buttons {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 16px;
+    margin-bottom: 32px;
 }
 
 .action-btn {
@@ -195,74 +250,80 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 12px 24px;
-    font-size: 14px;
+    padding: 14px 24px;
+    font-size: 15px;
     font-weight: 600;
     border: none;
-    border-radius: 24px;
+    border-radius: 100px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .download-btn {
-    background: var(--linkedin-blue);
+    background: var(--accent-primary-start);
     color: white;
+    box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
 }
 
 .download-btn:hover {
-    background: var(--linkedin-blue-dark);
+    background: var(--accent-primary-end);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(75, 144, 255, 0.4);
 }
 
 .linkedin-btn {
     background: #0077B5;
     color: white;
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
 }
 
 .linkedin-btn:hover {
     background: #006399;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.4);
 }
 
 .action-btn svg {
     flex-shrink: 0;
+    width: 18px;
+    height: 18px;
 }
 
 /* Verification Info */
 .verification-info {
     padding-top: 24px;
-    border-top: 1px solid var(--neutral-200);
+    border-top: 1px solid var(--glass-border);
 }
 
 .verification-info h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--neutral-900);
+    color: var(--text-primary);
     margin-bottom: 12px;
 }
 
 .verification-info p {
     font-size: 14px;
-    color: var(--neutral-600);
+    color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
 .verification-link {
     display: block;
-    font-size: 14px;
-    color: var(--linkedin-blue);
+    font-size: 13px;
+    color: var(--accent-primary-start);
     text-decoration: none;
     word-break: break-all;
-    padding: 8px 12px;
-    background: var(--neutral-50);
-    border-radius: 4px;
-    transition: background 0.2s ease;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
 .verification-link:hover {
-    background: var(--neutral-100);
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary-start);
 }
 
 /* Loading & Error States */
@@ -277,10 +338,10 @@
 }
 
 .spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid var(--neutral-200);
-    border-top-color: var(--linkedin-blue);
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-primary-start);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -293,13 +354,13 @@
 
 .loading-state p,
 .error-state p {
-    margin-top: 16px;
-    color: var(--neutral-600);
+    margin-top: 24px;
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
 .error-state a {
-    color: var(--linkedin-blue);
+    color: var(--accent-primary-start);
     text-decoration: none;
     font-weight: 600;
     margin-top: 16px;
@@ -311,22 +372,22 @@
 
 /* Manual LinkedIn Instructions */
 .linkedin-manual-instructions {
-    margin-top: 24px;
+    margin-top: 32px;
     padding-top: 24px;
-    border-top: 1px solid var(--neutral-200);
+    border-top: 1px solid var(--glass-border);
 }
 
 .linkedin-manual-instructions h3 {
     font-size: 16px;
     font-weight: 600;
-    color: var(--neutral-900);
-    margin-bottom: 12px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
 }
 
 .linkedin-manual-instructions p {
     font-size: 14px;
-    color: var(--neutral-600);
-    margin-bottom: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
 }
 
 .linkedin-manual-instructions ol {
@@ -336,243 +397,72 @@
 
 .linkedin-manual-instructions li {
     font-size: 13px;
-    color: var(--neutral-700);
-    margin-bottom: 8px;
-    line-height: 1.5;
-    word-break: break-word;
-    overflow-wrap: break-word;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.6;
 }
 
 .linkedin-manual-instructions strong {
     font-weight: 600;
-    color: var(--neutral-900);
+    color: var(--text-primary);
 }
 
 /* Mobile Responsive */
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
     .certificate-container {
+        /* Remove max-width and margin: 0 auto here to allow centering on mobile */
+        max-width: 100%;
         grid-template-columns: 1fr;
+        margin: 0;
     }
 
     .certificate-actions {
         position: static;
+        margin-top: 40px;
     }
 }
 
 @media (max-width: 768px) {
     .certificate-main {
-        padding: 16px 12px;
+        padding: 24px 16px;
     }
 
-    .certificate-container {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        width: 100%;
-        align-items: center;
-    }
-
-    /* Certificate Preview - Centered and Proper Size */
     .certificate-preview {
-        padding: 0;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        background: white;
-        width: 100%;
-        max-width: 100%;
-        border-radius: 4px;
+        padding: 20px;
     }
 
     .cert-frame {
-        padding: 8px;
-        background: white;
-        border: 1px solid #e0e0e0;
+        padding: 12px;
+        aspect-ratio: auto;
+        /* Allow height to grow on very small screens if needed */
+        min-height: 300px;
     }
 
     .cert-inner-border {
-        padding: 20px 12px;
-        border-width: 1.5px;
-    }
-
-    .cert-header {
-        font-size: 8px;
-        margin-bottom: 20px;
-        letter-spacing: 1.5px;
+        padding: 24px 16px;
     }
 
     .cert-recipient {
-        font-size: 20px;
-        margin-bottom: 12px;
-        line-height: 1.2;
-        word-break: break-word;
-        padding: 0 4px;
-    }
-
-    .cert-gold-line {
-        width: 50%;
-        margin: 0 auto 16px;
-    }
-
-    .cert-text {
-        font-size: 7px;
-        margin-bottom: 14px;
-        letter-spacing: 1px;
+        font-size: 28px;
     }
 
     .cert-course-title {
-        font-size: 16px;
-        margin-bottom: 28px;
-        line-height: 1.3;
-        padding: 0 8px;
+        font-size: 20px;
+        margin-bottom: 24px;
     }
 
-    /* Footer */
     .cert-footer {
         flex-direction: column;
-        gap: 14px;
-        margin-top: 20px;
-        padding: 0;
         align-items: center;
-    }
-
-    .cert-footer-item {
-        width: 100%;
-        max-width: 140px;
-    }
-
-    .cert-footer-text {
-        font-size: 9px;
-        margin-bottom: 5px;
-        letter-spacing: 0.5px;
-    }
-
-    .cert-footer-text.signature {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-
-    .cert-footer-line {
-        margin-bottom: 5px;
-    }
-
-    .cert-footer-label {
-        font-size: 8px;
-        letter-spacing: 1px;
+        gap: 24px;
     }
 
     .cert-seal {
         order: -1;
-        margin-bottom: 6px;
-    }
-
-    .seal-circle {
-        width: 50px;
-        height: 50px;
-        border-width: 1px;
-    }
-
-    .seal-circle span {
-        font-size: 7px;
-        letter-spacing: 0.5px;
-    }
-
-    .cert-id {
-        margin-top: 16px;
-        font-size: 6px;
-        letter-spacing: 0.5px;
-    }
-
-    /* Actions Section - Compact */
-    .certificate-actions {
-        padding: 16px;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .certificate-actions h2 {
-        font-size: 16px;
-        margin-bottom: 12px;
-        font-weight: 600;
-    }
-
-    .action-buttons {
-        gap: 10px;
         margin-bottom: 16px;
     }
 
-    .action-btn {
-        padding: 10px 16px;
-        font-size: 13px;
-        gap: 8px;
-        border-radius: 20px;
-        font-weight: 600;
-    }
-
-    .action-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    /* Verification */
-    .verification-info {
-        padding-top: 16px;
-        overflow: hidden;
-    }
-
-    .verification-info h3 {
-        font-size: 14px;
-        margin-bottom: 8px;
-        font-weight: 600;
-    }
-
-    .verification-info p {
-        font-size: 12px;
-        margin-bottom: 8px;
-    }
-
-    .verification-link {
-        font-size: 11px;
-        padding: 8px 10px;
-        word-break: break-all;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal;
-        display: block;
-        max-width: 100%;
-    }
-
-    /* LinkedIn Instructions - Compact */
-    .linkedin-manual-instructions {
-        margin-top: 16px;
-        padding-top: 16px;
-        overflow: hidden;
-    }
-
-    .linkedin-manual-instructions h3 {
-        font-size: 14px;
-        margin-bottom: 8px;
-        font-weight: 600;
-    }
-
-    .linkedin-manual-instructions p {
-        font-size: 12px;
-        margin-bottom: 8px;
-        word-break: break-word;
-    }
-
-    .linkedin-manual-instructions ol {
-        padding-left: 16px;
-        overflow: hidden;
-    }
-
-    .linkedin-manual-instructions li {
-        font-size: 11px;
-        margin-bottom: 6px;
-        line-height: 1.4;
-        word-break: break-all;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal;
+    .cert-footer-item {
+        width: 100%;
     }
 }

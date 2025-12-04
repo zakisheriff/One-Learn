@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../App';
 import { LanguageContext } from '../context/LanguageContext';
@@ -101,7 +102,21 @@ const Navbar = () => {
                             onClick={() => setProfileOpen(!profileOpen)}
                         >
                             <div className="navbar-avatar">
-                                {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                {user.profilePicture ? (
+                                    <img
+                                        src={`${axios.defaults.baseURL}${user.profilePicture}`}
+                                        alt="Profile"
+                                        className="navbar-avatar-img"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.style.display = 'none';
+                                            e.target.nextSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                ) : null}
+                                <span style={{ display: user.profilePicture ? 'none' : 'flex' }}>
+                                    {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                </span>
                             </div>
 
                             <div className="navbar-profile-dropdown">
@@ -240,7 +255,7 @@ const Navbar = () => {
                             onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
                         >
                             <span className="navbar-link-icon"><BrowseIcon size={20} /></span>
-                            <span className="navbar-link-text">Explore Courses</span>
+                            <span className="navbar-link-text">Courses</span>
                         </Link>
 
                         <div className="navbar-language-wrapper">
@@ -298,7 +313,21 @@ const Navbar = () => {
                             onClick={() => setProfileOpen(!profileOpen)}
                         >
                             <div className="navbar-avatar">
-                                {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                {user.profilePicture ? (
+                                    <img
+                                        src={`${axios.defaults.baseURL}${user.profilePicture}`}
+                                        alt="Profile"
+                                        className="navbar-avatar-img"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.style.display = 'none';
+                                            e.target.nextSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                ) : null}
+                                <span style={{ display: user.profilePicture ? 'none' : 'flex' }}>
+                                    {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                </span>
                             </div>
                             <div className="navbar-profile-info">
                                 <span className="navbar-profile-label">{t('me')}</span>
@@ -309,7 +338,21 @@ const Navbar = () => {
                             <div className="navbar-profile-dropdown">
                                 <div className="profile-header">
                                     <div className="navbar-avatar large">
-                                        {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                        {user.profilePicture ? (
+                                            <img
+                                                src={user.profilePicture.startsWith('http') ? user.profilePicture : `${axios.defaults.baseURL}${user.profilePicture}`}
+                                                alt="Profile"
+                                                className="navbar-avatar-img"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.style.display = 'none';
+                                                    e.target.nextSibling.style.display = 'flex';
+                                                }}
+                                            />
+                                        ) : null}
+                                        <span style={{ display: user.profilePicture ? 'none' : 'flex' }}>
+                                            {user.fullName?.charAt(0).toUpperCase() || 'U'}
+                                        </span>
                                     </div>
                                     <div className="profile-details">
                                         <h4>{user.fullName}</h4>

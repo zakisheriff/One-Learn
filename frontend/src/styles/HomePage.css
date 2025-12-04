@@ -1,41 +1,27 @@
-CSS
-/* Custom CSS Variables (assuming these are defined elsewhere or globally) */
-:root {
-    --linkedin-blue: #0a66c2;
-    --linkedin-blue-dark: #004182;
-    --neutral-50: #fafafa;
-    --neutral-100: #f3f2f1;
-    --neutral-200: #e6e6e6;
-    --neutral-300: #ccc;
-    --neutral-400: #aaa;
-    --neutral-500: #8c8c8c;
-    --neutral-600: #666;
-    --neutral-700: #555;
-    --neutral-900: #222;
-    --success-500: #00b87c;
-}
-
-/* LinkedIn Learning Homepage - Exact Structure + Glassmorphism */
+/* HomePage - Gemini Dark Glass Style */
 
 .homepage {
     min-height: 100vh;
-    padding-top: 0;
-    padding-bottom: 40px;
+    padding-bottom: 80px;
 }
 
 .homepage-content {
-    max-width: 1128px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 24px;
 }
 
 /* Hero Carousel */
 .hero-carousel {
-    background: white;
-    border-bottom: 1px solid var(--neutral-200);
     position: relative;
+    height: 500px;
+    margin-bottom: 40px;
+    border-radius: 32px;
     overflow: hidden;
-    height: 420px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    margin-right: 7%;
+    margin-left: 7%;
 }
 
 .hero-slide {
@@ -43,9 +29,7 @@ CSS
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1128px;
-    margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 60px;
 }
 
 .hero-content {
@@ -53,150 +37,176 @@ CSS
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 40px;
+    gap: 60px;
 }
 
 .hero-text {
     flex: 1;
-    max-width: 500px;
+    max-width: 600px;
+    z-index: 2;
 }
 
 .hero-badge {
     display: inline-block;
-    padding: 4px 12px;
-    background: rgba(10, 102, 194, 0.1);
-    color: var(--linkedin-blue);
+    padding: 6px 16px;
+    background: rgba(75, 144, 255, 0.15);
+    color: var(--accent-primary-start);
     font-size: 12px;
     font-weight: 600;
-    border-radius: 4px;
-    margin-bottom: 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    border: 1px solid rgba(75, 144, 255, 0.2);
 }
 
 .hero-text h1 {
-    font-size: 40px;
-    font-weight: 300;
-    color: var(--neutral-900);
-    margin-bottom: 8px;
-    line-height: 1.2;
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.1;
+    letter-spacing: -1px;
 }
 
 .hero-instructor {
-    font-size: 14px;
-    color: var(--neutral-600);
-    margin-bottom: 16px;
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-instructor::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent-primary-start);
 }
 
 .hero-description {
-    font-size: 16px;
-    color: var(--neutral-700);
-    margin-bottom: 24px;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 90%;
 }
 
 .hero-actions {
     display: flex;
-    gap: 12px;
+    gap: 16px;
 }
 
 .hero-btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--linkedin-blue);
-    color: white;
-    padding: 10px 24px;
-    border-radius: 24px;
+    background: white;
+    color: black;
+    padding: 12px 32px;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 16px;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
 }
 
 .hero-btn-primary:hover {
-    background: var(--linkedin-blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .hero-btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: white;
-    color: var(--neutral-700);
-    padding: 10px 24px;
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 100px;
     font-weight: 600;
     font-size: 16px;
-    border: 1px solid var(--neutral-400);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .hero-btn-secondary:hover {
-    background: var(--neutral-50);
-    border-color: var(--neutral-600);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 .hero-image-wrapper {
     flex: 1;
     max-width: 500px;
-    height: 320px;
-    border-radius: 8px;
+    height: 380px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+}
+
+.hero-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.hero-slide:hover .hero-image {
+    transform: scale(1.05);
 }
 
 .hero-indicators {
     position: absolute;
-    bottom: 20px;
+    bottom: 32px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px;
+    gap: 12px;
+    z-index: 10;
 }
 
 .hero-indicator {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: var(--neutral-300);
+    background: rgba(255, 255, 255, 0.3);
     border: none;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
     padding: 0;
 }
 
 .hero-indicator.active {
-    background: var(--linkedin-blue);
-    transform: scale(1.2);
+    background: white;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Category Pills (Horizontal Scroll) */
+/* Category Pills */
 .category-section {
-    max-width: 1128px;
-    margin: 0 auto;
-    padding: 12px 24px 24px;
+    margin-bottom: 40px;
 }
 
 .category-pills {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     overflow-x: auto;
+    padding: 4px;
     scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: 8px;
 }
 
 .category-pills::-webkit-scrollbar {
@@ -205,99 +215,107 @@ CSS
 
 .category-pill {
     flex-shrink: 0;
-    padding: 8px 16px;
-    background: white;
-    border: 1px solid var(--neutral-300);
-    border-radius: 16px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
     font-size: 14px;
     font-weight: 500;
-    color: var(--neutral-700);
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .category-pill:hover,
 .category-pill.active {
-    background: var(--linkedin-blue);
-    border-color: var(--linkedin-blue);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
 /* Course Sections */
 .course-section {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    padding: 0 8px;
 }
 
 .section-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--neutral-900);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
 }
 
 .section-see-all {
     font-size: 14px;
     font-weight: 600;
-    color: var(--neutral-600);
+    color: var(--accent-primary-start);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 4px;
-    transition: color 0.2s;
+    gap: 6px;
+    transition: all 0.2s ease;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: rgba(75, 144, 255, 0.1);
 }
 
 .section-see-all:hover {
-    color: var(--linkedin-blue);
+    background: rgba(75, 144, 255, 0.2);
+    transform: translateX(4px);
 }
 
-/* Horizontal Scrollable Cards */
+/* Course Carousel */
 .course-carousel {
     display: flex;
-    gap: 16px;
+    gap: 24px;
     overflow-x: auto;
-    padding-bottom: 16px;
+    padding: 4px 4px 24px 4px;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    /* Firefox */
 }
 
 .course-carousel::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari */
 }
 
-/* LinkedIn-Style Course Card */
+/* Course Card - Glass Style */
 .linkedin-course-card {
     flex-shrink: 0;
-    width: 260px;
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
     overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .linkedin-course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .linkedin-card-thumbnail {
     width: 100%;
-    height: 146px;
-    background: var(--neutral-100);
+    height: 160px;
+    background: #1a1a1a;
     position: relative;
     overflow: hidden;
 }
@@ -306,171 +324,188 @@ CSS
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.linkedin-course-card:hover .linkedin-card-thumbnail img {
+    transform: scale(1.1);
 }
 
 .linkedin-card-duration {
     position: absolute;
-    bottom: 8px;
-    right: 8px;
-    padding: 2px 6px;
-    background: rgba(0, 0, 0, 0.7);
+    bottom: 12px;
+    right: 12px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
     color: white;
     font-size: 11px;
     font-weight: 600;
-    border-radius: 2px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .linkedin-card-content {
-    padding: 12px;
+    padding: 16px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 .linkedin-card-title {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    color: var(--neutral-900);
-    margin-bottom: 4px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 40px;
-    /* Fixed height for 2 lines */
+    height: 44px;
 }
 
 .linkedin-card-instructor {
-    font-size: 12px;
-    color: var(--neutral-600);
-    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
 }
 
 .linkedin-card-meta {
     margin-top: auto;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--neutral-600);
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-secondary);
 }
 
 .linkedin-card-rating {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
+    color: #FFD700;
 }
 
 /* Progress Overlay */
 .linkedin-card-progress {
-    padding: 0 12px 12px;
+    padding: 0 16px 16px;
 }
 
 .progress-bar-container {
     width: 100%;
     height: 4px;
-    background: var(--neutral-200);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 2px;
     overflow: hidden;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .progress-bar-fill {
     height: 100%;
-    background: var(--success-500);
-    /* Green for progress */
+    background: var(--accent-success);
     border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 158, 0.3);
 }
 
 .progress-text {
     font-size: 11px;
-    color: var(--neutral-600);
+    color: var(--text-muted);
     font-weight: 500;
 }
 
 /* Topics Grid */
 .topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
 }
 
 .topic-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
-    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     text-decoration: none;
-    color: var(--neutral-900);
-    transition: all 0.2s;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
 .topic-card:hover {
-    border-color: var(--linkedin-blue);
-    background: var(--neutral-50);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary-start);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .topic-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(10, 102, 194, 0.1);
-    color: var(--linkedin-blue);
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(75, 144, 255, 0.1), rgba(71, 70, 255, 0.1));
+    color: var(--accent-primary-start);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(75, 144, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.topic-card:hover .topic-icon {
+    background: linear-gradient(135deg, var(--accent-primary-start), var(--accent-primary-end));
+    color: white;
+    transform: scale(1.1);
 }
 
 .topic-name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    line-height: 1.3;
 }
 
 /* Learning Paths Grid */
 .paths-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
 }
 
 .path-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 24px;
     display: flex;
-    gap: 16px;
+    gap: 20px;
     text-decoration: none;
     color: inherit;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 }
 
 .path-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: var(--neutral-300);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
 }
 
 .path-icon {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    background: var(--neutral-50);
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--glass-border);
 }
 
 .path-info {
@@ -478,39 +513,42 @@ CSS
 }
 
 .path-info h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    color: var(--neutral-900);
-    margin-bottom: 4px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
 }
 
 .path-info p {
-    font-size: 13px;
-    color: var(--neutral-600);
-    margin-bottom: 8px;
-    line-height: 1.4;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.5;
 }
 
 .path-meta {
     font-size: 12px;
-    color: var(--neutral-500);
-    font-weight: 500;
+    color: var(--accent-primary-start);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Mission Banner - Elegant Dark Theme */
+/* Mission Banner */
 .mission-banner {
-    background-color: #0a66c2;
-    background-color: var(--linkedin-blue);
-    padding: 80px 32px;
-    margin-bottom: 0;
-    color: white;
+    margin-top: 60px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #111 100%);
+    padding: 80px 24px;
     position: relative;
-    overflow: visible;
-    width: 100%;
-    display: block;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    margin-bottom: 40px;
+    margin-right: 7%;
+    margin-left: 7%;
+
 }
 
-/* Subtle background pattern/gradient overlay */
 .mission-banner::before {
     content: '';
     position: absolute;
@@ -518,188 +556,161 @@ CSS
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    background:
+        radial-gradient(circle at top right, rgba(75, 144, 255, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at bottom left, rgba(71, 70, 255, 0.1) 0%, transparent 60%);
     pointer-events: none;
 }
 
 .mission-content {
-    max-width: 1128px;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
     position: relative;
     z-index: 1;
 }
 
-.mission-header {
-    margin-bottom: 56px;
-}
-
 .mission-header h2 {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 700;
-    color: white !important;
+    color: white;
     margin-bottom: 16px;
-    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .mission-header p {
     font-size: 18px;
-    color: rgba(255, 255, 255, 0.95) !important;
+    color: var(--text-secondary);
     max-width: 600px;
-    margin: 0 auto;
-    font-weight: 400;
-    line-height: 1.6;
+    margin: 0 auto 48px;
 }
 
 .mission-steps {
     display: flex;
     justify-content: center;
-    gap: 100px;
-    /* Increased gap for desktop */
+    gap: 60px;
     flex-wrap: wrap;
-    margin-top: 20px;
 }
 
 .mission-step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 300px;
-    /* Increased max-width */
+    max-width: 280px;
 }
 
 .mission-icon-wrapper {
-    width: 72px;
-    height: 72px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
     color: white;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .mission-step:hover .mission-icon-wrapper {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-8px) rotate(5deg);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary-start);
+    box-shadow: 0 10px 30px rgba(75, 144, 255, 0.2);
 }
 
 .mission-step h3 {
     font-size: 20px;
     font-weight: 600;
-    color: white !important;
+    color: white;
     margin-bottom: 8px;
 }
 
 .mission-step p {
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: var(--text-muted);
     line-height: 1.5;
-}
-
-/* Skills Cloud */
-.skills-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.skill-pill {
-    padding: 10px 20px;
-    background: white;
-    border: 1px solid var(--neutral-300);
-    border-radius: 24px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--neutral-700);
-    text-decoration: none;
-    transition: all 0.2s;
-}
-
-.skill-pill:hover {
-    background: var(--neutral-100);
-    border-color: var(--neutral-400);
-    transform: translateY(-2px);
 }
 
 /* Instructors Grid */
 .instructors-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 24px;
 }
 
 .instructor-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 8px;
-    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 }
 
 .instructor-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.06);
     transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .instructor-image {
-    width: 80px;
-    height: 80px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 16px;
-    border: 2px solid white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .instructor-card h3 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    color: var(--neutral-900);
+    color: var(--text-primary);
     margin-bottom: 4px;
 }
 
 .instructor-card p {
-    font-size: 13px;
-    color: var(--neutral-600);
+    font-size: 14px;
+    color: var(--text-muted);
 }
 
 /* Testimonials Grid */
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 24px;
 }
 
 .testimonial-card {
-    background: white;
-    border: 1px solid var(--neutral-200);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     padding: 32px;
     position: relative;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 }
 
 .testimonial-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-    border-color: var(--neutral-300);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .quote-icon {
     font-size: 48px;
-    color: var(--linkedin-blue);
-    opacity: 0.2;
+    color: var(--accent-primary-start);
+    opacity: 0.3;
     position: absolute;
-    top: 16px;
+    top: 24px;
     left: 24px;
     font-family: serif;
     line-height: 1;
@@ -707,278 +718,118 @@ CSS
 
 .testimonial-text {
     font-size: 16px;
-    color: var(--neutral-700);
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 24px;
     position: relative;
     z-index: 1;
     font-style: italic;
+    padding-left: 24px;
 }
 
 .testimonial-author h4 {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
-    color: var(--neutral-900);
+    color: var(--text-primary);
     margin-bottom: 2px;
 }
 
 .testimonial-author span {
     font-size: 13px;
-    color: var(--neutral-500);
+    color: var(--text-muted);
 }
 
-
-/* --- Mobile Responsive (Max 768px) --- */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    /* FIX: Set homepage to padding-top: 0 to allow the banner to sit at the absolute top. */
-    .homepage {
-        padding-top: 0; 
-    }
-
     .homepage-content {
         padding: 16px;
+        padding-top: 80px;
+        /* Clear fixed navbar */
     }
 
-    /* Hero Carousel Mobile - This element now needs the padding to clear the fixed mobile navbar */
     .hero-carousel {
         height: auto;
-        padding: 24px 0;
-        margin-bottom: 24px !important;
-        /* FIX: Add padding-top here to clear the fixed mobile navbar (assuming 44px height) */
-        padding-top: 44px; 
+        min-height: 400px;
+        padding: 60px 0;
+        margin-bottom: 24px;
+
     }
 
     .hero-slide {
-        padding: 0 16px;
+        padding: 0 20px;
+
     }
 
     .hero-content {
         flex-direction: column-reverse;
-        gap: 16px !important;
+        gap: 32px;
         text-align: center;
     }
 
-    .hero-text {
-        max-width: 100%;
-    }
-
     .hero-text h1 {
-        font-size: 20px !important;
-        margin-bottom: 8px !important;
-        line-height: 1.3 !important;
+        font-size: 32px;
     }
 
     .hero-description {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
+        font-size: 16px;
     }
 
     .hero-actions {
         justify-content: center;
-        gap: 8px !important;
-        margin-top: 10px !important;
-    }
-
-    .hero-actions .btn {
-        padding: 8px 14px !important;
-        font-size: 12px !important;
     }
 
     .hero-image-wrapper {
         width: 100%;
-        height: 200px;
-    }
-
-    .hero-indicators {
-        bottom: 3px;
-        gap: 5px !important;
-    }
-
-    .hero-indicator {
-        width: 7px !important;
-        height: 7px !important;
-    }
-
-    /* Mission Banner Mobile */
-    .mission-banner {
-        padding: 48px 24px;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        height: auto;
-        background-color: #0a66c2 !important;
-        margin-top: 0 !important; /* Ensure no external margin pushes it down */
-    }
-
-    .mission-content,
-    .mission-header,
-    .mission-header h2,
-    .mission-header p {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-header h2 {
-        font-size: 26px;
-        margin-bottom: 12px;
-        color: white !important;
-    }
-
-    .mission-header p {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.95) !important;
-    }
-
-    .mission-steps {
-        display: flex !important;
-        flex-direction: column;
-        gap: 32px;
-        margin-top: 32px;
-        align-items: center;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-step {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 12px;
-        width: 100%;
-        max-width: 320px;
-        padding: 0;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-icon-wrapper {
-        width: 64px;
-        height: 64px;
-        margin-bottom: 0;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        border-radius: 16px;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    .mission-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        gap: 6px;
-        width: 100%;
-    }
-
-    .mission-step h3 {
-        display: block !important;
-        text-align: center !important;
-        font-size: 18px;
-        margin: 0;
-        color: white !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 100%;
-    }
-
-    .mission-step p {
-        display: block !important;
-        text-align: center !important;
-        font-size: 15px;
-        margin: 0;
-        color: rgba(255, 255, 255, 0.9) !important;
-        line-height: 1.4;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 100%;
-    }
-    
-    /* Sections Mobile */
-    .course-section {
-        margin-bottom: 32px;
+        height: 240px;
     }
 
     .section-title {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .linkedin-course-card {
         width: 240px;
     }
 
-    .topics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    .linkedin-card-thumbnail {
+        height: 135px;
     }
 
-    .paths-grid {
-        grid-template-columns: 1fr;
+    .mission-banner {
+        padding: 40px 20px;
+        border-radius: 24px;
     }
 
-    .category-section {
-        padding: 12px 16px;
+    .hero-indicators {
+        bottom: 20px;
     }
 
-    .instructors-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+    .hero-indicator {
+        width: 6px;
+        height: 6px;
     }
 
-    .instructor-card {
-        padding: 16px;
-    }
-
-    .instructor-image {
-        width: 64px;
-        height: 64px;
-    }
-
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Small Mobile Devices */
-@media (max-width: 480px) {
-    .homepage-content {
-        padding: 12px;
-    }
-
-    .hero-text h1 {
-        font-size: 24px;
-    }
-
-    .hero-description {
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        padding: 10px 20px;
         font-size: 14px;
-        -webkit-line-clamp: 4;
-        line-clamp: 4;
     }
 
-    .hero-image-wrapper {
-        height: 180px;
-    }
-
-    .linkedin-course-card {
-        width: 220px;
-    }
-
-    .topic-card {
-        padding: 12px;
-    }
-
-    .topic-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .topic-name {
+    .category-pill {
+        padding: 8px 16px;
         font-size: 13px;
+    }
+
+    .section-see-all {
+        font-size: 13px;
+        padding: 4px 10px;
+    }
+
+    .mission-header h2 {
+        font-size: 28px;
+    }
+
+    .mission-steps {
+        gap: 40px;
     }
 }
