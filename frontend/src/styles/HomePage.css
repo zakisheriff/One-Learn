@@ -465,9 +465,7 @@
 }
 
 .topic-card:hover .topic-icon {
-    background: linear-gradient(135deg, var(--accent-primary-start), var(--accent-primary-end));
-    color: white;
-    transform: scale(1.1);
+
 }
 
 .topic-name {

@@ -95,7 +95,7 @@ const CourseDetail = () => {
         <div className="course-detail-page">
 
             <main className="detail-main">
-                <div className="container">
+                <div className="course-detail-container">
                     {/* Header Section */}
                     <div className="course-header">
                         <h1 className="course-title">{course.title}</h1>

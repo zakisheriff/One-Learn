@@ -61,6 +61,7 @@ app.use('/api/quizzes', quizRoutes);
 app.use('/api/certificates', certificateRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/roadmaps', roadmapRoutes);
+app.use('/api/atom', require('./routes/atomRoutes'));
 
 // Certificate verification (public)
 app.get('/api/verify', async (req, res) => {
@@ -74,9 +75,15 @@ app.get('/api/verify', async (req, res) => {
         const { pool } = require('./database/connection');
 
         const result = await pool.query(
-            `SELECT c.recipient_name, c.course_title, c.completion_date, c.issued_at
-             FROM certificates c
-             WHERE c.verification_hash = $1`,
+            `SELECT recipient_name, course_title, completion_date, issued_at, 'course' as type
+             FROM certificates
+             WHERE verification_hash = $1
+             
+             UNION ALL
+             
+             SELECT recipient_name, track_title as course_title, completion_date, issued_at, 'atom' as type
+             FROM atom_certificates
+             WHERE verification_hash = $1`,
             [id]
         );
 

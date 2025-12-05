@@ -80,9 +80,9 @@ async function generateCertificate(userId, courseId, quizAttemptId, client) {
         const certResult = await db.query(
             `INSERT INTO certificates 
              (user_id, course_id, quiz_attempt_id, recipient_name, course_title, verification_hash, pdf_path, completion_date, issued_at)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $8)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
              RETURNING id, verification_hash, completion_date, issued_at`,
-            [userId, courseId, quizAttemptId, user.full_name, course.title, verificationHash, pdfPath, now]
+            [userId, courseId, quizAttemptId, user.full_name, course.title, verificationHash, pdfPath, now, now]
         );
 
         const certificate = certResult.rows[0];
@@ -264,10 +264,19 @@ async function createCertificatePDF(recipientName, courseTitle, verificationHash
 
 
             // --- Verification ID ---
+            const verifyUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/verify?id=${verificationHash}`;
+
             doc.font('Helvetica').fontSize(6).fillColor('#444444')
-                .text(`ID: ${verificationHash}`, 0, height - 20, {
+                .text(`ID: ${verificationHash}`, 0, height - 25, {
                     align: 'center',
-                    characterSpacing: 1
+                    characterSpacing: 1,
+                    link: verifyUrl,
+                    underline: false
+                });
+
+            doc.font('Helvetica').fontSize(5).fillColor('#333333')
+                .text('(Click ID to Verify)', 0, height - 15, {
+                    align: 'center'
                 });
 
             doc.end();

@@ -286,15 +286,14 @@
 }
 
 .download-btn {
-    background: var(--accent-primary-start);
-    color: white;
+    background: white;
+    color: black;
     box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
 }
 
 .download-btn:hover {
-    background: var(--accent-primary-end);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(75, 144, 255, 0.4);
+    color: black;
 }
 
 .linkedin-btn {
@@ -304,9 +303,8 @@
 }
 
 .linkedin-btn:hover {
-    background: #006399;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.4);
+    color: white;
 }
 
 .action-btn svg {
@@ -571,6 +569,183 @@
         font-size: 20px;
         text-align: center;
         margin-bottom: 20px;
+    }
+
+    /* Atom Certificate Styles */
+    .atom-cert-frame {
+        background: #000000;
+        border-radius: 40px;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+    }
+
+    .atom-cert-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .atom-cert-border {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        right: 40px;
+        bottom: 40px;
+        border: 3px solid transparent;
+        border-radius: 30px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+
+    .atom-cert-header {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 24px;
+        letter-spacing: 8px;
+        margin-bottom: 60px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .atom-cert-recipient {
+        font-family: 'Helvetica', sans-serif;
+        font-weight: 700;
+        font-size: 48px;
+        color: white;
+        margin-bottom: 30px;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .atom-cert-separator {
+        width: 200px;
+        height: 2px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        margin-bottom: 30px;
+    }
+
+    .atom-cert-text {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 14px;
+        color: #CCCCCC;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .atom-cert-title {
+        font-family: 'Helvetica', sans-serif;
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 80px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        max-width: 80%;
+        line-height: 1.2;
+    }
+
+    .atom-cert-footer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 800px;
+        margin-top: auto;
+        padding: 0 40px;
+    }
+
+    .atom-footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+    }
+
+    .atom-footer-value {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 14px;
+        color: #888888;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .atom-footer-value.signature {
+        font-family: 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 28px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 5px;
+    }
+
+    .atom-footer-line {
+        width: 150px;
+        height: 1px;
+        background: #555555;
+        margin-bottom: 8px;
+    }
+
+    .atom-footer-label {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 10px;
+        color: #666666;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .atom-cert-id {
+        position: absolute;
+        bottom: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        color: #444444;
+        letter-spacing: 1px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .atom-cert-header {
+            font-size: 16px;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .atom-cert-recipient {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .atom-cert-title {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        .atom-cert-footer {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
     }
 
     .action-buttons {

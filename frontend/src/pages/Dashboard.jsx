@@ -127,7 +127,7 @@ const Dashboard = () => {
         <div className="dashboard-container">
 
             <main className="dashboard-main">
-                <div className="container">
+                <div className="dashboard-container-inner">
                     <header className="dashboard-header">
                         <h1>Welcome back, {user?.fullName}!</h1>
                         <p>Continue your learning journey</p>

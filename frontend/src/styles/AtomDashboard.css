@@ -1,0 +1,263 @@
+.atom-dashboard {
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    padding-bottom: 80px;
+}
+
+.atom-hero {
+    margin-top: 60px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #111 100%);
+    padding: 80px 24px;
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    margin-bottom: 40px;
+    margin-right: 7%;
+    margin-left: 7%;
+    text-align: center;
+
+}  
+
+.atom-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at top right, rgba(75, 144, 255, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at bottom left, rgba(71, 70, 255, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.atom-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.atom-hero h1 {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.atom-hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+.atom-stats-bar {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    gap: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.atom-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.track-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.track-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.track-card:hover .track-icon {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.track-info p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.track-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    align-items: center;
+    font-weight: 500;
+}
+
+.track-status {
+    margin-top: auto;
+}
+
+.status-badge {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-primary-start);
+    background: rgba(75, 144, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(75, 144, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.track-card:hover .status-badge {
+    background: var(--accent-primary-start);
+    color: white;
+}
+
+.track-card.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.track-card.locked:hover {
+    transform: none;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--glass-border);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .atom-dashboard {
+        padding-bottom: 40px;
+        margin-top: 60px;
+    }
+
+    .atom-hero {
+        margin: 20px 16px 32px 16px;
+        padding: 40px 20px;
+        border-radius: 24px;
+    }
+
+    .atom-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .atom-hero p {
+        font-size: 1rem;
+        margin-bottom: 32px;
+    }
+
+    .atom-stats-bar {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px;
+        width: 100%;
+    }
+
+    .stat-divider {
+        width: 100%;
+        height: 1px;
+    }
+
+    .atom-container {
+        padding: 0 16px;
+    }
+
+    .tracks-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .track-card {
+        padding: 24px;
+    }
+
+    .track-info h3 {
+        font-size: 1.3rem;
+    }
+}

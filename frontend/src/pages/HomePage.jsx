@@ -38,9 +38,7 @@ const HeroCarousel = ({ featuredCourses }) => {
                             <Link to={`/course/${currentCourse.slug}`} className="hero-btn-primary">
                                 <PlayIcon size={16} /> Start Learning
                             </Link>
-                            <button className="hero-btn-secondary">
-                                <StarIcon size={16} /> Save
-                            </button>
+
                         </div>
                     </div>
                     <div className="hero-image-wrapper">

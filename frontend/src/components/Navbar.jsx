@@ -6,7 +6,7 @@ import { LanguageContext } from '../context/LanguageContext';
 import {
     HomeIcon, BookIcon, SearchIcon, DashboardIcon, LogoutIcon,
     MenuIcon, GlobeIcon, CheckIcon, StarIcon,
-    BrowseIcon, NotificationIcon, ChevronDownIcon, CoffeeIcon, MapIcon
+    BrowseIcon, NotificationIcon, ChevronDownIcon, CoffeeIcon, MapIcon, RocketIcon, TargetIcon
 } from './Icons';
 import '../styles/Navbar.css';
 import Logo from './Logo';
@@ -236,6 +236,15 @@ const Navbar = () => {
                         >
                             <span className="navbar-link-icon"><MapIcon size={20} /></span>
                             <span className="navbar-link-text">Roadmap</span>
+                        </Link>
+
+                        <Link
+                            to="/atom-path"
+                            className={`navbar-link ${isActive('/atom-path') ? 'active' : ''}`}
+                            onClick={() => { setMobileMenuOpen(false); window.scrollTo(0, 0); }}
+                        >
+                            <span className="navbar-link-icon"><TargetIcon size={20} /></span>
+                            <span className="navbar-link-text">Atom Path</span>
                         </Link>
 
                         {user && (

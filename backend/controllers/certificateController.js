@@ -103,12 +103,19 @@ exports.getAllCertificates = async (req, res) => {
         const userId = req.user.userId;
 
         const result = await pool.query(
-            `SELECT c.id, c.verification_hash, c.recipient_name, c.course_title,
-                    c.completion_date, c.issued_at, co.slug as course_slug
+            `SELECT c.id, c.verification_hash, c.recipient_name, c.course_title, c.completion_date, c.issued_at, 'course' as type, co.slug as course_slug
              FROM certificates c
              JOIN courses co ON c.course_id = co.id
              WHERE c.user_id = $1
-             ORDER BY c.issued_at DESC`,
+             
+             UNION ALL
+             
+             SELECT ac.id, ac.verification_hash, ac.recipient_name, ac.track_title as course_title, ac.completion_date, ac.issued_at, 'atom' as type, t.slug as course_slug
+             FROM atom_certificates ac
+             JOIN atom_tracks t ON ac.track_id = t.id
+             WHERE ac.user_id = $1
+             
+             ORDER BY issued_at DESC`,
             [userId]
         );
 
@@ -120,6 +127,8 @@ exports.getAllCertificates = async (req, res) => {
             courseSlug: cert.course_slug,
             completionDate: cert.completion_date,
             issuedAt: cert.issued_at,
+            type: cert.type,
+            // Adjust verification URL based on type if needed, or use a unified one
             verificationUrl: `${process.env.FRONTEND_URL}/verify?id=${cert.verification_hash}`
         }));
 

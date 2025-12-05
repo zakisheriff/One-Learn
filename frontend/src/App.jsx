@@ -17,6 +17,12 @@ import HelpCenter from './pages/HelpCenter';
 import SettingsPage from './pages/SettingsPage';
 import InfoPage from './pages/InfoPage';
 import RoadmapPage from './pages/RoadmapPage';
+import AtomDashboard from './pages/AtomPath/AtomDashboard';
+import AtomTrackDetails from './pages/AtomPath/AtomTrackDetails';
+import AtomModulePlayer from './pages/AtomPath/AtomModulePlayer';
+import AdminAtomDashboard from './pages/Admin/AdminAtomDashboard';
+import AdminTrackEditor from './pages/Admin/AdminTrackEditor';
+import AdminModuleEditor from './pages/Admin/AdminModuleEditor';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import './styles/PageTransition.css';
@@ -33,8 +39,9 @@ axios.defaults.baseURL = import.meta.env.VITE_API_URL || '';
 const FooterController = () => {
     const location = useLocation();
     const isQuizPage = location.pathname.includes('/quiz');
+    const isAdminPage = location.pathname.startsWith('/admin');
 
-    if (isQuizPage) return null;
+    if (isQuizPage || isAdminPage) return null;
     return <Footer />;
 };
 
@@ -101,8 +108,9 @@ const NavbarController = () => {
     const location = useLocation();
     const isLoginPage = location.pathname === '/login';
     const isQuizPage = location.pathname.includes('/quiz');
+    const isAdminPage = location.pathname.startsWith('/admin');
 
-    if (isLoginPage || isQuizPage) return null;
+    if (isLoginPage || isQuizPage || isAdminPage) return null;
     return <Navbar />;
 };
 
@@ -142,6 +150,14 @@ const AnimatedRoutes = ({ user }) => {
                     />
                     <Route path="/help" element={<HelpCenter />} />
                     <Route path="/settings" element={user ? <SettingsPage /> : <Navigate to="/login" />} />
+                    <Route path="/atom-path" element={user ? <AtomDashboard /> : <Navigate to="/login" />} />
+                    <Route path="/atom-path/:slug" element={user ? <AtomTrackDetails /> : <Navigate to="/login" />} />
+                    <Route path="/atom-path/learn/:moduleId" element={user ? <AtomModulePlayer /> : <Navigate to="/login" />} />
+
+                    {/* Admin Routes */}
+                    <Route path="/admin/atom" element={user ? <AdminAtomDashboard /> : <Navigate to="/login" />} />
+                    <Route path="/admin/atom/tracks/:trackId" element={user ? <AdminTrackEditor /> : <Navigate to="/login" />} />
+                    <Route path="/admin/atom/modules/:moduleId" element={user ? <AdminModuleEditor /> : <Navigate to="/login" />} />
 
                     {/* Static Pages */}
                     <Route path="/about" element={<InfoPage pageKey="about" />} />

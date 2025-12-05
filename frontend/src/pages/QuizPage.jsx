@@ -186,11 +186,19 @@ const QuizPage = () => {
                         <div className="container">
                             <header className="quiz-header">
                                 <h1>Final Quiz</h1>
-                                <p>You need {quiz.passingScore}% to pass and earn your certificate</p>
-                                <div className="quiz-progress">
-                                    Page {currentPage} of {totalPages}
+                                <div className="header-meta">
+                                    <span className="meta-item">Pass Mark: {quiz.passingScore}%</span>
+                                    <span className="meta-divider">•</span>
+                                    <span className="meta-item">Page {currentPage} of {totalPages}</span>
                                 </div>
                             </header>
+
+                            <div className="quiz-progress-bar-container">
+                                <div
+                                    className="quiz-progress-fill"
+                                    style={{ width: `${(currentPage / totalPages) * 100}%` }}
+                                ></div>
+                            </div>
 
                             <form onSubmit={handleSubmit} className="quiz-form">
                                 {currentQuestions.map((question, index) => {

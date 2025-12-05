@@ -1,0 +1,129 @@
+.coding-engine {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.coding-workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    height: 100%;
+}
+
+.editor-pane,
+.output-pane {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+}
+
+.pane-header {
+    background: #252526;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.loading-badge {
+    font-size: 0.75rem;
+    color: #F4A460;
+}
+
+.run-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.run-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.terminal-output {
+    flex: 1;
+    padding: 16px;
+    margin: 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: #d4d4d4;
+    white-space: pre-wrap;
+    overflow-y: auto;
+}
+
+.test-results {
+    border-top: 1px solid #333;
+    padding: 16px;
+    background: #252526;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.test-results h4 {
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.test-case {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    border-left: 3px solid transparent;
+}
+
+.test-case.passed {
+    border-left-color: #4caf50;
+}
+
+.test-case.failed {
+    border-left-color: #f44336;
+}
+
+.test-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.test-case.passed .test-status {
+    color: #4caf50;
+}
+
+.test-case.failed .test-status {
+    color: #f44336;
+}
+
+.test-details {
+    margin-top: 4px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .coding-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}

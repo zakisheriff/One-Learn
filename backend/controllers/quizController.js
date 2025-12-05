@@ -216,6 +216,7 @@ exports.submitQuiz = async (req, res) => {
     } catch (error) {
         await client.query('ROLLBACK');
         console.error('Submit quiz error:', error);
+        console.error('Stack:', error.stack);
         res.status(500).json({ error: 'Failed to submit quiz', details: error.message });
     } finally {
         client.release();

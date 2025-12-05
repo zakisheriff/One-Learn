@@ -1,0 +1,124 @@
+.atom-player {
+    min-height: 100vh;
+    background-color: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px
+}
+
+.atom-player-header {
+    height: 64px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: var(--color-surface);
+}
+
+.atom-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.atom-back-btn:hover {
+    color: var(--color-text-primary);
+}
+
+.atom-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.atom-type-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--color-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.atom-header-info h1 {
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.atom-player-content {
+    flex: 1;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.atom-reading-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+}
+
+.atom-reading-content h1,
+.atom-reading-content h2,
+.atom-reading-content h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.atom-reading-content code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.atom-reading-content pre {
+    background: #1e1e1e;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 24px 0;
+}
+
+.atom-engine-placeholder {
+    text-align: center;
+    padding: 60px;
+    background: var(--color-surface);
+    border-radius: 16px;
+    border: 1px dashed var(--color-border);
+}
+
+.atom-btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 32px;
+    transition: opacity 0.2s;
+}
+
+.atom-btn-primary:hover {
+    opacity: 0.9;
+}
+
+.atom-loading,
+.atom-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+}

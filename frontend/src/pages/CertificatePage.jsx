@@ -18,12 +18,26 @@ const CertificatePage = () => {
 
     const fetchCertificate = async () => {
         try {
-            const courseRes = await axios.get(`/api/courses/${slug}`);
-            const courseId = courseRes.data.course.id;
-            setCourse(courseRes.data.course);
+            // Try fetching as a standard course first
+            try {
+                const courseRes = await axios.get(`/api/courses/${slug}`);
+                const courseId = courseRes.data.course.id;
+                setCourse(courseRes.data.course);
 
-            const certRes = await axios.get(`/api/certificates/${courseId}`);
-            setCertificate(certRes.data.certificate);
+                const certRes = await axios.get(`/api/certificates/${courseId}`);
+                setCertificate(certRes.data.certificate);
+            } catch (courseErr) {
+                // If course not found, try as Atom Track
+                console.log('Not a standard course, trying Atom Track...');
+                const trackRes = await axios.get(`/api/atom/tracks/${slug}`);
+                const track = trackRes.data.track;
+                setCourse({ title: track.title, id: track.id, type: 'atom' }); // Mock course object for UI
+
+                // We need an endpoint to get cert by trackId directly or use the one we have
+                // The current endpoint is /api/atom/tracks/:trackId/certificate which returns the cert
+                const certRes = await axios.get(`/api/atom/tracks/${track.id}/certificate`);
+                setCertificate(certRes.data.certificate);
+            }
         } catch (err) {
             console.error('Failed to load certificate:', err);
         } finally {
@@ -33,7 +47,14 @@ const CertificatePage = () => {
 
     const handleDownload = async () => {
         try {
-            const response = await axios.get(`/api/certificates/${course.id}/download?t=${Date.now()}`, {
+            let downloadUrl;
+            if (course.type === 'atom') {
+                downloadUrl = `/api/atom/certificates/${certificate.id}/download`;
+            } else {
+                downloadUrl = `/api/certificates/${course.id}/download`;
+            }
+
+            const response = await axios.get(`${downloadUrl}?t=${Date.now()}`, {
                 responseType: 'blob'
             });
 
@@ -143,13 +164,23 @@ const CertificatePage = () => {
                                     Download Certificate
                                 </button>
 
-                                <button onClick={shareToLinkedIn} className="action-btn linkedin-btn">
+                                <a
+                                    href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent(certificate.courseTitle)}&organizationName=The%20One%20Atom&issueYear=${new Date(certificate.completionDate).getFullYear()}&issueMonth=${new Date(certificate.completionDate).getMonth() + 1}&certId=${certificate.verificationHash}&certUrl=${encodeURIComponent(certificate.verificationUrl)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="action-btn linkedin-btn"
+                                    style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                >
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                                     </svg>
-                                    Share on LinkedIn
-                                </button>
+                                    Add to LinkedIn
+                                </a>
                             </div>
+
+                            <p className="linkedin-note" style={{ fontSize: '12px', color: '#888', marginTop: '12px', textAlign: 'center', marginBottom: '12px' }}>
+                                Note: LinkedIn does not support automatic PDF upload via this button. Please download the certificate and upload it manually if desired.
+                            </p>
 
                             <div className="verification-info">
                                 <h3>Verification</h3>
