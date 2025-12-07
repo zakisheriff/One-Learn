@@ -9,6 +9,13 @@
         "start": "npm start --prefix backend",
         "seed": "npm run seed --prefix backend"
     },
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "cookie": "^0.6.0",
+        "google-auth-library": "^9.4.1",
+        "jsonwebtoken": "^9.0.2",
+        "pg": "^8.11.3"
+    },
     "devDependencies": {
         "concurrently": "^8.2.2"
     }
