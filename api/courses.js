@@ -1,9 +1,64 @@
 // Courses API - Vercel Serverless Function
 // Handles: /api/courses, /api/courses/:slug, /api/courses/:slug/content, /api/courses/:slug/quiz
 
-const { query } = require('../_lib/db');
-const { cors, requireAuth, handleError } = require('../_lib/middleware');
-const { getQueryParams } = require('../_lib/utils');
+const { Pool } = require('pg');
+const jwt = require('jsonwebtoken');
+const cookie = require('cookie');
+
+// Database connection
+let pool;
+function getPool() {
+    if (!pool) {
+        pool = new Pool({
+            connectionString: process.env.DATABASE_URL,
+            ssl: { rejectUnauthorized: false },
+            max: 1,
+            idleTimeoutMillis: 30000,
+            connectionTimeoutMillis: 5000,
+        });
+    }
+    return pool;
+}
+
+async function query(text, params) {
+    const client = getPool();
+    const result = await client.query(text, params);
+    return result;
+}
+
+// CORS handler
+function cors(req, res) {
+    const origin = process.env.FRONTEND_URL || 'https://onelearn.theoneatom.com';
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization, Cookie');
+
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return true;
+    }
+    return false;
+}
+
+// Auth middleware
+function requireAuth(req, res) {
+    try {
+        const cookies = cookie.parse(req.headers.cookie || '');
+        const token = cookies.auth_token;
+
+        if (!token) {
+            res.status(401).json({ error: 'Unauthorized', message: 'No authentication token provided' });
+            return null;
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        return decoded;
+    } catch (error) {
+        res.status(401).json({ error: 'Unauthorized', message: 'Invalid or expired token' });
+        return null;
+    }
+}
 
 module.exports = async (req, res) => {
     // Handle CORS
@@ -35,7 +90,8 @@ module.exports = async (req, res) => {
 
         res.status(404).json({ error: 'Not found' });
     } catch (error) {
-        handleError(res, error);
+        console.error('API Error:', error);
+        res.status(500).json({ error: error.message || 'Internal server error' });
     }
 };
 
