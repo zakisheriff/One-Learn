@@ -8,13 +8,23 @@ if (!process.env.DATABASE_URL) {
     console.error('Please ensure you have provisioned a PostgreSQL database in Railway and linked it to this service.');
 }
 
-const pool = new Pool({
+const isProduction = process.env.NODE_ENV === 'production';
+const connectionConfig = {
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     max: 20, // Maximum number of clients in the pool
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
-});
+    idleTimeoutMillis: 60000,
+    connectionTimeoutMillis: 60000,
+};
+
+// Only add SSL if NOT explicitly disabled in the connection string
+// Fly.io internal URLs usually have sslmode=disable
+if (isProduction && (!process.env.DATABASE_URL || !process.env.DATABASE_URL.includes('sslmode=disable'))) {
+    connectionConfig.ssl = { rejectUnauthorized: false };
+}
+// If sslmode=disable is in the URL, we do NOT set connectionConfig.ssl at all.
+// The pg library will respect the connection string.
+
+const pool = new Pool(connectionConfig);
 
 // Test connection on startup
 pool.on('connect', () => {
