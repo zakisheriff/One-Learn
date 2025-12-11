@@ -103,7 +103,7 @@ exports.login = async (req, res) => {
 
         // Find user
         const result = await pool.query(
-            'SELECT id, full_name, email, password_hash, interests, profile_picture FROM users WHERE email = $1',
+            'SELECT id, full_name, email, password_hash, interests FROM users WHERE email = $1',
             [email.toLowerCase()]
         );
 
@@ -152,8 +152,7 @@ exports.login = async (req, res) => {
                 id: user.id,
                 fullName: user.full_name,
                 email: user.email,
-                interests: user.interests || [],
-                profilePicture: user.profile_picture
+                interests: user.interests || []
             }
         });
 
@@ -193,7 +192,7 @@ exports.googleAuth = async (req, res) => {
 
         // Check if user exists
         let result = await pool.query(
-            'SELECT id, full_name, email, profile_picture, interests FROM users WHERE oauth_provider = $1 AND oauth_id = $2',
+            'SELECT id, full_name, email, interests FROM users WHERE oauth_provider = $1 AND oauth_id = $2',
             ['google', googleId]
         );
 
@@ -214,23 +213,15 @@ exports.googleAuth = async (req, res) => {
 
             // Create new user
             result = await pool.query(
-                `INSERT INTO users (full_name, email, oauth_provider, oauth_id, profile_picture) 
-                 VALUES ($1, $2, $3, $4, $5) 
-                 RETURNING id, full_name, email, profile_picture`,
-                [name, email.toLowerCase(), 'google', googleId, payload.picture]
+                `INSERT INTO users (full_name, email, oauth_provider, oauth_id) 
+                 VALUES ($1, $2, $3, $4) 
+                 RETURNING id, full_name, email`,
+                [name, email.toLowerCase(), 'google', googleId]
             );
 
             user = result.rows[0];
         } else {
             user = result.rows[0];
-            // Update profile picture if it changed from Google
-            if (payload.picture && user.profile_picture !== payload.picture && !user.profile_picture?.startsWith('/uploads')) {
-                await pool.query(
-                    'UPDATE users SET profile_picture = $1 WHERE id = $2',
-                    [payload.picture, user.id]
-                );
-                user.profile_picture = payload.picture;
-            }
         }
 
         // Generate JWT
@@ -254,8 +245,7 @@ exports.googleAuth = async (req, res) => {
                 id: user.id,
                 fullName: user.full_name,
                 email: user.email,
-                interests: user.interests || [],
-                profilePicture: user.profile_picture
+                interests: user.interests || []
             }
         });
 
@@ -287,7 +277,7 @@ exports.logout = (req, res) => {
 exports.getCurrentUser = async (req, res) => {
     try {
         const result = await pool.query(
-            'SELECT id, full_name, email, created_at, interests, profile_picture FROM users WHERE id = $1',
+            'SELECT id, full_name, email, created_at, interests FROM users WHERE id = $1',
             [req.user.userId]
         );
 
@@ -303,8 +293,7 @@ exports.getCurrentUser = async (req, res) => {
                 fullName: user.full_name,
                 email: user.email,
                 createdAt: user.created_at,
-                interests: user.interests || [],
-                profilePicture: user.profile_picture
+                interests: user.interests || []
             }
         });
 
@@ -466,37 +455,5 @@ exports.deleteAccount = async (req, res) => {
     } catch (error) {
         console.error('Delete account error:', error);
         res.status(500).json({ error: 'Failed to delete account' });
-    }
-};
-
-/**
- * Upload profile picture
- * POST /api/auth/profile-picture
- * Protected route
- */
-exports.uploadProfilePicture = async (req, res) => {
-    try {
-        if (!req.file) {
-            return res.status(400).json({ error: 'No file uploaded' });
-        }
-
-        const userId = req.user.userId;
-        // Construct the file path relative to the server root
-        // Assuming uploads are served from /uploads
-        const profilePictureUrl = `/uploads/${req.file.filename}`;
-
-        await pool.query(
-            'UPDATE users SET profile_picture = $1 WHERE id = $2',
-            [profilePictureUrl, userId]
-        );
-
-        res.json({
-            message: 'Profile picture updated successfully',
-            profilePicture: profilePictureUrl
-        });
-
-    } catch (error) {
-        console.error('Upload profile picture error:', error);
-        res.status(500).json({ error: 'Failed to upload profile picture' });
     }
 };

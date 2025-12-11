@@ -12,15 +12,18 @@
 
 .login-container {
     width: 100%;
-    max-width: 340px; /* Reduced width for a tighter look */
+    max-width: 340px;
+    /* Reduced width for a tighter look */
     margin: 0 auto;
 }
 
 .login-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
-    border-radius: 16px; /* Slightly smaller radius */
-    padding: 24px; /* Reduced padding (was 32px) */
+    border-radius: 16px;
+    /* Slightly smaller radius */
+    padding: 24px;
+    /* Reduced padding (was 32px) */
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -31,12 +34,14 @@
 /* Header */
 .login-header {
     text-align: center;
-    margin-bottom: 16px; /* Reduced margin (was 24px) */
+    margin-bottom: 16px;
+    /* Reduced margin (was 24px) */
 }
 
 .logo {
     font-family: var(--font-display);
-    font-size: 24px; /* Slightly smaller logo */
+    font-size: 24px;
+    /* Slightly smaller logo */
     font-weight: 700;
     margin-bottom: 4px;
     letter-spacing: -0.5px;
@@ -65,19 +70,22 @@
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Much tighter gap between inputs (was 20px) */
+    gap: 12px;
+    /* Much tighter gap between inputs (was 20px) */
     width: 100%;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 4px; /* Tighter label-to-input gap */
+    gap: 4px;
+    /* Tighter label-to-input gap */
     position: relative;
 }
 
 .form-group label {
-    font-size: 11px; /* Smaller label */
+    font-size: 11px;
+    /* Smaller label */
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: none !important;
@@ -88,13 +96,16 @@
     padding: 0 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
-    border-radius: 10px; /* Smaller radius */
-    font-size: 14px; /* Smaller font */
+    border-radius: 10px;
+    /* Smaller radius */
+    font-size: 14px;
+    /* Smaller font */
     color: var(--text-primary);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     box-sizing: border-box;
-    height: 40px; /* Compact height (was 48px) */
+    height: 40px;
+    /* Compact height (was 48px) */
 }
 
 .password-input-wrapper {
@@ -111,7 +122,8 @@
     right: 0;
     top: 0;
     height: 100%;
-    width: 40px; /* Match input height */
+    width: 40px;
+    /* Match input height */
     background: none;
     border: none;
     color: var(--text-muted);
@@ -131,7 +143,8 @@
     outline: none;
     border-color: var(--accent-primary-start);
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(75, 144, 255, 0.15); /* Smaller glow ring */
+    box-shadow: 0 0 0 3px rgba(75, 144, 255, 0.15);
+    /* Smaller glow ring */
 }
 
 .input-hint {
@@ -143,7 +156,8 @@
 
 /* Error Message */
 .error-message {
-    padding: 8px; /* Compact padding */
+    padding: 8px;
+    /* Compact padding */
     background: rgba(255, 92, 92, 0.1);
     border: 1px solid rgba(255, 92, 92, 0.2);
     border-radius: 8px;
@@ -161,15 +175,17 @@
     justify-content: center;
     gap: 8px;
     padding: 0 16px;
-    font-size: 13px; /* Smaller text */
+    font-size: 13px;
+    /* Smaller text */
     font-weight: 600;
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.2s ease;
-    
+
     /* Full Width, but compact */
-    width: 100%; 
-    height: 38px; /* Compact height (was 44px) */
+    width: 100%;
+    height: 38px;
+    /* Compact height (was 44px) */
     box-sizing: border-box;
     text-transform: none !important;
     margin: 0;
@@ -181,12 +197,13 @@
     color: black;
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 4px; /* Close to inputs */
+    margin-top: 4px;
+    /* Close to inputs */
 }
 
 .btn-primary:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0.95;
 }
 
 .btn-primary:active:not(:disabled) {
@@ -207,15 +224,15 @@
 }
 
 .btn-google:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
 }
 
 /* Divider */
 .divider {
     display: flex;
     align-items: center;
-    margin: 12px 0; /* Reduced margin */
+    margin: 12px 0;
+    /* Reduced margin */
     color: var(--text-muted);
     font-size: 11px;
     width: 100%;
@@ -289,11 +306,11 @@
         padding: 20px;
         border-radius: 14px;
     }
-    
+
     .logo {
         font-size: 22px;
     }
-    
+
     .btn-primary,
     .btn-google {
         font-size: 13px;

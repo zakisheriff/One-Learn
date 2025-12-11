@@ -131,8 +131,7 @@
 }
 
 .search-clear-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
+    transform: translateY(-1px);
 }
 
 /* Layout */
@@ -456,11 +455,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.catalog-card:hover .catalog-thumbnail img {
-    transform: scale(1.05);
 }
 
 /* Play Icon Overlay */
@@ -593,9 +587,7 @@
 }
 
 .pagination-btn:hover:not(.active):not(:disabled) {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
-    border-color: var(--accent-primary-start);
+    transform: translateY(-1px);
 }
 
 .pagination-btn.active {
@@ -672,7 +664,8 @@
 }
 
 .apply-filters-btn:hover {
-    background: var(--accent-primary-end);
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 /* Empty State */

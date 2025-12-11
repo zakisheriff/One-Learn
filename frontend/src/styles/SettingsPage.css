@@ -52,8 +52,7 @@
 }
 
 .settings-nav button:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
+    transform: translateY(-1px);
 }
 
 .settings-nav button.active {
@@ -125,8 +124,7 @@
 }
 
 .edit-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--text-primary);
+    transform: translateY(-1px);
 }
 
 /* Forms */
@@ -184,8 +182,8 @@
 }
 
 .save-btn:hover {
-    background: var(--accent-primary-end);
-    box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .cancel-btn {
@@ -200,8 +198,7 @@
 }
 
 .cancel-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
+    transform: translateY(-1px);
 }
 
 /* Messages */
@@ -353,8 +350,8 @@ input:checked+.slider:before {
 }
 
 .delete-btn:hover {
-    background: var(--accent-error);
-    color: white;
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 /* Nav Icons */
@@ -447,6 +444,7 @@ input:checked+.slider:before {
 .coffee-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(255, 221, 0, 0.4);
+    color: #000;
 }
 
 /* Responsive */
@@ -722,7 +720,6 @@ input:checked+.slider:before {
 }
 
 .upload-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-1px);
 }
 

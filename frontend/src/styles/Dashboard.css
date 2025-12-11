@@ -169,11 +169,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.enrollment-card:hover .enrollment-thumbnail img {
-    transform: scale(1.05);
 }
 
 .progress-overlay {
@@ -253,10 +248,8 @@
 }
 
 .continue-button:hover {
-    background: var(--accent-primary-start);
-    color: white;
-    border-color: var(--accent-primary-start);
-    box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
+    opacity: 0.8;
+    transform: translateY(-2px);
 }
 
 /* Certificates Section */

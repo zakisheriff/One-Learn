@@ -116,7 +116,7 @@
 
 .hero-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    opacity: 0.95;
 }
 
 .hero-btn-secondary {
@@ -136,7 +136,7 @@
 }
 
 .hero-btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    opacity: 0.9;
     transform: translateY(-2px);
 }
 
@@ -162,11 +162,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.hero-slide:hover .hero-image {
-    transform: scale(1.05);
 }
 
 .hero-indicators {
@@ -318,7 +313,7 @@
 
 .linkedin-card-thumbnail {
     width: 100%;
-    height: 160px;
+    height: 150px;
     background: #1a1a1a;
     position: relative;
     overflow: hidden;
@@ -328,11 +323,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.linkedin-course-card:hover .linkedin-card-thumbnail img {
-    transform: scale(1.1);
 }
 
 .linkedin-card-duration {
@@ -464,9 +454,7 @@
     transition: all 0.3s ease;
 }
 
-.topic-card:hover .topic-icon {
-
-}
+.topic-card:hover .topic-icon {}
 
 .topic-name {
     font-size: 15px;
