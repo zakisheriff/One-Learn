@@ -17,8 +17,6 @@ const SettingsPage = () => {
     const [fullName, setFullName] = useState(user?.fullName || '');
     const [email, setEmail] = useState(user?.email || '');
     const [isEditingProfile, setIsEditingProfile] = useState(false);
-    const [profilePicture, setProfilePicture] = useState(user?.profilePicture || null);
-    const [uploading, setUploading] = useState(false);
 
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -30,45 +28,9 @@ const SettingsPage = () => {
         if (user) {
             setFullName(user.fullName);
             setEmail(user.email);
-            setProfilePicture(user.profilePicture);
         }
     }, [user]);
 
-    const handleFileChange = async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        if (!file.type.startsWith('image/')) {
-            setMessage({ type: 'error', text: 'Please select an image file' });
-            return;
-        }
-
-        if (file.size > 5 * 1024 * 1024) {
-            setMessage({ type: 'error', text: 'Image size should be less than 5MB' });
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('profilePicture', file);
-
-        setUploading(true);
-        try {
-            const response = await axios.post('/api/auth/profile-picture', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-
-            const newProfilePicture = response.data.profilePicture;
-            setProfilePicture(newProfilePicture);
-            setUser({ ...user, profilePicture: newProfilePicture });
-            setMessage({ type: 'success', text: 'Profile picture updated successfully' });
-        } catch (err) {
-            setMessage({ type: 'error', text: err.response?.data?.error || 'Failed to upload profile picture' });
-        } finally {
-            setUploading(false);
-        }
-    };
 
     const handleProfileUpdate = async (e) => {
         e.preventDefault();
@@ -176,35 +138,6 @@ const SettingsPage = () => {
                         <section id="account" className="settings-section">
                             <h3>Account Information</h3>
                             <div className="settings-card">
-                                <div className="profile-picture-section">
-                                    <div className="profile-picture-container">
-                                        {profilePicture ? (
-                                            <img
-                                                src={profilePicture.startsWith('http') ? profilePicture : `${axios.defaults.baseURL}${profilePicture}`}
-                                                alt="Profile"
-                                                className="settings-profile-img"
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = 'https://via.placeholder.com/150?text=Error';
-                                                }}
-                                            />
-                                        ) : (
-                                            <div className="settings-profile-placeholder">
-                                                {user?.fullName?.charAt(0).toUpperCase() || 'U'}
-                                            </div>
-                                        )}
-                                        <label className={`upload-btn ${uploading ? 'disabled' : ''}`}>
-                                            {uploading ? 'Uploading...' : 'Change Photo'}
-                                            <input
-                                                type="file"
-                                                accept="image/*"
-                                                onChange={handleFileChange}
-                                                disabled={uploading}
-                                                style={{ display: 'none' }}
-                                            />
-                                        </label>
-                                    </div>
-                                </div>
 
                                 {/* Profile Edit Form */}
                                 {isEditingProfile ? (

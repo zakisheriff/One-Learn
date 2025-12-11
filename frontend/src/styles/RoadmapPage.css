@@ -120,9 +120,8 @@
 }
 
 .generate-btn:hover:not(:disabled) {
-    background: var(--accent-primary-end);
+    opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(75, 144, 255, 0.4);
 }
 
 .generate-btn:disabled {
@@ -322,8 +321,7 @@
 
 .secondary-btn:hover {
     background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
-    border-color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
 .primary-btn {
@@ -340,9 +338,8 @@
 }
 
 .primary-btn:hover {
-    background: var(--accent-primary-end);
+    opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(75, 144, 255, 0.4);
 }
 
 /* Timeline */

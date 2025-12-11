@@ -8,9 +8,20 @@ const crypto = require('crypto');
 const pool = require('../database/connection').pool;
 
 // Ensure certificate directory exists
-const CERT_DIR = process.env.CERTIFICATE_DIR || path.join(__dirname, '../certificates');
+// Ensure certificate directory exists
+let CERT_DIR;
+if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    CERT_DIR = path.join('/tmp', 'certificates');
+} else {
+    CERT_DIR = process.env.CERTIFICATE_DIR || path.join(__dirname, '../certificates');
+}
+
 if (!fs.existsSync(CERT_DIR)) {
-    fs.mkdirSync(CERT_DIR, { recursive: true });
+    try {
+        fs.mkdirSync(CERT_DIR, { recursive: true });
+    } catch (err) {
+        console.error('Failed to create certificate directory:', err);
+    }
 }
 
 /**

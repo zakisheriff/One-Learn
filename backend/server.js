@@ -62,6 +62,7 @@ app.use('/api/certificates', certificateRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/roadmaps', roadmapRoutes);
 app.use('/api/atom', require('./routes/atomRoutes'));
+app.use('/api/migrate', require('./api/migrate')); // Manual Cloud Migration Endpoint
 
 // Certificate verification (public)
 app.get('/api/verify', async (req, res) => {
@@ -178,23 +179,24 @@ app.use((err, req, res, next) => {
 // Test database connection before starting server
 const { pool } = require('./database/connection');
 
-pool.query('SELECT NOW()', (err, res) => {
-    if (err) {
-        console.error('❌ Failed to connect to database:', err);
-        process.exit(1);
-    }
+// Only start server if running directly (dev/Fly.io), not when imported by Vercel
+if (require.main === module) {
+    pool.query('SELECT NOW()', (err, res) => {
+        if (err) {
+            console.error('❌ Failed to connect to database:', err);
+        } else {
+            console.log('✓ Database connection verified');
+        }
 
-    console.log('✓ Database connection verified');
-
-    // Start server
-    app.listen(PORT, () => {
-        console.log(`\n🚀 One Learn API Server`);
-        console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
-        console.log(`   Port: ${PORT}`);
-        console.log(`   URL: http://localhost:${PORT}`);
-        console.log(`   Frontend: ${process.env.FRONTEND_URL}\n`);
+        app.listen(PORT, () => {
+            console.log(`\n🚀 One Learn API Server`);
+            console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(`   Port: ${PORT}`);
+            console.log(`   URL: http://localhost:${PORT}`);
+            console.log(`   Frontend: ${process.env.FRONTEND_URL}\n`);
+        });
     });
-});
+}
 
 // Graceful shutdown
 process.on('SIGTERM', () => {

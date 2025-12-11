@@ -102,21 +102,7 @@ const Navbar = () => {
                             onClick={() => setProfileOpen(!profileOpen)}
                         >
                             <div className="navbar-avatar">
-                                {user.profilePicture ? (
-                                    <img
-                                        src={`${axios.defaults.baseURL}${user.profilePicture}`}
-                                        alt="Profile"
-                                        className="navbar-avatar-img"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.style.display = 'none';
-                                            e.target.nextSibling.style.display = 'flex';
-                                        }}
-                                    />
-                                ) : null}
-                                <span style={{ display: user.profilePicture ? 'none' : 'flex' }}>
-                                    {user.fullName?.charAt(0).toUpperCase() || 'U'}
-                                </span>
+                                {user.fullName?.charAt(0).toUpperCase() || 'U'}
                             </div>
 
                             <div className="navbar-profile-dropdown">
@@ -322,21 +308,7 @@ const Navbar = () => {
                             onClick={() => setProfileOpen(!profileOpen)}
                         >
                             <div className="navbar-avatar">
-                                {user.profilePicture ? (
-                                    <img
-                                        src={`${axios.defaults.baseURL}${user.profilePicture}`}
-                                        alt="Profile"
-                                        className="navbar-avatar-img"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.style.display = 'none';
-                                            e.target.nextSibling.style.display = 'flex';
-                                        }}
-                                    />
-                                ) : null}
-                                <span style={{ display: user.profilePicture ? 'none' : 'flex' }}>
-                                    {user.fullName?.charAt(0).toUpperCase() || 'U'}
-                                </span>
+                                {user.fullName?.charAt(0).toUpperCase() || 'U'}
                             </div>
                             <div className="navbar-profile-info">
                                 <span className="navbar-profile-label">{t('me')}</span>
@@ -347,21 +319,7 @@ const Navbar = () => {
                             <div className="navbar-profile-dropdown">
                                 <div className="profile-header">
                                     <div className="navbar-avatar large">
-                                        {user.profilePicture ? (
-                                            <img
-                                                src={user.profilePicture.startsWith('http') ? user.profilePicture : `${axios.defaults.baseURL}${user.profilePicture}`}
-                                                alt="Profile"
-                                                className="navbar-avatar-img"
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.style.display = 'none';
-                                                    e.target.nextSibling.style.display = 'flex';
-                                                }}
-                                            />
-                                        ) : null}
-                                        <span style={{ display: user.profilePicture ? 'none' : 'flex' }}>
-                                            {user.fullName?.charAt(0).toUpperCase() || 'U'}
-                                        </span>
+                                        {user.fullName?.charAt(0).toUpperCase() || 'U'}
                                     </div>
                                     <div className="profile-details">
                                         <h4>{user.fullName}</h4>

@@ -83,8 +83,7 @@
 }
 
 .browse-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
+    transform: translateY(-1px);
 }
 
 .browse-dropdown {
@@ -409,7 +408,7 @@
 }
 
 .btn-text:hover {
-    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
 }
 
 .btn-primary-small {
@@ -426,7 +425,7 @@
 
 .btn-primary-small:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    opacity: 0.95;
 }
 
 /* Mobile Toggle */
@@ -461,7 +460,7 @@
 @media (max-width: 768px) {
     .navbar {
         top: 10px;
-        width: 92%;
+        width: 90%;
         height: 56px;
         padding: 0;
     }
@@ -533,8 +532,9 @@
     .navbar-mobile-actions {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 4px;
         margin-left: auto;
+        margin-right: -18px;
     }
 
     .navbar-mobile-search-toggle {

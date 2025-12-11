@@ -44,7 +44,7 @@ exports.generateRoadmap = async (req, res) => {
             : '\n\nNote: Recommend that users can find relevant courses on the platform to study and earn certificates.';
 
         // Use Gemini to generate the roadmap
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const prompt = `
         You are an expert career advisor. The user wants to become a "${goal}". Generate a complete, realistic, and actionable roadmap for this profession.
