@@ -1,0 +1,324 @@
+/* Learning Page - Premium Dark Glass Style */
+
+.learning-container {
+    display: flex;
+    height: 100vh;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    padding-top: 64px;
+    /* Navbar height */
+    overflow: hidden;
+}
+
+/* Main Content Area */
+.learning-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 60px 100px;
+    /* Much larger side margins */
+    gap: 32px;
+    align-items: center;
+}
+
+/* Video Player Styling */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16/9;
+    padding-bottom: 0;
+    background: #000;
+    border-radius: 32px;
+    overflow: hidden;
+    /* Ensures child elements (video) are clipped */
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    /* Subtle dark border, not stark white */
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+    /* Explicitly add radius to child just in case */
+    display: block;
+}
+
+/* Lesson Details Bar - Glass Card */
+.lesson-details-bar {
+    width: 100%;
+    max-width: 960px;
+    /* Match video width */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 32px;
+    /* Super curved */
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Align top for better text flow */
+    gap: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-title-large {
+    font-family: var(--font-display);
+    font-size: 28px;
+    /* Larger title */
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.lesson-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* Action Buttons */
+.lesson-actions {
+    display: flex;
+    gap: 16px;
+    flex-shrink: 0;
+    /* Prevent button shrinking */
+}
+
+.action-btn {
+    padding: 16px 32px;
+    /* Generous padding */
+    border-radius: 100px;
+    /* Fully rounded pill */
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #0a84ff, #0056b3);
+    color: white;
+    box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
+}
+
+.action-btn.primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(10, 132, 255, 0.4);
+}
+
+.action-btn.primary:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    cursor: default;
+    box-shadow: none;
+}
+
+/* Sidebar Styling */
+.learning-sidebar {
+    width: 420px;
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    /* Floating Card Style */
+    margin: 24px 24px 24px 0;
+    /* Margin top/bottom/right, none left (next to content) */
+    height: calc(100vh - 64px - 48px);
+    /* Viewport - Navbar - Margins */
+    border-radius: 32px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    /* Clip children to border radius */
+}
+
+.sidebar-header {
+    padding: 32px;
+    border-bottom: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.progress-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Scrollbar */
+.sidebar-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+/* Module Section */
+.module-section {
+    margin-bottom: 24px;
+}
+
+.module-header {
+    padding: 0 16px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+/* Lesson Item */
+.lesson-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    cursor: pointer;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.lesson-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.lesson-item.active {
+    background: rgba(10, 132, 255, 0.1);
+    border-color: rgba(10, 132, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-item.active .lesson-title {
+    color: #4da3ff;
+    font-weight: 600;
+}
+
+.lesson-item.completed:not(.active) .status-icon {
+    color: #00C853;
+    /* Success Green */
+}
+
+.lesson-item.completed:not(.active) .lesson-title {
+    color: var(--text-secondary);
+}
+
+.status-icon {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lesson-info {
+    flex: 1;
+}
+
+.lesson-title {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text-primary);
+    transition: color 0.2s;
+}
+
+.lesson-duration {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Quiz Button Sidebar */
+.quiz-btn-wrapper {
+    padding: 24px;
+    border-top: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.quiz-btn-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #0a84ff, #0056b3);
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(10, 132, 255, 0.25);
+    transition: all 0.3s ease;
+}
+
+.quiz-btn-sidebar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(10, 132, 255, 0.35);
+}
+
+/* Locked message */
+.locked-message {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .learning-container {
+        flex-direction: column;
+        height: auto;
+        overflow: auto;
+    }
+
+    .learning-sidebar {
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .learning-main {
+        padding: 20px;
+    }
+
+    .lesson-details-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .lesson-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

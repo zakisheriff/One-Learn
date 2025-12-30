@@ -40,7 +40,7 @@ const Navbar = () => {
         setLanguageOpen(false);
     };
     return (
-        <nav className="navbar">
+        <nav className={`navbar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
             <div className="navbar-container">
                 {/* Left Section: Logo + Browse */}
                 <div className="navbar-left">

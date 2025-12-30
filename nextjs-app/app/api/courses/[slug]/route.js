@@ -24,24 +24,40 @@ export async function GET(request, { params }) {
         const course = courseResult.rows[0];
 
         // Get modules with lesson count
+        // Get modules
         const modulesResult = await query(
-            `SELECT 
-        m.id, m.title, m.description, m.order_index,
-        COUNT(l.id) as lesson_count
-       FROM modules m
-       LEFT JOIN lessons l ON m.id = l.module_id
-       WHERE m.course_id = $1
-       GROUP BY m.id
-       ORDER BY m.order_index`,
+            `SELECT id, title, description, order_index FROM modules WHERE course_id = $1 ORDER BY order_index`,
             [course.id]
         );
 
-        const modules = modulesResult.rows.map(module => ({
-            id: module.id,
-            title: module.title,
-            description: module.description,
-            lessonCount: parseInt(module.lesson_count) || 0
-        }));
+        // Get all lessons for this course
+        const lessonsResult = await query(
+            `SELECT l.id, l.module_id, l.title, l.description, l.youtube_url, l.duration_seconds, l.order_index
+             FROM lessons l
+             JOIN modules m ON l.module_id = m.id
+             WHERE m.course_id = $1
+             ORDER BY m.order_index, l.order_index`,
+            [course.id]
+        );
+
+        const modules = modulesResult.rows.map(module => {
+            const moduleLessons = lessonsResult.rows.filter(l => l.module_id === module.id).map(l => ({
+                id: l.id,
+                title: l.title,
+                description: l.description,
+                youtubeUrl: l.youtube_url,
+                duration: l.duration_seconds,
+                moduleId: l.module_id
+            }));
+
+            return {
+                id: module.id,
+                title: module.title,
+                description: module.description,
+                lessons: moduleLessons,
+                lessonCount: moduleLessons.length
+            };
+        });
 
         return Response.json({
             course: {

@@ -316,4 +316,9 @@
         font-size: 13px;
         height: 36px;
     }
+
+    .form-group input {
+        font-size: 16px;
+        /* Prevent auto-zoom on iOS */
+    }
 }

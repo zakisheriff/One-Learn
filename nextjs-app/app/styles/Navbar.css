@@ -461,16 +461,71 @@
     .navbar {
         top: 10px;
         width: 90%;
-        height: 56px;
+        height: auto;
+        /* Allow content to dictate, but capped by max-height */
+        min-height: 56px;
+        max-height: 56px;
+        /* Collapsed state */
         padding: 0;
+        overflow: hidden;
+        /* Standardize transition for open/close to be consistent */
+        transition: max-height 0.35s ease, background 0.3s ease, border-radius 0.3s ease;
+    }
+
+    .navbar.mobile-open {
+        max-height: 400px;
+        /* Tighter fit (approx 6 items * 50px + pad) */
+        /* Expanded state */
+        background: #000;
+        /* Darker background when open */
+        border-color: #333;
+        border-radius: 24px;
+        /* Slightly less rounded than pill to look like a card */
+        /* Slightly larger radius when open */
+        overflow-y: hidden;
+        /* Hide scrollbar for cleaner anim, auto only if needed */
+        transition: max-height 0.3s cubic-bezier(0.2, 0, 0, 1), background 0.2s ease, border-radius 0.2s ease;
     }
 
     .navbar-container {
         padding: 0 16px;
+        min-height: 56px;
+        /* Ensure header height stays */
+        flex-wrap: wrap;
+        /* Allow wrapping for menu */
+        align-content: flex-start;
+        display: flex;
+        /* Reinforce flex */
+        align-items: center;
+        /* Reinforce vertical center for the header row */
+    }
+
+    .navbar-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        /* Tweak gap */
+        height: 56px;
+        /* Match container height */
     }
 
     .navbar-mobile-toggle {
-        display: block;
+        display: flex;
+        /* Flex center the icon inside button */
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        /* Explicit touch target */
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        /* Optional: round touch target */
+    }
+
+    .navbar-logo {
+        height: 40px;
+        display: flex;
+        align-items: center;
     }
 
     .navbar-browse,
@@ -479,41 +534,101 @@
         display: none;
     }
 
-    .navbar-nav {
-        position: fixed;
-        top: 70px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-20px);
-        width: 92%;
-        background: #111;
-        border: 1px solid var(--glass-border);
-        border-radius: 20px;
-        flex-direction: column;
-        padding: 16px;
+    /* Navbar Right becomes the container for the menu items */
+    .navbar-right {
+        width: 100%;
+        order: 3;
+        /* Move to bottom */
+        margin-top: 0;
+
+        /* Layout Transition Logic */
+        display: block;
+        /* Always in DOM */
+        max-height: 0;
         opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        align-items: stretch;
+        overflow: hidden;
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.2s ease,
+            transform 0.3s ease,
+            margin-top 0.3s ease,
+            max-height 0.3s ease;
     }
 
-    .navbar-nav.open {
+    .navbar.mobile-open .navbar-right {
+        max-height: 400px;
+        /* Allow content to show */
+        opacity: 1;
+        transform: translateY(0);
+        margin-top: 16px;
+        padding-bottom: 24px;
+
+        /* Delay content appearance slightly until pill expands */
+        transition-delay: 0.1s;
+    }
+
+    .navbar-nav {
+        /* Reset Fixed Positioning */
+        position: static;
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0;
         opacity: 1;
         visibility: visible;
-        transform: translateX(-50%) translateY(0);
+        transform: none;
+
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
+    /* We don't need .navbar-nav.open styles anymore since the container controls visibility */
+
+
     .navbar-link {
-        flex-direction: row;
-        justify-content: flex-start;
+        display: flex;
+        flex-direction: row !important;
+        /* Force horizontal layout */
+        align-items: center;
+        /* Vertically align icon and text */
         gap: 16px;
         width: 100%;
-        padding: 12px;
+        padding: 12px 20px;
+        /* More breathing room */
         border-radius: 12px;
+        background: transparent;
+        margin-bottom: 2px;
+    }
+
+    .navbar-link.active {
+        background: rgba(255, 255, 255, 0.08);
+        /* Highlight active item bg */
+        color: var(--accent-primary-start);
+    }
+
+    .navbar-link .navbar-link-icon {
+        margin-bottom: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        /* Prevent icon shrinking */
     }
 
     .navbar-link-text {
         display: block;
         font-size: 16px;
+        line-height: normal;
+        /* Let font metrics decide */
+        font-weight: 500;
+        padding-top: 0;
+        /* Remove manual tweak */
+        color: inherit;
     }
 
     .mobile-auth-links {
@@ -533,8 +648,12 @@
         display: flex;
         align-items: center;
         gap: 4px;
+        /* Keep gap small */
         margin-left: auto;
-        margin-right: -18px;
+        margin-right: -8px;
+        /* Adjusted from -18px to sit better with padding */
+        height: 56px;
+        /* FORCE HEIGHT MATCH to container */
     }
 
     .navbar-mobile-search-toggle {
@@ -542,7 +661,14 @@
         border: none;
         color: var(--text-primary);
         cursor: pointer;
-        padding: 8px;
+        padding: 0;
+        width: 40px;
+        /* Explicit touch target match to left toggle */
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
 
     .navbar-right .desktop-profile {
