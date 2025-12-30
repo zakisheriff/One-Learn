@@ -79,7 +79,19 @@ CREATE TABLE lessons (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- 5. Insert Data
+-- 5. Create Atom Tracks Table (Missing previously)
+CREATE TABLE IF NOT EXISTS atom_tracks (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  difficulty VARCHAR(50),
+  estimated_hours VARCHAR(50),
+  thumbnail_url TEXT,
+  is_published BOOLEAN DEFAULT true,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 6. Insert Data (Courses)
 INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views, category, level, type, subject, instructor) VALUES
 (
     'python-for-beginners',
@@ -212,6 +224,12 @@ BEGIN
         );
     END LOOP;
 END $$;
+
+-- Insert Sample Atom Tracks
+INSERT INTO atom_tracks (title, description, difficulty, estimated_hours, thumbnail_url) VALUES 
+('Full Stack Java Developer', 'Master Java, Spring Boot, and React for full-stack development.', 'Advanced', '3 Months', 'https://img.youtube.com/vi/Qgl81fPoylE/hqdefault.jpg'),
+('Data Science with Python', 'From Python basics to Machine Learning and AI.', 'Intermediate', '2 Months', 'https://img.youtube.com/vi/ua-CiDNNj30/hqdefault.jpg'),
+('Frontend Mastery', 'Become a wizard in HTML, CSS, JavaScript and React.', 'Beginner', '6 Weeks', 'https://img.youtube.com/vi/T33NN_pYILQ/hqdefault.jpg');
 
 -- Verify
 SELECT COUNT(*) as total_courses FROM courses;

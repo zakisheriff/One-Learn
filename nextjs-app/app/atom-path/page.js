@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
+import LoadingSpinner from '../components/LoadingSpinner';
 import '../styles/AtomTrackDetails.css';
 
 export default function AtomPathPage() {
@@ -27,12 +28,7 @@ export default function AtomPathPage() {
     };
 
     if (loading) {
-        return (
-            <div className="atom-page" style={{ padding: '4rem 2rem', textAlign: 'center' }}>
-                <div className="spinner"></div>
-                <p>Loading Atom Paths...</p>
-            </div>
-        );
+        return <LoadingSpinner fullScreen text="Loading Atom Paths..." />;
     }
 
     return (
