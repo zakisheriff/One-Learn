@@ -474,7 +474,7 @@
     }
 
     .navbar.mobile-open {
-        max-height: 480px;
+        max-height: 680px;
         /* Slightly more room */
         background: #000;
         border-color: #333;
