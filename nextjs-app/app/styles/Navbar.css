@@ -462,29 +462,29 @@
         top: 10px;
         width: 90%;
         height: auto;
-        /* Allow content to dictate, but capped by max-height */
         min-height: 56px;
         max-height: 56px;
         /* Collapsed state */
         padding: 0;
         overflow: hidden;
-        /* Standardize transition for open/close to be consistent */
-        transition: max-height 0.35s ease, background 0.3s ease, border-radius 0.3s ease;
+        /* UNIFIED TRANSITION: All props move together */
+        transition: max-height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+            border-radius 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+            background 0.4s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     .navbar.mobile-open {
-        max-height: 400px;
-        /* Tighter fit (approx 6 items * 50px + pad) */
-        /* Expanded state */
+        max-height: 480px;
+        /* Slightly more room */
         background: #000;
-        /* Darker background when open */
         border-color: #333;
-        border-radius: 24px;
-        /* Slightly less rounded than pill to look like a card */
-        /* Slightly larger radius when open */
+        border-radius: 28px;
         overflow-y: hidden;
-        /* Hide scrollbar for cleaner anim, auto only if needed */
-        transition: max-height 0.3s cubic-bezier(0.2, 0, 0, 1), background 0.2s ease, border-radius 0.2s ease;
+
+        /* UNIFIED TRANSITION: Match the closing curve */
+        transition: max-height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+            border-radius 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+            background 0.4s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     .navbar-container {
@@ -556,16 +556,21 @@
             max-height 0.3s ease;
     }
 
+    .navbar {
+        /* ... previous props ... */
+        will-change: height, max-height, border-radius, background;
+        /* Optimize painting */
+    }
+
     .navbar.mobile-open .navbar-right {
-        max-height: 400px;
-        /* Allow content to show */
+        max-height: 480px;
         opacity: 1;
         transform: translateY(0);
         margin-top: 16px;
         padding-bottom: 24px;
 
-        /* Delay content appearance slightly until pill expands */
-        transition-delay: 0.1s;
+        /* REMOVED DELAY: Animate immediately with container for perceived speed */
+        transition-delay: 0s;
     }
 
     .navbar-nav {
