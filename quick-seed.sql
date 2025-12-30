@@ -1,7 +1,29 @@
--- Quick Seed: Add Sample Courses to Supabase
--- Run this in Supabase SQL Editor to populate your database with initial courses
+-- Enable UUID extension first
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- First, add the extra columns if they don't exist
+-- First, create the missing tables if they don't exist
+CREATE TABLE IF NOT EXISTS modules (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  course_id UUID REFERENCES courses(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  order_index INTEGER DEFAULT 0,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS lessons (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  module_id UUID REFERENCES modules(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  youtube_url TEXT,
+  duration_seconds INTEGER,
+  order_index INTEGER DEFAULT 0,
+  is_preview BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Then add extra columns to courses matching our new schema
 ALTER TABLE courses ADD COLUMN IF NOT EXISTS estimated_hours VARCHAR(50);
 ALTER TABLE courses ADD COLUMN IF NOT EXISTS likes VARCHAR(50);
 ALTER TABLE courses ADD COLUMN IF NOT EXISTS views VARCHAR(50);
