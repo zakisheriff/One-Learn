@@ -1,0 +1,800 @@
+/* Certificate Page - Gemini Dark Glass Style */
+
+.certificate-page {
+    min-height: 100vh;
+    background: var(--bg-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 80px 24px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.certificate-main {
+    width: 100%;
+    max-width: 1300px;
+    /* Removed margin: 0 auto as we are centering the grid container itself */
+}
+
+.container {
+    max-width: 100%;
+}
+
+/* Certificate Container (FIXED FOR CENTERING) */
+.certificate-container {
+    display: grid;
+    gap: 40px;
+    align-items: start;
+
+    /* --- CENTERING FIX --- */
+    max-width: 1190px;
+    /* Adjust this value if your design requires a different total width */
+    width: 100%;
+    margin: 0 auto;
+    /* This centers the entire grid content */
+}
+
+/* Certificate Preview */
+/* Certificate Preview */
+.certificate-preview {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cert-frame {
+    /* Liquid Glass Effect */
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 20%,
+            rgba(255, 255, 255, 0.01) 40%,
+            rgba(255, 255, 255, 0.02) 60%,
+            rgba(255, 255, 255, 0.05) 80%,
+            rgba(255, 255, 255, 0.1) 100%);
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    /* Top highlight */
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    /* Left highlight */
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        /* Deep shadow */
+        inset 0 0 20px rgba(255, 255, 255, 0.05),
+        /* Inner glow */
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Inner rim */
+    width: 100%;
+    aspect-ratio: 11 / 8.5;
+    max-width: 800px;
+    position: relative;
+    border-radius: 40px;
+    /* Super Curves */
+    backdrop-filter: blur(40px);
+    /* Deep Blur */
+    -webkit-backdrop-filter: blur(40px);
+}
+
+.cert-inner-border {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    position: relative;
+    background: transparent;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    /* Inner Curves */
+}
+
+.cert-content {
+    text-align: center;
+    color: #ffffff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cert-header {
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 6px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 40px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.cert-recipient {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: #ffffff;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.1;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.cert-gold-line {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    margin: 0 auto 24px;
+}
+
+.cert-text {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.cert-course-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 40px;
+    font-weight: 500;
+    padding: 0 20px;
+}
+
+/* Footer Layout */
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+    padding: 0 20px;
+}
+
+.cert-footer-item {
+    width: 160px;
+    text-align: center;
+}
+
+.cert-footer-text {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.cert-footer-text.signature {
+    font-family: 'Times New Roman', serif;
+    /* Or a specific signature font if available */
+    font-style: italic;
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.cert-footer-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-bottom: 8px;
+}
+
+.cert-footer-label {
+    font-family: var(--font-body);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Seal */
+.cert-seal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seal-circle {
+    width: 70px;
+    height: 70px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.seal-circle::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.seal-circle span {
+    font-family: var(--font-body);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.cert-id {
+    margin-top: 24px;
+    font-family: var(--font-body);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Certificate Actions */
+.certificate-actions {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 32px;
+    position: sticky;
+    top: 100px;
+    backdrop-filter: blur(10px);
+}
+
+.certificate-actions h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.download-btn {
+    background: white;
+    color: black;
+    box-shadow: 0 4px 12px rgba(75, 144, 255, 0.3);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    color: black;
+}
+
+.linkedin-btn {
+    background: #0077B5;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+}
+
+.linkedin-btn:hover {
+    transform: translateY(-2px);
+    color: white;
+}
+
+.action-btn svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+}
+
+/* Verification Info */
+.verification-info {
+    padding-top: 24px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.verification-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.verification-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.verification-link {
+    display: block;
+    font-size: 13px;
+    color: var(--accent-primary-start);
+    text-decoration: none;
+    word-break: break-all;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.verification-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary-start);
+}
+
+/* Loading & Error States */
+.loading-state,
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 48px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-primary-start);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-state p,
+.error-state p {
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.error-state a {
+    color: var(--accent-primary-start);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.error-state a:hover {
+    text-decoration: underline;
+}
+
+/* Manual LinkedIn Instructions */
+.linkedin-manual-instructions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.linkedin-manual-instructions h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.linkedin-manual-instructions p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.linkedin-manual-instructions ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.linkedin-manual-instructions li {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.linkedin-manual-instructions strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .certificate-container {
+        /* Remove max-width and margin: 0 auto here to allow centering on mobile */
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        margin: 0;
+
+    }
+
+    .certificate-actions {
+        position: static;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificate-page {
+        padding: 20px 16px;
+        overflow-x: hidden;
+        display: block;
+        /* Stack content naturally */
+    }
+
+    .certificate-main {
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .certificate-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        margin: 0;
+    }
+
+    /* --- SCALED CERTIFICATE PREVIEW --- */
+    .certificate-preview {
+        padding: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        margin-top: 20px;
+        /* Fixed height to contain the scaled element */
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        margin-bottom: -300px;
+    }
+
+    .cert-frame {
+        /* Force Desktop Dimensions */
+        width: 700px;
+        min-width: 700px;
+        aspect-ratio: 11 / 8.5;
+
+        /* Scale it down to fit mobile */
+        transform: scale(0.45);
+        transform-origin: top center;
+
+        /* Reset any previous mobile overrides */
+        padding: 24px;
+        border-radius: 40px;
+        margin: 0;
+    }
+
+    /* Reset internals to desktop defaults */
+    .cert-inner-border {
+        padding: 40px;
+    }
+
+    .cert-recipient {
+        font-size: 48px;
+        margin-bottom: 16px;
+    }
+
+    .cert-course-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+
+    .cert-header {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .cert-text {
+        font-size: 12px;
+        margin-bottom: 24px;
+    }
+
+    .cert-footer {
+        flex-direction: row;
+        gap: 0;
+        padding: 0 20px;
+    }
+
+    .cert-seal {
+        order: 0;
+        margin-bottom: 0;
+    }
+
+    .seal-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .seal-circle span {
+        font-size: 10px;
+    }
+
+    .cert-footer-item {
+        width: 150px;
+    }
+
+    .cert-footer-text.signature {
+        font-size: 24px;
+    }
+
+    /* --- COMPACT ACTIONS CARD --- */
+    .certificate-actions {
+        position: static;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 24px;
+        margin-top: 0;
+        backdrop-filter: blur(10px);
+    }
+
+    .certificate-actions h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Atom Certificate Styles */
+    .atom-cert-frame {
+        background: #000000;
+        border-radius: 40px;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 1px solid #333;
+    }
+
+    .atom-cert-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+    }
+
+    .atom-cert-border {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        right: 40px;
+        bottom: 40px;
+        border: 3px solid transparent;
+        border-radius: 30px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C) border-box;
+        -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+
+    .atom-cert-header {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 24px;
+        letter-spacing: 8px;
+        margin-bottom: 60px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .atom-cert-recipient {
+        font-family: 'Helvetica', sans-serif;
+        font-weight: 700;
+        font-size: 48px;
+        color: white;
+        margin-bottom: 30px;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .atom-cert-separator {
+        width: 200px;
+        height: 2px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        margin-bottom: 30px;
+    }
+
+    .atom-cert-text {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 14px;
+        color: #CCCCCC;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .atom-cert-title {
+        font-family: 'Helvetica', sans-serif;
+        font-weight: 700;
+        font-size: 36px;
+        margin-bottom: 80px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        max-width: 80%;
+        line-height: 1.2;
+    }
+
+    .atom-cert-footer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 800px;
+        margin-top: auto;
+        padding: 0 40px;
+    }
+
+    .atom-footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+    }
+
+    .atom-footer-value {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 14px;
+        color: #888888;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .atom-footer-value.signature {
+        font-family: 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 28px;
+        background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 5px;
+    }
+
+    .atom-footer-line {
+        width: 150px;
+        height: 1px;
+        background: #555555;
+        margin-bottom: 8px;
+    }
+
+    .atom-footer-label {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 10px;
+        color: #666666;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    .atom-cert-id {
+        position: absolute;
+        bottom: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        color: #444444;
+        letter-spacing: 1px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .atom-cert-header {
+            font-size: 16px;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .atom-cert-recipient {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .atom-cert-title {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        .atom-cert-footer {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+    }
+
+    .action-buttons {
+        gap: 12px;
+    }
+
+    .action-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 15px;
+    }
+
+    .verification-info {
+        text-align: center;
+        margin-top: 24px;
+    }
+
+    .verification-link {
+        font-size: 12px;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .linkedin-manual-instructions {
+        display: block;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .linkedin-manual-instructions h3 {
+        text-align: center;
+        margin-bottom: 12px;
+
+        /* Small header */
+    }
+
+    .linkedin-manual-instructions ol {
+        text-align: left;
+        padding-left: 16px;
+        font-size: 10px;
+        /* Tiny font */
+        color: var(--text-secondary);
+        word-break: break-all;
+        /* CRITICAL: Force URL to wrap */
+    }
+
+    .linkedin-manual-instructions li {
+        margin-bottom: 6px;
+        line-height: 1.4;
+    }
+}
