@@ -3,6 +3,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+import LoadingSpinner from '../components/LoadingSpinner';
+
 export const AuthContext = createContext(null);
 
 // Configure axios defaults
@@ -39,18 +41,7 @@ export function AuthProvider({ children }) {
     };
 
     if (loading) {
-        return (
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: '100vh',
-                fontSize: '1.25rem',
-                color: 'var(--color-text-secondary)'
-            }}>
-                Loading...
-            </div>
-        );
+        return <LoadingSpinner fullScreen text="One Learn" />;
     }
 
     return (

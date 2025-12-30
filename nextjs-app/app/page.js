@@ -13,6 +13,7 @@ import {
 } from './components/Icons';
 import './styles/HomePage.css';
 import OnboardingModal from './components/OnboardingModal';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const HeroCarousel = ({ featuredCourses }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -207,9 +208,8 @@ export default function HomePage() {
   return (
     <div className={`homepage ${!loading ? 'content-fade-in' : ''}`}>
       {loading ? (
-        <div className="loading-state">
-          <div className="spinner"></div>
-          <p>Loading...</p>
+        <div style={{ padding: '100px 0' }}>
+          <LoadingSpinner text="Finding best free courses..." />
         </div>
       ) : (
         <>
