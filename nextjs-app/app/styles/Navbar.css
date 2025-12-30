@@ -483,7 +483,6 @@
 
         /* UNIFIED TRANSITION: Match the closing curve */
         transition: max-height 0.4s cubic-bezier(0.32, 0.72, 0, 1),
-            border-radius 0.4s cubic-bezier(0.32, 0.72, 0, 1),
             background 0.4s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
