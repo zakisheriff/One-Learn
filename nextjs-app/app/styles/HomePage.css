@@ -188,6 +188,10 @@
     display: flex;
     gap: 12px;
     z-index: 10;
+
+    .hero-indicators {
+        bottom: 20px;
+    }
 }
 
 .hero-indicator {
@@ -754,22 +758,32 @@
     }
 
     .hero-carousel {
-        height: auto;
-        min-height: 400px;
-        padding: 60px 0;
+        height: 800px;
+        /* Fixed height to prevent jumping */
+        min-height: 0;
+        padding: 40px 0 60px;
         margin-bottom: 24px;
-
+        display: flex;
+        align-items: center;
+        margin-right: 0;
+        margin-left: 0;
+        overflow: hidden;
     }
 
     .hero-slide {
         padding: 0 20px;
-
+        align-items: flex-start;
+        /* Prevent vertical centering jump */
+        padding-top: 40px;
     }
 
     .hero-content {
         flex-direction: column-reverse;
-        gap: 32px;
+        gap: 24px;
         text-align: center;
+        justify-content: flex-end;
+        /* Align to bottom of container if needed, or start */
+        height: 100%;
     }
 
     .hero-text h1 {
@@ -797,14 +811,86 @@
         width: 240px;
     }
 
+    .mission-banner {
+        margin-top: 36px;
+        /* Spacing from navbar */
+        padding: 24px 16px;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 32px;
+        /* Rounded corners on all sides */
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .mission-header h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+        line-height: 1.2;
+    }
+
+    .mission-header p {
+        font-size: 14px;
+        margin-bottom: 24px;
+        line-height: 1.4;
+    }
+
+    .mission-steps {
+        gap: 24px;
+        flex-direction: column;
+    }
+
+    .mission-step {
+        flex-direction: row;
+        /* Horizontal alignment for steps on mobile looks better/tighter */
+        align-items: center;
+        text-align: left;
+        gap: 16px;
+        max-width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mission-icon-wrapper {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin-bottom: 0;
+        /* Remove bottom margin since we are going horizontal */
+        flex-shrink: 0;
+    }
+
+    .mission-icon-wrapper svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .mission-text {
+        text-align: left;
+    }
+
+    .mission-step h3 {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .mission-step p {
+        font-size: 13px;
+        max-width: 100%;
+        text-align: left;
+        margin: 0;
+        color: var(--text-secondary);
+    }
+
     .linkedin-card-thumbnail {
         height: 135px;
     }
 
-    .mission-banner {
-        padding: 40px 20px;
-        border-radius: 24px;
-    }
 
     .hero-indicators {
         bottom: 20px;
