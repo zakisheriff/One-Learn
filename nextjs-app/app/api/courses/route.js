@@ -3,6 +3,8 @@
 import { query } from '@/lib/db';
 import { verifyAuth } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request) {
     try {
         // Get all courses

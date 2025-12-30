@@ -1,8 +1,63 @@
--- Enable UUID extension first
+-- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- First, create the missing tables if they don't exist
-CREATE TABLE IF NOT EXISTS modules (
+-- ⚠️ RESET CONTENT TABLES
+-- We drop these to ensure the schema matches perfectly
+-- This avoids "column missing" or "type mismatch" errors
+DROP TABLE IF EXISTS lessons CASCADE;
+DROP TABLE IF EXISTS modules CASCADE;
+DROP TABLE IF EXISTS enrollments CASCADE;
+DROP TABLE IF EXISTS courses CASCADE;
+
+-- Note: We do NOT drop the 'users' table so accounts are preserved.
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255),
+  avatar_url TEXT,
+  interests TEXT[],
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 1. Create Courses Table (Using VARCHAR for likes/views to allow '1.2M')
+CREATE TABLE courses (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  instructor VARCHAR(255),
+  thumbnail_url TEXT,
+  category VARCHAR(100),
+  subject VARCHAR(100),
+  level VARCHAR(50),
+  estimated_hours VARCHAR(50),
+  modules JSONB DEFAULT '[]',
+  syllabus TEXT,
+  is_published BOOLEAN DEFAULT false,
+  likes VARCHAR(50) DEFAULT '0',
+  views VARCHAR(50) DEFAULT '0',
+  type VARCHAR(50) DEFAULT 'course',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Create Enrollments Table
+CREATE TABLE enrollments (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  course_id UUID REFERENCES courses(id) ON DELETE CASCADE,
+  enrolled_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  completed_at TIMESTAMP WITH TIME ZONE,
+  last_accessed_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  completed_lessons TEXT[],
+  is_completed BOOLEAN DEFAULT false,
+  UNIQUE(user_id, course_id)
+);
+
+-- 3. Create Modules Table
+CREATE TABLE modules (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   course_id UUID REFERENCES courses(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
@@ -11,7 +66,8 @@ CREATE TABLE IF NOT EXISTS modules (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS lessons (
+-- 4. Create Lessons Table
+CREATE TABLE lessons (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   module_id UUID REFERENCES modules(id) ON DELETE CASCADE,
   title VARCHAR(255) NOT NULL,
@@ -23,17 +79,7 @@ CREATE TABLE IF NOT EXISTS lessons (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Then add extra columns to courses matching our new schema
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS estimated_hours VARCHAR(50);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS likes VARCHAR(50);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS views VARCHAR(50);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS category VARCHAR(100);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS level VARCHAR(50);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS type VARCHAR(50);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS subject VARCHAR(100);
-ALTER TABLE courses ADD COLUMN IF NOT EXISTS instructor VARCHAR(100);
-
--- Insert 5 popular courses to get started
+-- 5. Insert Data
 INSERT INTO courses (slug, title, description, thumbnail_url, syllabus, is_published, estimated_hours, likes, views, category, level, type, subject, instructor) VALUES
 (
     'python-for-beginners',
@@ -136,7 +182,7 @@ Module 5: Analytics and Metrics',
     'Simplilearn'
 );
 
--- Now add modules for each course
+-- 6. Insert Modules and Lessons
 DO $$
 DECLARE
     course_record RECORD;
@@ -167,7 +213,5 @@ BEGIN
     END LOOP;
 END $$;
 
--- Verify the data was inserted
+-- Verify
 SELECT COUNT(*) as total_courses FROM courses;
-SELECT COUNT(*) as total_modules FROM modules;
-SELECT COUNT(*) as total_lessons FROM lessons;
