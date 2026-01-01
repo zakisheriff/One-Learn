@@ -11,7 +11,7 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'One Learn - Free Certified Learning',
+  title: 'One Learn',
   description: '100% Free, AI-Powered Learning Platform with Verified Certificates',
   icons: {
     icon: '/favicon.svg',

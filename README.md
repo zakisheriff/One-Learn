@@ -1,7 +1,7 @@
 # <div align="center">One Learn</div>
 
 <div align="center">
-<strong>100% Free, AI-Powered Learning Platform with Verified Certificates</strong>
+<strong>100% Free, Learning Platform with Verified Certificates</strong>
 </div>
 
 <br />
@@ -15,7 +15,7 @@
 
 <br />
 
-<a href="https://you-learn-production.up.railway.app">
+<a href="https://onelearn.theoneatom.com">
 <img src="https://img.shields.io/badge/View%20Live%20Demo-Click%20Here-0071e3?style=for-the-badge&logo=safari&logoColor=white" height="50" />
 </a>
 
@@ -31,7 +31,7 @@
 > **"Learning should be free for everyone."**
 >
 > You Learn isn't just another LMS; it's a movement toward accessible education.  
-> Powered by AI and designed with Apple's aesthetic philosophy, it transforms YouTube content into structured, certified learning experiences.
+> Powered by AI and designed with The One Atom Color palette (Black, White, and Glassmorphism), it transforms YouTube content into structured, certified learning experiences.
 
 ---
 
@@ -41,7 +41,7 @@ You Learn's mission is to be:
 
 - **A completely free learning platform** — no paywalls, no subscriptions, ever
 - **An AI-powered education system** using Google's Gemini for intelligent assessments
-- **A beautiful, modern web application** with Apple-inspired design language
+- **A beautiful, modern web application** with The One Atom Color palette design language
 
 ---
 
@@ -52,10 +52,10 @@ You Learn democratizes learning by making **every course, every quiz, and every 
 
 ---
 
-## 🎨 Apple-Inspired "Liquid Glass" Design
+## 🎨 The One Atom Color Palette "Liquid Glass" Design
 
 - **Minimalist Aesthetics**  
-  Pure CSS implementation following Apple's design principles — no frameworks, just elegance.
+  Pure CSS implementation following The One Atom Color palette (Black, White, and Glassmorphism) design principles — no frameworks, just elegance.
 
 - **Liquid Glass Effects**  
   Translucent overlays with `backdrop-filter: blur()` create depth and focus.
@@ -64,7 +64,7 @@ You Learn democratizes learning by making **every course, every quiz, and every 
   Subtle shadows and smooth transitions provide a premium feel.
 
 - **System Fonts**  
-  Native `-apple-system` typography for maximum legibility and native feel.
+  Modern system typography for maximum legibility and premium feel.
 
 ---
 
@@ -160,7 +160,7 @@ YouLearn/
     │   │   ├── SettingsPage.jsx  # User profile settings
     │   │   └── HelpCenter.jsx    # Support & FAQs
     │   ├── components/           # Reusable components
-    │   └── styles/               # Pure CSS (Apple-inspired)
+    │   └── styles/               # Pure CSS (The One Atom Color palette)
     │       ├── variables.css     # Design system tokens
     │       └── [component].css
     └── index.html
@@ -168,75 +168,8 @@ YouLearn/
 
 ---
 
-## 🚀 Quick Start
 
-### Prerequisites
-
-- **Node.js** (v18+)
-- **PostgreSQL** (v14+)
-- **Google Cloud Account** (for OAuth & Gemini API)
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/zakisheriff/One-Learn.git
-cd One-Learn
-```
-
-### 2. Install Dependencies
-
-```bash
-# Backend
-cd backend
-npm install
-
-# Frontend
-cd ../frontend
-npm install
-```
-
-### 3. Database Setup
-
-```bash
-# Create database
-createdb youlearn
-
-# Run migrations
-psql youlearn < backend/database/schema.sql
-```
-
-### 4. Environment Configuration
-
-Create `backend/.env`:
-
-```env
-DATABASE_URL=postgresql://username:password@localhost:5432/youlearn
-JWT_SECRET=your-super-secret-jwt-key-min-32-characters
-GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-GEMINI_API_KEY=your-gemini-api-key
-FRONTEND_URL=http://localhost:5173
-NODE_ENV=development
-PORT=3000
-```
-
-### 5. Run the Application
-
-```bash
-# Terminal 1: Backend
-cd backend
-npm run dev
-
-# Terminal 2: Frontend
-cd frontend
-npm run dev
-```
-
-Visit **http://localhost:5173** 🎉
-
----
-
-## 🎯 Key Features
+##  Key Features
 
 ### For Students
 
@@ -271,7 +204,7 @@ Visit **http://localhost:5173** 🎉
 - **React.js** — Modern UI framework
 - **React Router** — Client-side routing
 - **Axios** — HTTP client
-- **Pure CSS** — No frameworks, Apple-inspired design
+- **Pure CSS** — No frameworks, The One Atom Color palette design
 - **Vite** — Lightning-fast build tool
 
 ---
@@ -323,29 +256,12 @@ Visit **http://localhost:5173** 🎉
 
 ---
 
-## 🌐 Deployment
-
-### Backend (Railway/Render)
-1. Set environment variables
-2. Connect PostgreSQL database
-3. Deploy from `backend` directory
-
-### Frontend (Vercel/Netlify)
-1. Build: `npm run build`
-2. Deploy `dist` folder
-3. Configure SPA redirects
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
 
 ## 📄 License
 
-MIT License — 100% Free and Open Source
+**Strictly Proprietary License**
+
+All rights reserved. This project and its source code are for study and educational purposes only. You are permitted to visit the site and view the code to learn, but you may **NOT** use, copy, modify, distribute, or deploy this code, in whole or in part, for any purpose.
 
 ---
 
